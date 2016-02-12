@@ -28,7 +28,7 @@ Each requirement has an associated ID. Each ID has two initial letters referring
 
 #### User Interface
 [2]- **[HL.U.01]** The home audio system shall allow the user to see the current volume level of each home location.
-**[2]- [HL.U.02]** The home audio system shall allow the user to see each home location has been temporarily muted.
+[2]- **[HL.U.02]** The home audio system shall allow the user to see each home location has been temporarily muted.
 [1]- **[HL.U.03]** The home audio system shall allow the user to see the name of each home location currently added to the system.
 [2]- **[HL.U.04]** The home audio system shall allow the user to see which songs have been queued up to a particular home location.
 
