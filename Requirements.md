@@ -58,7 +58,7 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 
 ## Non-Functional
 ### Interoperability
-- [1] **[IN.01]** The user may interact with the home audio system via three different applications: one for laptop/desktop machines, one for mobile devices, and one for web browsers. Changes made via one version of the application need not be reflected in the user interface of the other versions.
+- [1] **[IN.01]** The user may interact with the home audio system via three different applications: one for laptop/desktop machines, one for mobile devices, and one for web browsers.
 
 #### Laptop/Desktop Application
 - [1] **[IN.L.01]** The laptop/desktop application must be implemented in Java.
@@ -73,3 +73,7 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 
 ### Speed
 - [3] **[SP.01]** For the addition of a home location, album, or playlist: The time between when the user submits a correctly filled-out form and the time when the entity is added to the system should be one second or less.
+
+### Persistence
+- [1] **[PS.01]** Application data must be saved in text files (e.g., XML) or in a database.
+- [1] **[PS.02]** Changes to application data made on one application shall not be recognized by the other applications.
