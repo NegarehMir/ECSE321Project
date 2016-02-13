@@ -7,7 +7,7 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 ## Functional
 ### Music Library Management
 #### Albums
-- [1] **[ML.A.01]** The home audio system shall allow the user to add an album by inputting the text of the album title, its artist's name, and a sequential list of songs, each with its own title and duration. To add a single song that belongs to an album which hasn't been added yet, the system shall allow the user to add an album comprised of only one song.
+- [1] **[ML.A.01]** The home audio system shall allow the user to add an album by inputting the text of the album title, its artist's name, its genre, its release date, and a sequential list of songs, each with its own title and duration. To add a single song that belongs to an album which hasn't been added yet, the system shall allow the user to add an album comprised of only one song.
 - [3] **[ML.A.02]** The home audio system shall allow the user to add songs to an album after the album has been created.
 - [3] **[ML.A.03]** The home audio system shall allow the user to modify the song order within an album.
 - [2] **[ML.A.04]** The home audio system shall allow the user to remove an album (and by extension, all the songs associated with it) from the library.
@@ -17,6 +17,14 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 - [1] **[ML.P.01]** The home audio system shall allow the user to create a playlist by selecting songs that already exist in the system.
 - [3] **[ML.P.02]** The home audio system shall allow the user to change the order of songs already added to a playlist.
 - [2] **[ML.P.03]** The home audio system shall allow the user to remove a playlist from the library, which should not delete the songs contained in the process.
+
+#### User Interface
+- [1] **[ML.U.01]** The home audio system shall allow the user to see all songs in its library sorted by album name or artist name.
+- [2] **[ML.U.02]** The home audio system shall allow the user to see all songs in its library sorted by song title.
+- [1] **[ML.U.03]** The home audio system shall allow the user to see all the songs in a given album or playlist.
+- [1] **[ML.U.04]** The home audio system shall allow the user to see the artist, genre, and release date of an album.
+- [1] **[ML.U.04]** The home audio system shall allow the user to see the duration, title, and album of each song.
+
 
 ### Home Location Management
 - [1] **[HL.01]** The home audio system shall allow the user to add home locations by inputting the text of the location's name.
