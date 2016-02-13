@@ -58,7 +58,18 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 
 ## Non-Functional
 ### Interoperability
-- [1] **[IN.01]** The application which controls the home audio system shall have three versions: a desktop-based version, an Android-based version, and a PHP Web-based version. Changes made via one version of the application need not be reflected in the user interface of the other versions.
+- [1] **[IN.01]** The user may interact with the home audio system via three different applications: one for laptop/desktop machines, one for mobile devices, and one for web browsers. Changes made via one version of the application need not be reflected in the user interface of the other versions.
+
+#### Laptop/Desktop Application
+- [1] **[IN.L.01]** The laptop/desktop application must be implemented in Java.
+- [1] **[IN.L.02]** The laptop/desktop application user interface must be implemented with the Java Swing framework.
+
+#### Mobile Application
+- [1] **[IN.M.01]** The mobile application must be implemented in Java on the Android platform.
+- [1] **[IN.M.02]** The mobile application user interface must be implemented using the UI development framework that comes with Android Studio.
+
+#### Web Application
+- [1] **[IN.W.01]** The web application must be primarily written in PHP.
 
 ### Speed
 - [3] **[SP.01]** For the addition of a home location, album, or playlist: The time between when the user submits a correctly filled-out form and the time when the entity is added to the system should be one second or less.
