@@ -2,10 +2,12 @@
 
 Each requirement has an associated ID. Each ID has two initial letters referring to the highest-level category (below functional and non-functional) it belongs to. Where appropriate, some IDs have a middle single letter referring to a subcategory. All IDs then have a two-digit number which distinguishes it from the other IDs which share its aforementioned letters. Periods separate each of these three components.
 
+Priority numbers are given before each requirement ID. Priority is given on a scale from 1 to 3, where 1 means highest priority. Generally, a priority 1 element will be something that is present in the Project Overview.
+
 ## Functional
 ### Music Library Management
 #### Albums
-- [1]- **[ML.A.01]** The home audio system shall allow the user to add an album by inputting the text of the album title, its artist's name, and a sequential list of songs, each with its own title and duration. To add a single song that belongs to an album which hasn't been added yet, the system shall allow the user to add an album comprised of only one song.
+- [1] **[ML.A.01]** The home audio system shall allow the user to add an album by inputting the text of the album title, its artist's name, and a sequential list of songs, each with its own title and duration. To add a single song that belongs to an album which hasn't been added yet, the system shall allow the user to add an album comprised of only one song.
 - [3] **[ML.A.02]** The home audio system shall allow the user to add songs to an album after the album has been created.
 - [3] **[ML.A.03]** The home audio system shall allow the user to modify the song order within an album.
 - [2] **[ML.A.04]** The home audio system shall allow the user to remove an album (and by extension, all the songs associated with it) from the library.
@@ -48,8 +50,7 @@ Each requirement has an associated ID. Each ID has two initial letters referring
 
 ## Non-Functional
 ### Interoperability
-- [1] **[IN.01]** The application which controls the home audio system shall have three versions: a desktop-based version, an Android-based version, and a PHP Web-based version.
-- **[IN.02]** Changes made via one version of the application need not be reflected in the user interface of the other versions.
+- [1] **[IN.01]** The application which controls the home audio system shall have three versions: a desktop-based version, an Android-based version, and a PHP Web-based version. Changes made via one version of the application need not be reflected in the user interface of the other versions.
 
 ### Speed
 - [3] **[SP.01]** For the addition of a home location, album, or playlist: The time between when the user submits a correctly filled-out form and the time when the entity is added to the system should be one second or less.
