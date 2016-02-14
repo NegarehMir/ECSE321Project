@@ -2,6 +2,7 @@ class Room
 {
   name;
   int volume;
+  boolean mute;
 }
 
 class HAS
@@ -23,6 +24,7 @@ class Song
 class Album
 {
   title;
+  Date releaseDate;
 }
 
 class Artist
@@ -40,4 +42,9 @@ class PlaylistItem
 
 class Playlist
 {
+  1 -> 1 Genre;
+}
+class Genre
+{
+  name;
 }
