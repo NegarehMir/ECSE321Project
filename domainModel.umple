@@ -1,0 +1,43 @@
+class Room
+{
+  name;
+  int volume;
+}
+
+class HAS
+{
+  1 -> * Room;
+  1 -> * Song;
+  1 -> * Artist;
+  1 -> * Playlist;
+  1 -> * Album;
+}
+
+class Song
+{
+  title;
+  int duration;
+  1 -- 0..1 Album;
+}
+
+class Album
+{
+  title;
+}
+
+class Artist
+{
+  title;
+  1 -- * Song;
+}
+
+class PlaylistItem
+{
+  unique int pos;
+  * -- 1 Playlist;
+  1 -- 1 Song;
+}
+
+class Playlist
+{
+}
