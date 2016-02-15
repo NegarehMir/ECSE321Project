@@ -18,6 +18,7 @@ class Song
 {
   title;
   int duration;
+  1..* -- 1 AlbumTracklist;
 }
 
 class Album
@@ -25,6 +26,7 @@ class Album
   title;
   Date releaseDate;
   1 -> 1 Genre;
+  1 -- 1 AlbumTracklist;
 }
 
 class Artist
@@ -36,25 +38,31 @@ class Artist
 
 class Playlist
 {
-  1 -- 0..1 Album;
-  1..* -- 1..* Song;
+  * -- 1..* Song;
 }
 class Genre
 {
   name;
 }
+class AlbumTracklist
+{
+  isA Playlist;
+}
+
 //$?[End_of_model]$?
 
 class Song
 {
   position 178 402 109 75;
   position.association Album__Song 11,0 0,68;
+  position.association AlbumTracklist__Song 109,10 0,34;
 }
 
 class Album
 {
   position 406 19 146 75;
   position.association Album__Genre 121,75 30,0;
+  position.association Album__AlbumTracklist 30,75 79,0;
 }
 
 class Artist
@@ -66,10 +74,10 @@ class Artist
 
 class Playlist
 {
-  position 335 172 109 45;
+  position 276 171 109 45;
   position.association Genre__Playlist 68,45 46,0;
-  position.association Album__Playlist 56,0 37,75;
-  position.association Playlist__Song 48,45 109,10;
+  position.association Album__Playlist 83,0 37,75;
+  position.association Playlist__Song 23,45 64,0;
 }
 
 class Genre
@@ -88,4 +96,9 @@ class LocationQueueItem
   position 89 238 109 45;
   position.association LocationQueueItem__Song 40,58 9,0;
   position.association LocationQueueItem__Playlist 139,0 0,28;
+}
+
+class AlbumTracklist
+{
+  position 352 267 109 41;
 }
