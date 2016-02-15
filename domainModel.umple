@@ -1,48 +1,43 @@
-class Room
+namespace ca.mcgill.ecse321.group01.homeaudiosystem.model;
+
+class Location
 {
   name;
   int volume;
   boolean mute;
+  1 -- * LocationQueueItem;
 }
 
-class HAS
+class LocationQueueItem
 {
-  1 -> * Room;
-  1 -> * Song;
-  1 -> * Artist;
-  1 -> * Playlist;
-  1 -> * Album;
+  * -- * Song;
+  * -- * Playlist;
 }
 
 class Song
 {
   title;
   int duration;
-  1 -- 0..1 Album;
 }
 
 class Album
 {
   title;
   Date releaseDate;
+  1 -> 1 Genre;
 }
 
 class Artist
 {
   title;
+  1 -- * Album;
   1 -- * Song;
-}
-
-class PlaylistItem
-{
-  unique int pos;
-  * -- 1 Playlist;
-  1 -- 1 Song;
 }
 
 class Playlist
 {
-  1 -> 1 Genre;
+  1 -- 0..1 Album;
+  1..* -- 1..* Song;
 }
 class Genre
 {
@@ -50,51 +45,47 @@ class Genre
 }
 //$?[End_of_model]$?
 
-class Room
-{
-  position 31 30 122 92;
-}
-
-class HAS
-{
-  position 196 13 109 45;
-  position.association HAS__Room 0,13 122,6;
-  position.association Album__HAS 102,38 139,0;
-  position.association HAS__Playlist 71,45 30,0;
-  position.association Artist__HAS 7,38 30,0;
-}
-
 class Song
 {
-  position 153 364 109 75;
-  position.association Album__Song 109,55 0,29;
+  position 178 402 109 75;
+  position.association Album__Song 11,0 0,68;
 }
 
 class Album
 {
-  position 429 402 146 75;
+  position 406 19 146 75;
+  position.association Album__Genre 121,75 30,0;
 }
 
 class Artist
 {
-  position 14 453 109 58;
-  position.association Artist__Song 109,3 0,74;
-}
-
-class PlaylistItem
-{
-  position 230 248 109 58;
-  position.association Playlist__PlaylistItem 30,0 19,45;
-  position.association PlaylistItem__Song 30,58 90,0;
+  position 587 399 109 58;
+  position.association Artist__Song 0,18 109,35;
+  position.association Album__Artist 70,0 146,22;
 }
 
 class Playlist
 {
-  position 241 128 109 45;
+  position 335 172 109 45;
   position.association Genre__Playlist 68,45 46,0;
+  position.association Album__Playlist 56,0 37,75;
+  position.association Playlist__Song 48,45 109,10;
 }
 
 class Genre
 {
-  position 354 311 112 58;
+  position 486 293 112 58;
+}
+
+class Location
+{
+  position 50 30 109 45;
+  position.association Location__LocationQueueItem 38,92 30,0;
+}
+
+class LocationQueueItem
+{
+  position 89 238 109 45;
+  position.association LocationQueueItem__Song 40,58 9,0;
+  position.association LocationQueueItem__Playlist 139,0 0,28;
 }
