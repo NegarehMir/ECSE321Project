@@ -1,100 +1,122 @@
-class Room
+namespace ca.mcgill.ecse321.group01.homeaudiosystem.model;
+
+class HomeAudioSystem
+{
+  1 <@>- * Location;
+  1 <@>- * Album;
+  1 <@>- * Artist;
+  1 <@>- * Playlist;
+  1 <@>- * Genre;
+}
+
+class Location
 {
   name;
   int volume;
   boolean mute;
+  1 -- * LocationQueueItem;
 }
 
-class HAS
+class LocationQueueItem
 {
-  1 -> * Room;
-  1 -> * Song;
-  1 -> * Artist;
-  1 -> * Playlist;
-  1 -> * Album;
+  * -- * Song;
+  * -- * Playlist;
 }
 
 class Song
 {
   title;
   int duration;
-  1 -- 0..1 Album;
+  1..* -- 1 AlbumTracklist;
 }
 
 class Album
 {
   title;
   Date releaseDate;
+  Genre genre;
+  1 -- 1 AlbumTracklist;
 }
 
 class Artist
 {
   title;
+  1 -- * Album;
   1 -- * Song;
-}
-
-class PlaylistItem
-{
-  unique int pos;
-  * -- 1 Playlist;
-  1 -- 1 Song;
 }
 
 class Playlist
 {
-  1 -> 1 Genre;
+  * -- 1..* Song;
 }
 class Genre
 {
   name;
 }
+class AlbumTracklist
+{
+  isA Playlist;
+}
+
 //$?[End_of_model]$?
-
-class Room
-{
-  position 31 30 122 92;
-}
-
-class HAS
-{
-  position 196 13 109 45;
-  position.association HAS__Room 0,13 122,6;
-  position.association Album__HAS 102,38 139,0;
-  position.association HAS__Playlist 71,45 30,0;
-  position.association Artist__HAS 7,38 30,0;
-}
 
 class Song
 {
-  position 153 364 109 75;
-  position.association Album__Song 109,55 0,29;
+  position 178 402 109 75;
+  position.association Album__Song 11,0 0,68;
+  position.association AlbumTracklist__Song 109,10 0,34;
 }
 
 class Album
 {
-  position 429 402 146 75;
+  position 371 145 146 92;
+  position.association Album__Genre 121,75 30,0;
+  position.association Album__AlbumTracklist 28,92 87,0;
 }
 
 class Artist
 {
-  position 14 453 109 58;
-  position.association Artist__Song 109,3 0,74;
-}
-
-class PlaylistItem
-{
-  position 230 248 109 58;
-  position.association Playlist__PlaylistItem 30,0 19,45;
-  position.association PlaylistItem__Song 30,58 90,0;
+  position 605 179 109 58;
+  position.association Artist__Song 0,45 109,35;
+  position.association Album__Artist 0,10 146,51;
 }
 
 class Playlist
 {
-  position 241 128 109 45;
+  position 214 174 109 45;
   position.association Genre__Playlist 68,45 46,0;
+  position.association Album__Playlist 83,0 37,75;
+  position.association Playlist__Song 23,45 64,0;
 }
 
 class Genre
 {
-  position 354 311 112 58;
+  position 525 15 112 58;
+}
+
+class Location
+{
+  position 59 83 122 92;
+  position.association Location__LocationQueueItem 38,92 30,0;
+}
+
+class LocationQueueItem
+{
+  position 79 279 139 45;
+  position.association LocationQueueItem__Song 40,58 9,0;
+  position.association LocationQueueItem__Playlist 139,0 1,45;
+}
+
+class AlbumTracklist
+{
+  position 321 285 109 41;
+}
+
+class HomeAudioSystem
+{
+  position 207 16 136 45;
+  position.association Album__HomeAudioSystem 85,45 0,10;
+  position.association HomeAudioSystem__Playlist 33,45 16,0;
+  position.association HomeAudioSystem__Location 0,38 30,0;
+  position.association Artist__HomeAudioSystem 129,38 56,0;
 }
