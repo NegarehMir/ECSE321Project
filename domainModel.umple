@@ -14,20 +14,13 @@ class Location
   name;
   int volume;
   boolean mute;
-  1 -- * LocationQueueItem;
-}
-
-class LocationQueueItem
-{
   * -- * Song;
-  * -- * Playlist;
 }
 
 class Song
 {
   title;
   int duration;
-  1..* -- 1 AlbumTracklist;
 }
 
 class Album
@@ -56,9 +49,10 @@ class Genre
 class AlbumTracklist
 {
   isA Playlist;
+    1 <@>- 1..* Song;
 }
 
-//$?[End_of_model]$?
+
 
 class Song
 {
@@ -86,7 +80,7 @@ class Playlist
   position 214 174 109 45;
   position.association Genre__Playlist 68,45 46,0;
   position.association Album__Playlist 83,0 37,75;
-  position.association Playlist__Song 23,45 64,0;
+  position.association Playlist__Song 23,45 41,0;
 }
 
 class Genre
@@ -97,19 +91,13 @@ class Genre
 class Location
 {
   position 59 83 122 92;
-  position.association Location__LocationQueueItem 38,92 30,0;
-}
-
-class LocationQueueItem
-{
-  position 79 279 139 45;
-  position.association LocationQueueItem__Song 40,58 9,0;
-  position.association LocationQueueItem__Playlist 139,0 1,45;
+    position.association Location__Song 30,92 0,0;
 }
 
 class AlbumTracklist
 {
   position 321 285 109 41;
+  position.association AlbumTracklist__Song 23,41 102,0;
 }
 
 class HomeAudioSystem
@@ -120,3 +108,4 @@ class HomeAudioSystem
   position.association HomeAudioSystem__Location 0,38 30,0;
   position.association Artist__HomeAudioSystem 129,38 56,0;
 }
+//$?[End_of_model]$?
