@@ -2,7 +2,7 @@
 
 Each requirement has an associated ID. Each ID has two initial letters referring to the highest-level category (below functional and non-functional) it belongs to. Where appropriate, some IDs have a middle single letter referring to a subcategory. All IDs then have a two-digit number which distinguishes it from the other IDs which share its aforementioned letters. Periods separate each of these three components.
 
-Priority numbers are given before each requirement ID. Priority is given on a scale from 1 to 3, where 1 means highest priority. Generally, a priority 1 element will be something that is present in the Project Overview.
+Priority numbers are given before each requirement ID. Priority is given on a scale from 1 to 3, where 1 means highest priority. Generally, a priority 1 element will be something that is present in the Project Overview. A priority 2 element will be something that adds an important functionality, while a priority of 3 suggests that the requirement is not necessary.
 
 ## Functional
 ### Music Library Management
@@ -16,8 +16,6 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 - [1] **[ML.P.01]** The home audio system shall allow the user to create a playlist by selecting songs that already exist in the system.
 - [3] **[ML.P.02]** The home audio system shall allow the user to change the order of songs already added to a playlist.
 - [2] **[ML.P.03]** The home audio system shall allow the user to remove a playlist from the library, which should not delete the songs contained in the process.
-- [2] **[ML.P.04]** The home audio system shall allow the user to add songs to an existing playlist from the library.
-- [2] **[ML.P.05]** The home audio system shall allow the user to remove songs to an existing playlist from the library.
 
 #### User Interface
 - [1] **[ML.U.01]** The home audio system shall allow the user to see all songs in its library sorted by album name or artist name.
