@@ -13,9 +13,12 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 - [2] **[ML.A.04]** The home audio system shall allow the user to remove individual songs from the library.
 
 #### Playlists
-- [1] **[ML.P.01]** The home audio system shall allow the user to create a playlist by selecting songs that already exist in the system.
+- [1] **[ML.P.01]** The home audio system shall allow the user to create a playlist by selecting songs that already exist in the library.
 - [3] **[ML.P.02]** The home audio system shall allow the user to change the order of songs already added to a playlist.
 - [2] **[ML.P.03]** The home audio system shall allow the user to remove a playlist from the library, which should not delete the songs contained in the process.
+- [2] **[ML.P.04]** The home audio system shall allow the user to add songs from the library to an existing playlist.
+- [2] **[ML.P.05]** The home audio system shall allow the user to remove songs from an existing playlist.
+
 
 #### User Interface
 - [1] **[ML.U.01]** The home audio system shall allow the user to see all songs in its library sorted by album name or artist name.
