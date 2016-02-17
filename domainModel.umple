@@ -45,7 +45,7 @@ class Playlist
 }
 class Genre
 {
-  name;
+  immutable String name;
 }
 class AlbumTracklist
 {
