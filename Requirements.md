@@ -9,9 +9,8 @@ Priority numbers are given before each requirement ID. Priority is given on a sc
 #### Albums
 - [1] **[ML.A.01]** The home audio system shall allow the user to add an album by inputting the text of the album title (mandatory) and its artist's name (mandatory), its genre (optional), its release date (optional). When inputting each album, the system shall allow the user to add sequential list of at least one song, each with its own title and duration. To add a single song that belongs to an album which hasn't been added yet, the system shall allow the user to add an album comprised of only one song.
 - [3] **[ML.A.02]** The home audio system shall allow the user to add songs to an album after the album has been created.
-- [3] **[ML.A.03]** The home audio system shall allow the user to modify the song order within an album.
-- [2] **[ML.A.04]** The home audio system shall allow the user to remove an album (and by extension, all the songs associated with it) from the library.
-- [2] **[ML.A.05]** The home audio system shall allow the user to remove individual songs from the library.
+- [2] **[ML.A.03]** The home audio system shall allow the user to remove an album (and by extension, all the songs associated with it) from the library.
+- [2] **[ML.A.04]** The home audio system shall allow the user to remove individual songs from the library.
 
 #### Playlists
 - [1] **[ML.P.01]** The home audio system shall allow the user to create a playlist by selecting songs that already exist in the system.
