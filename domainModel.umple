@@ -11,7 +11,7 @@ class HomeAudioSystem
 
 class Location
 {
-  name;
+  String name;
   int volume;
   boolean mute;
   * -- * Song;
@@ -19,13 +19,13 @@ class Location
 
 class Song
 {
-  title;
+  String title;
   int duration;
 }
 
 class Album
 {
-  title;
+  String title;
   Date releaseDate;
   Genre genre;
   1 -- 1 AlbumTracklist;
@@ -33,13 +33,14 @@ class Album
 
 class Artist
 {
-  title;
+  String title;
   1 -- * Album;
   1 -- * Song;
 }
 
 class Playlist
 {
+  String name;
   * -- 1..* Song;
 }
 class Genre
