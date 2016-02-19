@@ -12,7 +12,7 @@ class PersistenceHomeAudioSystem {
 			$str = file_get_contents($this->filename);
 			$rm = unserialize($str);
 		} else {
-			$rm = RegistrationManager::getInstance();
+			$rm = HomeAudioSystem::getInstance();
 		}
 		
 		return $rm;
