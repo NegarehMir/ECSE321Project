@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f2a13e6 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 42 "../../../../../../../../../ump/tmp943639/model.ump"
-// line 80 "../../../../../../../../../ump/tmp943639/model.ump"
+// line 42 "../../../../../../domainModel.umple"
+// line 80 "../../../../../../domainModel.umple"
 public class Playlist
 {
 

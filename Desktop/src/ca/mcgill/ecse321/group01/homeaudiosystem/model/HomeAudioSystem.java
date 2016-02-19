@@ -1,14 +1,20 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f2a13e6 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 4 "../../../../../../../../../ump/tmp943639/model.ump"
-// line 105 "../../../../../../../../../ump/tmp943639/model.ump"
+// line 3 "../../../../../../domainModel.umple"
+// line 105 "../../../../../../domainModel.umple"
 public class HomeAudioSystem
 {
+
+  //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  private static HomeAudioSystem theInstance = null;
 
   //------------------------
   // MEMBER VARIABLES
@@ -25,13 +31,22 @@ public class HomeAudioSystem
   // CONSTRUCTOR
   //------------------------
 
-  public HomeAudioSystem()
+  private HomeAudioSystem()
   {
     locations = new ArrayList<Location>();
     albums = new ArrayList<Album>();
     artists = new ArrayList<Artist>();
     playlists = new ArrayList<Playlist>();
     genres = new ArrayList<Genre>();
+  }
+
+  public static HomeAudioSystem getInstance()
+  {
+    if(theInstance == null)
+    {
+      theInstance = new HomeAudioSystem();
+    }
+    return theInstance;
   }
 
   //------------------------

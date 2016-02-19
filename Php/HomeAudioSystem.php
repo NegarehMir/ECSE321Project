@@ -1,9 +1,15 @@
 <?php
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f2a13e6 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 class HomeAudioSystem
 {
+
+  //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  private static $theInstance = null;
 
   //------------------------
   // MEMBER VARIABLES
@@ -20,13 +26,22 @@ class HomeAudioSystem
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct()
+  private function __construct()
   {
     $this->locations = array();
     $this->albums = array();
     $this->artists = array();
     $this->playlists = array();
     $this->genres = array();
+  }
+
+  public static function getInstance()
+  {
+    if(self::$theInstance == null)
+    {
+      self::$theInstance = new HomeAudioSystem();
+    }
+    return self::$theInstance;
   }
 
   //------------------------

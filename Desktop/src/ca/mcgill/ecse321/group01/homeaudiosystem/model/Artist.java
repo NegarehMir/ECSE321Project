@@ -1,12 +1,12 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f2a13e6 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 35 "../../../../../../../../../ump/tmp943639/model.ump"
-// line 73 "../../../../../../../../../ump/tmp943639/model.ump"
+// line 35 "../../../../../../domainModel.umple"
+// line 73 "../../../../../../domainModel.umple"
 public class Artist
 {
 
