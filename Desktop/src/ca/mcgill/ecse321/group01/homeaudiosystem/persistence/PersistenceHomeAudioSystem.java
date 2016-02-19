@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.persistence;
 
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 
 public class PersistenceHomeAudioSystem {
@@ -15,6 +16,10 @@ public class PersistenceHomeAudioSystem {
 		PersistenceXStream.setAlias("location", Location.class);
 		PersistenceXStream.setAlias("playlist", Playlist.class);
 		PersistenceXStream.setAlias("song", Song.class);
+	}
+	
+	public static void loadHomeAudioSystemModel() {
+
 	}
 
 }
