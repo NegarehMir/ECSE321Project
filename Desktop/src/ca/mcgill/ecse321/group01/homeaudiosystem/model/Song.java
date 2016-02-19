@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 21 "../../../../../../domainModel.umple"
-// line 59 "../../../../../../domainModel.umple"
+// line 63 "../../../../../../domainModel.umple"
 public class Song
 {
 

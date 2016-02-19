@@ -15,26 +15,21 @@ class Album
   private $genre;
 
   //Album Associations
-  private $albumTracklist;
   private $homeAudioSystem;
   private $artist;
+  private $albumTracklist;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle = null, $aReleaseDate = null, $aGenre = null, $aAlbumTracklist = null, $aHomeAudioSystem = null, $aArtist = null)
+  public function __construct($aTitle = null, $aReleaseDate = null, $aGenre = null, $aHomeAudioSystem = null, $aArtist = null, $aAlbumTracklist = null)
   {
     if (func_num_args() == 0) { return; }
 
     $this->title = $aTitle;
     $this->releaseDate = $aReleaseDate;
     $this->genre = $aGenre;
-    if ($aAlbumTracklist == null || $aAlbumTracklist->getAlbum() != null)
-    {
-      throw new Exception("Unable to create Album due to aAlbumTracklist");
-    }
-    $this->albumTracklist = $aAlbumTracklist;
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
     if (!$didAddHomeAudioSystem)
     {
@@ -45,16 +40,21 @@ class Album
     {
       throw new Exception("Unable to create album due to artist");
     }
+    if ($aAlbumTracklist == null || $aAlbumTracklist->getAlbum() != null)
+    {
+      throw new Exception("Unable to create Album due to aAlbumTracklist");
+    }
+    $this->albumTracklist = $aAlbumTracklist;
   }
-  public static function newInstance($aTitle, $aReleaseDate, $aGenre, $aNameForAlbumTracklist, $allSongsForAlbumTracklist, $aHomeAudioSystemForAlbumTracklist, $aHomeAudioSystem, $aArtist)
+  public static function newInstance($aTitle, $aReleaseDate, $aGenre, $aHomeAudioSystem, $aArtist, $aNameForAlbumTracklist, $allSongsForAlbumTracklist, $aHomeAudioSystemForAlbumTracklist)
   {
     $thisInstance = new Album();
     $thisInstance->title = $aTitle;
     $thisInstance->releaseDate = $aReleaseDate;
-    $thisInstance->genre = $aGenre;
-    $thisInstance->albumTracklist = new AlbumTracklist($aNameForAlbumTracklist, $allSongsForAlbumTracklist, $aHomeAudioSystemForAlbumTracklist, $thisInstance);$this->homeAudioSystems = array();
+    $thisInstance->genre = $aGenre;$this->homeAudioSystems = array();
     $this->homeAudioSystems[] = $aHomeAudioSystem;$this->artists = array();
     $this->artists[] = $aArtist;
+    $thisInstance->albumTracklist = new AlbumTracklist($aNameForAlbumTracklist, $allSongsForAlbumTracklist, $aHomeAudioSystemForAlbumTracklist, $thisInstance);
     return $thisInstance;
   }
 
@@ -101,11 +101,6 @@ class Album
     return $this->genre;
   }
 
-  public function getAlbumTracklist()
-  {
-    return $this->albumTracklist;
-  }
-
   public function getHomeAudioSystem()
   {
     return $this->homeAudioSystem;
@@ -114,6 +109,11 @@ class Album
   public function getArtist()
   {
     return $this->artist;
+  }
+
+  public function getAlbumTracklist()
+  {
+    return $this->albumTracklist;
   }
 
   public function setHomeAudioSystem($aHomeAudioSystem)
@@ -161,18 +161,18 @@ class Album
 
   public function delete()
   {
-    $existingAlbumTracklist = $this->albumTracklist;
-    $this->albumTracklist = null;
-    if ($existingAlbumTracklist != null)
-    {
-      $existingAlbumTracklist->delete();
-    }
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;
     $placeholderHomeAudioSystem->removeAlbum($this);
     $placeholderArtist = $this->artist;
     $this->artist = null;
     $placeholderArtist->removeAlbum($this);
+    $existingAlbumTracklist = $this->albumTracklist;
+    $this->albumTracklist = null;
+    if ($existingAlbumTracklist != null)
+    {
+      $existingAlbumTracklist->delete();
+    }
   }
 
 }

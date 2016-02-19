@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 35 "../../../../../../domainModel.umple"
-// line 73 "../../../../../../domainModel.umple"
+// line 77 "../../../../../../domainModel.umple"
 public class Artist
 {
 
@@ -15,7 +15,7 @@ public class Artist
   //------------------------
 
   //Artist Attributes
-  private String title;
+  private String name;
 
   //Artist Associations
   private List<Album> albums;
@@ -26,9 +26,9 @@ public class Artist
   // CONSTRUCTOR
   //------------------------
 
-  public Artist(String aTitle, HomeAudioSystem aHomeAudioSystem)
+  public Artist(String aName, HomeAudioSystem aHomeAudioSystem)
   {
-    title = aTitle;
+    name = aName;
     albums = new ArrayList<Album>();
     songs = new ArrayList<Song>();
     boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
@@ -42,17 +42,17 @@ public class Artist
   // INTERFACE
   //------------------------
 
-  public boolean setTitle(String aTitle)
+  public boolean setName(String aName)
   {
     boolean wasSet = false;
-    title = aTitle;
+    name = aName;
     wasSet = true;
     return wasSet;
   }
 
-  public String getTitle()
+  public String getName()
   {
-    return title;
+    return name;
   }
 
   public Album getAlbum(int index)
@@ -125,9 +125,9 @@ public class Artist
     return 0;
   }
 
-  public Album addAlbum(String aTitle, Date aReleaseDate, Genre aGenre, AlbumTracklist aAlbumTracklist, HomeAudioSystem aHomeAudioSystem)
+  public Album addAlbum(String aTitle, Date aReleaseDate, Genre aGenre, HomeAudioSystem aHomeAudioSystem, AlbumTracklist aAlbumTracklist)
   {
-    return new Album(aTitle, aReleaseDate, aGenre, aAlbumTracklist, aHomeAudioSystem, this);
+    return new Album(aTitle, aReleaseDate, aGenre, aHomeAudioSystem, this, aAlbumTracklist);
   }
 
   public boolean addAlbum(Album aAlbum)
@@ -305,7 +305,7 @@ public class Artist
   {
 	  String outputString = "";
     return super.toString() + "["+
-            "title" + ":" + getTitle()+ "]" + System.getProperties().getProperty("line.separator") +
+            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
      + outputString;
   }

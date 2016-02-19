@@ -4,7 +4,7 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 
 // line 47 "../../../../../../domainModel.umple"
-// line 88 "../../../../../../domainModel.umple"
+// line 92 "../../../../../../domainModel.umple"
 public class Genre
 {
 

@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 51 "../../../../../../domainModel.umple"
-// line 99 "../../../../../../domainModel.umple"
+// line 103 "../../../../../../domainModel.umple"
 public class AlbumTracklist extends Playlist
 {
 
@@ -37,7 +37,7 @@ public class AlbumTracklist extends Playlist
   {
     super(aName, aHomeAudioSystem, allSongs);
     songs = new ArrayList<Song>();
-    album = new Album(aTitleForAlbum, aReleaseDateForAlbum, aGenreForAlbum, this, aHomeAudioSystemForAlbum, aArtistForAlbum);
+    album = new Album(aTitleForAlbum, aReleaseDateForAlbum, aGenreForAlbum, aHomeAudioSystemForAlbum, aArtistForAlbum, this);
   }
 
   //------------------------

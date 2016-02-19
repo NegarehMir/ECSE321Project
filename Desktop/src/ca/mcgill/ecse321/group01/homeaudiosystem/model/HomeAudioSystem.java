@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 3 "../../../../../../domainModel.umple"
-// line 105 "../../../../../../domainModel.umple"
+// line 109 "../../../../../../domainModel.umple"
 public class HomeAudioSystem
 {
 
@@ -280,9 +280,9 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Album addAlbum(String aTitle, Date aReleaseDate, Genre aGenre, AlbumTracklist aAlbumTracklist, Artist aArtist)
+  public Album addAlbum(String aTitle, Date aReleaseDate, Genre aGenre, Artist aArtist, AlbumTracklist aAlbumTracklist)
   {
-    return new Album(aTitle, aReleaseDate, aGenre, aAlbumTracklist, this, aArtist);
+    return new Album(aTitle, aReleaseDate, aGenre, this, aArtist, aAlbumTracklist);
   }
 
   public boolean addAlbum(Album aAlbum)
@@ -352,9 +352,9 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Artist addArtist(String aTitle)
+  public Artist addArtist(String aName)
   {
-    return new Artist(aTitle, this);
+    return new Artist(aName, this);
   }
 
   public boolean addArtist(Artist aArtist)

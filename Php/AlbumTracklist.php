@@ -39,7 +39,7 @@ class AlbumTracklist extends Playlist
     {
       throw new Exception("Unable to create AlbumTracklist, must have at least 1 songs");
     }
-    $thisInstance->album = new Album($aTitleForAlbum, $aReleaseDateForAlbum, $aGenreForAlbum, $thisInstance, $aHomeAudioSystemForAlbum, $aArtistForAlbum);
+    $thisInstance->album = new Album($aTitleForAlbum, $aReleaseDateForAlbum, $aGenreForAlbum, $aHomeAudioSystemForAlbum, $aArtistForAlbum, $thisInstance);
     return $thisInstance;
   }
   private function callParentConstructor($aName, $allSongs, $aHomeAudioSystem)

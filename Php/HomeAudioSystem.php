@@ -331,9 +331,9 @@ class HomeAudioSystem
     return 0;
   }
 
-  public function addAlbumVia($aTitle, $aReleaseDate, $aGenre, $aAlbumTracklist, $aArtist)
+  public function addAlbumVia($aTitle, $aReleaseDate, $aGenre, $aArtist, $aAlbumTracklist)
   {
-    return new Album($aTitle, $aReleaseDate, $aGenre, $aAlbumTracklist, $this, $aArtist);
+    return new Album($aTitle, $aReleaseDate, $aGenre, $this, $aArtist, $aAlbumTracklist);
   }
 
   public function addAlbum($aAlbum)
@@ -404,9 +404,9 @@ class HomeAudioSystem
     return 0;
   }
 
-  public function addArtistVia($aTitle)
+  public function addArtistVia($aName)
   {
-    return new Artist($aTitle, $this);
+    return new Artist($aName, $this);
   }
 
   public function addArtist($aArtist)

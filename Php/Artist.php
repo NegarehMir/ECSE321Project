@@ -10,7 +10,7 @@ class Artist
   //------------------------
 
   //Artist Attributes
-  private $title;
+  private $name;
 
   //Artist Associations
   private $albums;
@@ -21,9 +21,9 @@ class Artist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle, $aHomeAudioSystem)
+  public function __construct($aName, $aHomeAudioSystem)
   {
-    $this->title = $aTitle;
+    $this->name = $aName;
     $this->albums = array();
     $this->songs = array();
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
@@ -37,17 +37,17 @@ class Artist
   // INTERFACE
   //------------------------
 
-  public function setTitle($aTitle)
+  public function setName($aName)
   {
     $wasSet = false;
-    $this->title = $aTitle;
+    $this->name = $aName;
     $wasSet = true;
     return $wasSet;
   }
 
-  public function getTitle()
+  public function getName()
   {
-    return $this->title;
+    return $this->name;
   }
 
   public function getAlbum_index($index)
@@ -142,9 +142,9 @@ class Artist
     return 0;
   }
 
-  public function addAlbumVia($aTitle, $aReleaseDate, $aGenre, $aAlbumTracklist, $aHomeAudioSystem)
+  public function addAlbumVia($aTitle, $aReleaseDate, $aGenre, $aHomeAudioSystem, $aAlbumTracklist)
   {
-    return new Album($aTitle, $aReleaseDate, $aGenre, $aAlbumTracklist, $aHomeAudioSystem, $this);
+    return new Album($aTitle, $aReleaseDate, $aGenre, $aHomeAudioSystem, $this, $aAlbumTracklist);
   }
 
   public function addAlbum($aAlbum)
