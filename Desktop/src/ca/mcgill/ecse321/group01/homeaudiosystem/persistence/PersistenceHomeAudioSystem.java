@@ -58,5 +58,9 @@ public class PersistenceHomeAudioSystem {
 			}			
 		}
 	}
+	
+	public static void setFileName(String name) {
+		fileName = name;
+	}
 
 }
