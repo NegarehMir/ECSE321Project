@@ -9,5 +9,5 @@
 ##Alternatives:
 	3a: Song title is empty or only spaces
 	3a1: System shows error message “Song title cannot be empty!”; use case continues at step 1.
-	3b: The song file empty or only spaces
+	3b: The song file is empty or only spaces
 	3b1: System shows error message "Song file cannot be empty."; use case continues at step 1.
