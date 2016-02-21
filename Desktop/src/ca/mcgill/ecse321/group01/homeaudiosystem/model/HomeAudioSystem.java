@@ -1,12 +1,12 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 3 "../../../../../../domainModel.umple"
-// line 109 "../../../../../../domainModel.umple"
+// line 4 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 108 "../../../../../../../../../ump/tmp960453/model.ump"
 public class HomeAudioSystem
 {
 
@@ -208,25 +208,11 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Location addLocation(String aName, int aVolume, boolean aMute)
-  {
-    return new Location(aName, aVolume, aMute, this);
-  }
-
   public boolean addLocation(Location aLocation)
   {
     boolean wasAdded = false;
     if (locations.contains(aLocation)) { return false; }
-    HomeAudioSystem existingHomeAudioSystem = aLocation.getHomeAudioSystem();
-    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
-    if (isNewHomeAudioSystem)
-    {
-      aLocation.setHomeAudioSystem(this);
-    }
-    else
-    {
-      locations.add(aLocation);
-    }
+    locations.add(aLocation);
     wasAdded = true;
     return wasAdded;
   }
@@ -234,8 +220,7 @@ public class HomeAudioSystem
   public boolean removeLocation(Location aLocation)
   {
     boolean wasRemoved = false;
-    //Unable to remove aLocation, as it must always have a homeAudioSystem
-    if (!this.equals(aLocation.getHomeAudioSystem()))
+    if (locations.contains(aLocation))
     {
       locations.remove(aLocation);
       wasRemoved = true;
@@ -280,25 +265,11 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Album addAlbum(String aTitle, Date aReleaseDate, Genre aGenre, Artist aArtist, AlbumTracklist aAlbumTracklist)
-  {
-    return new Album(aTitle, aReleaseDate, aGenre, this, aArtist, aAlbumTracklist);
-  }
-
   public boolean addAlbum(Album aAlbum)
   {
     boolean wasAdded = false;
     if (albums.contains(aAlbum)) { return false; }
-    HomeAudioSystem existingHomeAudioSystem = aAlbum.getHomeAudioSystem();
-    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
-    if (isNewHomeAudioSystem)
-    {
-      aAlbum.setHomeAudioSystem(this);
-    }
-    else
-    {
-      albums.add(aAlbum);
-    }
+    albums.add(aAlbum);
     wasAdded = true;
     return wasAdded;
   }
@@ -306,8 +277,7 @@ public class HomeAudioSystem
   public boolean removeAlbum(Album aAlbum)
   {
     boolean wasRemoved = false;
-    //Unable to remove aAlbum, as it must always have a homeAudioSystem
-    if (!this.equals(aAlbum.getHomeAudioSystem()))
+    if (albums.contains(aAlbum))
     {
       albums.remove(aAlbum);
       wasRemoved = true;
@@ -352,25 +322,11 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Artist addArtist(String aName)
-  {
-    return new Artist(aName, this);
-  }
-
   public boolean addArtist(Artist aArtist)
   {
     boolean wasAdded = false;
     if (artists.contains(aArtist)) { return false; }
-    HomeAudioSystem existingHomeAudioSystem = aArtist.getHomeAudioSystem();
-    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
-    if (isNewHomeAudioSystem)
-    {
-      aArtist.setHomeAudioSystem(this);
-    }
-    else
-    {
-      artists.add(aArtist);
-    }
+    artists.add(aArtist);
     wasAdded = true;
     return wasAdded;
   }
@@ -378,8 +334,7 @@ public class HomeAudioSystem
   public boolean removeArtist(Artist aArtist)
   {
     boolean wasRemoved = false;
-    //Unable to remove aArtist, as it must always have a homeAudioSystem
-    if (!this.equals(aArtist.getHomeAudioSystem()))
+    if (artists.contains(aArtist))
     {
       artists.remove(aArtist);
       wasRemoved = true;
@@ -424,25 +379,11 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Playlist addPlaylist(String aName, Song... allSongs)
-  {
-    return new Playlist(aName, this, allSongs);
-  }
-
   public boolean addPlaylist(Playlist aPlaylist)
   {
     boolean wasAdded = false;
     if (playlists.contains(aPlaylist)) { return false; }
-    HomeAudioSystem existingHomeAudioSystem = aPlaylist.getHomeAudioSystem();
-    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
-    if (isNewHomeAudioSystem)
-    {
-      aPlaylist.setHomeAudioSystem(this);
-    }
-    else
-    {
-      playlists.add(aPlaylist);
-    }
+    playlists.add(aPlaylist);
     wasAdded = true;
     return wasAdded;
   }
@@ -450,8 +391,7 @@ public class HomeAudioSystem
   public boolean removePlaylist(Playlist aPlaylist)
   {
     boolean wasRemoved = false;
-    //Unable to remove aPlaylist, as it must always have a homeAudioSystem
-    if (!this.equals(aPlaylist.getHomeAudioSystem()))
+    if (playlists.contains(aPlaylist))
     {
       playlists.remove(aPlaylist);
       wasRemoved = true;
@@ -496,25 +436,11 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Genre addGenre(String aName)
-  {
-    return new Genre(aName, this);
-  }
-
   public boolean addGenre(Genre aGenre)
   {
     boolean wasAdded = false;
     if (genres.contains(aGenre)) { return false; }
-    HomeAudioSystem existingHomeAudioSystem = aGenre.getHomeAudioSystem();
-    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
-    if (isNewHomeAudioSystem)
-    {
-      aGenre.setHomeAudioSystem(this);
-    }
-    else
-    {
-      genres.add(aGenre);
-    }
+    genres.add(aGenre);
     wasAdded = true;
     return wasAdded;
   }
@@ -522,8 +448,7 @@ public class HomeAudioSystem
   public boolean removeGenre(Genre aGenre)
   {
     boolean wasRemoved = false;
-    //Unable to remove aGenre, as it must always have a homeAudioSystem
-    if (!this.equals(aGenre.getHomeAudioSystem()))
+    if (genres.contains(aGenre))
     {
       genres.remove(aGenre);
       wasRemoved = true;
@@ -565,46 +490,11 @@ public class HomeAudioSystem
 
   public void delete()
   {
-    while (locations.size() > 0)
-    {
-      Location aLocation = locations.get(locations.size() - 1);
-      aLocation.delete();
-      locations.remove(aLocation);
-    }
-    
-      
-    while (albums.size() > 0)
-    {
-      Album aAlbum = albums.get(albums.size() - 1);
-      aAlbum.delete();
-      albums.remove(aAlbum);
-    }
-    
-      
-    while (artists.size() > 0)
-    {
-      Artist aArtist = artists.get(artists.size() - 1);
-      aArtist.delete();
-      artists.remove(aArtist);
-    }
-    
-      
-    while (playlists.size() > 0)
-    {
-      Playlist aPlaylist = playlists.get(playlists.size() - 1);
-      aPlaylist.delete();
-      playlists.remove(aPlaylist);
-    }
-    
-      
-    while (genres.size() > 0)
-    {
-      Genre aGenre = genres.get(genres.size() - 1);
-      aGenre.delete();
-      genres.remove(aGenre);
-    }
-    
-      
+    locations.clear();
+    albums.clear();
+    artists.clear();
+    playlists.clear();
+    genres.clear();
   }
 
 }

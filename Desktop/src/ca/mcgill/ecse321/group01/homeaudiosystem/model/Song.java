@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 21 "../../../../../../domainModel.umple"
-// line 63 "../../../../../../domainModel.umple"
+// line 22 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 63 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Song
 {
 
@@ -21,13 +21,12 @@ public class Song
   private List<Location> locations;
   private Artist artist;
   private List<Playlist> playlists;
-  private AlbumTracklist albumTracklist;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Song(String aTitle, int aDuration, Artist aArtist, AlbumTracklist aAlbumTracklist)
+  public Song(String aTitle, int aDuration, Artist aArtist)
   {
     title = aTitle;
     duration = aDuration;
@@ -38,11 +37,6 @@ public class Song
       throw new RuntimeException("Unable to create song due to artist");
     }
     playlists = new ArrayList<Playlist>();
-    boolean didAddAlbumTracklist = setAlbumTracklist(aAlbumTracklist);
-    if (!didAddAlbumTracklist)
-    {
-      throw new RuntimeException("Unable to create song due to albumTracklist");
-    }
   }
 
   //------------------------
@@ -138,11 +132,6 @@ public class Song
   {
     int index = playlists.indexOf(aPlaylist);
     return index;
-  }
-
-  public AlbumTracklist getAlbumTracklist()
-  {
-    return albumTracklist;
   }
 
   public static int minimumNumberOfLocations()
@@ -328,36 +317,6 @@ public class Song
     return wasAdded;
   }
 
-  public boolean setAlbumTracklist(AlbumTracklist aAlbumTracklist)
-  {
-    boolean wasSet = false;
-    //Must provide albumTracklist to song
-    if (aAlbumTracklist == null)
-    {
-      return wasSet;
-    }
-
-    if (albumTracklist != null && albumTracklist.numberOfSongs() <= AlbumTracklist.minimumNumberOfSongs())
-    {
-      return wasSet;
-    }
-
-    AlbumTracklist existingAlbumTracklist = albumTracklist;
-    albumTracklist = aAlbumTracklist;
-    if (existingAlbumTracklist != null && !existingAlbumTracklist.equals(aAlbumTracklist))
-    {
-      boolean didRemove = existingAlbumTracklist.removeSong(this);
-      if (!didRemove)
-      {
-        albumTracklist = existingAlbumTracklist;
-        return wasSet;
-      }
-    }
-    albumTracklist.addSong(this);
-    wasSet = true;
-    return wasSet;
-  }
-
   public void delete()
   {
     ArrayList<Location> copyOfLocations = new ArrayList<Location>(locations);
@@ -382,9 +341,6 @@ public class Song
         aPlaylist.removeSong(this);
       }
     }
-    AlbumTracklist placeholderAlbumTracklist = albumTracklist;
-    this.albumTracklist = null;
-    placeholderAlbumTracklist.removeSong(this);
   }
 
 
@@ -394,8 +350,7 @@ public class Song
     return super.toString() + "["+
             "title" + ":" + getTitle()+ "," +
             "duration" + ":" + getDuration()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "artist = "+(getArtist()!=null?Integer.toHexString(System.identityHashCode(getArtist())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "albumTracklist = "+(getAlbumTracklist()!=null?Integer.toHexString(System.identityHashCode(getAlbumTracklist())):"null")
+            "  " + "artist = "+(getArtist()!=null?Integer.toHexString(System.identityHashCode(getArtist())):"null")
      + outputString;
   }
 }

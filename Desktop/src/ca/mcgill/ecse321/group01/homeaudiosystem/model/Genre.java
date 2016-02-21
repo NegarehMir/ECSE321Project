@@ -1,10 +1,10 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 
-// line 47 "../../../../../../domainModel.umple"
-// line 92 "../../../../../../domainModel.umple"
+// line 48 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 92 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Genre
 {
 
@@ -15,21 +15,13 @@ public class Genre
   //Genre Attributes
   private String name;
 
-  //Genre Associations
-  private HomeAudioSystem homeAudioSystem;
-
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Genre(String aName, HomeAudioSystem aHomeAudioSystem)
+  public Genre(String aName)
   {
     name = aName;
-    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
-    if (!didAddHomeAudioSystem)
-    {
-      throw new RuntimeException("Unable to create genre due to homeAudioSystem");
-    }
   }
 
   //------------------------
@@ -41,44 +33,15 @@ public class Genre
     return name;
   }
 
-  public HomeAudioSystem getHomeAudioSystem()
-  {
-    return homeAudioSystem;
-  }
-
-  public boolean setHomeAudioSystem(HomeAudioSystem aHomeAudioSystem)
-  {
-    boolean wasSet = false;
-    if (aHomeAudioSystem == null)
-    {
-      return wasSet;
-    }
-
-    HomeAudioSystem existingHomeAudioSystem = homeAudioSystem;
-    homeAudioSystem = aHomeAudioSystem;
-    if (existingHomeAudioSystem != null && !existingHomeAudioSystem.equals(aHomeAudioSystem))
-    {
-      existingHomeAudioSystem.removeGenre(this);
-    }
-    homeAudioSystem.addGenre(this);
-    wasSet = true;
-    return wasSet;
-  }
-
   public void delete()
-  {
-    HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
-    this.homeAudioSystem = null;
-    placeholderHomeAudioSystem.removeGenre(this);
-  }
+  {}
 
 
   public String toString()
   {
 	  String outputString = "";
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
+            "name" + ":" + getName()+ "]"
      + outputString;
   }
 }
