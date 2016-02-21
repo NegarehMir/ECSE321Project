@@ -51,11 +51,10 @@ class Genre
 class AlbumTracklist
 {
   isA Playlist;
-    1 <@>- 1..* Song;
 }
 
 association {
-  1 Album <@>- 1 AlbumTracklist;
+  1 Album -> 1 AlbumTracklist;
 }
 
 
@@ -97,13 +96,12 @@ class Genre
 class Location
 {
   position 59 83 122 92;
-    position.association Location__Song 30,92 0,0;
+  position.association Location__Song 30,92 0,0;
 }
 
 class AlbumTracklist
 {
   position 311 290 109 41;
-  position.association AlbumTracklist__Song 55,41 88,0;
 }
 
 class HomeAudioSystem
