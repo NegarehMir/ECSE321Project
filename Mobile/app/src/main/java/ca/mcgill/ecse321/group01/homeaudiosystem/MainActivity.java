@@ -74,10 +74,20 @@ public class MainActivity extends AppCompatActivity {
         String artistName = (TextView) findViewById(R.id.newalbum_artistname).toString();
         String genre = (TextView) findViewById(R.id.newalbum_genre).toString();
         String date = (TextView) findViewById(R.id.newalbum_date).toString();
+        if(date!= null && date != "") {
+            String[] dates = date.split("-");
+            day = parseInt(dates[0]);
+            month = parseInt(dates[1]);
+            year = parseInt(dates[2]);
+            c.set(year, month, day);
+            java.util.Date dateFromJavaUtilCalendar = c.getTime();
+            long timeStampFromJavaUtilCalendar = dateFromJavaUtilCalendar.getTime();
+            d = new Date(timeStampFromJavaUtilCalendar);
+        }
 
-        EventRegistrationController pc = new EventRegistrationController();
+        HomeAudioSystemController hc = new HomeAudioSystemController();
         try {
-            pc.createAlbum(title, artistName, genre, date);
+            hc.createAlbum(title, artistName, genre, d);
             clearErrorMessage();
         } catch (InvalidInputException e) {
             showErrorMessage(e);
