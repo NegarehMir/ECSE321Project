@@ -26,6 +26,25 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        PersistenceHomeAudioSystem.setFileName(getFilesDir().getAbsolutePath() + "/" + "homeAudioSystem.xml");
+        PersistenceHomeAudioSystem.loadHomeAudioSystemModel();
+        has = HomeAudioSystemManager.getInstance();
+
+        refreshData();s
+    }
+
+    private void refreshData() {
+        TextView tv = (TextView) findViewById(R.id.newalbum_title);
+        tv.setText("");
+
+        tv = (TextView) findViewById(R.id.newalbum_artistname);
+        tv.setText("");
+
+        tv = (TextView) findViewById(R.id.newalbum_genre);
+        tv.setText("");
+
+        tv = (TextView) findViewById(R.id.newalbum_date);
+        tv.setText("01-01-2016");
     }
 
     @Override
@@ -48,5 +67,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addAlbum(View v) {
+        String title = (TextView) findViewById(R.id.newalbum_title).toString();
+        String artistName = (TextView) findViewById(R.id.newalbum_artistname).toString();
+        String genre = (TextView) findViewById(R.id.newalbum_genre).toString();
+        String date = (TextView) findViewById(R.id.newalbum_date).toString();
+
+        EventRegistrationController pc = new EventRegistrationController();
+        try {
+            pc.createAlbum(title, artistName, genre, date);
+            clearErrorMessage();
+        } catch (InvalidInputException e) {
+            showErrorMessage(e);
+        }
+        refreshData();
     }
 }
