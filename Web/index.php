@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <?php
+
+    require_once __DIR__.'/persistence/PersistenceHomeAudioSystem.php';
+    require_once __DIR__.'/model/HomeAudioSystem.php';
+    require_once __DIR__.'/model/Artist.php';
+    require_once __DIR__.'/model/Album.php';
+    require_once __DIR__.'/model/Song.php';
+    require_once __DIR__.'/model/Playlist.php';
+    require_once __DIR__.'/model/AlbumTracklist.php';
+
+    error_reporting(0);
+    session_start();
+
+    $pm = new PersistenceHomeAudioSystem();
+
+    $has = $pm->loadDataFromStore();
+
+
+
+    ?>
     <meta charset="utf-8">
     <title>Super Cool Home Audio System</title>
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue-orange.min.css" />
@@ -9,6 +29,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="resources/js/global.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/global.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
     <script>
@@ -53,8 +74,34 @@
                   </div>
 
                   <div class="mdl-tabs__panel" id="songs">
+                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 50%; margin:0 auto">
+                      <thead>
+                        <tr>
+                          <th class="mdl-data-table__cell--non-numeric">Song</th>
+                          <th>Artist</th>
+                          <th>Album</th>
+                        </tr>
+                      </thead>
+                      <tbody>
                     <?php
+
+                    $artists = $has->getArtists();
+
+                    foreach($artists as $artist){
+                      $songs = $artist->getSongs();
+                      foreach($songs as $song)
+                      {
+                        ?>
+                        <tr>
+                          <td class="mdl-data-table__cell--non-numeric"><?=$song->getTitle()?></td>
+                          <td><?=$artist->getName()?></td>
+                          <td></td>
+                        </tr>
+                        <?php
+                      }
+                    }
                     ?>
+                  </tbody>
                   </div>
                   <div class="mdl-tabs__panel" id="playlists">
                     <?php

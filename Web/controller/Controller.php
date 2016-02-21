@@ -32,7 +32,12 @@ class Controller
         $errors.= "{{releaseDate}}Album Release Date Cannot Be Empty!";
       }
 
-      if(count($errors)) throw new Exception($errors);
+      if(count($songs) == 0)
+      {
+        $errors.= "{{songs}}Must Have at Least One Song!";
+      }
+
+      if(strlen($errors)>0) throw new Exception($errors);
 
       else
       {
@@ -40,19 +45,50 @@ class Controller
 
         $has = $pm->loadDataFromStore();
 
-        if($has->hasArtist())
-        {
+        $searchArtist = $this->searchArtists($albumArtist, $has);
 
+        if( $searchArtist == false)
+        {
+          $artist = new Artist($albumArtist, $has);
+          $has->addArtist($artist);
         }
 
-        $album = new Album($albumName, $releaseDate, $genre);
+        else $artist = $searchArtist;
+
+        $albumSongs = new AlbumTracklist();
+
+        foreach($songs as $song)
+        {
+          $newSong = new Song($song, 500, $artist, $albumSongs);
+          $artist->addSong($newSong);
+          $albumSongs->addSong($newSong);
+        }
+
+        $album = new Album($albumName, $releaseDate, $genre, $has, $artist, $albumSongs);
 
         $has->addAlbum($album);
+
+        $artist->addAlbum($album);
 
         $pm->writeDataToStore($has);
       }
 
 
+    }
+
+    public function searchArtists($key, $has)
+    {
+      $artists = $has->getArtists();
+
+      foreach($artists as $artist)
+      {
+        if($artist->getName() == $key)
+        {
+          return $artist;
+        }
+      }
+
+      return false;
     }
 }
  ?>

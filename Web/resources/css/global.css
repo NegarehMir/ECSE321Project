@@ -13,7 +13,6 @@
   width: 100%;
 }
 .content-card > .mdl-card__title {
-  background-color: blue;
   color: black;
 }
 .content-card > .mdl-card__menu {
@@ -47,4 +46,9 @@
 
 select{
   width: 45px !important;
+}
+
+.error{
+  color: red;
+  font: 20px;
 }
