@@ -1,4 +1,4 @@
-package ca.mcgill.ecse321.group01.homeaudiosystem.view.;
+package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

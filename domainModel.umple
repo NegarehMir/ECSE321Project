@@ -15,7 +15,7 @@ class Location
   String name;
   int volume;
   boolean mute;
-  * -- * Song;
+  * -> * Song;
 }
 
 class Song
@@ -29,7 +29,6 @@ class Album
   String title;
   Date releaseDate;
   Genre genre;
-
 }
 
 class Artist
@@ -42,7 +41,7 @@ class Artist
 class Playlist
 {
   String name;
-  * -- 1..* Song;
+  * -> 1..* Song;
 }
 class Genre
 {

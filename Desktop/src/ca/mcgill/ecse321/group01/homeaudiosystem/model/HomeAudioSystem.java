@@ -1,12 +1,12 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-5871cbd modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
 // line 4 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 108 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 107 "../../../../../../../../../ump/tmp960453/model.ump"
 public class HomeAudioSystem
 {
 

@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-5871cbd modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 43 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 84 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 42 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 83 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Playlist
 {
 
@@ -81,12 +81,6 @@ public class Playlist
     return index;
   }
 
-  public boolean isNumberOfSongsValid()
-  {
-    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
-    return isValid;
-  }
-
   public static int minimumNumberOfSongs()
   {
     return 1;
@@ -98,18 +92,7 @@ public class Playlist
     if (songs.contains(aSong)) { return false; }
     if (songs.contains(aSong)) { return false; }
     songs.add(aSong);
-    if (aSong.indexOfPlaylist(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aSong.addPlaylist(this);
-      if (!wasAdded)
-      {
-        songs.remove(aSong);
-      }
-    }
+    wasAdded = true;
     return wasAdded;
   }
 
@@ -126,20 +109,8 @@ public class Playlist
       return wasRemoved;
     }
 
-    int oldIndex = songs.indexOf(aSong);
-    songs.remove(oldIndex);
-    if (aSong.indexOfPlaylist(this) == -1)
-    {
-      wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aSong.removePlaylist(this);
-      if (!wasRemoved)
-      {
-        songs.add(oldIndex,aSong);
-      }
-    }
+    songs.remove(aSong);
+    wasRemoved = true;
     return wasRemoved;
   }
 
@@ -161,25 +132,8 @@ public class Playlist
       return wasSet;
     }
 
-    ArrayList<Song> oldSongs = new ArrayList<Song>(songs);
     songs.clear();
-    for (Song aNewSong : verifiedSongs)
-    {
-      songs.add(aNewSong);
-      if (oldSongs.contains(aNewSong))
-      {
-        oldSongs.remove(aNewSong);
-      }
-      else
-      {
-        aNewSong.addPlaylist(this);
-      }
-    }
-
-    for (Song anOldSong : oldSongs)
-    {
-      anOldSong.removePlaylist(this);
-    }
+    songs.addAll(verifiedSongs);
     wasSet = true;
     return wasSet;
   }
@@ -218,12 +172,7 @@ public class Playlist
 
   public void delete()
   {
-    ArrayList<Song> copyOfSongs = new ArrayList<Song>(songs);
     songs.clear();
-    for(Song aSong : copyOfSongs)
-    {
-      aSong.removePlaylist(this);
-    }
   }
 
 
