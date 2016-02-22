@@ -17,45 +17,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/error_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/errorRed"/>
+        <TextView
+            android:id="@+id/error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
         <!-- Add album Section -->
         <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/newalbum_title"
-        android:hint="@string/newalbum_title_label"
-        />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newalbum_title"
+            android:hint="@string/newalbum_title_label" />
+
         <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/newalbum_artistname"
-            android:hint="@string/newalbum_name_label"
-            />
-        <EditText
-            android:layout_width="fill_parent"
+            android:hint="@string/newalbum_name_label" />
+
+        <Spinner
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/newalbum_genre"
-            android:hint="@string/newalbum_genre_label"
-            />
-        <EditText
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/newalbum_date"
-            android:hint="@string/newalbum_date_label"
-            />
+            android:spinnerMode="dropdown" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/newalbum_button"
-        android:layout_gravity="end"
-        android:onClick="addAlbum"/>
-    <!-- end Add album Section -->
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/newalbum_date_label"
+            android:layout_gravity="end"
+            android:id="@+id/newalbum_date"
+            android:onClick="showDatePickerDialog" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newalbum_button"
+            android:layout_gravity="end"
+            android:onClick="addAlbum" />
+        <!-- end Add album Section -->
 
     </LinearLayout>
 </RelativeLayout>
