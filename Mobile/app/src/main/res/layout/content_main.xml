@@ -36,26 +36,32 @@
             android:hint="@string/newalbum_name_label" />
 
         <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/newalbum_genre"
-            android:spinnerMode="dropdown" />
-
-        <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="@string/newalbum_date_label"
             android:layout_gravity="end"
-            android:id="@+id/newalbum_date"
-            android:onClick="showDatePickerDialog" />
+            android:id="@+id/genrespinner"/>
+        <!--
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/newalbum_genre"
+                    android:spinnerMode="dropdown" />
+        -->
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/newalbum_date_label"
+                    android:layout_gravity="end"
+                    android:id="@+id/newalbum_date"
+                    android:onClick="showDatePickerDialog" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/newalbum_button"
-            android:layout_gravity="end"
-            android:onClick="addAlbum" />
-        <!-- end Add album Section -->
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/newalbum_button"
+                    android:layout_gravity="end"
+                    android:onClick="addAlbum" />
+                <!-- end Add album Section -->
 
         <!-- Add song Section -->
         <EditText

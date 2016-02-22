@@ -47,6 +47,23 @@ public class MainActivity extends AppCompatActivity {
         PersistenceHomeAudioSystem.loadHomeAudioSystemModel();
         HomeAudioSystem has = HomeAudioSystem.getInstance();
 
+        // prepopulate generes if there aren't any at all
+        if (has.getGenres().size() <= 0) {
+            String[] genreNames = {
+                    "Alternative",
+                    "Classical",
+                    "Country",
+                    "Electronic",
+                    "Hip-Hop/Rap",
+                    "Pop",
+                    "Rock",
+                    "Jazz",
+            };
+            for(String name: genreNames) {
+                has.addGenre(new Genre(name));
+            }
+        }
+
         refreshData();
     }
 
@@ -61,14 +78,27 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.newalbum_artistname);
         tv.setText("");
 
-        ArrayList<Genre> genres = new ArrayList<Genre>();
+
+        Spinner spinner = (Spinner) findViewById(R.id.genrespinner);
+        ArrayAdapter<CharSequence> genresAdapter = new
+                ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item);
+        genresAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        genres = new HashMap<Integer, Genre>();
         for (Genre genre: has.getGenres()) {
-            genres.add(genre);
+            genresAdapter.add(genre.getName());
+            genres.put(genres.size(), genre);
         }
-        Spinner spinner = (Spinner) findViewById(R.id.newalbum_genre);
-        ArrayAdapter<Genre> genreAdapter = new
-                ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
-        spinner.setAdapter(genreAdapter);
+        spinner.setAdapter(genresAdapter);
+
+//        ArrayList<Genre> genres = new ArrayList<Genre>();
+//        for (Genre genre: has.getGenres()) {
+//            genres.add(genre);
+//        }
+//
+//        Spinner spinner = (Spinner) findViewById(R.id.newalbum_genre);
+//        ArrayAdapter<Genre> genreAdapter = new
+//                ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
+//        spinner.setAdapter(genreAdapter);
 
         tv = (TextView) findViewById(R.id.newalbum_date);
         tv.setText("01-01-2016");
@@ -110,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle dateBundle = getDateFromLabel(date);
         Date releaseDate = dateBundle(dateBundle);
 
-        Spinner spinner = (Spinner) findViewById(R.id.newalbum_genre);
+        Spinner spinner = (Spinner) findViewById(R.id.genrespinner);
 
         // Create the track list
         AlbumTracklist trackList = new AlbumTracklist("");
@@ -176,14 +206,14 @@ public class MainActivity extends AppCompatActivity {
     private Bundle getTimeFromLabel(CharSequence text) {
         Bundle rtn = new Bundle();
         String comps[] = text.toString().split(":");
-        int hour = 12;
-        int minute = 0;
+        int minute = 60;
+        int seconds = 0;
         if (comps.length == 2) {
-            hour = Integer.parseInt(comps[0]);
-            minute = Integer.parseInt(comps[1]);
+            minute = Integer.parseInt(comps[0]);
+            seconds = Integer.parseInt(comps[1]);
         }
-        rtn.putInt("hour", hour);
         rtn.putInt("minute", minute);
+        rtn.putInt("seconds", seconds);
         return rtn;
     }
 
