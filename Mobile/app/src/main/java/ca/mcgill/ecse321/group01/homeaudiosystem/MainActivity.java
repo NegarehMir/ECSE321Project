@@ -16,7 +16,6 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.*;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.*;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private String error = null;
     private HashMap<Integer, Genre> genres;
 
-    private LinkedList<Song> songs;
+    private ArrayList<Object[]> songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshData() {
+        ArrayList<Object[]> songs = new ArrayList<Object[]>();
+
         HomeAudioSystem has = HomeAudioSystem.getInstance();
 
         TextView tv = (TextView) findViewById(R.id.newalbum_title);
@@ -111,11 +112,14 @@ public class MainActivity extends AppCompatActivity {
 
         Spinner spinner = (Spinner) findViewById(R.id.newalbum_genre);
 
-        // TODO: create the track list
+        // Create the track list
         AlbumTracklist trackList = new AlbumTracklist("");
 
         for (int i = 0; i < songs.size(); i++) {
-            trackList.addSong(songs.get(i));
+            String songTitle = (String) songs.get(i)[0];
+            int duration = (int) songs.get(i)[1];
+
+            trackList.addSong(new Song(songTitle, duration, artist));
         }
 
         // call the controller
@@ -136,15 +140,19 @@ public class MainActivity extends AppCompatActivity {
 
     public void addSong(View v) {
 
-        TextView tv = (TextView) findViewById(R.id.newsong_title);
-        TextView tf = (TextView) findViewById(R.id.newsong_duration);
+//        TextView tv = (TextView) findViewById(R.id.newsong_title);
+        TextView time = (TextView) findViewById(R.id.newsong_duration);
 
-        Bundle durationTimeBundle = getTimeFromLabel(tf.getText());
-        Time duration = timeBundle(durationTimeBundle);
+        String title = findViewById(R.id.newsong_title).toString();
+        int duration = getTime(time.getText());
+
+//        Bundle durationTimeBundle = getTimeFromLabel(tf.getText());
+//        Time duration = timeBundle(durationTimeBundle);
 
         //TextView errorMessage = (TextView) findViewById(R.id.error);
 
-        // TODO: add song to songs table
+        songs.add(new Object[] { title, duration });
+
     }
 
     public void showDatePickerDialog(View v) {
@@ -177,6 +185,15 @@ public class MainActivity extends AppCompatActivity {
         rtn.putInt("hour", hour);
         rtn.putInt("minute", minute);
         return rtn;
+    }
+
+    private int getTime(CharSequence text) {
+        int duration = 0;
+        String comps[] = text.toString().split(":");
+        if (comps.length == 2) {
+             duration = Integer.parseInt(comps[0]) * 60 +Integer.parseInt(comps[1]);
+        }
+        return duration;
     }
 
     private Bundle getDateFromLabel(CharSequence text) {
