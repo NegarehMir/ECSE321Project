@@ -1,5 +1,5 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-5871cbd modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
@@ -23,15 +23,10 @@ public class Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public Playlist(String aName, Song... allSongs)
+  public Playlist(String aName)
   {
     name = aName;
     songs = new ArrayList<Song>();
-    boolean didAddSongs = setSongs(allSongs);
-    if (!didAddSongs)
-    {
-      throw new RuntimeException("Unable to create Playlist, must have at least 1 songs");
-    }
   }
 
   //------------------------
@@ -83,7 +78,7 @@ public class Playlist
 
   public static int minimumNumberOfSongs()
   {
-    return 1;
+    return 0;
   }
 
   public boolean addSong(Song aSong)
@@ -99,43 +94,12 @@ public class Playlist
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    if (!songs.contains(aSong))
+    if (songs.contains(aSong))
     {
-      return wasRemoved;
+      songs.remove(aSong);
+      wasRemoved = true;
     }
-
-    if (numberOfSongs() <= minimumNumberOfSongs())
-    {
-      return wasRemoved;
-    }
-
-    songs.remove(aSong);
-    wasRemoved = true;
     return wasRemoved;
-  }
-
-  public boolean setSongs(Song... newSongs)
-  {
-    boolean wasSet = false;
-    ArrayList<Song> verifiedSongs = new ArrayList<Song>();
-    for (Song aSong : newSongs)
-    {
-      if (verifiedSongs.contains(aSong))
-      {
-        continue;
-      }
-      verifiedSongs.add(aSong);
-    }
-
-    if (verifiedSongs.size() != newSongs.length || verifiedSongs.size() < minimumNumberOfSongs())
-    {
-      return wasSet;
-    }
-
-    songs.clear();
-    songs.addAll(verifiedSongs);
-    wasSet = true;
-    return wasSet;
   }
 
   public boolean addSongAt(Song aSong, int index)

@@ -41,7 +41,7 @@ class Artist
 class Playlist
 {
   String name;
-  * -> 1..* Song;
+  * -> * Song;
 }
 class Genre
 {
@@ -101,7 +101,7 @@ class Location
 class AlbumTracklist
 {
   position 311 290 109 41;
-}
+  }
 
 class HomeAudioSystem
 {

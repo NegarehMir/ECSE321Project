@@ -7,11 +7,17 @@ import java.sql.Date;
 
 public class HomeAudioSystemController {
 
-	public void createAlbum(String title, String artistName, Genre genre, Date releaseDate, AlbumTracklist playlist) throws InvalidInputException {
+	public void createAlbum(String title, Artist artist, Genre genre, Date releaseDate, AlbumTracklist playlist) throws InvalidInputException {
+		String error = "";
 		if (title == null || title.trim().length() == 0) {
-			throw new InvalidInputException("Title cannot be empty!");
+			error = error + "Album title cannot be empty! ";
 		}
-		Artist artist = new Artist(artistName);
+
+		error = error.trim();
+		if (error.length() > 0) {
+			throw new InvalidInputException(error);
+		}
+
 		Album album = new Album(title, releaseDate, genre, artist, playlist);
 		HomeAudioSystem homeAudioSystem = HomeAudioSystem.getInstance();
 		homeAudioSystem.addAlbum(album);

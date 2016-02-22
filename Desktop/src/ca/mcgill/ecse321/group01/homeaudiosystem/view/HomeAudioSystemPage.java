@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import java.awt.Color;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,8 +32,11 @@ import org.jdatepicker.impl.SqlDateModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.AlbumTracklist;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.view.DateLabelFormatter;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 
@@ -107,8 +112,9 @@ public class HomeAudioSystemPage extends JFrame {
 		songNameLabel = new JLabel();
 		songDurationLabel = new JLabel();
 		songDurationSpinner = new JSpinner(new SpinnerDateModel());
+		songDurationSpinner.getModel().setValue(new Date(60000)); // default to 1 minute
 		JSpinner.DateEditor songDurationEditor = new JSpinner.DateEditor(songDurationSpinner, "m:ss");
-		songDurationSpinner.setEditor(songDurationEditor); // will only show the current time
+		songDurationSpinner.setEditor(songDurationEditor);
 
 		// elements for songs table
 		songsTable = new JTable(new DefaultTableModel(new Object[] { "Song Title", "Duration" }, 0));
@@ -176,24 +182,25 @@ public class HomeAudioSystemPage extends JFrame {
 								.addComponent(addAlbumButton)))
 				);
 		
-		//layout.linkSize(SwingConstants.HORIZONTAL, new java.awt.Component[] {addAlbumButton, genreList});
+		//layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[] {albumNameLabel, albumNameTextField});
 
 		//rows
 		layout.setVerticalGroup(
-				layout.createSequentialGroup()
+				layout.createParallelGroup()
 				.addComponent(errorMessage)
+				.addGroup(layout.createSequentialGroup()
 						.addGroup(layout.createParallelGroup()
 								.addComponent(albumNameLabel)
-								.addComponent(albumNameTextField))
+								.addComponent(albumNameTextField, 200, 200, 400))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(artistNameLabel)
-								.addComponent(artistNameTextField))
+								.addComponent(artistNameTextField, 200, 200, 400))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(genreLabel)
 								.addComponent(genreList))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(releaseDateLabel)
-								.addComponent(releaseDatePicker))
+								.addComponent(releaseDatePicker)))
 				.addGroup(layout.createSequentialGroup()
 						.addComponent(songScrollPane)
 						.addGroup(layout.createParallelGroup()
@@ -240,15 +247,33 @@ public class HomeAudioSystemPage extends JFrame {
 		pack();
 	}
 	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		String artistName = artistNameTextField.getText();
+		if (artistName == null || artistName.trim().length() == 0)
+			error = error +"Album artist name cannot be empty ";
+		Artist artist = new Artist(artistName);
+
+		// create the track list
+		AlbumTracklist trackList = new AlbumTracklist("");
+		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
+		for (int i = 0; i < model.getRowCount(); ++i) {
+			long duration = 0;
+			try {
+				Date date = (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
+				duration = date.getMinutes() * 60 + date.getSeconds();
+			} catch (ParseException e) {
+			}
+			trackList.addSong(new Song((String)model.getValueAt(i, 0), (int)duration, artist));
+		}
+		
 		// call the controller
 		HomeAudioSystemController erc = new HomeAudioSystemController();
 		try {
 			erc.createAlbum(
 					albumNameTextField.getText(), 
-					artistNameTextField.getText(), 
+					artist,
 					genres.get(selectedGenre),
 					(java.sql.Date) releaseDatePicker.getModel().getValue(),
-					null);
+					trackList);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
