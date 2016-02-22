@@ -9,10 +9,11 @@ public class HomeAudioSystemController {
 
 	public void createAlbum(String title, Artist artist, Genre genre, Date releaseDate, AlbumTracklist playlist) throws InvalidInputException {
 		String error = "";
-		if (title == null || title.trim().length() == 0) {
-			error = error + "Album title cannot be empty! ";
-		}
-
+		if (title == null || name.trim().length() == 0)
+			error = error +"Album title cannot be empty! ";
+		if (artist.getName() == null || artist.getName().trim().length() == 0)
+			error = error +"Album artist name cannot be empty ";
+		
 		error = error.trim();
 		if (error.length() > 0) {
 			throw new InvalidInputException(error);
