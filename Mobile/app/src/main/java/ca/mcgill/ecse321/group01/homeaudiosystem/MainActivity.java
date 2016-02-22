@@ -12,7 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.*;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.*;
@@ -21,6 +24,7 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.*;
 public class MainActivity extends AppCompatActivity {
 
     private String error = null;
+    private HashMap<Integer, Genre> genres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     public void addAlbum(View v) {
         String title = findViewById(R.id.newalbum_title).toString();
         String artistName = findViewById(R.id.newalbum_artistname).toString();
-        String genre = findViewById(R.id.newalbum_genre).toString();
+        //String genre = findViewById(R.id.newalbum_genre).toString();
         String date = findViewById(R.id.newalbum_date).toString();
 
         if (artistName == null || artistName.trim().length() == 0) {
@@ -99,23 +103,41 @@ public class MainActivity extends AppCompatActivity {
         }
         Artist artist = new Artist(artistName);
 
-        // create the track list
+        Bundle dateBundle = getDateFromLabel(date);
+        Date releaseDate = dateBundle(dateBundle);
+
+        Spinner spinner = (Spinner) findViewById(R.id.newalbum_genre);
+
+        // TODO: create the track list
         AlbumTracklist trackList = new AlbumTracklist("");
 
         // call the controller
         HomeAudioSystemController hasc = new HomeAudioSystemController();
-//        try {
-//            hasc.createAlbum(
-//                    title,
-//                    artist,
-//                    genres.get(selectedGenre),
-//                    (java.sql.Date) releaseDatePicker.getModel().getValue(),
-//                    trackList);
-//        } catch (InvalidInputException e) {
-//            error = e.getMessage();
-//        }
+        try {
+            hasc.createAlbum(
+                    title,
+                    artist,
+                    genres.get(spinner.getSelectedItemPosition()),
+                    releaseDate,
+                    trackList);
+        } catch (InvalidInputException e) {
+            error = e.getMessage();
+        }
 
         refreshData();
+    }
+
+    public void addSong(View v) {
+
+        TextView tv = (TextView) findViewById(R.id.newsong_title);
+        TextView tf = (TextView) findViewById(R.id.newsong_duration);
+
+        Bundle durationTimeBundle = getTimeFromLabel(tf.getText());
+        Time duration = timeBundle(durationTimeBundle);
+
+        //TextView errorMessage = (TextView) findViewById(R.id.error);
+
+        // TODO: add song to songs table
     }
 
     public void showDatePickerDialog(View v) {
@@ -167,14 +189,30 @@ public class MainActivity extends AppCompatActivity {
         return rtn;
     }
 
-    public void setTime(int id, int h, int m) {
+    public void setTime(int id, int m, int s) {
         TextView tv = (TextView) findViewById(id);
-        tv.setText(String.format("%02d:%02d", h, m));
+        tv.setText(String.format("%02d:%02d", m, s));
     }
 
     public void setDate(int id, int d, int m, int y) {
         TextView tv = (TextView) findViewById(id);
         tv.setText(String.format("%02d-%02d-%04d", d, m + 1, y));
+    }
+    public Date dateBundle (Bundle inputDate) {
+        int unbundleDay = inputDate.getInt("day");
+        int unbundleMonth = inputDate.getInt("month");
+        int unbundleYear = inputDate.getInt("year");
+
+        Date date = new Date(unbundleDay, unbundleMonth, unbundleYear);
+        return date;
+    }
+
+    public Time timeBundle (Bundle inputTime) {
+        int unbundleMinute = inputTime.getInt("minute");
+        int unbundleSeconds = inputTime.getInt("seconds");
+        Time time = new Time(unbundleMinute, unbundleSeconds, 0);
+        return time;
+
     }
 
 }
