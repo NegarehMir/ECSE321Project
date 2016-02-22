@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 14 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 97 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 96 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Location
 {
 
@@ -116,42 +116,17 @@ public class Location
     boolean wasAdded = false;
     if (songs.contains(aSong)) { return false; }
     songs.add(aSong);
-    if (aSong.indexOfLocation(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aSong.addLocation(this);
-      if (!wasAdded)
-      {
-        songs.remove(aSong);
-      }
-    }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    if (!songs.contains(aSong))
+    if (songs.contains(aSong))
     {
-      return wasRemoved;
-    }
-
-    int oldIndex = songs.indexOf(aSong);
-    songs.remove(oldIndex);
-    if (aSong.indexOfLocation(this) == -1)
-    {
+      songs.remove(aSong);
       wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aSong.removeLocation(this);
-      if (!wasRemoved)
-      {
-        songs.add(oldIndex,aSong);
-      }
     }
     return wasRemoved;
   }
@@ -190,12 +165,7 @@ public class Location
 
   public void delete()
   {
-    ArrayList<Song> copyOfSongs = new ArrayList<Song>(songs);
     songs.clear();
-    for(Song aSong : copyOfSongs)
-    {
-      aSong.removeLocation(this);
-    }
   }
 
 
