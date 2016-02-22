@@ -26,6 +26,25 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        PersistenceHomeAudioSystem.setFileName(getFilesDir().getAbsolutePath() + "/" + "homeAudioSystem.xml");
+        PersistenceHomeAudioSystem.loadHomeAudioSystemModel();
+        has = HomeAudioSystemManager.getInstance();
+
+        refreshData();s
+    }
+
+    private void refreshData() {
+        TextView tv = (TextView) findViewById(R.id.newalbum_title);
+        tv.setText("");
+
+        tv = (TextView) findViewById(R.id.newalbum_artistname);
+        tv.setText("");
+
+        tv = (TextView) findViewById(R.id.newalbum_genre);
+        tv.setText("");
+
+        tv = (TextView) findViewById(R.id.newalbum_date);
+        tv.setText("01-01-2016");
     }
 
     @Override
@@ -48,5 +67,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addAlbum(View v) {
+        String title = (TextView) findViewById(R.id.newalbum_title).toString();
+        String artistName = (TextView) findViewById(R.id.newalbum_artistname).toString();
+        String genre = (TextView) findViewById(R.id.newalbum_genre).toString();
+        String date = (TextView) findViewById(R.id.newalbum_date).toString();
+        if(date!= null && date != "") {
+            String[] dates = date.split("-");
+            day = parseInt(dates[0]);
+            month = parseInt(dates[1]);
+            year = parseInt(dates[2]);
+            c.set(year, month, day);
+            java.util.Date dateFromJavaUtilCalendar = c.getTime();
+            long timeStampFromJavaUtilCalendar = dateFromJavaUtilCalendar.getTime();
+            d = new Date(timeStampFromJavaUtilCalendar);
+        }
+
+        HomeAudioSystemController hc = new HomeAudioSystemController();
+        try {
+            hc.createAlbum(title, artistName, genre, d);
+            clearErrorMessage();
+        } catch (InvalidInputException e) {
+            showErrorMessage(e);
+        }
+        refreshData();
     }
 }

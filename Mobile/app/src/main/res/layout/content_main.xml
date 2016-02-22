@@ -12,8 +12,50 @@
     tools:context="ca.mcgill.ecse321.group01.homeaudiosystem.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <TextView
+        android:id="@+id/error_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textColor="@color/errorRed"/>
+
+        <!-- Add album Section -->
+        <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newalbum_title"
+        android:hint="@string/newalbum_title_label"
+        />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newalbum_artistname"
+            android:hint="@string/newalbum_name_label"
+            />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newalbum_genre"
+            android:hint="@string/newalbum_genre_label"
+            />
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/newalbum_date"
+            android:hint="@string/newalbum_date_label"
+            />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newalbum_button"
+        android:layout_gravity="end"
+        android:onClick="addAlbum"/>
+    <!-- end Add album Section -->
+
+    </LinearLayout>
 </RelativeLayout>
