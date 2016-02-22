@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-2f66a7f modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 43 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 84 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 42 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 83 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Playlist
 {
 
@@ -23,15 +23,10 @@ public class Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public Playlist(String aName, Song... allSongs)
+  public Playlist(String aName)
   {
     name = aName;
     songs = new ArrayList<Song>();
-    boolean didAddSongs = setSongs(allSongs);
-    if (!didAddSongs)
-    {
-      throw new RuntimeException("Unable to create Playlist, must have at least 1 songs");
-    }
   }
 
   //------------------------
@@ -81,15 +76,9 @@ public class Playlist
     return index;
   }
 
-  public boolean isNumberOfSongsValid()
-  {
-    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
-    return isValid;
-  }
-
   public static int minimumNumberOfSongs()
   {
-    return 1;
+    return 0;
   }
 
   public boolean addSong(Song aSong)
@@ -98,90 +87,19 @@ public class Playlist
     if (songs.contains(aSong)) { return false; }
     if (songs.contains(aSong)) { return false; }
     songs.add(aSong);
-    if (aSong.indexOfPlaylist(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aSong.addPlaylist(this);
-      if (!wasAdded)
-      {
-        songs.remove(aSong);
-      }
-    }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    if (!songs.contains(aSong))
+    if (songs.contains(aSong))
     {
-      return wasRemoved;
-    }
-
-    if (numberOfSongs() <= minimumNumberOfSongs())
-    {
-      return wasRemoved;
-    }
-
-    int oldIndex = songs.indexOf(aSong);
-    songs.remove(oldIndex);
-    if (aSong.indexOfPlaylist(this) == -1)
-    {
+      songs.remove(aSong);
       wasRemoved = true;
     }
-    else
-    {
-      wasRemoved = aSong.removePlaylist(this);
-      if (!wasRemoved)
-      {
-        songs.add(oldIndex,aSong);
-      }
-    }
     return wasRemoved;
-  }
-
-  public boolean setSongs(Song... newSongs)
-  {
-    boolean wasSet = false;
-    ArrayList<Song> verifiedSongs = new ArrayList<Song>();
-    for (Song aSong : newSongs)
-    {
-      if (verifiedSongs.contains(aSong))
-      {
-        continue;
-      }
-      verifiedSongs.add(aSong);
-    }
-
-    if (verifiedSongs.size() != newSongs.length || verifiedSongs.size() < minimumNumberOfSongs())
-    {
-      return wasSet;
-    }
-
-    ArrayList<Song> oldSongs = new ArrayList<Song>(songs);
-    songs.clear();
-    for (Song aNewSong : verifiedSongs)
-    {
-      songs.add(aNewSong);
-      if (oldSongs.contains(aNewSong))
-      {
-        oldSongs.remove(aNewSong);
-      }
-      else
-      {
-        aNewSong.addPlaylist(this);
-      }
-    }
-
-    for (Song anOldSong : oldSongs)
-    {
-      anOldSong.removePlaylist(this);
-    }
-    wasSet = true;
-    return wasSet;
   }
 
   public boolean addSongAt(Song aSong, int index)
@@ -218,12 +136,7 @@ public class Playlist
 
   public void delete()
   {
-    ArrayList<Song> copyOfSongs = new ArrayList<Song>(songs);
     songs.clear();
-    for(Song aSong : copyOfSongs)
-    {
-      aSong.removePlaylist(this);
-    }
   }
 
 
