@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.*;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.*;
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     private String error = null;
     private HashMap<Integer, Genre> genres;
+
+    private LinkedList<Song> songs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO: create the track list
         AlbumTracklist trackList = new AlbumTracklist("");
+
+        for (int i = 0; i < songs.size(); i++) {
+            trackList.addSong(songs.get(i));
+        }
 
         // call the controller
         HomeAudioSystemController hasc = new HomeAudioSystemController();
