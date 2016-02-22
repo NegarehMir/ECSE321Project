@@ -3,7 +3,7 @@ $(document).ready(function() {
   $(".addSongButton").click(function(){
     $.ajax({
       type: "post",
-      url: '/ECSE%20321%20Project/Group01/Web/addSongToSession.php',
+      url: 'addSongToSession.php',
       data: { song: $("#songInput").val() },
       success: function(data)
       {
