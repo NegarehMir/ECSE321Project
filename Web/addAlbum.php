@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 require_once __DIR__.'/controller/Controller.php';
 session_start();
 
@@ -72,6 +73,7 @@ try{
   }
 
 }
+//var_dump($_SERVER["DOCUMENT_ROOT"]);
 
 ?>
 
@@ -79,6 +81,6 @@ try{
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0; url=/ECSE%20321%20Project/Group01/Web/" />
+<meta http-equiv="refresh" content="0; url=index.php" />
 </head>
 </html>
