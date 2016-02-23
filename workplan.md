@@ -41,10 +41,10 @@ Each item should be completed between the previous due date and its actual due d
 - Unit testing -- Thomas
 - Component testing
 ##### Functionality
-- Next Song Plays When Current Song Finishes [PB.J.01] -- Pierre Desktop, Thomas Web, Nicky Mobile
-- Delete Playlist from Library [ML.P.03] -- Pierre Desktop, Thomas Web, Nicky Mobile
-- Delete Album from Library [ML.A.03] -- Pierre Desktop, Thomas Web, Nicky Mobile
-- Delete Songs from Library [ML.A.04] -- Pierre Desktop, Thomas Web, Nicky Mobile
+- Next Song Plays When Current Song Finishes [PB.J.01] -- Pierre Desktop, Nicky Web, Thomas Mobile
+- Delete Playlist from Library [ML.P.03] -- Pierre Desktop, Nicky Web, Thomas Mobile
+- Delete Album from Library [ML.A.03] -- Pierre Desktop, Nicky Web, Thomas Mobile
+- Delete Songs from Library [ML.A.04] -- Pierre Desktop, Nicky Web, Thomas Mobile
 ##### Test Writing
 - Next Song Plays When Current Song Finishes Unit Tests -- Evan
 - Delete Playlist, Album, Songs from Library Unit Tests -- Eva
@@ -84,8 +84,8 @@ Each item should be completed between the previous due date and its actual due d
 
 ### Due Apr. 1
 ##### Functionality and UI
-- View Volume Level of Location [HL.U.01] -- Pierre Desktop, Thomas Web, Nicky Mobile
-- View Music Assigned to each Location [HL.U.04] -- Pierre Desktop, Thomas Web, Nicky Mobile
+- View Volume Level of Location [HL.U.01] -- Pierre Desktop, Nicky Web, Thomas Mobile
+- View Music Assigned to each Location [HL.U.04] -- Pierre Desktop, Nicky Web, Thomas Mobile
 ##### Test Writing
 - Continue writing performance/stress tests -- Evan
 - Finish writing component, system, performance/stress tests -- Evan
