@@ -1,3 +1,6 @@
+# Workplan
+Each item should be completed between the previous due date and its actual due date, thus indicating its approximate level of effort required. Lowest priority items should not be developed past April 8.
+
 ### Already done:
 - Add Album [ML.A.01]
 
@@ -44,7 +47,7 @@
 - Delete Songs from Library [ML.A.04] -- Pierre Desktop, Thomas Web, Nicky Mobile
 ##### Test Writing
 - Next Song Plays When Current Song Finishes Unit Tests -- Evan
-- Delete Playlist, Album, Songs from Library Unit Tests -- Eva 
+- Delete Playlist, Album, Songs from Library Unit Tests -- Eva
 - Write first component tests -- Eva
 
 
@@ -86,7 +89,7 @@
 ##### Test Writing
 - Continue writing performance/stress tests -- Evan
 - Finish writing component, system, performance/stress tests -- Evan
-- Finalize unit tests (should have been covered already) -- Pierrew
+- Finalize unit tests (should have been covered already) -- Pierre
 
 ### Due Apr. 8
 - Draft Presentation -- All of us
@@ -96,10 +99,3 @@
 ### Due Apr. 15
 - Prepare and Submit Source Code -- Evan
 - Slack time (in case features take more time than anticipated) -- All of us
-
-****Should we remove the whole HL.U section and replace it with PB.U?** 
-
-Evan: Perhaps the PB.U requirements could be moved into HL.U, but I wouldn't delete either of them entirely.
-
-
-****Add deadline for when low-priority features will no longer be worked on
