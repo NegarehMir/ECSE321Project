@@ -1,5 +1,5 @@
 # Workplan
-Each item should be completed between the previous due date and its actual due date, thus indicating its approximate level of effort required. Lowest priority items should not be developed past April 8.
+Each item should be completed between the previous due date and its actual due date. Effort ranges from 1 to 5, where 1 is the lowest effort (a quick formality) and 5 is the highest. Lowest priority items (indicated by their requirement's priority level) should not be developed past April 8.
 
 ### Already done:
 - Add Album [ML.A.01]
