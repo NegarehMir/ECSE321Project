@@ -16,8 +16,12 @@ public class HomeAudioSystem {
 		// prepopulate generes if there aren't any at all
 		if (has.getGenres().size() <= 0) {
 			String[] genreNames = {
-					"Dubstep",
+					"Alternative",
 					"Classical",
+					"Country",
+					"Electronic",
+					"Hip-Hop/Rap",
+					"Pop",
 					"Rock",
 					"Jazz",
 			};

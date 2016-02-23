@@ -1,0 +1,99 @@
+<ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem id="1">
+  <locations id="2"/>
+  <albums id="3">
+    <album id="4">
+      <title>zfv</title>
+      <releaseDate id="5">2016-03-02</releaseDate>
+      <genre id="6">
+        <name>Jazz</name>
+      </genre>
+      <artist id="7">
+        <name>sert</name>
+        <albums id="8">
+          <album reference="4"/>
+        </albums>
+        <songs id="9">
+          <song id="10">
+            <title>sdfgsdfg</title>
+            <duration>2489</duration>
+            <artist reference="7"/>
+          </song>
+        </songs>
+      </artist>
+      <albumTracklist id="11">
+        <name></name>
+        <songs id="12">
+          <song reference="10"/>
+        </songs>
+      </albumTracklist>
+    </album>
+    <album id="13">
+      <title>46urtyj</title>
+      <releaseDate id="14">2016-02-12</releaseDate>
+      <genre reference="6"/>
+      <artist id="15">
+        <name>476jnfhmh</name>
+        <albums id="16">
+          <album reference="13"/>
+        </albums>
+        <songs id="17">
+          <song id="18">
+            <title>poopoo head</title>
+            <duration>60</duration>
+            <artist reference="15"/>
+          </song>
+        </songs>
+      </artist>
+      <albumTracklist id="19">
+        <name></name>
+        <songs id="20">
+          <song reference="18"/>
+        </songs>
+      </albumTracklist>
+    </album>
+    <album id="21">
+      <title>ertgrtg</title>
+      <releaseDate id="22">2016-02-10</releaseDate>
+      <genre id="23">
+        <name>Rock</name>
+      </genre>
+      <artist id="24">
+        <name>sfdsergwerg</name>
+        <albums id="25">
+          <album reference="21"/>
+        </albums>
+        <songs id="26">
+          <song id="27">
+            <title>arfgsefgsg</title>
+            <duration>60</duration>
+            <artist reference="24"/>
+          </song>
+          <song id="28">
+            <title>w4rgfgbdfgef</title>
+            <duration>60</duration>
+            <artist reference="24"/>
+          </song>
+        </songs>
+      </artist>
+      <albumTracklist id="29">
+        <name></name>
+        <songs id="30">
+          <song reference="27"/>
+          <song reference="28"/>
+        </songs>
+      </albumTracklist>
+    </album>
+  </albums>
+  <artists id="31"/>
+  <playlists id="32"/>
+  <genres id="33">
+    <genre id="34">
+      <name>Dubstep</name>
+    </genre>
+    <genre id="35">
+      <name>Classical</name>
+    </genre>
+    <genre reference="23"/>
+    <genre reference="6"/>
+  </genres>
+</ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>

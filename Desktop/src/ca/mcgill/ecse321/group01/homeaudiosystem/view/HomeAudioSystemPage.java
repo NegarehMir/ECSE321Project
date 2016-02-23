@@ -248,8 +248,9 @@ public class HomeAudioSystemPage extends JFrame {
 	}
 	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		String artistName = artistNameTextField.getText();
-		if (artistName == null || artistName.trim().length() == 0)
-			error = error +"Album artist name cannot be empty ";
+        if (artistName == null || artistName.trim().length() == 0) {
+            error = error + "Album artist name cannot be empty ";
+        }
 		Artist artist = new Artist(artistName);
 
 		// create the track list
@@ -266,9 +267,9 @@ public class HomeAudioSystemPage extends JFrame {
 		}
 		
 		// call the controller
-		HomeAudioSystemController erc = new HomeAudioSystemController();
+		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		try {
-			erc.createAlbum(
+			hasc.createAlbum(
 					albumNameTextField.getText(), 
 					artist,
 					genres.get(selectedGenre),
@@ -277,6 +278,7 @@ public class HomeAudioSystemPage extends JFrame {
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
+
 		// update visuals
 		refreshData();
 	}
