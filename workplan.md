@@ -90,67 +90,67 @@ Each item should be completed between the previous due date and its actual due d
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Play/Pause [PB.02] -- Eva Desktop, Thomas Web, Pierre Mobile
-| Skip Songs [PB.03] -- Eva Desktop, Thomas Web, Pierre Mobile
-| Jump to Start/End of Song [PB.J.02], [PB.J.03] -- Eva Desktop, Thomas Web, Pierre Mobile
+| Play/Pause | PB.02 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
+| Skip Songs | PB.03 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
+| Jump to Start/End of Song | PB.J.02, PB.J.03 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Continue writing component tests
-| Write first system tests -- Nicky
-| Write Play/Pause unit tests -- Thomas
-| Write Skip Songs unit tests -- Thomas
-| Write Jump to Start/End of Song unit tests -- Eva
+| Write first system tests |  | Nicky | 5 | | |
+| Write Play/Pause unit tests | | Thomas | 4 | | |
+| Write Skip Songs unit tests | | Thomas | 4 | | |
+| Write Jump to Start/End of Song unit tests | | Eva | 4 | | |
 
 ## Due Mar. 25
 
 #### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Release pipeline -- Evan
-| Work plan update -- Thomas
+| Release pipeline | Deliverable 4 | Evan | 2 | | |
+| Work plan update | Deliverable 4 | Thomas | 1 | | |
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Remove Song from Playlist [ML.P.05] -- Nicky Desktop, Thomas Web, Eva Mobile
-| Change Order of Songs in Playlist [ML.P.02] -- Nicky Desktop, Thomas Web, Eva Mobile
-| Add Songs after Album Created [ML.A.02] -- Nicky Desktop, Thomas Web, Eva Mobile
+| Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
+| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | | 
+| Add Songs after Album Created | ML.A.02 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Continue writing system tests -- Evan
-| Begin writing performance/stress tests -- Eva
-| Write Remove Song from Playlist unit tests -- Nicky
-| Write Change Order of Songs in Playlist unit tests -- Nicky
-| Write Add Songs after Album Created unit tests -- Pierre
+| Continue writing system tests | | Evan | 5 | | |
+| Begin writing performance/stress tests | | Eva | 5 | | |
+| Write Remove Song from Playlist unit tests | | Nicky | 2 | | |
+| Write Change Order of Songs in Playlist unit tests | |  Nicky | 2 | | |
+| Write Add Songs after Album Created unit tests | | Pierre | 2 | | |
 
 ## Due Apr. 1
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| View Volume Level of Location [HL.U.01] -- Pierre Desktop, Nicky Web, Thomas Mobile
-| View Music Assigned to each Location [HL.U.04] -- Pierre Desktop, Nicky Web, Thomas Mobile
+| View Volume Level of Location | HL.U.01 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
+| View Music Assigned to each Location [HL.U.04] -- Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Continue writing performance/stress tests -- Evan
-| Finish writing component, system, performance/stress tests -- Evan
-| Finalize unit tests (should have been covered already) -- Pierre
+| Continue writing performance/stress tests | | Evan | 4 | | |
+| Finish writing component, system, performance/stress tests | | Evan | 4 | | |
+| Finalize unit tests (should have been covered already) | |  Pierre | 4 | | |
 
 ## Due Apr. 8
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Draft Presentation -- All of us
-| Practice Presentation as group -- All of us
-| Slack time (in case features take more time than anticipated) -- All of us
+| Draft Presentation | Deliverable 5 | All of us | 5 | | |
+| Practice Presentation as group | Deliverable 5 | All of us | 2 | | |
+| Slack time (in case features take more time than anticipated) | | All of us | - | | |
 
 ## Due Apr. 15
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Prepare and Submit Source Code -- Evan
-| Slack time (in case features take more time than anticipated) -- All of us
+| Prepare and Submit Source Code | Deliverable 6 | Evan | 5 | | |
+| Slack time (in case features take more time than anticipated) | | All of us | - | | |
