@@ -133,7 +133,7 @@ Each item should be completed between the previous due date and its actual due d
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | View Volume Level of Location | HL.U.01 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
-| View Music Assigned to each Location [HL.U.04] -- Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
+| View Music Assigned to each Location | HL.U.04 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
