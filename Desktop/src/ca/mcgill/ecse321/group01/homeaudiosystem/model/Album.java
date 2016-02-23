@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.sql.Date;
 
-// line 27 "../../../../../../domainModel.umple"
-// line 70 "../../../../../../domainModel.umple"
+// line 28 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 69 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Album
 {
 
@@ -19,7 +19,6 @@ public class Album
   private Genre genre;
 
   //Album Associations
-  private HomeAudioSystem homeAudioSystem;
   private Artist artist;
   private AlbumTracklist albumTracklist;
 
@@ -27,44 +26,20 @@ public class Album
   // CONSTRUCTOR
   //------------------------
 
-  public Album(String aTitle, Date aReleaseDate, Genre aGenre, HomeAudioSystem aHomeAudioSystem, Artist aArtist, AlbumTracklist aAlbumTracklist)
+  public Album(String aTitle, Date aReleaseDate, Genre aGenre, Artist aArtist, AlbumTracklist aAlbumTracklist)
   {
     title = aTitle;
     releaseDate = aReleaseDate;
     genre = aGenre;
-    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
-    if (!didAddHomeAudioSystem)
-    {
-      throw new RuntimeException("Unable to create album due to homeAudioSystem");
-    }
     boolean didAddArtist = setArtist(aArtist);
     if (!didAddArtist)
     {
       throw new RuntimeException("Unable to create album due to artist");
     }
-    if (aAlbumTracklist == null || aAlbumTracklist.getAlbum() != null)
+    if (!setAlbumTracklist(aAlbumTracklist))
     {
       throw new RuntimeException("Unable to create Album due to aAlbumTracklist");
     }
-    albumTracklist = aAlbumTracklist;
-  }
-
-  public Album(String aTitle, Date aReleaseDate, Genre aGenre, HomeAudioSystem aHomeAudioSystem, Artist aArtist, String aNameForAlbumTracklist, HomeAudioSystem aHomeAudioSystemForAlbumTracklist, Song... allSongsForAlbumTracklist)
-  {
-    title = aTitle;
-    releaseDate = aReleaseDate;
-    genre = aGenre;
-    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
-    if (!didAddHomeAudioSystem)
-    {
-      throw new RuntimeException("Unable to create album due to homeAudioSystem");
-    }
-    boolean didAddArtist = setArtist(aArtist);
-    if (!didAddArtist)
-    {
-      throw new RuntimeException("Unable to create album due to artist");
-    }
-    albumTracklist = new AlbumTracklist(aNameForAlbumTracklist, aHomeAudioSystemForAlbumTracklist, this, allSongsForAlbumTracklist);
   }
 
   //------------------------
@@ -110,11 +85,6 @@ public class Album
     return genre;
   }
 
-  public HomeAudioSystem getHomeAudioSystem()
-  {
-    return homeAudioSystem;
-  }
-
   public Artist getArtist()
   {
     return artist;
@@ -123,25 +93,6 @@ public class Album
   public AlbumTracklist getAlbumTracklist()
   {
     return albumTracklist;
-  }
-
-  public boolean setHomeAudioSystem(HomeAudioSystem aHomeAudioSystem)
-  {
-    boolean wasSet = false;
-    if (aHomeAudioSystem == null)
-    {
-      return wasSet;
-    }
-
-    HomeAudioSystem existingHomeAudioSystem = homeAudioSystem;
-    homeAudioSystem = aHomeAudioSystem;
-    if (existingHomeAudioSystem != null && !existingHomeAudioSystem.equals(aHomeAudioSystem))
-    {
-      existingHomeAudioSystem.removeAlbum(this);
-    }
-    homeAudioSystem.addAlbum(this);
-    wasSet = true;
-    return wasSet;
   }
 
   public boolean setArtist(Artist aArtist)
@@ -163,20 +114,23 @@ public class Album
     return wasSet;
   }
 
+  public boolean setAlbumTracklist(AlbumTracklist aNewAlbumTracklist)
+  {
+    boolean wasSet = false;
+    if (aNewAlbumTracklist != null)
+    {
+      albumTracklist = aNewAlbumTracklist;
+      wasSet = true;
+    }
+    return wasSet;
+  }
+
   public void delete()
   {
-    HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
-    this.homeAudioSystem = null;
-    placeholderHomeAudioSystem.removeAlbum(this);
     Artist placeholderArtist = artist;
     this.artist = null;
     placeholderArtist.removeAlbum(this);
-    AlbumTracklist existingAlbumTracklist = albumTracklist;
     albumTracklist = null;
-    if (existingAlbumTracklist != null)
-    {
-      existingAlbumTracklist.delete();
-    }
   }
 
 
@@ -187,7 +141,6 @@ public class Album
             "title" + ":" + getTitle()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "releaseDate" + "=" + (getReleaseDate() != null ? !getReleaseDate().equals(this)  ? getReleaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "genre" + "=" + (getGenre() != null ? !getGenre().equals(this)  ? getGenre().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "artist = "+(getArtist()!=null?Integer.toHexString(System.identityHashCode(getArtist())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "albumTracklist = "+(getAlbumTracklist()!=null?Integer.toHexString(System.identityHashCode(getAlbumTracklist())):"null")
      + outputString;

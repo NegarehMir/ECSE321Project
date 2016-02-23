@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
+/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 13 "../../../../../../domainModel.umple"
-// line 97 "../../../../../../domainModel.umple"
+// line 14 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 96 "../../../../../../../../../ump/tmp960453/model.ump"
 public class Location
 {
 
@@ -20,23 +20,17 @@ public class Location
 
   //Location Associations
   private List<Song> songs;
-  private HomeAudioSystem homeAudioSystem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Location(String aName, int aVolume, boolean aMute, HomeAudioSystem aHomeAudioSystem)
+  public Location(String aName, int aVolume, boolean aMute)
   {
     name = aName;
     volume = aVolume;
     mute = aMute;
     songs = new ArrayList<Song>();
-    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
-    if (!didAddHomeAudioSystem)
-    {
-      throw new RuntimeException("Unable to create location due to homeAudioSystem");
-    }
   }
 
   //------------------------
@@ -112,11 +106,6 @@ public class Location
     return index;
   }
 
-  public HomeAudioSystem getHomeAudioSystem()
-  {
-    return homeAudioSystem;
-  }
-
   public static int minimumNumberOfSongs()
   {
     return 0;
@@ -127,42 +116,17 @@ public class Location
     boolean wasAdded = false;
     if (songs.contains(aSong)) { return false; }
     songs.add(aSong);
-    if (aSong.indexOfLocation(this) != -1)
-    {
-      wasAdded = true;
-    }
-    else
-    {
-      wasAdded = aSong.addLocation(this);
-      if (!wasAdded)
-      {
-        songs.remove(aSong);
-      }
-    }
+    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    if (!songs.contains(aSong))
+    if (songs.contains(aSong))
     {
-      return wasRemoved;
-    }
-
-    int oldIndex = songs.indexOf(aSong);
-    songs.remove(oldIndex);
-    if (aSong.indexOfLocation(this) == -1)
-    {
+      songs.remove(aSong);
       wasRemoved = true;
-    }
-    else
-    {
-      wasRemoved = aSong.removeLocation(this);
-      if (!wasRemoved)
-      {
-        songs.add(oldIndex,aSong);
-      }
     }
     return wasRemoved;
   }
@@ -199,36 +163,9 @@ public class Location
     return wasAdded;
   }
 
-  public boolean setHomeAudioSystem(HomeAudioSystem aHomeAudioSystem)
-  {
-    boolean wasSet = false;
-    if (aHomeAudioSystem == null)
-    {
-      return wasSet;
-    }
-
-    HomeAudioSystem existingHomeAudioSystem = homeAudioSystem;
-    homeAudioSystem = aHomeAudioSystem;
-    if (existingHomeAudioSystem != null && !existingHomeAudioSystem.equals(aHomeAudioSystem))
-    {
-      existingHomeAudioSystem.removeLocation(this);
-    }
-    homeAudioSystem.addLocation(this);
-    wasSet = true;
-    return wasSet;
-  }
-
   public void delete()
   {
-    ArrayList<Song> copyOfSongs = new ArrayList<Song>(songs);
     songs.clear();
-    for(Song aSong : copyOfSongs)
-    {
-      aSong.removeLocation(this);
-    }
-    HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
-    this.homeAudioSystem = null;
-    placeholderHomeAudioSystem.removeLocation(this);
   }
 
 
@@ -238,8 +175,7 @@ public class Location
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
             "volume" + ":" + getVolume()+ "," +
-            "mute" + ":" + getMute()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
+            "mute" + ":" + getMute()+ "]"
      + outputString;
   }
 }
