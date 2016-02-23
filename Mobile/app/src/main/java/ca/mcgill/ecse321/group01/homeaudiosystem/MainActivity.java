@@ -122,9 +122,6 @@ public class MainActivity extends AppCompatActivity {
         Genre genre = genres.get(((Spinner) findViewById(R.id.newalbum_genrespinner)).getSelectedItemPosition());
         CharSequence date = ((TextView)findViewById(R.id.newalbum_date)).getText();
 
-        if (artistName == null || artistName.trim().length() == 0) {
-            error = error + "Album artist name cannot be empty ";
-        }
         Artist artist = new Artist(artistName);
 
         Bundle dateBundle = getDateFromLabel(date);

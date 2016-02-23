@@ -57,7 +57,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ca/mcgill/ecse321/group01/homeaudiosystem/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39959016">
+            <state vertical-scroll-proportion="0.33811477">
               <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -1712,7 +1712,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-87" />
+    <option name="x" value="23" />
     <option name="y" value="23" />
     <option name="width" value="1321" />
     <option name="height" value="873" />
@@ -1972,7 +1972,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-87" y="23" width="1321" height="873" extended-state="0" />
+    <frame x="23" y="23" width="1321" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2029,19 +2029,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ca/mcgill/ecse321/group01/homeaudiosystem/MainActivity.java</url>
-          <line>136</line>
+          <line>133</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ca/mcgill/ecse321/group01/homeaudiosystem/MainActivity.java</url>
-          <line>143</line>
+          <line>140</line>
           <properties />
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ca/mcgill/ecse321/group01/homeaudiosystem/MainActivity.java</url>
-          <line>144</line>
+          <line>141</line>
           <properties />
           <option name="timeStamp" value="23" />
         </line-breakpoint>
@@ -2252,7 +2252,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ca/mcgill/ecse321/group01/homeaudiosystem/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39959016">
+        <state vertical-scroll-proportion="0.33811477">
           <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
