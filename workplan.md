@@ -6,8 +6,12 @@ Each item should be completed between the previous due date and its actual due d
 
 ### Due Feb. 26
 ##### Descriptions
-- Architecture description -- Evan
-- Architecture block diagram -- Nicky
+
+| Description | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| Architecture description | Deliverable 2 | Evan | 4 | | |
+| Architecture block diagram | Deliverable 2 | Nicky | 3 | | |
+
 ##### Functionality and UI
 - Create Playlist [ML.P.01] -- Eva Desktop, Thomas Web, Pierre Mobile
 - Add Location [HL.01] --  Eva Desktop, Thomas Web, Pierre Mobile
