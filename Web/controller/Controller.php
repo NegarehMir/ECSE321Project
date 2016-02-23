@@ -27,9 +27,9 @@ class Controller
         $errors.= "{{albumArtist}}Album Artist Cannot Be Empty!";
       }
 
-      if($releaseDate == null || trim($releaseDate) == "")
+      if($releaseDate == null || trim($releaseDate) == "" || )
       {
-        $errors.= "{{releaseDate}}Album Release Date Cannot Be Empty!";
+       $errors.= "{{releaseDate}}Album Release Date Cannot Be Empty!";
       }
 
       if(count($songs) == 0)
@@ -59,7 +59,7 @@ class Controller
 
         foreach($songs as $song)
         {
-          $newSong = new Song($song, 500, $artist, $albumSongs);
+          $newSong = new Song($song[0], $song[1], $artist, $albumSongs);
           $artist->addSong($newSong);
           $albumSongs->addSong($newSong);
         }

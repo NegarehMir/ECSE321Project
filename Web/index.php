@@ -79,7 +79,7 @@
                         <tr>
                           <th class="mdl-data-table__cell--non-numeric">Song</th>
                           <th>Artist</th>
-                          <th>Album</th>
+                          <th>Duration</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -95,6 +95,7 @@
                         <tr>
                           <td class="mdl-data-table__cell--non-numeric"><?=$song->getTitle()?></td>
                           <td><?=$artist->getName()?></td>
+                          <td class="mdl-data-table__cell--non-numeric"><?=$song->getDuration()?></td>
                           <td></td>
                         </tr>
                         <?php

@@ -4,15 +4,21 @@ $(document).ready(function() {
     $.ajax({
       type: "post",
       url: 'addSongToSession.php',
-      data: { song: $("#songInput").val() },
+      data: {
+        song: $("#songInput").val(),
+        duration: $("#durationInput").val()
+      },
       success: function(data)
       {
         var data = JSON.parse(data);
         console.log(data);
 
         var row="<tr id='song_row"+data[0]+"'>";
-        row+="<td class='mdl-data-table__cell--non-numeric'>";
+        row+="<td>";
         row+=$("#songInput").val();
+        row+="</td>";
+        row+="<td>";
+        row+=$("#durationInput").val();
         row+="</td>";
         row+="<td class='delete_row'>";
         row+="<span class='btn btn-danger remove_class' id='"+data[0]+"'>";
@@ -21,6 +27,8 @@ $(document).ready(function() {
         row+="</td>";
         row+="</tr>";
 
+        $("#songInput").val("");
+        $("#durationInput").val("")
         $(".addedSongs").append(row);
 
       }
@@ -31,7 +39,7 @@ $(document).ready(function() {
   $("table").on('mousedown', '.remove_class',function(e){
     $.ajax({
       type: "post",
-      url: '/ECSE%20321%20Project/Group01/Web/removeSongFromSession.php',
+      url: 'removeSongFromSession.php',
       data: { id: e.currentTarget.id },
       success: function(data)
       {
