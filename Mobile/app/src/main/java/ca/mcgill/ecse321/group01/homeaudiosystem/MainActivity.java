@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private String error = null;
     private HashMap<Integer, Genre> genres;
 
-    private ArrayList<Object[]> songs;
+    private ArrayList<String[]> songs = new ArrayList<String[]>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshData() {
-        ArrayList<Object[]> songs = new ArrayList<Object[]>();
+        ArrayList<String[]> songs = new ArrayList<String[]>();
 
         HomeAudioSystem has = HomeAudioSystem.getInstance();
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setText("");
 
 
-        Spinner spinner = (Spinner) findViewById(R.id.genrespinner);
+        Spinner spinner = (Spinner) findViewById(R.id.newalbum_genrespinner);
         ArrayAdapter<CharSequence> genresAdapter = new
                 ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item);
         genresAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -89,16 +89,6 @@ public class MainActivity extends AppCompatActivity {
             genres.put(genres.size(), genre);
         }
         spinner.setAdapter(genresAdapter);
-
-//        ArrayList<Genre> genres = new ArrayList<Genre>();
-//        for (Genre genre: has.getGenres()) {
-//            genres.add(genre);
-//        }
-//
-//        Spinner spinner = (Spinner) findViewById(R.id.newalbum_genre);
-//        ArrayAdapter<Genre> genreAdapter = new
-//                ArrayAdapter<Genre>(this, android.R.layout.simple_spinner_item, genres);
-//        spinner.setAdapter(genreAdapter);
 
         tv = (TextView) findViewById(R.id.newalbum_date);
         tv.setText("01-01-2016");
@@ -127,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addAlbum(View v) {
-        String title = findViewById(R.id.newalbum_title).toString();
-        String artistName = findViewById(R.id.newalbum_artistname).toString();
-        //String genre = findViewById(R.id.newalbum_genre).toString();
-        String date = findViewById(R.id.newalbum_date).toString();
+        String title = ((TextView) findViewById(R.id.newalbum_title)).getText().toString();
+        String artistName = ((TextView)findViewById(R.id.newalbum_artistname)).getText().toString();
+        Genre genre = genres.get(((Spinner) findViewById(R.id.newalbum_genrespinner)).getSelectedItemPosition());
+        CharSequence date = ((TextView)findViewById(R.id.newalbum_date)).getText();
 
         if (artistName == null || artistName.trim().length() == 0) {
             error = error + "Album artist name cannot be empty ";
@@ -140,27 +130,14 @@ public class MainActivity extends AppCompatActivity {
         Bundle dateBundle = getDateFromLabel(date);
         Date releaseDate = dateBundle(dateBundle);
 
-        Spinner spinner = (Spinner) findViewById(R.id.genrespinner);
-
         // Create the track list
         AlbumTracklist trackList = new AlbumTracklist("");
         for (int i = 0; i < songs.size(); i++) {
-            String songTitle = (String) songs.get(i)[0];
-            Bundle timeBundle = getDateFromLabel((String) songs.get(i)[1]);
+            String songTitle = songs.get(i)[0];
+            Bundle timeBundle = getTimeFromLabel(songs.get(i)[1]);
             int duration = 60 * timeBundle.getInt("hour") + timeBundle.getInt("minute");
             trackList.addSong(new Song(songTitle, duration, artist));
         }
-
-//        // Create the track list
-//        AlbumTracklist trackList = new AlbumTracklist("");
-//
-//        for (int i = 0; i < songs.size(); i++) {
-//            String songTitle = (String) songs.get(i)[0];
-//            int duration = (int) songs.get(i)[1];
-//
-//            trackList.addSong(new Song(songTitle, duration, artist));
-//        }
-
 
         // call the controller
         HomeAudioSystemController hasc = new HomeAudioSystemController();
@@ -168,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             hasc.createAlbum(
                     title,
                     artist,
-                    genres.get(spinner.getSelectedItemPosition()),
+                    genre,
                     releaseDate,
                     trackList);
         } catch (InvalidInputException e) {
@@ -179,20 +156,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addSong(View v) {
-
-//        TextView tv = (TextView) findViewById(R.id.newsong_title);
-        TextView time = (TextView) findViewById(R.id.newsong_duration);
-        String title = findViewById(R.id.newsong_title).toString();
-//        int duration = getTime(time.getText());
-
-        Bundle durationTimeBundle = getTimeFromLabel(time.getText());
-//        Time duration = timeBundle(durationTimeBundle);
-
-        int seconds = 60 * durationTimeBundle.getInt("hour") + durationTimeBundle.getInt("minute");
-        //TextView errorMessage = (TextView) findViewById(R.id.error);
-
-        songs.add(new Object[]{title, durationTimeBundle});
-
+        String duration = ((TextView) findViewById(R.id.newsong_duration)).getText().toString();
+        String title = ((TextView) findViewById(R.id.newsong_title)).getText().toString();
+        songs.add(new String[] { title, duration });
     }
 
     public void showDatePickerDialog(View v) {
