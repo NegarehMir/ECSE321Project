@@ -144,13 +144,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Create the track list
         AlbumTracklist trackList = new AlbumTracklist("");
-
         for (int i = 0; i < songs.size(); i++) {
             String songTitle = (String) songs.get(i)[0];
-            int duration = (int) songs.get(i)[1];
-
+            Bundle timeBundle = getDateFromLabel((String) songs.get(i)[1]);
+            int duration = 60 * timeBundle.getInt("hour") + timeBundle.getInt("minute");
             trackList.addSong(new Song(songTitle, duration, artist));
         }
+
+//        // Create the track list
+//        AlbumTracklist trackList = new AlbumTracklist("");
+//
+//        for (int i = 0; i < songs.size(); i++) {
+//            String songTitle = (String) songs.get(i)[0];
+//            int duration = (int) songs.get(i)[1];
+//
+//            trackList.addSong(new Song(songTitle, duration, artist));
+//        }
+
 
         // call the controller
         HomeAudioSystemController hasc = new HomeAudioSystemController();
@@ -172,16 +182,16 @@ public class MainActivity extends AppCompatActivity {
 
 //        TextView tv = (TextView) findViewById(R.id.newsong_title);
         TextView time = (TextView) findViewById(R.id.newsong_duration);
-
         String title = findViewById(R.id.newsong_title).toString();
-        int duration = getTime(time.getText());
+//        int duration = getTime(time.getText());
 
-//        Bundle durationTimeBundle = getTimeFromLabel(tf.getText());
+        Bundle durationTimeBundle = getTimeFromLabel(time.getText());
 //        Time duration = timeBundle(durationTimeBundle);
 
+        int seconds = 60 * durationTimeBundle.getInt("hour") + durationTimeBundle.getInt("minute");
         //TextView errorMessage = (TextView) findViewById(R.id.error);
 
-        songs.add(new Object[] { title, duration });
+        songs.add(new Object[]{title, durationTimeBundle});
 
     }
 
@@ -206,25 +216,33 @@ public class MainActivity extends AppCompatActivity {
     private Bundle getTimeFromLabel(CharSequence text) {
         Bundle rtn = new Bundle();
         String comps[] = text.toString().split(":");
-        int minute = 60;
-        int seconds = 0;
+        int hour = 12;
+        int minute = 0;
         if (comps.length == 2) {
-            minute = Integer.parseInt(comps[0]);
-            seconds = Integer.parseInt(comps[1]);
+            hour = Integer.parseInt(comps[0]);
+            minute = Integer.parseInt(comps[1]);
         }
+        rtn.putInt("hour", hour);
         rtn.putInt("minute", minute);
-        rtn.putInt("seconds", seconds);
         return rtn;
     }
 
-    private int getTime(CharSequence text) {
-        int duration = 0;
-        String comps[] = text.toString().split(":");
-        if (comps.length == 2) {
-             duration = Integer.parseInt(comps[0]) * 60 +Integer.parseInt(comps[1]);
-        }
-        return duration;
-    }
+//    private int getTime(CharSequence text) {
+//        int duration = 0;
+//        String comps[] = text.toString().split(":");
+//        if (comps.length == 2) {
+//             duration = Integer.parseInt(comps[0]) * 60 +Integer.parseInt(comps[1]);
+//        }
+//        return duration;
+//    }
+
+//    private int getTime(Bundle timeBundle) {
+//        int duration = 0;
+//        int unbundleMinute = inputTime.getInt("minute");
+//        int unbundleSeconds = inputTime.getInt("seconds");
+//            duration = unbundleMinute * 60 + unbundleSeconds;
+//        return duration;
+//    }
 
     private Bundle getDateFromLabel(CharSequence text) {
         Bundle rtn = new Bundle();
@@ -262,9 +280,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Time timeBundle (Bundle inputTime) {
+        int unbundleHour = inputTime.getInt("hour");
         int unbundleMinute = inputTime.getInt("minute");
-        int unbundleSeconds = inputTime.getInt("seconds");
-        Time time = new Time(unbundleMinute, unbundleSeconds, 0);
+        Time time = new Time(unbundleHour, unbundleMinute, 0);
         return time;
 
     }
