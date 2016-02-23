@@ -1,0 +1,54 @@
+.demo-layout-transparent {
+  background: url('../media/background.jpeg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+
+
+.content-card.mdl-card {
+  width: 100%;
+}
+.content-card > .mdl-card__title {
+  color: black;
+}
+.content-card > .mdl-card__menu {
+  color: #fff;
+}
+
+.form-wrapper{
+  margin-top: 10px;
+  padding: 30px;
+}
+.custom-input{
+  padding: 5px !important;
+  height: 20px !important;
+}
+
+.boot-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.center{
+  margin-left: 25%;
+}
+.inline li{
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+select{
+  width: 45px !important;
+}
+
+.error{
+  color: red;
+  font: 20px;
+}
