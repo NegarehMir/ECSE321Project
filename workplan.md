@@ -4,7 +4,7 @@ Each item should be completed between the previous due date and its actual due d
 ## Already done:
 - Add Album [ML.A.01]
 
-## Due Feb. 26
+## Due Feb. 28
 
 #### Descriptions
 
