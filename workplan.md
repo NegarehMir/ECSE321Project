@@ -26,7 +26,8 @@ Team members should work on items highest up in that week's due date section fir
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Add Album Unit Test | -- | Nicky | 2 | | | Create Playlist Unit Test | -- | Evan | 2 | | |
+| Add Album Unit Test | -- | Nicky | 2 | | |
+| Create Playlist Unit Test | -- | Evan | 2 | | |
 | Add Location Unit Test | -- | Nicky | 2 | | |
 | Add Song to Playlist Unit Test | -- | Evan  | 2 | | |
 
@@ -37,7 +38,7 @@ Team members should work on items highest up in that week's due date section fir
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Detailed design description | Deliverable 2 | Evan | 4 | | |
 | Detailed design class diagram | Deliverable 2 | Evan | 3 | | |
-| Work plan update | Deliverable 2 | Thomas | 1 | | |
+| Workplan update | Deliverable 2 | Thomas | 1 | | |
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
