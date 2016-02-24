@@ -1,6 +1,8 @@
 # Workplan
 Each item should be completed between the previous due date and its actual due date. Effort ranges from 1 to 5, where 1 is the lowest effort (a quick formality) and 5 is the highest. Lowest priority items (indicated by their requirement's priority level) should not be developed past April 8.
 
+Team members should work on items highest up in that week's due date section first, then continue on with lower items. Descriptions and priority level 1 requirements must be finished by each week's deadline. Lower priority requirements and tests may be worked on as long as the assigned team member has not worked more than six hours that week on this project.
+
 ## Already done:
 - Add Album [ML.A.01]
 
@@ -11,7 +13,7 @@ Each item should be completed between the previous due date and its actual due d
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Architecture description | Deliverable 2 | Evan | 3 | | |
-| Architecture block diagram | Deliverable 2 | Nicky | 3 | | |
+| Architecture block diagram | Deliverable 2 | Evan | 3 | | |
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -24,8 +26,9 @@ Each item should be completed between the previous due date and its actual due d
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Add Album Unit Test | -- | Eva | 2 | | | Create Playlist Unit Test | -- | Evan | 2 | | | 
-| Add Location Unit Test | -- | Eva | 2 | | |
+| Add Album Unit Test | -- | Nicky | 2 | | |
+| Create Playlist Unit Test | -- | Evan | 2 | | |
+| Add Location Unit Test | -- | Nicky | 2 | | |
 | Add Song to Playlist Unit Test | -- | Evan  | 2 | | |
 
 ## Due Mar. 4
@@ -35,7 +38,7 @@ Each item should be completed between the previous due date and its actual due d
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Detailed design description | Deliverable 2 | Evan | 4 | | |
 | Detailed design class diagram | Deliverable 2 | Evan | 3 | | |
-| Work plan update | Deliverable 2 | Thomas | 1 | | |
+| Workplan update | Deliverable 2 | Thomas | 1 | | |
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -50,7 +53,7 @@ Each item should be completed between the previous due date and its actual due d
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist, Album, Song to Location Unit Tests | | Evan | 4 | | | 
+| Assign Playlist, Album, Song to Location Unit Tests | | Evan | 4 | | |
 | Turn Volume Up or Down Unit Tests | | Pierre | 2 | | |
 | Temporarily Mute Volume Unit Tests | |  Pierre | 2 | | |
 
@@ -115,7 +118,7 @@ Each item should be completed between the previous due date and its actual due d
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
-| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | | 
+| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
 | Add Songs after Album Created | ML.A.02 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
 
 #### Test Writing
