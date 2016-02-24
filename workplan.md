@@ -16,16 +16,16 @@ Each item should be completed between the previous due date and its actual due d
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Create Playlist | ML.P.01 | Eva Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | | |
-| Add Location | HL.01 | Eva Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | | |
-| View Names of Locations | HL.01 | Eva Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 | | |
-| Add Song to Playlist | ML.P.04 | Eva Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | | |
+| Create Playlist | ML.P.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | | |
+| Add Location | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | | |
+| View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 | | |
+| Add Song to Playlist | ML.P.04 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Add Album Unit Test | -- | Nicky | 2 | | | Create Playlist Unit Test | -- | Evan | 2 | | | 
-| Add Location Unit Test | -- | Nicky | 2 | | |
+| Add Album Unit Test | -- | Eva | 2 | | | Create Playlist Unit Test | -- | Evan | 2 | | | 
+| Add Location Unit Test | -- | Eva | 2 | | |
 | Add Song to Playlist Unit Test | -- | Evan  | 2 | | |
 
 ## Due Mar. 4
@@ -98,7 +98,7 @@ Each item should be completed between the previous due date and its actual due d
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Continue writing component tests
-| Write first system tests |  | Nicky | 5 | | |
+| Write first system tests |  | Eva | 5 | | |
 | Write Play/Pause unit tests | | Thomas | 4 | | |
 | Write Skip Songs unit tests | | Thomas | 4 | | |
 | Write Jump to Start/End of Song unit tests | | Eva | 4 | | |
