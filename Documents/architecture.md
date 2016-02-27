@@ -1,7 +1,21 @@
 # Architecture Description
 
 ## Subsystem Descriptions
+Our system is broken down into the following subsystems:
+- View
+- Controller
+- Model
+- Persistence
 
+#### View
+
+#### Controller
+
+#### Model
+The model subsystem facilitates program data manipulation and retrieval. Collectively, model components hold all program data the application uses at runtime.
+
+#### Persistence
+The persistence subsystem interfaces with an external storage system that does not lose its data when the application closes. Controller components interact with the persistence subsystem to save and load data held by model components 
 
 ## Architectural Patterns
 We chose to apply the Model-View-Controller (MVC) pattern across all three applications.
