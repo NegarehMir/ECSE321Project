@@ -26,9 +26,9 @@ Team members should work on items highest up in that week's due date section fir
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Add Album Unit Test | -- | Nicky | 2 | | |
+| Add Album Unit Test | -- | Eva | 2 | | |
 | Create Playlist Unit Test | -- | Evan | 2 | | |
-| Add Location Unit Test | -- | Nicky | 2 | | |
+| Add Location Unit Test | -- | Eva | 2 | | |
 | Add Song to Playlist Unit Test | -- | Evan  | 2 | | |
 
 ## Due Mar. 4
