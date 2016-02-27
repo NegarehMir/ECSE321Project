@@ -143,6 +143,7 @@ Team members should work on items highest up in that week's due date section fir
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Continue writing performance/stress tests | | Evan | 4 | | |
 | Finish writing component, system, performance/stress tests | | Evan | 4 | | |
+| Write Persistence unit tests (similar to Assignment 1) | | Eva | 4 | | | 
 | Finalize unit tests (should have been covered already) | |  Pierre | 4 | | |
 
 ## Due Apr. 8
