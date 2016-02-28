@@ -3,7 +3,7 @@
 ## Subsystem Descriptions
 Our system is broken down into the following subsystems:
 
-- View
+- View: Location UI, Library UI
 - Controller
 - Model
 - Persistence
@@ -12,7 +12,7 @@ Our system is broken down into the following subsystems:
 The view subsystem generates the graphical user interface (GUI). Through the GUI, it displays program data to and accepts input from the user. Upon receipt, the view subsystem passes this data to relevant controller components.
 
 #### Controller
-The controller subsystem accepts and verifies user input given through the view subsystem. Controller components then store correct user input into model components.
+The controller subsystem accepts and verifies user input given through the view subsystem. Controller components store validated user input into model components.
 
 #### Model
 The model subsystem facilitates program data manipulation and retrieval. Collectively, model components hold all program data the application uses at runtime. The model is *completely independent* of the view subsystem.
