@@ -1,53 +1,61 @@
+
+<a href="?page=album" class="button">Cancel</a>
 <div class="form-wrapper">
   <form action="addAlbum.php" method="post">
 
-    <div class="form-group">
-      <label for="albumName" class="boot-label">Album Name</label>
-      <input type="text" class="form-control custom-input" id="albumName" placeholder="Album Name" name="albumName">
+    <div>
+      <label>Album Name
+      <input type="text" placeholder="Album Name" name="albumName">
+      </label>
       <p class="error"><?php if(isset($_SESSION["errorAddAlbumName"])) echo $_SESSION["errorAddAlbumName"];?></p>
     </div>
 
-    <div class="form-group">
-      <label for="albumArtist" class="boot-label">Album Artist</label>
-      <input type="text" class="form-control custom-input" id="albumArtist" placeholder="Album Artist" name="albumArtist">
+    <div>
+      <label>Album Artist
+      <input type="text" id="albumArtist" placeholder="Album Artist" name="albumArtist">
+      </label>
       <p class="error"><?php if(isset($_SESSION["errorAddAlbumArtist"])) echo $_SESSION["errorAddAlbumArtist"];?></p>
     </div>
 
     <!-- <div class="form-group">
       <label for="albumArtist" class="boot-label">Album Genre</label>
-      <input type="text" class="form-control custom-input" id="albumArtist" placeholder="Album Genre" name="albumGenre">
+      <input type="text" id="albumArtist" placeholder="Album Genre" name="albumGenre">
     </div> -->
-    <div class="form-group">
-      <label for="genre" class="boot-label">Album Genre</label>
-      <select class="form-control" style="width: 100% !important;" name="genre">
-        <option>Rock</option>
-      </select>
+    <div>
+      <label>Album Genre
+      <input type="text" id="albumGenre" placeholder="Album Genre" name="albumGenre">
+      </label>
+      <p class="error"><?php if(isset($_SESSION["errorAddAlbumGenre"])) echo $_SESSION["errorAddAlbumGenre"];?></p>
     </div>
 
-    <div class="form-group">
-      <label for="datepicker" class="boot-label">Release Date</label>
-      <input type="text" class="form-control custom-input" id="datepicker" placeholder="Album release Date" name="releaseDate">
+    <div>
+      <label>Release Date
+      <input type="text" id="datepicker" placeholder="Album release Date" name="releaseDate">
+      </label>
       <p class="error"><?php if(isset($_SESSION["errorAddAlbumDate"])) echo $_SESSION["errorAddAlbumDate"];?></p>
     </div>
 
     <ul class="inline center">
 
       <li>
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="songInput">
-          <label class="mdl-textfield__label" for="songInput">Add Song</label>
+        <div>
+
+          <label>Add Song
+          <input type="text" id="songInput">
+          </label>
         </div>
       </li>
 
       <li>
-        <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="durationInput">
-          <label class="mdl-textfield__label" for="durationInput">Duration</label>
+        <div>
+          <label class="mdl-textfield__label" for="durationInput">Duration
+          <input type="text" id="durationInput">
+          </label>
         </div>
       </li>
 
       <li>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored addSongButton" type="button">
+        <button class="button addSongButton" type="button">
           Add Song
         </button>
       </li>
@@ -93,7 +101,7 @@
     </table>
 
 
-    <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+    <input class="button" type="submit">
 
   </form>
 </div>

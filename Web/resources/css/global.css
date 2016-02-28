@@ -1,3 +1,8 @@
+body{
+  background-color: rgba(127, 140, 141,0.3) !important;
+}
+
+
 .demo-layout-transparent {
   background: url('../media/background.jpeg') center / cover;
 }
@@ -51,4 +56,14 @@ select{
 .error{
   color: red;
   font: 20px;
+}
+
+.container{
+  position: relative;
+}
+
+.addButton{
+  position: absolute;
+  top: 80px;
+  right: 5px;
 }
