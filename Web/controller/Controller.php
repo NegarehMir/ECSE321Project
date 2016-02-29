@@ -58,7 +58,23 @@ class Controller
           $has->addArtist($artist);
         }
 
-        else $artist = $searchArtist;
+        else
+        {
+          $artist = $searchArtist;
+        }
+
+        // $searchGenre = $this->searchArtists($genre, $has);
+        //
+        // if($searchGenre == false)
+        // {
+        //   $genre = new Genre($genre, $has);
+        //   $has->addGenre($genre);
+        // }
+        //
+        // else
+        // {
+        //   $genre = $searchGenre;
+        // }
 
         $albumSongs = new AlbumTracklist();
 
@@ -81,6 +97,46 @@ class Controller
 
     }
 
+
+    public function createPlaylist($playlistName, $playlistSongs)
+    {
+      $errors = "";
+
+      if($playlistName == null || trim($playlistName) == "")
+      {
+        $errors .= "{{playlistName}}";
+      }
+
+      if(!is_array($playlistSongs) || count($playlistSongs) == 0)
+      {
+        $errors .= "{{playlistSongs}}";
+      }
+
+      if(strlen($errors)>0) throw new Exception($errors);
+
+      else
+      {
+        $pm = new PersistenceHomeAudioSystem();
+
+        $has = $pm->loadDataFromStore();
+
+        $songs = [];
+
+        foreach($playlistSongs as $song)
+        {
+          $songOobject = $this->searchSong($song, $has);
+          if($songOobject != false) $songs[] = $songOobject;
+        }
+
+        $playlist = new Playlist($playlistName, $songs, $has);
+
+        $has->addPlaylist($playlist);
+
+        $pm->writeDataToStore($has);
+      }
+
+    }
+
     public function searchArtists($key, $has)
     {
       $artists = $has->getArtists();
@@ -93,6 +149,39 @@ class Controller
         }
       }
 
+      return false;
+    }
+
+    public function searchGenre($key, $has)
+    {
+      $genres = $has->getGenres();
+
+      foreach($genres as $genre)
+      {
+        if($genre->getName() == $key)
+        {
+          return $genre;
+        }
+      }
+
+      return false;
+    }
+
+    public function searchSong($key, $has)
+    {
+      $artists = $has->getArtists();
+
+      foreach($artists as $artist)
+      {
+        $songs = $artist->getSongs();
+        foreach($songs as $song)
+        {
+          if($song->getTitle() == $key)
+          {
+            return $song;
+          }
+        }
+      }
       return false;
     }
 }

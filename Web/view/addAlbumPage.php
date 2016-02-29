@@ -86,8 +86,8 @@
              <?=$song[1]?>
              </td>
              <td class='delete_row'>
-             <span class='btn btn-danger remove_class' id='<?=$count?>'>
-             <i class='material-icons'>clear</i>
+             <span class='alert button remove_class' id='<?=$count?>'>
+             X
              </span>
              </td>
             </tr>

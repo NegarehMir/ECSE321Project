@@ -25,7 +25,7 @@
       $tab = "albums";
     }
 
-    else if(isset($_GET['page']) && $_GET['page'] == 'addPlaylist')
+    else if(isset($_GET['page']) && ($_GET['page'] == 'addPlaylist' || $_GET['page'] == 'playlist'))
     {
       $tab = "playlists";
     }
@@ -100,7 +100,15 @@
             </div>
             <div class="tabs-panel <?php if($tab == "playlists") {echo "is-active";}?>" id="playlists">
               <?php
-              require "view/addAlbumPage.php";
+              if(isset($_GET['page']) && $_GET['page'] == 'addPlaylist')
+              {
+                require "view/addPlaylistPage.php";
+              }
+
+              else
+              {
+                require "view/playlists.php";
+              }
               ?>
             </div>
           </div>

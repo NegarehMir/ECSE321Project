@@ -21,8 +21,8 @@ $(document).ready(function() {
         row+=$("#durationInput").val();
         row+="</td>";
         row+="<td class='delete_row'>";
-        row+="<span class='btn btn-danger remove_class' id='"+data[0]+"'>";
-        row+="<i class='material-icons'>clear</i>";
+        row+="<span class='alert button remove_class' id='"+data[0]+"'>";
+        row+="X";
         row+="</span>";
         row+="</td>";
         row+="</tr>";
@@ -52,4 +52,28 @@ $(document).ready(function() {
     })
 
   });
+
+
+  $(".selectSongs").click(function(){
+
+    $(".songs-table tr").each(function(){
+      if($(this).hasClass(''))
+      {
+
+      }
+    });
+
+  });
+
+  $(".select").change(function(){
+    if(this.checked)
+    {
+      $(this).parent().parent().addClass("is-selected");
+    }
+    else
+    {
+      $(this).parent().parent().removeClass("is-selected");
+    }
+  });
+
 });
