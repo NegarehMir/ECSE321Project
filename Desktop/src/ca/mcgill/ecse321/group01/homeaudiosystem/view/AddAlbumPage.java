@@ -181,8 +181,6 @@ private static final long serialVersionUID = -8062635784771606869L;
 							.addComponent(addSongButton)
 								.addComponent(addAlbumButton)))
 				);
-		
-		//layout.linkSize(SwingConstants.VERTICAL, new java.awt.Component[] {albumNameLabel, albumNameTextField});
 
 		//rows
 		layout.setVerticalGroup(
@@ -213,15 +211,13 @@ private static final long serialVersionUID = -8062635784771606869L;
 							.addComponent(addAlbumButton))
 				);
 		pack();
-		
 	}
 	
 	private void refreshData() {
-		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		
 		// error
 		errorMessage.setText(error);
 		if (error == null || error.length() == 0) {
+			HomeAudioSystem has = HomeAudioSystem.getInstance();
 			// genre list
 			genres =  new HashMap<Integer, Genre>();
 			genreList.removeAllItems();
@@ -253,9 +249,6 @@ private static final long serialVersionUID = -8062635784771606869L;
 	}
 	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		String artistName = artistNameTextField.getText();
-        if (artistName == null || artistName.trim().length() == 0) {
-            error = error + "Album artist name cannot be empty ";
-        }
 		Artist artist = new Artist(artistName);
 
 		// create the track list
@@ -291,7 +284,6 @@ private static final long serialVersionUID = -8062635784771606869L;
 	private void addSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO: error checking
 		
-		//long seconds = ((java.sql.Date) songDurationSpinner.getValue()).getTime();
 		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
 		model.addRow(new Object[] {
 				songNameTextField.getText(), 

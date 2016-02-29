@@ -10,10 +10,8 @@ public class HomeAudioSystemPage extends JFrame {
 	private static final long serialVersionUID = -8062635784771606869L;
 	
 	// UI elements
-	private JButton addAlbumButton;
-	private JButton createPlaylistButton;
 	private JButton locationButton;
-	private JButton addSongToPlaylistButton;
+	private JButton libraryButton;
 	
 	// Creates new form HomeAudioSystemPage
 	public HomeAudioSystemPage() {
@@ -22,28 +20,12 @@ public class HomeAudioSystemPage extends JFrame {
 	}
 	
 	private void initComponents() {
-		addAlbumButton = new JButton();
-		createPlaylistButton = new JButton();
 		locationButton = new JButton();
-		addSongToPlaylistButton = new JButton();
+		libraryButton = new JButton();
 
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Home Audio System");
-
-		addAlbumButton.setText("Add Album");
-		addAlbumButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				addAlbumButtonActionPerformed(evt);
-			}
-		});
-		
-		createPlaylistButton.setText("Create Playlist");
-		createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				createPlaylistButtonActionPerformed(evt);
-			}
-		});
 		
 		locationButton.setText("Location");
 		locationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -52,10 +34,10 @@ public class HomeAudioSystemPage extends JFrame {
 			}
 		});
 		
-		addSongToPlaylistButton.setText("Add Song to Playlist");
-		addSongToPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+		libraryButton.setText("Library");
+		libraryButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				addSongToPlaylistButtonActionPerformed(evt);
+				libraryButtonActionPerformed(evt);
 			}
 		});
 		
@@ -67,38 +49,26 @@ public class HomeAudioSystemPage extends JFrame {
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(
 				layout.createParallelGroup()
-					.addComponent(addAlbumButton)
-					.addComponent(createPlaylistButton)
 					.addComponent(locationButton)
-					.addComponent(addSongToPlaylistButton)
+					.addComponent(libraryButton)
 				);
 		//rows
 		layout.setVerticalGroup(
 				layout.createParallelGroup()
 				.addGroup(layout.createSequentialGroup()
-						.addComponent(addAlbumButton)
-						.addComponent(createPlaylistButton)
 						.addComponent(locationButton)
-						.addComponent(addSongToPlaylistButton))
+						.addComponent(libraryButton))
 				);
 		pack();
 		
-	}
-		
-	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new AddAlbumPage().setVisible(true); 
-	}
-	
-	private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new CreatePlaylistPage().setVisible(true);
 	}
 	
 	private void locationButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		new LocationPage().setVisible(true);
 	}
 
-	private void addSongToPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		new AddSongToPlaylistPage().setVisible(true);
+	private void libraryButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		new LibraryPage().setVisible(true);
 	}
 }
 

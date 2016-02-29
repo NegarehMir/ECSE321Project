@@ -41,4 +41,20 @@ public class HomeAudioSystemController {
 		has.addLocation(location);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
+	
+	public void addSongToPlaylist(Song song, Playlist playlist) throws InvalidInputException {
+		String error = "";
+		if(song == null)
+			error += "Please choose a song! ";
+		if(playlist == null)
+			error += "Please choose a playlist!";
+		error = error.trim();
+		
+		if (error.length() > 0) 
+			throw new InvalidInputException(error);
+
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.addSongToPlaylist(song, playlist);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
 }

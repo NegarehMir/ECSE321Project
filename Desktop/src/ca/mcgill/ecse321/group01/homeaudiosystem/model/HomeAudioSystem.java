@@ -507,5 +507,14 @@ public class HomeAudioSystem
     List<Song> newSongs = Collections.unmodifiableList(songs);
     return newSongs;
   }
+  
+  public boolean addSongToPlaylist(Song aSong, Playlist aPlaylist)
+  {
+    boolean wasAdded = false;
+    if (aPlaylist.getSongs().contains(aSong)) { return false; }
+    aPlaylist.addSong(aSong);
+    wasAdded = true;
+    return wasAdded;
+  }
 
 }
