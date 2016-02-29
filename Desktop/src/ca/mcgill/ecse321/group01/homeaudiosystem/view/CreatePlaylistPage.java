@@ -1,0 +1,205 @@
+package ca.mcgill.ecse321.group01.homeaudiosystem.view;
+
+import java.awt.Color;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.AlbumTracklist;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
+
+public class CreatePlaylistPage extends JFrame {
+	private static final long serialVersionUID = -8062635784771606869L;
+	
+	// UI elements
+	private JLabel errorMessage;
+	private JLabel playlistNameLabel;
+	private JTextField playlistNameTextField;
+	private JLabel songLabel;
+	private JComboBox<String> songList;
+	private JButton addPlaylistButton;
+	private JButton addSongButton;
+	private	JTable songsTable;
+	private	JScrollPane songScrollPane;
+	
+	// data elements
+	private String error = null;
+	private Integer selectedSong = -1;
+	private HashMap<Integer, Song> songs;
+	
+	// Creates new form AddAlbumPage
+	public CreatePlaylistPage() {
+		initComponents();
+		refreshData();
+	}
+		
+	private void initComponents() {
+		//elements for error message
+		errorMessage = new JLabel();
+		errorMessage.setForeground(Color.RED);
+		
+		//elements for playlist name
+		playlistNameTextField = new JTextField();
+		playlistNameLabel = new JLabel();
+		
+		//elements for songs
+		songList = new JComboBox<String> (new String[0]);
+		songList.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				JComboBox<String> cb = (JComboBox<String>) evt.getSource();
+				selectedSong = cb.getSelectedIndex();
+			}
+		});
+		songLabel = new JLabel();
+		
+		// elements for songs table
+		songsTable = new JTable(new DefaultTableModel(new Object[] { "Index", "Song Title", "Artist" }, 0));
+		songScrollPane = new JScrollPane(songsTable);
+		
+		// global settings and listeners
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setTitle("Crate Playlist");
+		
+		playlistNameLabel.setText("Playlist Name:");
+		songLabel.setText("Select Songs:");
+		
+		addSongButton = new JButton();
+		addPlaylistButton = new JButton();
+		
+		addSongButton.setText("Add Song");
+		addSongButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addSongButtonActionPerformed(evt);
+			}
+		});
+		
+		addPlaylistButton.setText("Add Playlist");
+		addPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addPlaylistButtonActionPerformed(evt);
+			}
+		});
+		
+		// layout
+		//columns
+		GroupLayout layout = new GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+		layout.setHorizontalGroup(
+				layout.createParallelGroup()
+				.addComponent(errorMessage)
+				.addGroup(layout.createParallelGroup()
+						.addGroup(layout.createParallelGroup()
+								.addComponent(playlistNameLabel)
+								.addComponent(songLabel)
+								.addComponent(addPlaylistButton)
+								.addComponent(addSongButton)))
+						.addGroup(layout.createParallelGroup()
+								.addComponent(playlistNameTextField)
+								.addComponent(songList, 200, 200, 400))
+						.addGroup(layout.createParallelGroup()
+								.addComponent(songScrollPane))
+				);
+		
+		//rows
+		layout.setVerticalGroup(
+				layout.createParallelGroup()
+				.addComponent(errorMessage)
+				.addGroup(layout.createSequentialGroup()
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createSequentialGroup()
+										.addComponent(playlistNameLabel)
+										.addComponent(playlistNameTextField))
+								.addGroup(layout.createSequentialGroup()
+										.addComponent(songLabel)
+										.addComponent(songList, 200, 200, 400))
+								.addComponent(addPlaylistButton)
+								.addComponent(addSongButton)
+								.addComponent(songScrollPane)))
+				);
+		pack();							
+	}
+	
+	private void refreshData() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		
+		//error
+		errorMessage.setText(error);
+		if (error == null || error.length() == 0) {
+			// song list
+			songs = new HashMap<Integer, Song>();
+			songList.removeAllItems();
+			for (Song song: has.getSongs()) {
+				songs.put(songs.size(), song);
+				songList.addItem(song.getTitle()+" - "+song.getArtist().getName());
+			}
+			selectedSong = -1;
+			songList.setSelectedIndex(selectedSong);
+			
+			
+			// playlist name
+			playlistNameTextField.setText("");			
+		}
+		// this is needed because the size of the window changes depending on whether an error message is shown or not
+		pack();
+	}
+	
+	private void addSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
+		model.addRow(new Object[] {
+				selectedSong,
+				songs.get(selectedSong).getTitle(),
+				songs.get(selectedSong).getArtist().getName()
+		});
+	}
+	             
+	private void addPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		// create the playlist
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		Playlist playlist = new Playlist(playlistNameTextField.getText());
+		
+		// get the songs
+		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
+		for (int i = 0; i < model.getRowCount(); ++i) {
+			Song s = songs.get(model.getValueAt(i, 0));
+			playlist.addSong(s);
+		}		
+		
+		
+		// call the controller
+		HomeAudioSystemController hasc = new HomeAudioSystemController();
+		try {
+			hasc.createPlaylist(playlist);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		// update visuals
+		refreshData();
+	}
+}

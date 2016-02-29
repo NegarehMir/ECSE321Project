@@ -83,17 +83,115 @@
         </songs>
       </albumTracklist>
     </album>
+    <album id="31">
+      <title>Weather Systems</title>
+      <releaseDate id="32">2012-02-01</releaseDate>
+      <genre reference="23"/>
+      <artist id="33">
+        <name>Anathema</name>
+        <albums id="34">
+          <album reference="31"/>
+        </albums>
+        <songs id="35"/>
+      </artist>
+      <albumTracklist id="36">
+        <name></name>
+        <songs id="37"/>
+      </albumTracklist>
+    </album>
+    <album id="38">
+      <title>Controlling Crowds</title>
+      <releaseDate id="39">2016-02-02</releaseDate>
+      <genre reference="23"/>
+      <artist id="40">
+        <name>Archive</name>
+        <albums id="41">
+          <album reference="38"/>
+        </albums>
+        <songs id="42">
+          <song id="43">
+            <title>dangervisit</title>
+            <duration>120</duration>
+            <artist reference="40"/>
+          </song>
+        </songs>
+      </artist>
+      <albumTracklist id="44">
+        <name></name>
+        <songs id="45">
+          <song reference="43"/>
+        </songs>
+      </albumTracklist>
+    </album>
+    <album id="46">
+      <title>Nolita</title>
+      <artist id="47">
+        <name>Karen Ann</name>
+        <albums id="48">
+          <album reference="46"/>
+        </albums>
+        <songs id="49"/>
+      </artist>
+      <albumTracklist id="50">
+        <name></name>
+        <songs id="51"/>
+      </albumTracklist>
+    </album>
+    <album id="52">
+      <title>Noli</title>
+      <artist id="53">
+        <name>Keren ann</name>
+        <albums id="54">
+          <album reference="52"/>
+        </albums>
+        <songs id="55">
+          <song id="56">
+            <title>La forme et le fond</title>
+            <duration>180</duration>
+            <artist reference="53"/>
+          </song>
+          <song id="57">
+            <title>Where no endings end</title>
+            <duration>180</duration>
+            <artist reference="53"/>
+          </song>
+        </songs>
+      </artist>
+      <albumTracklist id="58">
+        <name></name>
+        <songs id="59">
+          <song reference="56"/>
+          <song reference="57"/>
+        </songs>
+      </albumTracklist>
+    </album>
   </albums>
-  <artists id="31"/>
-  <playlists id="32"/>
-  <genres id="33">
-    <genre id="34">
+  <artists id="60"/>
+  <playlists id="61">
+    <playlist id="62">
+      <name>Temporary</name>
+      <songs id="63">
+        <song reference="43"/>
+      </songs>
+    </playlist>
+  </playlists>
+  <genres id="64">
+    <genre id="65">
       <name>Dubstep</name>
     </genre>
-    <genre id="35">
+    <genre id="66">
       <name>Classical</name>
     </genre>
     <genre reference="23"/>
     <genre reference="6"/>
   </genres>
+  <songs id="67">
+    <song reference="10"/>
+    <song reference="18"/>
+    <song reference="27"/>
+    <song reference="28"/>
+    <song reference="43"/>
+    <song reference="56"/>
+    <song reference="57"/>
+  </songs>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>

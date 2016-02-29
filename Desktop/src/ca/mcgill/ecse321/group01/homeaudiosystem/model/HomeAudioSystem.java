@@ -26,6 +26,7 @@ public class HomeAudioSystem
   private List<Artist> artists;
   private List<Playlist> playlists;
   private List<Genre> genres;
+  private List<Song> songs;
 
   //------------------------
   // CONSTRUCTOR
@@ -38,6 +39,7 @@ public class HomeAudioSystem
     artists = new ArrayList<Artist>();
     playlists = new ArrayList<Playlist>();
     genres = new ArrayList<Genre>();
+    songs = new ArrayList<Song>();
   }
 
   public static HomeAudioSystem getInstance()
@@ -270,6 +272,9 @@ public class HomeAudioSystem
     boolean wasAdded = false;
     if (albums.contains(aAlbum)) { return false; }
     albums.add(aAlbum);
+    List<Song> tracks = aAlbum.getAlbumTracklist().getSongs();
+    for(int i = 0; i<tracks.size(); i++)
+    	songs.add(tracks.get(i));
     wasAdded = true;
     return wasAdded;
   }
@@ -495,6 +500,12 @@ public class HomeAudioSystem
     artists.clear();
     playlists.clear();
     genres.clear();
+  }
+  
+  public List<Song> getSongs()
+  {
+    List<Song> newSongs = Collections.unmodifiableList(songs);
+    return newSongs;
   }
 
 }

@@ -10,18 +10,30 @@ public class HomeAudioSystemController {
 	public void createAlbum(String title, Artist artist, Genre genre, Date releaseDate, AlbumTracklist playlist) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)
-			error = error +"Album title cannot be empty! ";
+			error += "Album title cannot be empty! ";
 		if (artist.getName() == null || artist.getName().trim().length() == 0)
 			error = error +"Album artist name cannot be empty ";
 		
 		error = error.trim();
-		if (error.length() > 0) {
+		if (error.length() > 0) 
 			throw new InvalidInputException(error);
-		}
 
 		Album album = new Album(title, releaseDate, genre, artist, playlist);
-		HomeAudioSystem homeAudioSystem = HomeAudioSystem.getInstance();
-		homeAudioSystem.addAlbum(album);
-		PersistenceXStream.saveToXMLwithXStream(homeAudioSystem);
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.addAlbum(album);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void createPlaylist(Playlist playlist) throws InvalidInputException {
+		String error = "";
+		if(playlist.getName() == null || playlist.getName().trim().length() == 0)
+			error += "Playlist name cannot be empty!";
+		
+		if (error.length() > 0) 
+			throw new InvalidInputException(error);
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.addPlaylist(playlist);
+		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 }
