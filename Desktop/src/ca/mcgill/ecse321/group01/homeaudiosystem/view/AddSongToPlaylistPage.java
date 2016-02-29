@@ -2,24 +2,15 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import java.text.SimpleDateFormat;
-import java.awt.Checkbox;
 import java.util.HashMap;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.table.DefaultTableModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;

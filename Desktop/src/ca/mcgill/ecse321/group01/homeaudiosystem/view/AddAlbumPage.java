@@ -1,14 +1,10 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import java.awt.Color;
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Properties;
 
 import javax.swing.GroupLayout;
@@ -16,13 +12,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
-import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +25,6 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.AlbumTracklist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;

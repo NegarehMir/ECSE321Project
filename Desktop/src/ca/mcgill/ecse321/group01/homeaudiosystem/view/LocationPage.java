@@ -2,12 +2,10 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import javax.swing.JFrame;
 import java.awt.Color;
-import java.util.HashMap;
 import java.awt.Checkbox;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
