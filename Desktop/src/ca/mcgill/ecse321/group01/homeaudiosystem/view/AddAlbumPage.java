@@ -231,6 +231,11 @@ private static final long serialVersionUID = -8062635784771606869L;
 			}
 			selectedGenre = -1;
 			genreList.setSelectedIndex(selectedGenre);
+			
+			//track list
+			DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
+			for(int i = model.getRowCount()-1; i>=0; i--)
+				model.removeRow(i);
 
 			// album name
 			albumNameTextField.setText("");

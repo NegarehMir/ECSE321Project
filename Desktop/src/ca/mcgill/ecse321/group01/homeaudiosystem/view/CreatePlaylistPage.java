@@ -113,17 +113,17 @@ public class CreatePlaylistPage extends JFrame {
 		layout.setHorizontalGroup(
 				layout.createParallelGroup()
 				.addComponent(errorMessage)
-				.addGroup(layout.createParallelGroup()
+				.addGroup(layout.createSequentialGroup()
 						.addGroup(layout.createParallelGroup()
 								.addComponent(playlistNameLabel)
 								.addComponent(songLabel)
-								.addComponent(addPlaylistButton)
-								.addComponent(addSongButton)))
+								.addComponent(addSongButton)
+								.addComponent(addPlaylistButton)))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(playlistNameTextField)
-								.addComponent(songList, 200, 200, 400))
+								.addComponent(songList))
 						.addGroup(layout.createParallelGroup()
-								.addComponent(songScrollPane))
+								.addComponent(songScrollPane, 200, 200, 400))
 				);
 		
 		//rows
@@ -132,15 +132,15 @@ public class CreatePlaylistPage extends JFrame {
 				.addComponent(errorMessage)
 				.addGroup(layout.createSequentialGroup()
 						.addGroup(layout.createSequentialGroup()
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(playlistNameLabel)
-										.addComponent(playlistNameTextField))
-								.addGroup(layout.createSequentialGroup()
-										.addComponent(songLabel)
-										.addComponent(songList, 200, 200, 400))
-								.addComponent(addPlaylistButton)
+								.addComponent(playlistNameLabel)
+								.addComponent(playlistNameTextField))
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(songLabel)
+								.addComponent(songList))
+						.addComponent(songScrollPane, 200, 200, 400)
+						.addGroup(layout.createSequentialGroup()
 								.addComponent(addSongButton)
-								.addComponent(songScrollPane)))
+								.addComponent(addPlaylistButton)))
 				);
 		pack();							
 	}
@@ -161,6 +161,10 @@ public class CreatePlaylistPage extends JFrame {
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
 			
+			//song list
+			DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
+			for(int i = model.getRowCount()-1; i>=0; i--)
+				model.removeRow(i);
 			
 			// playlist name
 			playlistNameTextField.setText("");			
