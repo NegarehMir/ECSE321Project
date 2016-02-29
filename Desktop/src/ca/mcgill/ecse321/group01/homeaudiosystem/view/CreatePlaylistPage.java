@@ -1,17 +1,7 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import java.awt.Color;
-import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -25,15 +15,13 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.AlbumTracklist;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 
 public class CreatePlaylistPage extends JFrame {
-	private static final long serialVersionUID = -8062635784771606869L;
+	private static final long serialVersionUID = -631603032690521965L;
 	
 	// UI elements
 	private JLabel errorMessage;
@@ -75,6 +63,7 @@ public class CreatePlaylistPage extends JFrame {
 			}
 		});
 		songLabel = new JLabel();
+		songLabel.setText("Select Songs:");
 		
 		// elements for songs table
 		songsTable = new JTable(new DefaultTableModel(new Object[] { "Index", "Song Title", "Artist" }, 0));
@@ -85,7 +74,6 @@ public class CreatePlaylistPage extends JFrame {
 		setTitle("Crate Playlist");
 		
 		playlistNameLabel.setText("Playlist Name:");
-		songLabel.setText("Select Songs:");
 		
 		addSongButton = new JButton();
 		addPlaylistButton = new JButton();
@@ -146,12 +134,11 @@ public class CreatePlaylistPage extends JFrame {
 	}
 	
 	private void refreshData() {
-		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		
 		//error
 		errorMessage.setText(error);
 		if (error == null || error.length() == 0) {
 			// song list
+			HomeAudioSystem has = HomeAudioSystem.getInstance();
 			songs = new HashMap<Integer, Song>();
 			songList.removeAllItems();
 			for (Song song: has.getSongs()) {
@@ -161,7 +148,7 @@ public class CreatePlaylistPage extends JFrame {
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
 			
-			//song list
+			//song table
 			DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
 			for(int i = model.getRowCount()-1; i>=0; i--)
 				model.removeRow(i);
@@ -184,7 +171,6 @@ public class CreatePlaylistPage extends JFrame {
 	             
 	private void addPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// create the playlist
-		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		Playlist playlist = new Playlist(playlistNameTextField.getText());
 		
 		// get the songs
@@ -193,7 +179,6 @@ public class CreatePlaylistPage extends JFrame {
 			Song s = songs.get(model.getValueAt(i, 0));
 			playlist.addSong(s);
 		}		
-		
 		
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();

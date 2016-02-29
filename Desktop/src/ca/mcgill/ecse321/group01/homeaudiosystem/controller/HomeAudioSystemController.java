@@ -25,15 +25,20 @@ public class HomeAudioSystemController {
 	}
 	
 	public void createPlaylist(Playlist playlist) throws InvalidInputException {
-		String error = "";
 		if(playlist.getName() == null || playlist.getName().trim().length() == 0)
-			error += "Playlist name cannot be empty!";
-		
-		if (error.length() > 0) 
-			throw new InvalidInputException(error);
+			throw new InvalidInputException("Playlist name cannot be empty!");
 		
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		has.addPlaylist(playlist);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void createLocation(Location location) throws InvalidInputException {
+		if(location.getName() == null || location.getName().trim().length() == 0)
+			throw new InvalidInputException("Location name cannot be empty!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.addLocation(location);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 }

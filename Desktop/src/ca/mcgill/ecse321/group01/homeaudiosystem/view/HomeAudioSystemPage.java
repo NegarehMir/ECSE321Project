@@ -12,8 +12,7 @@ public class HomeAudioSystemPage extends JFrame {
 	// UI elements
 	private JButton addAlbumButton;
 	private JButton createPlaylistButton;
-	private JButton addLocationButton;
-	private JButton viewLocationsButton;
+	private JButton locationButton;
 	private JButton addSongToPlaylistButton;
 	
 	// Creates new form HomeAudioSystemPage
@@ -25,8 +24,7 @@ public class HomeAudioSystemPage extends JFrame {
 	private void initComponents() {
 		addAlbumButton = new JButton();
 		createPlaylistButton = new JButton();
-		addLocationButton = new JButton();
-		viewLocationsButton = new JButton();
+		locationButton = new JButton();
 		addSongToPlaylistButton = new JButton();
 
 		// global settings and listeners
@@ -47,11 +45,19 @@ public class HomeAudioSystemPage extends JFrame {
 			}
 		});
 		
-		addLocationButton.setText("Add Location");
-		
-		viewLocationsButton.setText("View Locations");
+		locationButton.setText("Location");
+		locationButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				locationButtonActionPerformed(evt);
+			}
+		});
 		
 		addSongToPlaylistButton.setText("Add Song to Playlist");
+		addSongToPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addSongToPlaylistButtonActionPerformed(evt);
+			}
+		});
 		
 		// layout
 		//columns
@@ -63,8 +69,7 @@ public class HomeAudioSystemPage extends JFrame {
 				layout.createParallelGroup()
 					.addComponent(addAlbumButton)
 					.addComponent(createPlaylistButton)
-					.addComponent(addLocationButton)
-					.addComponent(viewLocationsButton)
+					.addComponent(locationButton)
 					.addComponent(addSongToPlaylistButton)
 				);
 		//rows
@@ -73,8 +78,7 @@ public class HomeAudioSystemPage extends JFrame {
 				.addGroup(layout.createSequentialGroup()
 						.addComponent(addAlbumButton)
 						.addComponent(createPlaylistButton)
-						.addComponent(addLocationButton)
-						.addComponent(viewLocationsButton)
+						.addComponent(locationButton)
 						.addComponent(addSongToPlaylistButton))
 				);
 		pack();
@@ -88,7 +92,14 @@ public class HomeAudioSystemPage extends JFrame {
 	private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		new CreatePlaylistPage().setVisible(true);
 	}
+	
+	private void locationButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		new LocationPage().setVisible(true);
+	}
 
+	private void addSongToPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		new AddSongToPlaylistPage().setVisible(true);
+	}
 }
 
 
