@@ -43,11 +43,11 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
-| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
-| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
-| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 | | |
-| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 | | |
+| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
+| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
 | View All Locations (currently playing song, volume level, current location in song) | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | | |
 
 #### Test Writing
