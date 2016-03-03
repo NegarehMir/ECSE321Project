@@ -516,5 +516,39 @@ public class HomeAudioSystem
     wasAdded = true;
     return wasAdded;
   }
-
+  
+  public boolean assignPlaylistToLocation(Playlist aPlaylist, Location aLocation)
+  {
+	  boolean wasAdded = false;
+	  if (aLocation.getSongs().equals(aPlaylist.getSongs())) { return false; }
+	  for(Song song: aLocation.getSongs())
+		  aLocation.removeSong(song);
+	  for(Song song: aPlaylist.getSongs())
+		  aLocation.getSongs().add(song);
+	  wasAdded = true;
+	  return wasAdded;
+  }
+  
+  public boolean assignSongToLocation(Song aSong, Location aLocation)
+  {
+	  boolean wasAdded = false;
+	  if (aLocation.getSongs().equals(aSong)) { return false; }
+	  for(Song song: aLocation.getSongs())
+		  aLocation.removeSong(song);
+	  aLocation.addSong(aSong);
+	  wasAdded = true;
+	  return wasAdded;  
+  }
+  
+  public boolean assignAlbumToLocation(Album aAlbum, Location aLocation)
+  {
+	  boolean wasAdded = false;
+	  if (aLocation.getSongs().equals(aAlbum.getAlbumTracklist().getSongs())) { return false; }
+	  for(Song song: aLocation.getSongs())
+		  aLocation.removeSong(song);
+	  for(Song song: aAlbum.getAlbumTracklist().getSongs())
+		  aLocation.addSong(song);
+	  wasAdded = true;
+	  return wasAdded;
+  }
 }

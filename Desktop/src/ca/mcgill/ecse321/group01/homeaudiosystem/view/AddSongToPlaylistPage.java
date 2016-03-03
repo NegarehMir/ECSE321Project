@@ -25,7 +25,7 @@ public class AddSongToPlaylistPage extends JFrame{
 	private JLabel playlistLabel;
 	private JComboBox<String> playlistList;
 	private JButton addSongToPlaylistButton;
-	
+	//title artist duration
 	// data elements
 	private String error = null;
 	private Integer selectedSong = -1;
@@ -115,7 +115,7 @@ public class AddSongToPlaylistPage extends JFrame{
 		errorMessage.setText(error);
 		if (error == null || error.length() == 0) {
 			HomeAudioSystem has = HomeAudioSystem.getInstance();
-			// genre list
+			// song list
 			songs =  new HashMap<Integer, Song>();
 			songList.removeAllItems();
 			for (Song song: has.getSongs()) {

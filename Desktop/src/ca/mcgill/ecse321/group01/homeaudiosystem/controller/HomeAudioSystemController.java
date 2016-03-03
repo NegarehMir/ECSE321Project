@@ -42,6 +42,18 @@ public class HomeAudioSystemController {
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 	
+	public void modifyLocation(Location oldLocation, Location newLocation) throws InvalidInputException {
+		if(newLocation == null)
+			throw new InvalidInputException("Please select a location!");
+		if(newLocation.getName() == null || newLocation.getName().trim().length() == 0)
+			throw new InvalidInputException("Location name cannot be empty!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.removeLocation(oldLocation);
+		has.addLocation(newLocation);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
 	public void addSongToPlaylist(Song song, Playlist playlist) throws InvalidInputException {
 		String error = "";
 		if(song == null)
@@ -55,6 +67,24 @@ public class HomeAudioSystemController {
 
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		has.addSongToPlaylist(song, playlist);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void assignPlaylistToLocation(Playlist playlist, Location location){
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.assignPlaylistToLocation(playlist, location);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void assignSongToLocation(Song song, Location location) {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.assignSongToLocation(song, location);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void assignAlbumToLocation(Album album, Location location) {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.assignAlbumToLocation(album, location);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 }
