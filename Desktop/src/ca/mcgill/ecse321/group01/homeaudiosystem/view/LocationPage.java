@@ -156,7 +156,9 @@ public class LocationPage extends JFrame {
 			isMute = true;
 		else
 			isMute = isMuteCheckbox.getState();
-		Location location = new Location(locationName, volume, isMute);
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		Location location = new Location(locationName, volume, isMute, has);
 		
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
