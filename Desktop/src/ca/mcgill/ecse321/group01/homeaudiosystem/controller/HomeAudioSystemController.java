@@ -7,7 +7,7 @@ import java.sql.Date;
 
 public class HomeAudioSystemController {
 
-	public void createAlbum(String title, Artist artist, Genre genre, Date releaseDate, AlbumTracklist playlist) throws InvalidInputException {
+	public void createAlbum(String title, Artist artist, Date releaseDate) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)
 			error += "Album title cannot be empty! ";
@@ -18,14 +18,14 @@ public class HomeAudioSystemController {
 		if (error.length() > 0) 
 			throw new InvalidInputException(error);
 
-		Album album = new Album(title, releaseDate, genre, artist, playlist);
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		has.addAlbum(album);
+		Album album = new Album(title, has, releaseDate, artist);
+		has.addPlaylist(album);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 	
 	public void createPlaylist(Playlist playlist) throws InvalidInputException {
-		if(playlist.getName() == null || playlist.getName().trim().length() == 0)
+		if(playlist.getTitle() == null || playlist.getTitle().trim().length() == 0)
 			throw new InvalidInputException("Playlist name cannot be empty!");
 		
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
@@ -53,8 +53,8 @@ public class HomeAudioSystemController {
 		if (error.length() > 0) 
 			throw new InvalidInputException(error);
 
+		playlist.addSong(song);
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		has.addSongToPlaylist(song, playlist);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 }
