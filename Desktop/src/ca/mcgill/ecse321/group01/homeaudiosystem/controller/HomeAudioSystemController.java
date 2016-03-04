@@ -2,24 +2,41 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.controller;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.*;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album.Genres;
 import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.PersistenceXStream;
 import java.sql.Date;
+import java.util.LinkedList;
 
 public class HomeAudioSystemController {
 
-	public void createAlbum(String title, Artist artist, Date releaseDate) throws InvalidInputException {
+	public void createAlbum(String title, String artistName, Date releaseDate, String genreName, LinkedList<SongMetadata> songMetadata) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)
 			error += "Album title cannot be empty! ";
-		if (artist.getName() == null || artist.getName().trim().length() == 0)
+		if (artistName == null || artistName.trim().length() == 0)
 			error = error +"Album artist name cannot be empty ";
+		if (Genres.valueOf(genreName) == null || artistName.trim().length() == 0)
+			error += "Invalid or empty album genre!";
 		
 		error = error.trim();
 		if (error.length() > 0) 
 			throw new InvalidInputException(error);
 
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		Artist artist = new Artist(artistName, has);
 		Album album = new Album(title, has, releaseDate, artist);
+		
+		Genres genre = Genres.valueOf(genreName);
+		album.setGenre(genre);
+		
+		for (SongMetadata metadata : songMetadata) {
+			String songTitle = metadata.getTitle();
+			int songDuration = metadata.getDuration();
+			
+			Song song = new Song(songTitle, songDuration, album, artist);
+			album.addSong(song);
+		}
+		
 		has.addPlaylist(album);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}

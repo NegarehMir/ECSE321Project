@@ -120,7 +120,7 @@ public class AddSongToPlaylistPage extends JFrame{
 			songList.removeAllItems();
 			for (Song song: has.getSongs()) {
 				songs.put(songs.size(), song);
-				songList.addItem(song.getTitle()+" - "+song.getArtist().getName());
+				songList.addItem(song.getTitle()+" - "+song.getArtist().getTitle());
 			}
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
@@ -130,7 +130,7 @@ public class AddSongToPlaylistPage extends JFrame{
 			playlistList.removeAllItems();
 			for (Playlist playlist: has.getPlaylists()) {
 				playlists.put(playlists.size(), playlist);
-				playlistList.addItem(playlist.getName());
+				playlistList.addItem(playlist.getTitle());
 			}
 			selectedPlaylist = -1;
 			playlistList.setSelectedIndex(selectedPlaylist);

@@ -143,7 +143,7 @@ public class CreatePlaylistPage extends JFrame {
 			songList.removeAllItems();
 			for (Song song: has.getSongs()) {
 				songs.put(songs.size(), song);
-				songList.addItem(song.getTitle()+" - "+song.getArtist().getName());
+				songList.addItem(song.getTitle()+" - "+song.getArtist().getTitle());
 			}
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
@@ -165,7 +165,7 @@ public class CreatePlaylistPage extends JFrame {
 		model.addRow(new Object[] {
 				selectedSong,
 				songs.get(selectedSong).getTitle(),
-				songs.get(selectedSong).getArtist().getName()
+				songs.get(selectedSong).getArtist().getTitle()
 		});
 	}
 	             
