@@ -7,7 +7,7 @@ import java.util.*;
 
 // line 3 "../../../../../../JavaHomeAudioSystem.ump"
 // line 42 "../../../../../../HomeAudioSystem.ump"
-// line 65 "../../../../../../HomeAudioSystem.ump"
+// line 64 "../../../../../../HomeAudioSystem.ump"
 public class Album extends Playlist
 {
 
@@ -16,7 +16,6 @@ public class Album extends Playlist
   //------------------------
 
   //Album Attributes
-  private String title;
   private Date releaseDate;
 
   //Album Associations
@@ -27,10 +26,9 @@ public class Album extends Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public Album(String aName, HomeAudioSystem aHomeAudioSystem, String aTitle, Date aReleaseDate, Artist aArtist)
+  public Album(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Artist aArtist)
   {
-    super(aName, aHomeAudioSystem);
-    title = aTitle;
+    super(aTitle, aHomeAudioSystem);
     releaseDate = aReleaseDate;
     songs = new ArrayList<Song>();
     boolean didAddArtist = setArtist(aArtist);
@@ -44,25 +42,12 @@ public class Album extends Playlist
   // INTERFACE
   //------------------------
 
-  public boolean setTitle(String aTitle)
-  {
-    boolean wasSet = false;
-    title = aTitle;
-    wasSet = true;
-    return wasSet;
-  }
-
   public boolean setReleaseDate(Date aReleaseDate)
   {
     boolean wasSet = false;
     releaseDate = aReleaseDate;
     wasSet = true;
     return wasSet;
-  }
-
-  public String getTitle()
-  {
-    return title;
   }
 
   public Date getReleaseDate()
@@ -226,8 +211,7 @@ public class Album extends Playlist
   public String toString()
   {
 	  String outputString = "";
-    return super.toString() + "["+
-            "title" + ":" + getTitle()+ "]" + System.getProperties().getProperty("line.separator") +
+    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "releaseDate" + "=" + (getReleaseDate() != null ? !getReleaseDate().equals(this)  ? getReleaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "artist = "+(getArtist()!=null?Integer.toHexString(System.identityHashCode(getArtist())):"null")
      + outputString;

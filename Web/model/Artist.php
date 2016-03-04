@@ -142,9 +142,9 @@ class Artist
     return 0;
   }
 
-  public function addAlbumVia($aName, $aHomeAudioSystem, $aGenre, $aTitle, $aReleaseDate)
+  public function addAlbumVia($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate)
   {
-    return new Album($aName, $aHomeAudioSystem, $aGenre, $aTitle, $aReleaseDate, $this);
+    return new Album($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate, $this);
   }
 
   public function addAlbum($aAlbum)

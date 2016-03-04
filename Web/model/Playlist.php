@@ -10,7 +10,7 @@ class Playlist
   //------------------------
 
   //Playlist Attributes
-  private $name;
+  private $title;
 
   //Playlist Associations
   private $songs;
@@ -20,9 +20,9 @@ class Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aName, $aHomeAudioSystem)
+  public function __construct($aTitle, $aHomeAudioSystem)
   {
-    $this->name = $aName;
+    $this->title = $aTitle;
     $this->songs = array();
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
     if (!$didAddHomeAudioSystem)
@@ -35,17 +35,17 @@ class Playlist
   // INTERFACE
   //------------------------
 
-  public function setName($aName)
+  public function setTitle($aTitle)
   {
     $wasSet = false;
-    $this->name = $aName;
+    $this->title = $aTitle;
     $wasSet = true;
     return $wasSet;
   }
 
-  public function getName()
+  public function getTitle()
   {
-    return $this->name;
+    return $this->title;
   }
 
   public function getSong_index($index)

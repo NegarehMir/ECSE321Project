@@ -11,7 +11,6 @@ class Album extends Playlist
 
   //Album Attributes
   private $genre;
-  private $title;
   private $releaseDate;
 
   //Album Associations
@@ -22,11 +21,10 @@ class Album extends Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aName, $aHomeAudioSystem, $aGenre, $aTitle, $aReleaseDate, $aArtist)
+  public function __construct($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate, $aArtist)
   {
-    parent::__construct($aName, $aHomeAudioSystem);
+    parent::__construct($aTitle, $aHomeAudioSystem);
     $this->genre = $aGenre;
-    $this->title = $aTitle;
     $this->releaseDate = $aReleaseDate;
     $this->songs = array();
     $didAddArtist = $this->setArtist($aArtist);
@@ -48,14 +46,6 @@ class Album extends Playlist
     return $wasSet;
   }
 
-  public function setTitle($aTitle)
-  {
-    $wasSet = false;
-    $this->title = $aTitle;
-    $wasSet = true;
-    return $wasSet;
-  }
-
   public function setReleaseDate($aReleaseDate)
   {
     $wasSet = false;
@@ -67,11 +57,6 @@ class Album extends Playlist
   public function getGenre()
   {
     return $this->genre;
-  }
-
-  public function getTitle()
-  {
-    return $this->title;
   }
 
   public function getReleaseDate()

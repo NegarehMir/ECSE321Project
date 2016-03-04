@@ -34,7 +34,7 @@ class Artist
 
 class Playlist
 {
-  String name;
+  String title;
   * -> * Song;
 }
 
@@ -42,7 +42,6 @@ class Playlist
 class Album
 {
   isA Playlist;
-  String title;
   Date releaseDate;
   1 <@>- * Song;
 }

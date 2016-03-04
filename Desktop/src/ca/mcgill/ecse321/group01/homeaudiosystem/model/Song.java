@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 22 "../../../../../../HomeAudioSystem.ump"
-// line 58 "../../../../../../HomeAudioSystem.ump"
+// line 57 "../../../../../../HomeAudioSystem.ump"
 public class Song
 {
 

@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 35 "../../../../../../HomeAudioSystem.ump"
-// line 78 "../../../../../../HomeAudioSystem.ump"
+// line 77 "../../../../../../HomeAudioSystem.ump"
 public class Playlist
 {
 
@@ -14,7 +14,7 @@ public class Playlist
   //------------------------
 
   //Playlist Attributes
-  private String name;
+  private String title;
 
   //Playlist Associations
   private List<Song> songs;
@@ -24,9 +24,9 @@ public class Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public Playlist(String aName, HomeAudioSystem aHomeAudioSystem)
+  public Playlist(String aTitle, HomeAudioSystem aHomeAudioSystem)
   {
-    name = aName;
+    title = aTitle;
     songs = new ArrayList<Song>();
     boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
     if (!didAddHomeAudioSystem)
@@ -39,17 +39,17 @@ public class Playlist
   // INTERFACE
   //------------------------
 
-  public boolean setName(String aName)
+  public boolean setTitle(String aTitle)
   {
     boolean wasSet = false;
-    name = aName;
+    title = aTitle;
     wasSet = true;
     return wasSet;
   }
 
-  public String getName()
+  public String getTitle()
   {
-    return name;
+    return title;
   }
 
   public Song getSong(int index)
@@ -177,7 +177,7 @@ public class Playlist
   {
 	  String outputString = "";
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
+            "title" + ":" + getTitle()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
      + outputString;
   }

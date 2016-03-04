@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 14 "../../../../../../HomeAudioSystem.ump"
-// line 85 "../../../../../../HomeAudioSystem.ump"
+// line 84 "../../../../../../HomeAudioSystem.ump"
 public class Location
 {
 

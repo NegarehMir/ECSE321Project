@@ -6,7 +6,7 @@ import java.util.*;
 import java.sql.Date;
 
 // line 28 "../../../../../../HomeAudioSystem.ump"
-// line 71 "../../../../../../HomeAudioSystem.ump"
+// line 70 "../../../../../../HomeAudioSystem.ump"
 public class Artist
 {
 
@@ -125,9 +125,9 @@ public class Artist
     return 0;
   }
 
-  public Album addAlbum(String aName, HomeAudioSystem aHomeAudioSystem, String aTitle, Date aReleaseDate)
+  public Album addAlbum(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate)
   {
-    return new Album(aName, aHomeAudioSystem, aTitle, aReleaseDate, this);
+    return new Album(aTitle, aHomeAudioSystem, aReleaseDate, this);
   }
 
   public boolean addAlbum(Album aAlbum)

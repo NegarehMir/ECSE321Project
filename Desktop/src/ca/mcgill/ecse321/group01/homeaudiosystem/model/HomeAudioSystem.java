@@ -8,7 +8,7 @@ import java.util.*;
  * use PhpHomeAudioSystem.ump;
  */
 // line 6 "../../../../../../HomeAudioSystem.ump"
-// line 91 "../../../../../../HomeAudioSystem.ump"
+// line 90 "../../../../../../HomeAudioSystem.ump"
 public class HomeAudioSystem
 {
 
@@ -290,9 +290,9 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Playlist addPlaylist(String aName)
+  public Playlist addPlaylist(String aTitle)
   {
-    return new Playlist(aName, this);
+    return new Playlist(aTitle, this);
   }
 
   public boolean addPlaylist(Playlist aPlaylist)
