@@ -27,7 +27,7 @@ class Controller
         $errors.= "{{albumArtist}}Album Artist Cannot Be Empty!";
       }
 
-      if($releaseDate == null || trim($releaseDate) == "" || )
+      if($releaseDate == null || trim($releaseDate) == "")
       {
        $errors.= "{{releaseDate}}Album Release Date Cannot Be Empty!";
       }
