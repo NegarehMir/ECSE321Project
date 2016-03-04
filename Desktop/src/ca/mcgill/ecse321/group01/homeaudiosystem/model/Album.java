@@ -237,7 +237,7 @@ public class Album extends Playlist
   //------------------------
   
   // line 4 ../../../../../../JavaHomeAudioSystem.ump
-  public enum Genres {Alternative, Classical, Country, Electronic, Hip-Hop/Rap, Pop, Rock, Jazz};
+  public enum Genres {Alternative, Classical, Country, Electronic, Rap, Pop, Rock, Jazz};
 // line 6 ../../../../../../JavaHomeAudioSystem.ump
   private Genres genre ;
 

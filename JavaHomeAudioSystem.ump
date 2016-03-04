@@ -1,7 +1,7 @@
 namespace ca.mcgill.ecse321.group01.homeaudiosystem.model;
 
 class Album {
-  public enum Genres {Alternative, Classical, Country, Electronic, Hip-Hop/Rap, Pop, Rock, Jazz};
+  public enum Genres {Alternative, Classical, Country, Electronic, Rap, Pop, Rock, Jazz};
     
   private Genres genre;
   

@@ -13,6 +13,7 @@ class Genres
   public static $Classical = 2;
   public static $Country = 3;
   public static $Electronic = 4;
+  public static $Rap = 5;
   public static $Pop = 6;
   public static $Rock = 7;
   public static $Jazz = 8;
@@ -39,13 +40,6 @@ class Genres
 
   public function delete()
   {}
-
-  //------------------------
-  // DEVELOPER CODE - PROVIDED AS-IS
-  //------------------------
-  
-  // line 9 ../../../../../../PhpHomeAudioSystem.ump
-  const Hip-Hop/Rap = 5 ;
 
 }
 ?>

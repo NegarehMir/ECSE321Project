@@ -6,7 +6,7 @@ class Genres {
   const Classical = 2;
   const Country = 3;
   const Electronic = 4;
-  const Hip-Hop/Rap = 5;
+  const Rap = 5;
   const Pop = 6;
   const Rock = 7;
   const Jazz = 8;
