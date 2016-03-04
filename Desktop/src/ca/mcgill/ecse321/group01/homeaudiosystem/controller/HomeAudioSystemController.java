@@ -8,6 +8,20 @@ import java.sql.Date;
 import java.util.LinkedList;
 
 public class HomeAudioSystemController {
+	
+	public LinkedList<Song> getAllSongsFromLibrary(HomeAudioSystem has) {
+		LinkedList<Song> allSongsInLibrary = new LinkedList<>();
+		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		
+		for (Playlist playlist : allPlaylistsInLibrary) {
+			if (playlist instanceof Album) {
+				for (Song song : playlist.getSongs()) {
+					allSongsInLibrary.add(song);
+				}
+			}
+		}
+		return allSongsInLibrary;
+	}
 
 	public void createAlbum(String title, String artistName, Date releaseDate, String genreName, LinkedList<SongMetadata> songMetadata) throws InvalidInputException {
 		String error = "";

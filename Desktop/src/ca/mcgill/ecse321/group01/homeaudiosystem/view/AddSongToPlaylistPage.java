@@ -121,17 +121,9 @@ public class AddSongToPlaylistPage extends JFrame{
 			songs =  new HashMap<Integer, Song>();
 			songList.removeAllItems();
 			
+			HomeAudioSystemController hasController = new HomeAudioSystemController();
 			
-			LinkedList<Song> allSongsInLibrary = new LinkedList<>();
-			LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
-			
-			for (Playlist playlist : allPlaylistsInLibrary) {
-				if (playlist instanceof Album) {
-					for (Song song : playlist.getSongs()) {
-						allSongsInLibrary.add(song);
-					}
-				}
-			}
+			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary(has);
 			
 			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);
