@@ -11,9 +11,7 @@ import org.junit.Test;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.AlbumTracklist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
@@ -29,12 +27,9 @@ public class TestHomeAudioSystemController {
 					+ "group01" + File.separator + "homeaudiosystem" + File.separator + "controller" + File.separator + "data.xml");
 		
 		PersistenceXStream.setAlias("album", Album.class);
-		PersistenceXStream.setAlias("albumTracklist", AlbumTracklist.class);
 		PersistenceXStream.setAlias("artist", Artist.class);
-		PersistenceXStream.setAlias("genre", Genre.class);
 		PersistenceXStream.setAlias("location", Location.class);
 		PersistenceXStream.setAlias("playlist", Playlist.class);
-		PersistenceXStream.setAlias("song", Song.class);
 	}
 	
 	@After

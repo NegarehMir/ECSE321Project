@@ -2,7 +2,7 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
-class Album
+class Album extends Playlist
 {
 
   //------------------------
@@ -10,62 +10,38 @@ class Album
   //------------------------
 
   //Album Attributes
-  private $title;
-  private $releaseDate;
   private $genre;
+  private $releaseDate;
 
   //Album Associations
-  private $homeAudioSystem;
+  private $songs;
   private $artist;
-  private $albumTracklist;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle = null, $aReleaseDate = null, $aGenre = null, $aHomeAudioSystem = null, $aArtist = null, $aAlbumTracklist = null)
+  public function __construct($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate, $aArtist)
   {
-    if (func_num_args() == 0) { return; }
-
-    $this->title = $aTitle;
-    $this->releaseDate = $aReleaseDate;
+    parent::__construct($aTitle, $aHomeAudioSystem);
     $this->genre = $aGenre;
-    $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
-    if (!$didAddHomeAudioSystem)
-    {
-      throw new Exception("Unable to create album due to homeAudioSystem");
-    }
+    $this->releaseDate = $aReleaseDate;
+    $this->songs = array();
     $didAddArtist = $this->setArtist($aArtist);
     if (!$didAddArtist)
     {
       throw new Exception("Unable to create album due to artist");
     }
-    if ($aAlbumTracklist == null || $aAlbumTracklist->getAlbum() != null)
-    {
-      throw new Exception("Unable to create Album due to aAlbumTracklist");
-    }
-    $this->albumTracklist = $aAlbumTracklist;
-  }
-  public static function newInstance($aTitle, $aReleaseDate, $aGenre, $aHomeAudioSystem, $aArtist, $aNameForAlbumTracklist, $allSongsForAlbumTracklist, $aHomeAudioSystemForAlbumTracklist)
-  {
-    $thisInstance = new Album();
-    $thisInstance->title = $aTitle;
-    $thisInstance->releaseDate = $aReleaseDate;
-    $thisInstance->genre = $aGenre;$this->homeAudioSystems = array();
-    $this->homeAudioSystems[] = $aHomeAudioSystem;$this->artists = array();
-    $this->artists[] = $aArtist;
-    $thisInstance->albumTracklist = new AlbumTracklist($aNameForAlbumTracklist, $allSongsForAlbumTracklist, $aHomeAudioSystemForAlbumTracklist, $thisInstance);
-    return $thisInstance;
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public function setTitle($aTitle)
+  public function setGenre($aGenre)
   {
     $wasSet = false;
-    $this->title = $aTitle;
+    $this->genre = $aGenre;
     $wasSet = true;
     return $wasSet;
   }
@@ -78,17 +54,9 @@ class Album
     return $wasSet;
   }
 
-  public function setGenre($aGenre)
+  public function getGenre()
   {
-    $wasSet = false;
-    $this->genre = $aGenre;
-    $wasSet = true;
-    return $wasSet;
-  }
-
-  public function getTitle()
-  {
-    return $this->title;
+    return $this->genre;
   }
 
   public function getReleaseDate()
@@ -96,14 +64,45 @@ class Album
     return $this->releaseDate;
   }
 
-  public function getGenre()
+  public function getSong_index($index)
   {
-    return $this->genre;
+    $aSong = $this->songs[$index];
+    return $aSong;
   }
 
-  public function getHomeAudioSystem()
+  public function getSongs()
   {
-    return $this->homeAudioSystem;
+    $newSongs = $this->songs;
+    return $newSongs;
+  }
+
+  public function numberOfSongs()
+  {
+    $number = count($this->songs);
+    return $number;
+  }
+
+  public function hasSongs()
+  {
+    $has = $this->numberOfSongs() > 0;
+    return $has;
+  }
+
+  public function indexOfSong($aSong)
+  {
+    $wasFound = false;
+    $index = 0;
+    foreach($this->songs as $song)
+    {
+      if ($song->equals($aSong))
+      {
+        $wasFound = true;
+        break;
+      }
+      $index += 1;
+    }
+    $index = $wasFound ? $index : -1;
+    return $index;
   }
 
   public function getArtist()
@@ -111,28 +110,77 @@ class Album
     return $this->artist;
   }
 
-  public function getAlbumTracklist()
+  public static function minimumNumberOfSongs()
   {
-    return $this->albumTracklist;
+    return 0;
   }
 
-  public function setHomeAudioSystem($aHomeAudioSystem)
+  public function addSongVia($aTitle, $aDuration, $allArtists)
   {
-    $wasSet = false;
-    if ($aHomeAudioSystem == null)
+    return new Song($aTitle, $aDuration, $allArtists, $this);
+  }
+
+  public function addSong($aSong)
+  {
+    $wasAdded = false;
+    if ($this->indexOfSong($aSong) !== -1) { return false; }
+    $existingAlbum = $aSong->getAlbum();
+    $isNewAlbum = $existingAlbum != null && $this !== $existingAlbum;
+    if ($isNewAlbum)
     {
-      return $wasSet;
+      $aSong->setAlbum($this);
     }
-    
-    $existingHomeAudioSystem = $this->homeAudioSystem;
-    $this->homeAudioSystem = $aHomeAudioSystem;
-    if ($existingHomeAudioSystem != null && $existingHomeAudioSystem != $aHomeAudioSystem)
+    else
     {
-      $existingHomeAudioSystem->removeAlbum($this);
+      $this->songs[] = $aSong;
     }
-    $this->homeAudioSystem->addAlbum($this);
-    $wasSet = true;
-    return $wasSet;
+    $wasAdded = true;
+    return $wasAdded;
+  }
+
+  public function removeSong($aSong)
+  {
+    $wasRemoved = false;
+    //Unable to remove aSong, as it must always have a album
+    if ($this !== $aSong->getAlbum())
+    {
+      unset($this->songs[$this->indexOfSong($aSong)]);
+      $this->songs = array_values($this->songs);
+      $wasRemoved = true;
+    }
+    return $wasRemoved;
+  }
+
+  public function addSongAt($aSong, $index)
+  {  
+    $wasAdded = false;
+    if($this->addSong($aSong))
+    {
+      if($index < 0 ) { $index = 0; }
+      if($index > $this->numberOfSongs()) { $index = $this->numberOfSongs() - 1; }
+      array_splice($this->songs, $this->indexOfSong($aSong), 1);
+      array_splice($this->songs, $index, 0, array($aSong));
+      $wasAdded = true;
+    }
+    return $wasAdded;
+  }
+
+  public function addOrMoveSongAt($aSong, $index)
+  {
+    $wasAdded = false;
+    if($this->indexOfSong($aSong) !== -1)
+    {
+      if($index < 0 ) { $index = 0; }
+      if($index > $this->numberOfSongs()) { $index = $this->numberOfSongs() - 1; }
+      array_splice($this->songs, $this->indexOfSong($aSong), 1);
+      array_splice($this->songs, $index, 0, array($aSong));
+      $wasAdded = true;
+    } 
+    else 
+    {
+      $wasAdded = $this->addSongAt($aSong, $index);
+    }
+    return $wasAdded;
   }
 
   public function setArtist($aArtist)
@@ -161,18 +209,19 @@ class Album
 
   public function delete()
   {
-    $placeholderHomeAudioSystem = $this->homeAudioSystem;
-    $this->homeAudioSystem = null;
-    $placeholderHomeAudioSystem->removeAlbum($this);
+    while (count($this->songs) > 0)
+    {
+      $aSong = $this->songs[count($this->songs) - 1];
+      $aSong->delete();
+      unset($this->songs[$this->indexOfSong($aSong)]);
+      $this->songs = array_values($this->songs);
+    }
+    
+      
     $placeholderArtist = $this->artist;
     $this->artist = null;
     $placeholderArtist->removeAlbum($this);
-    $existingAlbumTracklist = $this->albumTracklist;
-    $this->albumTracklist = null;
-    if ($existingAlbumTracklist != null)
-    {
-      $existingAlbumTracklist->delete();
-    }
+    parent::delete();
   }
 
 }
