@@ -38,7 +38,7 @@ public class TestHomeAudioSystemController {
 	}
 	
 	@Test
-	public void testCreatePlaylist() throws Exception {
+	public void testCreatedPlaylist(){
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		assertEquals(0, has.getPlaylists().size());
 		
@@ -58,6 +58,54 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystem has2 = (HomeAudioSystem) PersistenceXStream.loadFromXMLwithXStream();
 		
 		checkResultPlaylist(title, has2);
+	}
+	
+	@Test
+	public void testCreatedPlaylistNull() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		assertEquals(0, has.getPlaylists().size());
+		
+		String title = null;
+		String error = null;
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		
+		try {
+			Playlist playlist = new Playlist(title, has);
+			hasController.createPlaylist(playlist);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		//check error
+		assertEquals("Playlist name cannot be empty!", error);
+		
+		// check no change in memory
+		assertEquals(0, has.getPlaylists().size());
+	}
+	
+	@Test
+	public void testCreatedPlaylistEmpty() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		assertEquals(0, has.getPlaylists().size());
+		
+		String title = "";
+		String error = null;
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		
+		try {
+			Playlist playlist = new Playlist(title, has);
+			hasController.createPlaylist(playlist);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+		
+		//check error
+		assertEquals("Playlist name cannot be empty!", error);
+		
+		// check no change in memory
+		assertEquals(0, has.getPlaylists().size());
 	}
 	
 	
