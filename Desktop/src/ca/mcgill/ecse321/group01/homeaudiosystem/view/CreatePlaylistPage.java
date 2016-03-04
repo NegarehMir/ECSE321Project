@@ -2,6 +2,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -141,9 +142,13 @@ public class CreatePlaylistPage extends JFrame {
 			HomeAudioSystem has = HomeAudioSystem.getInstance();
 			songs = new HashMap<Integer, Song>();
 			songList.removeAllItems();
-			for (Song song: has.getSongs()) {
+			
+			HomeAudioSystemController hasController = new HomeAudioSystemController();
+			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary(has);
+			
+			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);
-				songList.addItem(song.getTitle()+" - "+song.getArtist().getTitle());
+				songList.addItem(song.getTitle()+" - "+song.getArtist(0).getName());
 			}
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
@@ -165,13 +170,15 @@ public class CreatePlaylistPage extends JFrame {
 		model.addRow(new Object[] {
 				selectedSong,
 				songs.get(selectedSong).getTitle(),
-				songs.get(selectedSong).getArtist().getTitle()
+				songs.get(selectedSong).getArtist(0).getName()
 		});
 	}
 	             
 	private void addPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// create the playlist
-		Playlist playlist = new Playlist(playlistNameTextField.getText());
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		
+		Playlist playlist = new Playlist(playlistNameTextField.getText(), has);
 		
 		// get the songs
 		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
