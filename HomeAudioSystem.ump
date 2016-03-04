@@ -16,7 +16,7 @@ class Location
   String name;
   int volume;
   boolean mute;
-  * -> * Song;
+  1 <@>- * LocationMusicItem;
 }
 
 class Song
@@ -49,9 +49,15 @@ class Album
 
 
 
+class LocationMusicItem
+{
+  * -> * Playlist;
+  * -> * Song;
+}
+
 class Song
 {
-  position 228 399 109 75;
+  position 198 415 109 75;
   position.association Album__Song 11,0 0,68;
   position.association AlbumTracklist__Song 109,10 0,34;
 }
@@ -59,13 +65,13 @@ class Song
 class Album
 {
   position 311 233 146 92;
-    position.association Album__Song 16,92 73,0;
+    position.association Album__Song 16,92 75,0;
 }
 
 class Artist
 {
   position 605 179 109 58;
-  position.association Artist__Song 0,45 109,35;
+  position.association Artist__Song 0,60 109,35;
   position.association Album__Artist 0,10 146,51;
 }
 
@@ -92,5 +98,12 @@ class HomeAudioSystem
   position.association AlbumTracklist__HomeAudioSystem 58,45 30,0;
 }
 
+
+class LocationMusicItem
+{
+  position 74 280 133 45;
+  position.association LocationMusicItem__Song 76,45 0,30;
+  position.association LocationMusicItem__Playlist 98,0 0,33;
+}
 
 //$?[End_of_model]$?
