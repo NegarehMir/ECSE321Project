@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -11,6 +12,7 @@ import javax.swing.JLabel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
@@ -118,9 +120,22 @@ public class AddSongToPlaylistPage extends JFrame{
 			// genre list
 			songs =  new HashMap<Integer, Song>();
 			songList.removeAllItems();
-			for (Song song: has.getSongs()) {
+			
+			
+			LinkedList<Song> allSongsInLibrary = new LinkedList<>();
+			LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+			
+			for (Playlist playlist : allPlaylistsInLibrary) {
+				if (playlist instanceof Album) {
+					for (Song song : playlist.getSongs()) {
+						allSongsInLibrary.add(song);
+					}
+				}
+			}
+			
+			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);
-				songList.addItem(song.getTitle()+" - "+song.getArtist().getTitle());
+				songList.addItem(song.getTitle()+" - "+song.getArtist(0).getName());
 			}
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
