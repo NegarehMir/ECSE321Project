@@ -29,7 +29,7 @@ class Artist
 {
   String name;
   1 -- * Album;
-  1 -- * Song;
+  1..* -- * Song;
 }
 
 class Playlist
@@ -58,9 +58,8 @@ class Song
 
 class Album
 {
-  position 318 219 146 92;
-  position.association Album__Genre 121,75 30,0;
-    position.association Album__Song 36,92 74,0;
+  position 311 233 146 92;
+    position.association Album__Song 16,92 73,0;
 }
 
 class Artist
@@ -72,15 +71,9 @@ class Artist
 
 class Playlist
 {
-  position 248 138 112 58;
-  position.association Genre__Playlist 68,45 46,0;
+  position 248 124 112 58;
   position.association Album__Playlist 83,0 37,75;
   position.association Playlist__Song 20,58 27,0;
-}
-
-class Genre
-{
-  position 525 15 112 58;
 }
 
 class Location
@@ -93,7 +86,7 @@ class HomeAudioSystem
 {
   position 207 16 136 45;
   position.association Album__HomeAudioSystem 85,45 0,10;
-  position.association HomeAudioSystem__Playlist 33,45 16,0;
+  position.association HomeAudioSystem__Playlist 55,45 16,0;
   position.association HomeAudioSystem__Location 0,38 30,0;
   position.association Artist__HomeAudioSystem 129,38 56,0;
   position.association AlbumTracklist__HomeAudioSystem 58,45 30,0;
