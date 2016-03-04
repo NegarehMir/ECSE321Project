@@ -15,7 +15,6 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.PersistenceXStream;
 
 public class TestHomeAudioSystemController {
@@ -48,23 +47,25 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		
 		try {
-			Playlist playlist = new Playlist(title);
+			Playlist playlist = new Playlist(title, has);
 			hasController.createPlaylist(playlist);
 		} catch (InvalidInputException e) {
 			fail();
 		}
 		
+		checkResultPlaylist(title, has);
 		
+		HomeAudioSystem has2 = (HomeAudioSystem) PersistenceXStream.loadFromXMLwithXStream();
 		
-		
+		checkResultPlaylist(title, has2);
 	}
 	
 	
 	private void checkResultPlaylist(String title, HomeAudioSystem has2) {
 		assertEquals(1, has2.getPlaylists().size());
-		assertEquals(title, has2.getPlaylist(0).getName());
-		assertEquals(0, has2.getAlbums().size());
+		assertEquals(title, has2.getPlaylist(0).getTitle());
 		assertEquals(0, has2.getArtists().size());
+		assertEquals(0, has2.getLocations().size());
 	}
 	
 }
