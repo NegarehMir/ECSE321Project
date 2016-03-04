@@ -44,7 +44,7 @@ class Album
   isA Playlist;
   String title;
   Date releaseDate;
-  1 -- * Song;
+  1 <@>- * Song;
 }
 
 
