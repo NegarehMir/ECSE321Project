@@ -1,11 +1,11 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 14 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 96 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 14 "../../../../../../HomeAudioSystem.ump"
+// line 84 "../../../../../../HomeAudioSystem.ump"
 public class Location
 {
 
@@ -19,18 +19,24 @@ public class Location
   private boolean mute;
 
   //Location Associations
-  private List<Song> songs;
+  private List<LocationMusicItem> locationMusicItems;
+  private HomeAudioSystem homeAudioSystem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Location(String aName, int aVolume, boolean aMute)
+  public Location(String aName, int aVolume, boolean aMute, HomeAudioSystem aHomeAudioSystem)
   {
     name = aName;
     volume = aVolume;
     mute = aMute;
-    songs = new ArrayList<Song>();
+    locationMusicItems = new ArrayList<LocationMusicItem>();
+    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
+    if (!didAddHomeAudioSystem)
+    {
+      throw new RuntimeException("Unable to create location due to homeAudioSystem");
+    }
   }
 
   //------------------------
@@ -76,96 +82,145 @@ public class Location
     return mute;
   }
 
-  public Song getSong(int index)
+  public LocationMusicItem getLocationMusicItem(int index)
   {
-    Song aSong = songs.get(index);
-    return aSong;
+    LocationMusicItem aLocationMusicItem = locationMusicItems.get(index);
+    return aLocationMusicItem;
   }
 
-  public List<Song> getSongs()
+  public List<LocationMusicItem> getLocationMusicItems()
   {
-    List<Song> newSongs = Collections.unmodifiableList(songs);
-    return newSongs;
+    List<LocationMusicItem> newLocationMusicItems = Collections.unmodifiableList(locationMusicItems);
+    return newLocationMusicItems;
   }
 
-  public int numberOfSongs()
+  public int numberOfLocationMusicItems()
   {
-    int number = songs.size();
+    int number = locationMusicItems.size();
     return number;
   }
 
-  public boolean hasSongs()
+  public boolean hasLocationMusicItems()
   {
-    boolean has = songs.size() > 0;
+    boolean has = locationMusicItems.size() > 0;
     return has;
   }
 
-  public int indexOfSong(Song aSong)
+  public int indexOfLocationMusicItem(LocationMusicItem aLocationMusicItem)
   {
-    int index = songs.indexOf(aSong);
+    int index = locationMusicItems.indexOf(aLocationMusicItem);
     return index;
   }
 
-  public static int minimumNumberOfSongs()
+  public HomeAudioSystem getHomeAudioSystem()
+  {
+    return homeAudioSystem;
+  }
+
+  public static int minimumNumberOfLocationMusicItems()
   {
     return 0;
   }
 
-  public boolean addSong(Song aSong)
+  public LocationMusicItem addLocationMusicItem()
+  {
+    return new LocationMusicItem(this);
+  }
+
+  public boolean addLocationMusicItem(LocationMusicItem aLocationMusicItem)
   {
     boolean wasAdded = false;
-    if (songs.contains(aSong)) { return false; }
-    songs.add(aSong);
+    if (locationMusicItems.contains(aLocationMusicItem)) { return false; }
+    Location existingLocation = aLocationMusicItem.getLocation();
+    boolean isNewLocation = existingLocation != null && !this.equals(existingLocation);
+    if (isNewLocation)
+    {
+      aLocationMusicItem.setLocation(this);
+    }
+    else
+    {
+      locationMusicItems.add(aLocationMusicItem);
+    }
     wasAdded = true;
     return wasAdded;
   }
 
-  public boolean removeSong(Song aSong)
+  public boolean removeLocationMusicItem(LocationMusicItem aLocationMusicItem)
   {
     boolean wasRemoved = false;
-    if (songs.contains(aSong))
+    //Unable to remove aLocationMusicItem, as it must always have a location
+    if (!this.equals(aLocationMusicItem.getLocation()))
     {
-      songs.remove(aSong);
+      locationMusicItems.remove(aLocationMusicItem);
       wasRemoved = true;
     }
     return wasRemoved;
   }
 
-  public boolean addSongAt(Song aSong, int index)
+  public boolean addLocationMusicItemAt(LocationMusicItem aLocationMusicItem, int index)
   {  
     boolean wasAdded = false;
-    if(addSong(aSong))
+    if(addLocationMusicItem(aLocationMusicItem))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfSongs()) { index = numberOfSongs() - 1; }
-      songs.remove(aSong);
-      songs.add(index, aSong);
+      if(index > numberOfLocationMusicItems()) { index = numberOfLocationMusicItems() - 1; }
+      locationMusicItems.remove(aLocationMusicItem);
+      locationMusicItems.add(index, aLocationMusicItem);
       wasAdded = true;
     }
     return wasAdded;
   }
 
-  public boolean addOrMoveSongAt(Song aSong, int index)
+  public boolean addOrMoveLocationMusicItemAt(LocationMusicItem aLocationMusicItem, int index)
   {
     boolean wasAdded = false;
-    if(songs.contains(aSong))
+    if(locationMusicItems.contains(aLocationMusicItem))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfSongs()) { index = numberOfSongs() - 1; }
-      songs.remove(aSong);
-      songs.add(index, aSong);
+      if(index > numberOfLocationMusicItems()) { index = numberOfLocationMusicItems() - 1; }
+      locationMusicItems.remove(aLocationMusicItem);
+      locationMusicItems.add(index, aLocationMusicItem);
       wasAdded = true;
     } 
     else 
     {
-      wasAdded = addSongAt(aSong, index);
+      wasAdded = addLocationMusicItemAt(aLocationMusicItem, index);
     }
     return wasAdded;
   }
 
+  public boolean setHomeAudioSystem(HomeAudioSystem aHomeAudioSystem)
+  {
+    boolean wasSet = false;
+    if (aHomeAudioSystem == null)
+    {
+      return wasSet;
+    }
+
+    HomeAudioSystem existingHomeAudioSystem = homeAudioSystem;
+    homeAudioSystem = aHomeAudioSystem;
+    if (existingHomeAudioSystem != null && !existingHomeAudioSystem.equals(aHomeAudioSystem))
+    {
+      existingHomeAudioSystem.removeLocation(this);
+    }
+    homeAudioSystem.addLocation(this);
+    wasSet = true;
+    return wasSet;
+  }
+
   public void delete()
   {
-    songs.clear();
+    while (locationMusicItems.size() > 0)
+    {
+      LocationMusicItem aLocationMusicItem = locationMusicItems.get(locationMusicItems.size() - 1);
+      aLocationMusicItem.delete();
+      locationMusicItems.remove(aLocationMusicItem);
+    }
+    
+      
+    HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
+    this.homeAudioSystem = null;
+    placeholderHomeAudioSystem.removeLocation(this);
   }
 
 
@@ -175,7 +230,8 @@ public class Location
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
             "volume" + ":" + getVolume()+ "," +
-            "mute" + ":" + getMute()+ "]"
+            "mute" + ":" + getMute()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
      + outputString;
   }
 }

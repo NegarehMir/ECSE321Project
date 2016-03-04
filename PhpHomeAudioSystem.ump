@@ -1,0 +1,17 @@
+namespace ca.mcgill.ecse321.group01.homeaudiosystem.model;
+
+
+class Genres {
+   const Alternative = 1;
+  const Classical = 2;
+  const Country = 3;
+  const Electronic = 4;
+  const Rap = 5;
+  const Pop = 6;
+  const Rock = 7;
+  const Jazz = 8;
+}
+
+class Album {
+  int genre;
+}

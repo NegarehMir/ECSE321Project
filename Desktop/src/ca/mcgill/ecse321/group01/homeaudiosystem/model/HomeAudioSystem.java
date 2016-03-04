@@ -1,12 +1,14 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
-import java.sql.Date;
 
-// line 4 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 107 "../../../../../../../../../ump/tmp960453/model.ump"
+/**
+ * use PhpHomeAudioSystem.ump;
+ */
+// line 6 "../../../../../../HomeAudioSystem.ump"
+// line 90 "../../../../../../HomeAudioSystem.ump"
 public class HomeAudioSystem
 {
 
@@ -22,11 +24,8 @@ public class HomeAudioSystem
 
   //HomeAudioSystem Associations
   private List<Location> locations;
-  private List<Album> albums;
   private List<Artist> artists;
   private List<Playlist> playlists;
-  private List<Genre> genres;
-  private List<Song> songs;
 
   //------------------------
   // CONSTRUCTOR
@@ -35,11 +34,8 @@ public class HomeAudioSystem
   private HomeAudioSystem()
   {
     locations = new ArrayList<Location>();
-    albums = new ArrayList<Album>();
     artists = new ArrayList<Artist>();
     playlists = new ArrayList<Playlist>();
-    genres = new ArrayList<Genre>();
-    songs = new ArrayList<Song>();
   }
 
   public static HomeAudioSystem getInstance()
@@ -82,36 +78,6 @@ public class HomeAudioSystem
   public int indexOfLocation(Location aLocation)
   {
     int index = locations.indexOf(aLocation);
-    return index;
-  }
-
-  public Album getAlbum(int index)
-  {
-    Album aAlbum = albums.get(index);
-    return aAlbum;
-  }
-
-  public List<Album> getAlbums()
-  {
-    List<Album> newAlbums = Collections.unmodifiableList(albums);
-    return newAlbums;
-  }
-
-  public int numberOfAlbums()
-  {
-    int number = albums.size();
-    return number;
-  }
-
-  public boolean hasAlbums()
-  {
-    boolean has = albums.size() > 0;
-    return has;
-  }
-
-  public int indexOfAlbum(Album aAlbum)
-  {
-    int index = albums.indexOf(aAlbum);
     return index;
   }
 
@@ -175,46 +141,30 @@ public class HomeAudioSystem
     return index;
   }
 
-  public Genre getGenre(int index)
-  {
-    Genre aGenre = genres.get(index);
-    return aGenre;
-  }
-
-  public List<Genre> getGenres()
-  {
-    List<Genre> newGenres = Collections.unmodifiableList(genres);
-    return newGenres;
-  }
-
-  public int numberOfGenres()
-  {
-    int number = genres.size();
-    return number;
-  }
-
-  public boolean hasGenres()
-  {
-    boolean has = genres.size() > 0;
-    return has;
-  }
-
-  public int indexOfGenre(Genre aGenre)
-  {
-    int index = genres.indexOf(aGenre);
-    return index;
-  }
-
   public static int minimumNumberOfLocations()
   {
     return 0;
+  }
+
+  public Location addLocation(String aName, int aVolume, boolean aMute)
+  {
+    return new Location(aName, aVolume, aMute, this);
   }
 
   public boolean addLocation(Location aLocation)
   {
     boolean wasAdded = false;
     if (locations.contains(aLocation)) { return false; }
-    locations.add(aLocation);
+    HomeAudioSystem existingHomeAudioSystem = aLocation.getHomeAudioSystem();
+    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
+    if (isNewHomeAudioSystem)
+    {
+      aLocation.setHomeAudioSystem(this);
+    }
+    else
+    {
+      locations.add(aLocation);
+    }
     wasAdded = true;
     return wasAdded;
   }
@@ -222,7 +172,8 @@ public class HomeAudioSystem
   public boolean removeLocation(Location aLocation)
   {
     boolean wasRemoved = false;
-    if (locations.contains(aLocation))
+    //Unable to remove aLocation, as it must always have a homeAudioSystem
+    if (!this.equals(aLocation.getHomeAudioSystem()))
     {
       locations.remove(aLocation);
       wasRemoved = true;
@@ -262,76 +213,30 @@ public class HomeAudioSystem
     return wasAdded;
   }
 
-  public static int minimumNumberOfAlbums()
-  {
-    return 0;
-  }
-
-  public boolean addAlbum(Album aAlbum)
-  {
-    boolean wasAdded = false;
-    if (albums.contains(aAlbum)) { return false; }
-    albums.add(aAlbum);
-    List<Song> tracks = aAlbum.getAlbumTracklist().getSongs();
-    for(int i = 0; i<tracks.size(); i++)
-    	songs.add(tracks.get(i));
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeAlbum(Album aAlbum)
-  {
-    boolean wasRemoved = false;
-    if (albums.contains(aAlbum))
-    {
-      albums.remove(aAlbum);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-
-  public boolean addAlbumAt(Album aAlbum, int index)
-  {  
-    boolean wasAdded = false;
-    if(addAlbum(aAlbum))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfAlbums()) { index = numberOfAlbums() - 1; }
-      albums.remove(aAlbum);
-      albums.add(index, aAlbum);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveAlbumAt(Album aAlbum, int index)
-  {
-    boolean wasAdded = false;
-    if(albums.contains(aAlbum))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfAlbums()) { index = numberOfAlbums() - 1; }
-      albums.remove(aAlbum);
-      albums.add(index, aAlbum);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addAlbumAt(aAlbum, index);
-    }
-    return wasAdded;
-  }
-
   public static int minimumNumberOfArtists()
   {
     return 0;
+  }
+
+  public Artist addArtist(String aName)
+  {
+    return new Artist(aName, this);
   }
 
   public boolean addArtist(Artist aArtist)
   {
     boolean wasAdded = false;
     if (artists.contains(aArtist)) { return false; }
-    artists.add(aArtist);
+    HomeAudioSystem existingHomeAudioSystem = aArtist.getHomeAudioSystem();
+    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
+    if (isNewHomeAudioSystem)
+    {
+      aArtist.setHomeAudioSystem(this);
+    }
+    else
+    {
+      artists.add(aArtist);
+    }
     wasAdded = true;
     return wasAdded;
   }
@@ -339,7 +244,8 @@ public class HomeAudioSystem
   public boolean removeArtist(Artist aArtist)
   {
     boolean wasRemoved = false;
-    if (artists.contains(aArtist))
+    //Unable to remove aArtist, as it must always have a homeAudioSystem
+    if (!this.equals(aArtist.getHomeAudioSystem()))
     {
       artists.remove(aArtist);
       wasRemoved = true;
@@ -384,11 +290,25 @@ public class HomeAudioSystem
     return 0;
   }
 
+  public Playlist addPlaylist(String aTitle)
+  {
+    return new Playlist(aTitle, this);
+  }
+
   public boolean addPlaylist(Playlist aPlaylist)
   {
     boolean wasAdded = false;
     if (playlists.contains(aPlaylist)) { return false; }
-    playlists.add(aPlaylist);
+    HomeAudioSystem existingHomeAudioSystem = aPlaylist.getHomeAudioSystem();
+    boolean isNewHomeAudioSystem = existingHomeAudioSystem != null && !this.equals(existingHomeAudioSystem);
+    if (isNewHomeAudioSystem)
+    {
+      aPlaylist.setHomeAudioSystem(this);
+    }
+    else
+    {
+      playlists.add(aPlaylist);
+    }
     wasAdded = true;
     return wasAdded;
   }
@@ -396,7 +316,8 @@ public class HomeAudioSystem
   public boolean removePlaylist(Playlist aPlaylist)
   {
     boolean wasRemoved = false;
-    if (playlists.contains(aPlaylist))
+    //Unable to remove aPlaylist, as it must always have a homeAudioSystem
+    if (!this.equals(aPlaylist.getHomeAudioSystem()))
     {
       playlists.remove(aPlaylist);
       wasRemoved = true;
@@ -436,85 +357,32 @@ public class HomeAudioSystem
     return wasAdded;
   }
 
-  public static int minimumNumberOfGenres()
-  {
-    return 0;
-  }
-
-  public boolean addGenre(Genre aGenre)
-  {
-    boolean wasAdded = false;
-    if (genres.contains(aGenre)) { return false; }
-    genres.add(aGenre);
-    wasAdded = true;
-    return wasAdded;
-  }
-
-  public boolean removeGenre(Genre aGenre)
-  {
-    boolean wasRemoved = false;
-    if (genres.contains(aGenre))
-    {
-      genres.remove(aGenre);
-      wasRemoved = true;
-    }
-    return wasRemoved;
-  }
-
-  public boolean addGenreAt(Genre aGenre, int index)
-  {  
-    boolean wasAdded = false;
-    if(addGenre(aGenre))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfGenres()) { index = numberOfGenres() - 1; }
-      genres.remove(aGenre);
-      genres.add(index, aGenre);
-      wasAdded = true;
-    }
-    return wasAdded;
-  }
-
-  public boolean addOrMoveGenreAt(Genre aGenre, int index)
-  {
-    boolean wasAdded = false;
-    if(genres.contains(aGenre))
-    {
-      if(index < 0 ) { index = 0; }
-      if(index > numberOfGenres()) { index = numberOfGenres() - 1; }
-      genres.remove(aGenre);
-      genres.add(index, aGenre);
-      wasAdded = true;
-    } 
-    else 
-    {
-      wasAdded = addGenreAt(aGenre, index);
-    }
-    return wasAdded;
-  }
-
   public void delete()
   {
-    locations.clear();
-    albums.clear();
-    artists.clear();
-    playlists.clear();
-    genres.clear();
-  }
-  
-  public List<Song> getSongs()
-  {
-    List<Song> newSongs = Collections.unmodifiableList(songs);
-    return newSongs;
-  }
-  
-  public boolean addSongToPlaylist(Song aSong, Playlist aPlaylist)
-  {
-    boolean wasAdded = false;
-    if (aPlaylist.getSongs().contains(aSong)) { return false; }
-    aPlaylist.addSong(aSong);
-    wasAdded = true;
-    return wasAdded;
+    while (locations.size() > 0)
+    {
+      Location aLocation = locations.get(locations.size() - 1);
+      aLocation.delete();
+      locations.remove(aLocation);
+    }
+    
+      
+    while (artists.size() > 0)
+    {
+      Artist aArtist = artists.get(artists.size() - 1);
+      aArtist.delete();
+      artists.remove(aArtist);
+    }
+    
+      
+    while (playlists.size() > 0)
+    {
+      Playlist aPlaylist = playlists.get(playlists.size() - 1);
+      aPlaylist.delete();
+      playlists.remove(aPlaylist);
+    }
+    
+      
   }
 
 }
