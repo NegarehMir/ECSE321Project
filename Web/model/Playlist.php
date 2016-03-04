@@ -20,15 +20,10 @@ class Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aName, $allSongs, $aHomeAudioSystem)
+  public function __construct($aName, $aHomeAudioSystem)
   {
     $this->name = $aName;
     $this->songs = array();
-    $didAddSongs = $this->setSongs($allSongs);
-    if (!$didAddSongs)
-    {
-      throw new Exception("Unable to create Playlist, must have at least 1 songs");
-    }
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
     if (!$didAddHomeAudioSystem)
     {
@@ -99,15 +94,9 @@ class Playlist
     return $this->homeAudioSystem;
   }
 
-  public function isNumberOfSongsValid()
-  {
-    $isValid = $this->numberOfSongs() >= self::minimumNumberOfSongs();
-    return $isValid;
-  }
-
   public static function minimumNumberOfSongs()
   {
-    return 1;
+    return 0;
   }
 
   public function addSong($aSong)
@@ -116,94 +105,20 @@ class Playlist
     if ($this->indexOfSong($aSong) !== -1) { return false; }
     if ($this->indexOfSong($aSong) !== -1) { return false; }
     $this->songs[] = $aSong;
-    if ($aSong->indexOfPlaylist($this) != -1)
-    {
-      $wasAdded = true;
-    }
-    else
-    {
-      $wasAdded = $aSong->addPlaylist($this);
-      if (!$wasAdded)
-      {
-        array_pop($this->songs);
-      }
-    }
+    $wasAdded = true;
     return $wasAdded;
   }
 
   public function removeSong($aSong)
   {
     $wasRemoved = false;
-    if ($this->indexOfSong($aSong) == -1)
+    if ($this->indexOfSong($aSong) != -1)
     {
-      return $wasRemoved;
-    }
-
-    if ($this->numberOfSongs() <= self::minimumNumberOfSongs())
-    {
-      return $wasRemoved;
-    }
-
-    $oldIndex = $this->indexOfSong($aSong);
-    unset($this->songs[$oldIndex]);
-    if ($aSong->indexOfPlaylist($this) == -1)
-    {
+      unset($this->songs[$this->indexOfSong($aSong)]);
+      $this->songs = array_values($this->songs);
       $wasRemoved = true;
     }
-    else
-    {
-      $wasRemoved = $aSong->removePlaylist($this);
-      if (!$wasRemoved)
-      {
-        $this->songs[$oldIndex] = $aSong;
-        ksort($this->songs);
-      }
-    }
-    $this->songs = array_values($this->songs);
     return $wasRemoved;
-  }
-
-  public function setSongs($newSongs)
-  {
-    $wasSet = false;
-    $verifiedSongs = array();
-    foreach ($newSongs as $aSong)
-    {
-      if (array_search($aSong,$verifiedSongs) !== false)
-      {
-        continue;
-      }
-      $verifiedSongs[] = $aSong;
-    }
-
-    if (count($verifiedSongs) != count($newSongs) || count($verifiedSongs) < self::minimumNumberOfSongs())
-    {
-      return $wasSet;
-    }
-
-    $oldSongs = $this->songs;
-    $this->songs = array();
-    foreach ($verifiedSongs as $aNewSong)
-    {
-      $this->songs[] = $aNewSong;
-      $removeIndex = array_search($aNewSong,$oldSongs);
-      if ($removeIndex !== false)
-      {
-        unset($oldSongs[$removeIndex]);
-        $oldSongs = array_values($oldSongs);
-      }
-      else
-      {
-        $aNewSong->addPlaylist($this);
-      }
-    }
-
-    foreach ($oldSongs as $anOldSong)
-    {
-      $anOldSong->removePlaylist($this);
-    }
-    $wasSet = true;
-    return $wasSet;
   }
 
   public function addSongAt($aSong, $index)
@@ -264,12 +179,7 @@ class Playlist
 
   public function delete()
   {
-    $copyOfSongs = $this->songs;
     $this->songs = array();
-    foreach ($copyOfSongs as $aSong)
-    {
-      $aSong->removePlaylist($this);
-    }
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;
     $placeholderHomeAudioSystem->removePlaylist($this);

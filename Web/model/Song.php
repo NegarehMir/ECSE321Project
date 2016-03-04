@@ -14,30 +14,27 @@ class Song
   private $duration;
 
   //Song Associations
-  private $locations;
-  private $artist;
-  private $playlists;
-  private $albumTracklist;
+  private $artists;
+  private $album;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle, $aDuration, $aArtist, $aAlbumTracklist)
+  public function __construct($aTitle, $aDuration, $allArtists, $aAlbum)
   {
     $this->title = $aTitle;
     $this->duration = $aDuration;
-    $this->locations = array();
-    $didAddArtist = $this->setArtist($aArtist);
-    if (!$didAddArtist)
+    $this->artists = array();
+    $didAddArtists = $this->setArtists($allArtists);
+    if (!$didAddArtists)
     {
-      throw new Exception("Unable to create song due to artist");
+      throw new Exception("Unable to create Song, must have at least 1 artists");
     }
-    $this->playlists = array();
-    $didAddAlbumTracklist = $this->setAlbumTracklist($aAlbumTracklist);
-    if (!$didAddAlbumTracklist)
+    $didAddAlbum = $this->setAlbum($aAlbum);
+    if (!$didAddAlbum)
     {
-      throw new Exception("Unable to create song due to albumTracklist");
+      throw new Exception("Unable to create song due to album");
     }
   }
 
@@ -71,37 +68,37 @@ class Song
     return $this->duration;
   }
 
-  public function getLocation_index($index)
+  public function getArtist_index($index)
   {
-    $aLocation = $this->locations[$index];
-    return $aLocation;
+    $aArtist = $this->artists[$index];
+    return $aArtist;
   }
 
-  public function getLocations()
+  public function getArtists()
   {
-    $newLocations = $this->locations;
-    return $newLocations;
+    $newArtists = $this->artists;
+    return $newArtists;
   }
 
-  public function numberOfLocations()
+  public function numberOfArtists()
   {
-    $number = count($this->locations);
+    $number = count($this->artists);
     return $number;
   }
 
-  public function hasLocations()
+  public function hasArtists()
   {
-    $has = $this->numberOfLocations() > 0;
+    $has = $this->numberOfArtists() > 0;
     return $has;
   }
 
-  public function indexOfLocation($aLocation)
+  public function indexOfArtist($aArtist)
   {
     $wasFound = false;
     $index = 0;
-    foreach($this->locations as $location)
+    foreach($this->artists as $artist)
     {
-      if ($location->equals($aLocation))
+      if ($artist->equals($aArtist))
       {
         $wasFound = true;
         break;
@@ -112,270 +109,164 @@ class Song
     return $index;
   }
 
-  public function getArtist()
+  public function getAlbum()
   {
-    return $this->artist;
+    return $this->album;
   }
 
-  public function getPlaylist_index($index)
+  public function isNumberOfArtistsValid()
   {
-    $aPlaylist = $this->playlists[$index];
-    return $aPlaylist;
+    $isValid = $this->numberOfArtists() >= self::minimumNumberOfArtists();
+    return $isValid;
   }
 
-  public function getPlaylists()
+  public static function minimumNumberOfArtists()
   {
-    $newPlaylists = $this->playlists;
-    return $newPlaylists;
+    return 1;
   }
 
-  public function numberOfPlaylists()
-  {
-    $number = count($this->playlists);
-    return $number;
-  }
-
-  public function hasPlaylists()
-  {
-    $has = $this->numberOfPlaylists() > 0;
-    return $has;
-  }
-
-  public function indexOfPlaylist($aPlaylist)
-  {
-    $wasFound = false;
-    $index = 0;
-    foreach($this->playlists as $playlist)
-    {
-      if ($playlist->equals($aPlaylist))
-      {
-        $wasFound = true;
-        break;
-      }
-      $index += 1;
-    }
-    $index = $wasFound ? $index : -1;
-    return $index;
-  }
-
-  public function getAlbumTracklist()
-  {
-    return $this->albumTracklist;
-  }
-
-  public static function minimumNumberOfLocations()
-  {
-    return 0;
-  }
-
-  public function addLocation($aLocation)
+  public function addArtist($aArtist)
   {
     $wasAdded = false;
-    if ($this->indexOfLocation($aLocation) !== -1) { return false; }
-    $this->locations[] = $aLocation;
-    if ($aLocation->indexOfSong($this) != -1)
+    if ($this->indexOfArtist($aArtist) !== -1) { return false; }
+    $this->artists[] = $aArtist;
+    if ($aArtist->indexOfSong($this) != -1)
     {
       $wasAdded = true;
     }
     else
     {
-      $wasAdded = $aLocation->addSong($this);
+      $wasAdded = $aArtist->addSong($this);
       if (!$wasAdded)
       {
-        array_pop($this->locations);
+        array_pop($this->artists);
       }
     }
     return $wasAdded;
   }
 
-  public function removeLocation($aLocation)
+  public function removeArtist($aArtist)
   {
     $wasRemoved = false;
-    if ($this->indexOfLocation($aLocation) == -1)
+    if ($this->indexOfArtist($aArtist) == -1)
     {
       return $wasRemoved;
     }
 
-    $oldIndex = $this->indexOfLocation($aLocation);
-    unset($this->locations[$oldIndex]);
-    if ($aLocation->indexOfSong($this) == -1)
+    if ($this->numberOfArtists() <= self::minimumNumberOfArtists())
+    {
+      return $wasRemoved;
+    }
+
+    $oldIndex = $this->indexOfArtist($aArtist);
+    unset($this->artists[$oldIndex]);
+    if ($aArtist->indexOfSong($this) == -1)
     {
       $wasRemoved = true;
     }
     else
     {
-      $wasRemoved = $aLocation->removeSong($this);
+      $wasRemoved = $aArtist->removeSong($this);
       if (!$wasRemoved)
       {
-        $this->locations[$oldIndex] = $aLocation;
-        ksort($this->locations);
+        $this->artists[$oldIndex] = $aArtist;
+        ksort($this->artists);
       }
     }
-    $this->locations = array_values($this->locations);
+    $this->artists = array_values($this->artists);
     return $wasRemoved;
   }
 
-  public function addLocationAt($aLocation, $index)
-  {  
-    $wasAdded = false;
-    if($this->addLocation($aLocation))
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfLocations()) { $index = $this->numberOfLocations() - 1; }
-      array_splice($this->locations, $this->indexOfLocation($aLocation), 1);
-      array_splice($this->locations, $index, 0, array($aLocation));
-      $wasAdded = true;
-    }
-    return $wasAdded;
-  }
-
-  public function addOrMoveLocationAt($aLocation, $index)
-  {
-    $wasAdded = false;
-    if($this->indexOfLocation($aLocation) !== -1)
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfLocations()) { $index = $this->numberOfLocations() - 1; }
-      array_splice($this->locations, $this->indexOfLocation($aLocation), 1);
-      array_splice($this->locations, $index, 0, array($aLocation));
-      $wasAdded = true;
-    } 
-    else 
-    {
-      $wasAdded = $this->addLocationAt($aLocation, $index);
-    }
-    return $wasAdded;
-  }
-
-  public function setArtist($aArtist)
+  public function setArtists($newArtists)
   {
     $wasSet = false;
-    if ($aArtist == null)
+    $verifiedArtists = array();
+    foreach ($newArtists as $aArtist)
+    {
+      if (array_search($aArtist,$verifiedArtists) !== false)
+      {
+        continue;
+      }
+      $verifiedArtists[] = $aArtist;
+    }
+
+    if (count($verifiedArtists) != count($newArtists) || count($verifiedArtists) < self::minimumNumberOfArtists())
     {
       return $wasSet;
     }
-    
-    $existingArtist = $this->artist;
-    $this->artist = $aArtist;
-    if ($existingArtist != null && $existingArtist != $aArtist)
+
+    $oldArtists = $this->artists;
+    $this->artists = array();
+    foreach ($verifiedArtists as $aNewArtist)
     {
-      $existingArtist->removeSong($this);
+      $this->artists[] = $aNewArtist;
+      $removeIndex = array_search($aNewArtist,$oldArtists);
+      if ($removeIndex !== false)
+      {
+        unset($oldArtists[$removeIndex]);
+        $oldArtists = array_values($oldArtists);
+      }
+      else
+      {
+        $aNewArtist->addSong($this);
+      }
     }
-    $this->artist->addSong($this);
+
+    foreach ($oldArtists as $anOldArtist)
+    {
+      $anOldArtist->removeSong($this);
+    }
     $wasSet = true;
     return $wasSet;
   }
 
-  public static function minimumNumberOfPlaylists()
-  {
-    return 0;
-  }
-
-  public function addPlaylist($aPlaylist)
-  {
-    $wasAdded = false;
-    if ($this->indexOfPlaylist($aPlaylist) !== -1) { return false; }
-    $this->playlists[] = $aPlaylist;
-    if ($aPlaylist->indexOfSong($this) != -1)
-    {
-      $wasAdded = true;
-    }
-    else
-    {
-      $wasAdded = $aPlaylist->addSong($this);
-      if (!$wasAdded)
-      {
-        array_pop($this->playlists);
-      }
-    }
-    return $wasAdded;
-  }
-
-  public function removePlaylist($aPlaylist)
-  {
-    $wasRemoved = false;
-    if ($this->indexOfPlaylist($aPlaylist) == -1)
-    {
-      return $wasRemoved;
-    }
-
-    $oldIndex = $this->indexOfPlaylist($aPlaylist);
-    unset($this->playlists[$oldIndex]);
-    if ($aPlaylist->indexOfSong($this) == -1)
-    {
-      $wasRemoved = true;
-    }
-    else
-    {
-      $wasRemoved = $aPlaylist->removeSong($this);
-      if (!$wasRemoved)
-      {
-        $this->playlists[$oldIndex] = $aPlaylist;
-        ksort($this->playlists);
-      }
-    }
-    $this->playlists = array_values($this->playlists);
-    return $wasRemoved;
-  }
-
-  public function addPlaylistAt($aPlaylist, $index)
+  public function addArtistAt($aArtist, $index)
   {  
     $wasAdded = false;
-    if($this->addPlaylist($aPlaylist))
+    if($this->addArtist($aArtist))
     {
       if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfPlaylists()) { $index = $this->numberOfPlaylists() - 1; }
-      array_splice($this->playlists, $this->indexOfPlaylist($aPlaylist), 1);
-      array_splice($this->playlists, $index, 0, array($aPlaylist));
+      if($index > $this->numberOfArtists()) { $index = $this->numberOfArtists() - 1; }
+      array_splice($this->artists, $this->indexOfArtist($aArtist), 1);
+      array_splice($this->artists, $index, 0, array($aArtist));
       $wasAdded = true;
     }
     return $wasAdded;
   }
 
-  public function addOrMovePlaylistAt($aPlaylist, $index)
+  public function addOrMoveArtistAt($aArtist, $index)
   {
     $wasAdded = false;
-    if($this->indexOfPlaylist($aPlaylist) !== -1)
+    if($this->indexOfArtist($aArtist) !== -1)
     {
       if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfPlaylists()) { $index = $this->numberOfPlaylists() - 1; }
-      array_splice($this->playlists, $this->indexOfPlaylist($aPlaylist), 1);
-      array_splice($this->playlists, $index, 0, array($aPlaylist));
+      if($index > $this->numberOfArtists()) { $index = $this->numberOfArtists() - 1; }
+      array_splice($this->artists, $this->indexOfArtist($aArtist), 1);
+      array_splice($this->artists, $index, 0, array($aArtist));
       $wasAdded = true;
     } 
     else 
     {
-      $wasAdded = $this->addPlaylistAt($aPlaylist, $index);
+      $wasAdded = $this->addArtistAt($aArtist, $index);
     }
     return $wasAdded;
   }
 
-  public function setAlbumTracklist($aAlbumTracklist)
+  public function setAlbum($aAlbum)
   {
     $wasSet = false;
-    //Must provide albumTracklist to song
-    if ($aAlbumTracklist == null)
+    if ($aAlbum == null)
     {
       return $wasSet;
     }
-
-    if ($this->albumTracklist != null && $this->albumTracklist->numberOfSongs() <= AlbumTracklist::minimumNumberOfSongs())
+    
+    $existingAlbum = $this->album;
+    $this->album = $aAlbum;
+    if ($existingAlbum != null && $existingAlbum != $aAlbum)
     {
-      return $wasSet;
+      $existingAlbum->removeSong($this);
     }
-
-    $existingAlbumTracklist = $this->albumTracklist;
-    $this->albumTracklist = $aAlbumTracklist;
-    if ($existingAlbumTracklist != null && $existingAlbumTracklist != $aAlbumTracklist)
-    {
-      $didRemove = $existingAlbumTracklist->removeSong($this);
-      if (!$didRemove)
-      {
-        $this->albumTracklist = $existingAlbumTracklist;
-        return $wasSet;
-      }
-    }
-    $this->albumTracklist->addSong($this);
+    $this->album->addSong($this);
     $wasSet = true;
     return $wasSet;
   }
@@ -387,31 +278,15 @@ class Song
 
   public function delete()
   {
-    $copyOfLocations = $this->locations;
-    $this->locations = array();
-    foreach ($copyOfLocations as $aLocation)
+    $copyOfArtists = $this->artists;
+    $this->artists = array();
+    foreach ($copyOfArtists as $aArtist)
     {
-      $aLocation->removeSong($this);
+      $aArtist->removeSong($this);
     }
-    $placeholderArtist = $this->artist;
-    $this->artist = null;
-    $placeholderArtist->removeSong($this);
-    $copyOfPlaylists = $this->playlists;
-    $this->playlists = array();
-    foreach ($copyOfPlaylists as $aPlaylist)
-    {
-      if ($aPlaylist->numberOfSongs() <= Playlist::minimumNumberOfSongs())
-      {
-        $aPlaylist->delete();
-      }
-      else
-      {
-        $aPlaylist->removeSong($this);
-      }
-    }
-    $placeholderAlbumTracklist = $this->albumTracklist;
-    $this->albumTracklist = null;
-    $placeholderAlbumTracklist->removeSong($this);
+    $placeholderAlbum = $this->album;
+    $this->album = null;
+    $placeholderAlbum->removeSong($this);
   }
 
 }

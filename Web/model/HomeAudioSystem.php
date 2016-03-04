@@ -17,10 +17,8 @@ class HomeAudioSystem
 
   //HomeAudioSystem Associations
   private $locations;
-  private $albums;
   private $artists;
   private $playlists;
-  private $genres;
 
   //------------------------
   // CONSTRUCTOR
@@ -29,10 +27,8 @@ class HomeAudioSystem
   private function __construct()
   {
     $this->locations = array();
-    $this->albums = array();
     $this->artists = array();
     $this->playlists = array();
-    $this->genres = array();
   }
 
   public static function getInstance()
@@ -79,47 +75,6 @@ class HomeAudioSystem
     foreach($this->locations as $location)
     {
       if ($location->equals($aLocation))
-      {
-        $wasFound = true;
-        break;
-      }
-      $index += 1;
-    }
-    $index = $wasFound ? $index : -1;
-    return $index;
-  }
-
-  public function getAlbum_index($index)
-  {
-    $aAlbum = $this->albums[$index];
-    return $aAlbum;
-  }
-
-  public function getAlbums()
-  {
-    $newAlbums = $this->albums;
-    return $newAlbums;
-  }
-
-  public function numberOfAlbums()
-  {
-    $number = count($this->albums);
-    return $number;
-  }
-
-  public function hasAlbums()
-  {
-    $has = $this->numberOfAlbums() > 0;
-    return $has;
-  }
-
-  public function indexOfAlbum($aAlbum)
-  {
-    $wasFound = false;
-    $index = 0;
-    foreach($this->albums as $album)
-    {
-      if ($album->equals($aAlbum))
       {
         $wasFound = true;
         break;
@@ -212,47 +167,6 @@ class HomeAudioSystem
     return $index;
   }
 
-  public function getGenre_index($index)
-  {
-    $aGenre = $this->genres[$index];
-    return $aGenre;
-  }
-
-  public function getGenres()
-  {
-    $newGenres = $this->genres;
-    return $newGenres;
-  }
-
-  public function numberOfGenres()
-  {
-    $number = count($this->genres);
-    return $number;
-  }
-
-  public function hasGenres()
-  {
-    $has = $this->numberOfGenres() > 0;
-    return $has;
-  }
-
-  public function indexOfGenre($aGenre)
-  {
-    $wasFound = false;
-    $index = 0;
-    foreach($this->genres as $genre)
-    {
-      if ($genre->equals($aGenre))
-      {
-        $wasFound = true;
-        break;
-      }
-      $index += 1;
-    }
-    $index = $wasFound ? $index : -1;
-    return $index;
-  }
-
   public static function minimumNumberOfLocations()
   {
     return 0;
@@ -322,79 +236,6 @@ class HomeAudioSystem
     else 
     {
       $wasAdded = $this->addLocationAt($aLocation, $index);
-    }
-    return $wasAdded;
-  }
-
-  public static function minimumNumberOfAlbums()
-  {
-    return 0;
-  }
-
-  public function addAlbumVia($aTitle, $aReleaseDate, $aGenre, $aArtist, $aAlbumTracklist)
-  {
-    return new Album($aTitle, $aReleaseDate, $aGenre, $this, $aArtist, $aAlbumTracklist);
-  }
-
-  public function addAlbum($aAlbum)
-  {
-    $wasAdded = false;
-    if ($this->indexOfAlbum($aAlbum) !== -1) { return false; }
-    $existingHomeAudioSystem = $aAlbum->getHomeAudioSystem();
-    $isNewHomeAudioSystem = $existingHomeAudioSystem != null && $this !== $existingHomeAudioSystem;
-    if ($isNewHomeAudioSystem)
-    {
-      $aAlbum->setHomeAudioSystem($this);
-    }
-    else
-    {
-      $this->albums[] = $aAlbum;
-    }
-    $wasAdded = true;
-    return $wasAdded;
-  }
-
-  public function removeAlbum($aAlbum)
-  {
-    $wasRemoved = false;
-    //Unable to remove aAlbum, as it must always have a homeAudioSystem
-    if ($this !== $aAlbum->getHomeAudioSystem())
-    {
-      unset($this->albums[$this->indexOfAlbum($aAlbum)]);
-      $this->albums = array_values($this->albums);
-      $wasRemoved = true;
-    }
-    return $wasRemoved;
-  }
-
-  public function addAlbumAt($aAlbum, $index)
-  {  
-    $wasAdded = false;
-    if($this->addAlbum($aAlbum))
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfAlbums()) { $index = $this->numberOfAlbums() - 1; }
-      array_splice($this->albums, $this->indexOfAlbum($aAlbum), 1);
-      array_splice($this->albums, $index, 0, array($aAlbum));
-      $wasAdded = true;
-    }
-    return $wasAdded;
-  }
-
-  public function addOrMoveAlbumAt($aAlbum, $index)
-  {
-    $wasAdded = false;
-    if($this->indexOfAlbum($aAlbum) !== -1)
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfAlbums()) { $index = $this->numberOfAlbums() - 1; }
-      array_splice($this->albums, $this->indexOfAlbum($aAlbum), 1);
-      array_splice($this->albums, $index, 0, array($aAlbum));
-      $wasAdded = true;
-    } 
-    else 
-    {
-      $wasAdded = $this->addAlbumAt($aAlbum, $index);
     }
     return $wasAdded;
   }
@@ -477,9 +318,9 @@ class HomeAudioSystem
     return 0;
   }
 
-  public function addPlaylistVia($aName, $allSongs)
+  public function addPlaylistVia($aName)
   {
-    return new Playlist($aName, $allSongs, $this);
+    return new Playlist($aName, $this);
   }
 
   public function addPlaylist($aPlaylist)
@@ -545,79 +386,6 @@ class HomeAudioSystem
     return $wasAdded;
   }
 
-  public static function minimumNumberOfGenres()
-  {
-    return 0;
-  }
-
-  public function addGenreVia($aName)
-  {
-    return new Genre($aName, $this);
-  }
-
-  public function addGenre($aGenre)
-  {
-    $wasAdded = false;
-    if ($this->indexOfGenre($aGenre) !== -1) { return false; }
-    $existingHomeAudioSystem = $aGenre->getHomeAudioSystem();
-    $isNewHomeAudioSystem = $existingHomeAudioSystem != null && $this !== $existingHomeAudioSystem;
-    if ($isNewHomeAudioSystem)
-    {
-      $aGenre->setHomeAudioSystem($this);
-    }
-    else
-    {
-      $this->genres[] = $aGenre;
-    }
-    $wasAdded = true;
-    return $wasAdded;
-  }
-
-  public function removeGenre($aGenre)
-  {
-    $wasRemoved = false;
-    //Unable to remove aGenre, as it must always have a homeAudioSystem
-    if ($this !== $aGenre->getHomeAudioSystem())
-    {
-      unset($this->genres[$this->indexOfGenre($aGenre)]);
-      $this->genres = array_values($this->genres);
-      $wasRemoved = true;
-    }
-    return $wasRemoved;
-  }
-
-  public function addGenreAt($aGenre, $index)
-  {  
-    $wasAdded = false;
-    if($this->addGenre($aGenre))
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfGenres()) { $index = $this->numberOfGenres() - 1; }
-      array_splice($this->genres, $this->indexOfGenre($aGenre), 1);
-      array_splice($this->genres, $index, 0, array($aGenre));
-      $wasAdded = true;
-    }
-    return $wasAdded;
-  }
-
-  public function addOrMoveGenreAt($aGenre, $index)
-  {
-    $wasAdded = false;
-    if($this->indexOfGenre($aGenre) !== -1)
-    {
-      if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfGenres()) { $index = $this->numberOfGenres() - 1; }
-      array_splice($this->genres, $this->indexOfGenre($aGenre), 1);
-      array_splice($this->genres, $index, 0, array($aGenre));
-      $wasAdded = true;
-    } 
-    else 
-    {
-      $wasAdded = $this->addGenreAt($aGenre, $index);
-    }
-    return $wasAdded;
-  }
-
   public function equals($compareTo)
   {
     return $this == $compareTo;
@@ -631,15 +399,6 @@ class HomeAudioSystem
       $aLocation->delete();
       unset($this->locations[$this->indexOfLocation($aLocation)]);
       $this->locations = array_values($this->locations);
-    }
-    
-      
-    while (count($this->albums) > 0)
-    {
-      $aAlbum = $this->albums[count($this->albums) - 1];
-      $aAlbum->delete();
-      unset($this->albums[$this->indexOfAlbum($aAlbum)]);
-      $this->albums = array_values($this->albums);
     }
     
       
@@ -658,15 +417,6 @@ class HomeAudioSystem
       $aPlaylist->delete();
       unset($this->playlists[$this->indexOfPlaylist($aPlaylist)]);
       $this->playlists = array_values($this->playlists);
-    }
-    
-      
-    while (count($this->genres) > 0)
-    {
-      $aGenre = $this->genres[count($this->genres) - 1];
-      $aGenre->delete();
-      unset($this->genres[$this->indexOfGenre($aGenre)]);
-      $this->genres = array_values($this->genres);
     }
     
       
