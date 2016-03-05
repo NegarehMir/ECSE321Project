@@ -108,6 +108,11 @@ public class TestHomeAudioSystemController {
 		assertEquals(0, has.getPlaylists().size());
 	}
 	
+	@Test
+	public void testAddSongToPlaylist() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+	}
+	
 	
 	private void checkResultPlaylist(String title, HomeAudioSystem has2) {
 		assertEquals(1, has2.getPlaylists().size());
