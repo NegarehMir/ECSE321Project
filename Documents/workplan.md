@@ -53,8 +53,8 @@ Team members should work on items highest up in that week's due date section fir
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist, Album, Song to Location Unit Tests | | Eva | 4 | | |
-| Turn Volume Up or Down Unit Tests | | Pierre | 2 | | |
+| Assign Playlist, Album, Song to Location Unit Tests | | Evan | 4 | | |
+| Turn Volume Up or Down Unit Tests | | Eva | 2 | | |
 | Temporarily Mute Volume Unit Tests | |  Pierre | 2 | | |
 
 ## Due Mar. 11
@@ -76,8 +76,8 @@ Team members should work on items highest up in that week's due date section fir
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Next Song Plays When Current Song Finishes Unit Tests | | Pierre | 4 | | |
-| Delete Playlist, Album, Songs from Library Unit Tests | | Eva | 4 | | |
+| Next Song Plays When Current Song Finishes Unit Tests | | Evan | 4 | | |
+| Delete Playlist, Album, Songs from Library Unit Tests | | Pierre | 4 | | |
 | Write first component tests | | Eva | 5 | | |
 
 
