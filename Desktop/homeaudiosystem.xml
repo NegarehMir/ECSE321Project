@@ -1,396 +1,182 @@
 <ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem id="1">
   <locations id="2">
     <location id="3">
-      <name>Bathroom</name>
-      <volume>50</volume>
-      <mute>false</mute>
-      <songs id="4"/>
-    </location>
-    <location id="5">
-      <name>Room</name>
-      <volume>50</volume>
-      <mute>false</mute>
-      <songs id="6"/>
-    </location>
-    <location id="7">
       <name>Kitchen</name>
-      <volume>50</volume>
-      <mute>true</mute>
-      <songs id="8">
-        <song id="9">
-          <title>w4rgfgbdfgef</title>
-          <duration>60</duration>
-          <artist id="10">
-            <name>sfdsergwerg</name>
-            <albums id="11">
-              <album id="12">
-                <title>ertgrtg</title>
-                <releaseDate id="13">2016-02-10</releaseDate>
-                <genre id="14">
-                  <name>Rock</name>
+      <volume>81</volume>
+      <mute>false</mute>
+      <songs id="4">
+        <song id="5">
+          <title>sdfgsdfg</title>
+          <duration>2489</duration>
+          <artist id="6">
+            <name>sert</name>
+            <albums id="7">
+              <album id="8">
+                <title>zfv</title>
+                <releaseDate id="9">2016-03-02</releaseDate>
+                <genre id="10">
+                  <name>Jazz</name>
                 </genre>
-                <artist reference="10"/>
-                <albumTracklist id="15">
+                <artist reference="6"/>
+                <albumTracklist id="11">
                   <name></name>
-                  <songs id="16">
-                    <song id="17">
-                      <title>arfgsefgsg</title>
-                      <duration>60</duration>
-                      <artist reference="10"/>
-                    </song>
-                    <song reference="9"/>
+                  <songs id="12">
+                    <song reference="5"/>
                   </songs>
                 </albumTracklist>
               </album>
             </albums>
-            <songs id="18">
-              <song reference="17"/>
-              <song reference="9"/>
+            <songs id="13">
+              <song reference="5"/>
             </songs>
           </artist>
         </song>
       </songs>
+      <playingSongIndex>0</playingSongIndex>
     </location>
-    <location id="19">
-      <name>KidsRoom</name>
-      <volume>80</volume>
+    <location id="14">
+      <name>Bedroom</name>
+      <volume>19</volume>
       <mute>true</mute>
-      <songs id="20"/>
+      <songs id="15">
+        <song reference="5"/>
+      </songs>
+      <playingSongIndex>-1</playingSongIndex>
     </location>
-    <location id="21">
-      <name>Hallway</name>
+    <location id="16">
+      <name>Bedroom</name>
       <volume>0</volume>
       <mute>true</mute>
-      <songs id="22"/>
+      <songs id="17">
+        <song reference="5"/>
+      </songs>
+      <playingSongIndex>-1</playingSongIndex>
     </location>
-    <location id="23">
-      <name>Living Room</name>
-      <volume>81</volume>
+    <location id="18">
+      <name>Hallway</name>
+      <volume>73</volume>
       <mute>false</mute>
-      <songs id="24"/>
+      <songs id="19">
+        <song id="20">
+          <title>Do I Wanna Know?</title>
+          <duration>120</duration>
+          <artist id="21">
+            <name>Arctic Monkeys</name>
+            <albums id="22">
+              <album id="23">
+                <title>AM</title>
+                <genre id="24">
+                  <name>Rock</name>
+                </genre>
+                <artist reference="21"/>
+                <albumTracklist id="25">
+                  <name></name>
+                  <songs id="26">
+                    <song reference="20"/>
+                    <song id="27">
+                      <title>R U Mine?</title>
+                      <duration>120</duration>
+                      <artist reference="21"/>
+                    </song>
+                    <song id="28">
+                      <title>No. 1 Party Anthem</title>
+                      <duration>120</duration>
+                      <artist reference="21"/>
+                    </song>
+                  </songs>
+                </albumTracklist>
+              </album>
+            </albums>
+            <songs id="29">
+              <song reference="20"/>
+              <song reference="27"/>
+              <song reference="28"/>
+            </songs>
+          </artist>
+        </song>
+        <song reference="27"/>
+        <song reference="28"/>
+      </songs>
+      <playingSongIndex>0</playingSongIndex>
     </location>
   </locations>
-  <albums id="25">
-    <album id="26">
-      <title>zfv</title>
-      <releaseDate id="27">2016-03-02</releaseDate>
-      <genre id="28">
-        <name>Jazz</name>
-      </genre>
-      <artist id="29">
-        <name>sert</name>
-        <albums id="30">
-          <album reference="26"/>
-        </albums>
-        <songs id="31">
-          <song id="32">
-            <title>sdfgsdfg</title>
-            <duration>2489</duration>
-            <artist reference="29"/>
-          </song>
-        </songs>
-      </artist>
-      <albumTracklist id="33">
-        <name></name>
-        <songs id="34">
-          <song reference="32"/>
-        </songs>
-      </albumTracklist>
-    </album>
-    <album id="35">
+  <albums id="30">
+    <album reference="8"/>
+    <album id="31">
       <title>46urtyj</title>
-      <releaseDate id="36">2016-02-12</releaseDate>
-      <genre reference="28"/>
-      <artist id="37">
+      <releaseDate id="32">2016-02-12</releaseDate>
+      <genre reference="10"/>
+      <artist id="33">
         <name>476jnfhmh</name>
-        <albums id="38">
-          <album reference="35"/>
+        <albums id="34">
+          <album reference="31"/>
         </albums>
-        <songs id="39">
-          <song id="40">
-            <title>poopoo head</title>
+        <songs id="35">
+          <song id="36">
+            <title>head</title>
             <duration>60</duration>
-            <artist reference="37"/>
+            <artist reference="33"/>
           </song>
         </songs>
       </artist>
-      <albumTracklist id="41">
+      <albumTracklist id="37">
         <name></name>
-        <songs id="42">
-          <song reference="40"/>
+        <songs id="38">
+          <song reference="36"/>
         </songs>
       </albumTracklist>
     </album>
-    <album reference="12"/>
-    <album id="43">
-      <title>Weather Systems</title>
-      <releaseDate id="44">2012-02-01</releaseDate>
-      <genre reference="14"/>
-      <artist id="45">
-        <name>Anathema</name>
-        <albums id="46">
-          <album reference="43"/>
+    <album id="39">
+      <title>ertgrtg</title>
+      <releaseDate id="40">2016-02-10</releaseDate>
+      <genre reference="24"/>
+      <artist id="41">
+        <name>sfdsergwerg</name>
+        <albums id="42">
+          <album reference="39"/>
         </albums>
-        <songs id="47"/>
-      </artist>
-      <albumTracklist id="48">
-        <name></name>
-        <songs id="49"/>
-      </albumTracklist>
-    </album>
-    <album id="50">
-      <title>Controlling Crowds</title>
-      <releaseDate id="51">2016-02-02</releaseDate>
-      <genre reference="14"/>
-      <artist id="52">
-        <name>Archive</name>
-        <albums id="53">
-          <album reference="50"/>
-        </albums>
-        <songs id="54">
-          <song id="55">
-            <title>dangervisit</title>
-            <duration>120</duration>
-            <artist reference="52"/>
-          </song>
-        </songs>
-      </artist>
-      <albumTracklist id="56">
-        <name></name>
-        <songs id="57">
-          <song reference="55"/>
-        </songs>
-      </albumTracklist>
-    </album>
-    <album id="58">
-      <title>Nolita</title>
-      <artist id="59">
-        <name>Karen Ann</name>
-        <albums id="60">
-          <album reference="58"/>
-        </albums>
-        <songs id="61"/>
-      </artist>
-      <albumTracklist id="62">
-        <name></name>
-        <songs id="63"/>
-      </albumTracklist>
-    </album>
-    <album id="64">
-      <title>Noli</title>
-      <artist id="65">
-        <name>Keren ann</name>
-        <albums id="66">
-          <album reference="64"/>
-        </albums>
-        <songs id="67">
-          <song id="68">
-            <title>La forme et le fond</title>
-            <duration>180</duration>
-            <artist reference="65"/>
-          </song>
-          <song id="69">
-            <title>Where no endings end</title>
-            <duration>180</duration>
-            <artist reference="65"/>
-          </song>
-        </songs>
-      </artist>
-      <albumTracklist id="70">
-        <name></name>
-        <songs id="71">
-          <song reference="68"/>
-          <song reference="69"/>
-        </songs>
-      </albumTracklist>
-    </album>
-    <album id="72">
-      <title>dfdfds2wf</title>
-      <artist id="73">
-        <name>2323r</name>
-        <albums id="74">
-          <album reference="72"/>
-        </albums>
-        <songs id="75">
-          <song id="76">
-            <title>dfdfd</title>
+        <songs id="43">
+          <song id="44">
+            <title>arfgsefgsg</title>
             <duration>60</duration>
-            <artist reference="73"/>
+            <artist reference="41"/>
           </song>
-          <song id="77">
-            <title>dfdfd</title>
+          <song id="45">
+            <title>w4rgfgbdfgef</title>
             <duration>60</duration>
-            <artist reference="73"/>
+            <artist reference="41"/>
           </song>
         </songs>
       </artist>
-      <albumTracklist id="78">
+      <albumTracklist id="46">
         <name></name>
-        <songs id="79">
-          <song reference="76"/>
-          <song reference="77"/>
+        <songs id="47">
+          <song reference="44"/>
+          <song reference="45"/>
         </songs>
       </albumTracklist>
     </album>
-    <album id="80">
-      <title>fdfew</title>
-      <artist id="81">
-        <name>df2</name>
-        <albums id="82">
-          <album reference="80"/>
-        </albums>
-        <songs id="83">
-          <song id="84">
-            <title>dfedf</title>
-            <duration>60</duration>
-            <artist reference="81"/>
-          </song>
-          <song id="85">
-            <title>dfedffewfw</title>
-            <duration>60</duration>
-            <artist reference="81"/>
-          </song>
-        </songs>
-      </artist>
-      <albumTracklist id="86">
-        <name></name>
-        <songs id="87">
-          <song reference="84"/>
-          <song reference="85"/>
-        </songs>
-      </albumTracklist>
-    </album>
+    <album reference="23"/>
   </albums>
-  <artists id="88"/>
-  <playlists id="89">
-    <playlist id="90">
-      <name>Temporary</name>
-      <songs id="91">
-        <song reference="55"/>
-        <song reference="69"/>
-      </songs>
-    </playlist>
-    <playlist id="92">
-      <name>dfkldjfd</name>
-      <songs id="93">
-        <song reference="9"/>
-      </songs>
-    </playlist>
-    <playlist id="94">
-      <name>fdfw</name>
-      <songs id="95">
-        <song reference="17"/>
-        <song reference="68"/>
-      </songs>
-    </playlist>
-    <playlist id="96">
-      <name>ifjwioefheiowhfioewf</name>
-      <songs id="97">
-        <song reference="68"/>
-      </songs>
-    </playlist>
-    <playlist id="98">
-      <name>fdsfw</name>
-      <songs id="99">
-        <song reference="17"/>
-        <song reference="69"/>
-        <song reference="32"/>
-      </songs>
-    </playlist>
-    <playlist id="100">
-      <name>fdsfw</name>
-      <songs id="101">
-        <song reference="17"/>
-        <song reference="69"/>
-        <song reference="32"/>
-      </songs>
-    </playlist>
-    <playlist id="102">
-      <name>fdsfw</name>
-      <songs id="103">
-        <song reference="17"/>
-        <song reference="69"/>
-        <song reference="32"/>
-      </songs>
-    </playlist>
-    <playlist id="104">
-      <name>dfwf</name>
-      <songs id="105"/>
-    </playlist>
-    <playlist id="106">
-      <name>fwf2</name>
-      <songs id="107">
-        <song reference="69"/>
-      </songs>
-    </playlist>
-    <playlist id="108">
-      <name>ef21213</name>
-      <songs id="109">
-        <song reference="55"/>
-        <song reference="32"/>
-      </songs>
-    </playlist>
-    <playlist id="110">
-      <name>fw23f23</name>
-      <songs id="111">
-        <song reference="32"/>
-        <song reference="76"/>
-        <song reference="40"/>
-      </songs>
-    </playlist>
-    <playlist id="112">
-      <name>dsddq</name>
-      <songs id="113">
-        <song reference="40"/>
-        <song reference="76"/>
-      </songs>
-    </playlist>
-    <playlist id="114">
-      <name>dadqw</name>
-      <songs id="115">
-        <song reference="40"/>
-        <song reference="68"/>
-      </songs>
-    </playlist>
-    <playlist id="116">
-      <name>jknkf</name>
-      <songs id="117">
-        <song reference="40"/>
-        <song reference="68"/>
-        <song reference="76"/>
-        <song reference="32"/>
-      </songs>
-    </playlist>
-    <playlist id="118">
-      <name>dfsfw</name>
-      <songs id="119">
-        <song reference="17"/>
-        <song reference="76"/>
-        <song reference="32"/>
-      </songs>
-    </playlist>
-  </playlists>
-  <genres id="120">
-    <genre id="121">
+  <artists id="48"/>
+  <playlists id="49"/>
+  <genres id="50">
+    <genre id="51">
       <name>Dubstep</name>
     </genre>
-    <genre id="122">
+    <genre id="52">
       <name>Classical</name>
     </genre>
-    <genre reference="14"/>
-    <genre reference="28"/>
+    <genre reference="24"/>
+    <genre reference="10"/>
   </genres>
-  <songs id="123">
-    <song reference="32"/>
-    <song reference="40"/>
-    <song reference="17"/>
-    <song reference="9"/>
-    <song reference="55"/>
-    <song reference="68"/>
-    <song reference="69"/>
-    <song reference="76"/>
-    <song reference="77"/>
-    <song reference="84"/>
-    <song reference="85"/>
+  <songs id="53">
+    <song reference="5"/>
+    <song reference="36"/>
+    <song reference="44"/>
+    <song reference="45"/>
+    <song reference="20"/>
+    <song reference="27"/>
+    <song reference="28"/>
   </songs>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>

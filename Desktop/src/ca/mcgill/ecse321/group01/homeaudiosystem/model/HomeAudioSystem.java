@@ -519,10 +519,11 @@ public class HomeAudioSystem
   
   public boolean assignPlaylistToLocation(Playlist aPlaylist, Location aLocation)
   {
+	  aLocation.playingSongIndex = 0;
 	  boolean wasAdded = false;
 	  if (aLocation.getSongs().equals(aPlaylist.getSongs())) { return false; }
-	  for(Song song: aLocation.getSongs())
-		  aLocation.removeSong(song);
+	  for(int i = aLocation.getSongs().size(); i>0; i--)
+		  aLocation.removeSong(aLocation.getSongs().get(i-1));
 	  for(Song song: aPlaylist.getSongs())
 		  aLocation.getSongs().add(song);
 	  wasAdded = true;
@@ -531,10 +532,11 @@ public class HomeAudioSystem
   
   public boolean assignSongToLocation(Song aSong, Location aLocation)
   {
+	  aLocation.playingSongIndex = 0;
 	  boolean wasAdded = false;
 	  if (aLocation.getSongs().equals(aSong)) { return false; }
-	  for(Song song: aLocation.getSongs())
-		  aLocation.removeSong(song);
+	  for(int i = aLocation.getSongs().size(); i>0; i--)
+		  aLocation.removeSong(aLocation.getSongs().get(i-1));
 	  aLocation.addSong(aSong);
 	  wasAdded = true;
 	  return wasAdded;  
@@ -542,10 +544,11 @@ public class HomeAudioSystem
   
   public boolean assignAlbumToLocation(Album aAlbum, Location aLocation)
   {
+	  aLocation.playingSongIndex = 0;
 	  boolean wasAdded = false;
 	  if (aLocation.getSongs().equals(aAlbum.getAlbumTracklist().getSongs())) { return false; }
-	  for(Song song: aLocation.getSongs())
-		  aLocation.removeSong(song);
+	  for(int i = aLocation.getSongs().size(); i>0; i--)
+		  aLocation.removeSong(aLocation.getSongs().get(i-1));
 	  for(Song song: aAlbum.getAlbumTracklist().getSongs())
 		  aLocation.addSong(song);
 	  wasAdded = true;

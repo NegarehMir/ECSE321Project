@@ -29,7 +29,7 @@ public class CreatePlaylistPage extends JFrame {
 	private JTextField playlistNameTextField;
 	private JLabel songLabel;
 	private JComboBox<String> songList;
-	private JButton addPlaylistButton;
+	private JButton createPlaylistButton;
 	private JButton addSongButton;
 	private	JTable songsTable;
 	private	JScrollPane songScrollPane;
@@ -71,12 +71,12 @@ public class CreatePlaylistPage extends JFrame {
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Crate Playlist");
+		setTitle("Create Playlist");
 		
 		playlistNameLabel.setText("Playlist Name:");
 		
 		addSongButton = new JButton();
-		addPlaylistButton = new JButton();
+		createPlaylistButton = new JButton();
 		
 		addSongButton.setText("Add Song");
 		addSongButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,10 +85,10 @@ public class CreatePlaylistPage extends JFrame {
 			}
 		});
 		
-		addPlaylistButton.setText("Add Playlist");
-		addPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+		createPlaylistButton.setText("Create Playlist");
+		createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				addPlaylistButtonActionPerformed(evt);
+				createPlaylistButtonActionPerformed(evt);
 			}
 		});
 		
@@ -106,7 +106,7 @@ public class CreatePlaylistPage extends JFrame {
 								.addComponent(playlistNameLabel)
 								.addComponent(songLabel)
 								.addComponent(addSongButton)
-								.addComponent(addPlaylistButton)))
+								.addComponent(createPlaylistButton)))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(playlistNameTextField)
 								.addComponent(songList))
@@ -128,7 +128,7 @@ public class CreatePlaylistPage extends JFrame {
 						.addComponent(songScrollPane, 200, 200, 400)
 						.addGroup(layout.createSequentialGroup()
 								.addComponent(addSongButton)
-								.addComponent(addPlaylistButton)))
+								.addComponent(createPlaylistButton)))
 				);
 		pack();							
 	}
@@ -169,7 +169,7 @@ public class CreatePlaylistPage extends JFrame {
 		});
 	}
 	             
-	private void addPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
+	private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// create the playlist
 		Playlist playlist = new Playlist(playlistNameTextField.getText());
 		

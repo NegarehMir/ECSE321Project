@@ -118,7 +118,7 @@ private static final long serialVersionUID = -8062635784771606869L;
 
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Home Audio System");
+		setTitle("Add Album");
 		
 		albumNameLabel.setText("Album Name:");
 		artistNameLabel.setText("Artist:");

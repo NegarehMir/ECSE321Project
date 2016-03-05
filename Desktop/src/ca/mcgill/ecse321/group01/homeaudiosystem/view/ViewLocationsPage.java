@@ -30,14 +30,14 @@ public class ViewLocationsPage extends JFrame{
 
 	private void initComponents() {
 		// elements for locations table
-		locationsTable = new JTable(new DefaultTableModel(new Object[] { "Location", "Volume", "Is Mute" }, 0));
+		locationsTable = new JTable(new DefaultTableModel(new Object[] { "Location", "Volume", "Is Mute", "Current Song Playing"}, 0));
 		locationsScrollPane = new JScrollPane(locationsTable);
 		locationsLabel = new JLabel();
 		locationsLabel.setText("Locations:");
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("View Location");
+		setTitle("View Locations");
 		// layout
 		// columns
 		GroupLayout layout = new GroupLayout(getContentPane());
@@ -66,6 +66,6 @@ public class ViewLocationsPage extends JFrame{
 			model.removeRow(i);
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		for (Location location: has.getLocations())
-			model.addRow(new Object[]{location.getName(), location.getVolume(), location.getMute()});
+			model.addRow(new Object[]{location.getName(), location.getVolume(), location.getMute(),location.getCurrentSongName()});
 	}
 }

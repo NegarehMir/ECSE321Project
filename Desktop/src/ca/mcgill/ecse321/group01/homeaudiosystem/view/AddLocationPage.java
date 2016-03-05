@@ -61,7 +61,7 @@ public class AddLocationPage extends JFrame {
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Crate Location");
+		setTitle("Add Location");
 		
 		addLocationButton = new JButton();
 		addLocationButton.setText("Add Location");

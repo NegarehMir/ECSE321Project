@@ -25,7 +25,7 @@ public class LibraryPage extends JFrame {
 
 			// global settings and listeners
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			setTitle("Home Audio System");
+			setTitle("Library");
 
 			addAlbumButton.setText("Add Album");
 			addAlbumButton.addActionListener(new java.awt.event.ActionListener() {

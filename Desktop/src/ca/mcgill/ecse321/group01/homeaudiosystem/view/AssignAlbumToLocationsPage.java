@@ -64,10 +64,10 @@ public class AssignAlbumToLocationsPage extends JFrame{
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Assing album to Location");
+		setTitle("Assign Album to Location");
 				
 		assignButton = new JButton();
-		assignButton.setText("Assing album to Location");
+		assignButton.setText("Assign Album to Location");
 		assignButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				assignButtonActionPerformed(evt);

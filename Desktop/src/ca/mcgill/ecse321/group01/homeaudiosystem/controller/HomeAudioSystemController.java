@@ -64,7 +64,7 @@ public class HomeAudioSystemController {
 		
 		if (error.length() > 0) 
 			throw new InvalidInputException(error);
-
+		
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		has.addSongToPlaylist(song, playlist);
 		PersistenceXStream.saveToXMLwithXStream(has);

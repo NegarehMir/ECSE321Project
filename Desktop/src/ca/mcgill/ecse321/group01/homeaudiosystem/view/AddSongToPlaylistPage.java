@@ -8,6 +8,7 @@ import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
@@ -43,6 +44,10 @@ public class AddSongToPlaylistPage extends JFrame{
 		//elements for error message
 		errorMessage = new JLabel();
 		errorMessage.setForeground(Color.RED);
+		
+		// global settings and listeners
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setTitle("Add Song to Playlist");
 		
 		//elements for songs
 		songLabel = new JLabel();

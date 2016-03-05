@@ -76,10 +76,10 @@ public class AssignSongToLocationsPage extends JFrame {
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Assing song to Location");
+		setTitle("Assing Song to Location");
 				
 		assignButton = new JButton();
-		assignButton.setText("Assing song to Location");
+		assignButton.setText("Assing Song to Location");
 		assignButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				assignButtonActionPerformed(evt);

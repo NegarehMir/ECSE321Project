@@ -20,6 +20,7 @@ public class Location
 
   //Location Associations
   private List<Song> songs;
+  int playingSongIndex;
 
   //------------------------
   // CONSTRUCTOR
@@ -31,6 +32,7 @@ public class Location
     volume = aVolume;
     mute = aMute;
     songs = new ArrayList<Song>();
+    playingSongIndex = -1;
   }
 
   //------------------------
@@ -177,5 +179,13 @@ public class Location
             "volume" + ":" + getVolume()+ "," +
             "mute" + ":" + getMute()+ "]"
      + outputString;
+  }
+  
+  public String getCurrentSongName()
+  {
+	  if(playingSongIndex==-1)
+		  return "-";
+	  else
+		  return songs.get(playingSongIndex).getTitle()+" - "+songs.get(playingSongIndex).getArtist().getName();
   }
 }

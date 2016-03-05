@@ -64,10 +64,10 @@ public class AssignPlaylistToLocationsPage extends JFrame{
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		setTitle("Assing playlist to Location");
+		setTitle("Assign Playlist to Location");
 				
 		assignButton = new JButton();
-		assignButton.setText("Assing Playlist to Location");
+		assignButton.setText("Assign Playlist to Location");
 		assignButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				assignButtonActionPerformed(evt);
