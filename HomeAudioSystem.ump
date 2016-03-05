@@ -1,7 +1,7 @@
 namespace ca.mcgill.ecse321.group01.homeaudiosystem.model;
 
 // use JavaHomeAudioSystem.ump;
-// use PhpHomeAudioSystem.ump;
+use PhpHomeAudioSystem.ump;
 
 class HomeAudioSystem
 {
@@ -16,11 +16,12 @@ class Location
   String name;
   int volume;
   boolean mute;
-  1 <@>- * LocationMusicItem;
+  1 -> * LocationMusicItem;
 }
 
 class Song
 {
+  isA LocationMusicItem;
   String title;
   int duration;
 }
@@ -34,6 +35,7 @@ class Artist
 
 class Playlist
 {
+  isA LocationMusicItem;
   String title;
   * -> * Song;
 }
@@ -48,59 +50,59 @@ class Album
 
 
 
-class LocationMusicItem
+interface LocationMusicItem
 {
-  * -> * Playlist;
-  * -> * Song;
+  void play();
 }
 
 class Song
 {
-  position 198 415 109 75;
+  position 280 506 109 75;
   position.association Album__Song 11,0 0,68;
   position.association AlbumTracklist__Song 109,10 0,34;
 }
 
 class Album
 {
-  position 311 233 146 92;
-    position.association Album__Song 16,92 75,0;
+  position 392 376 146 92;
+    position.association Album__Song 6,92 109,0;
 }
 
 class Artist
 {
-  position 605 179 109 58;
-  position.association Artist__Song 0,60 109,35;
+  position 562 307 109 67;
+  position.association Artist__Song 93,67 109,61;
   position.association Album__Artist 0,10 146,51;
 }
 
 class Playlist
 {
-  position 248 124 112 58;
+  position 392 257 112 58;
   position.association Album__Playlist 83,0 37,75;
-  position.association Playlist__Song 20,58 27,0;
+  position.association Playlist__Song 0,58 79,0;
 }
 
 class Location
 {
-  position 59 83 122 92;
+  position 152 99 122 92;
   position.association Location__Song 30,92 0,0;
+  position.association Location__LocationMusicItem 62,92 84,0;
 }
 
 class HomeAudioSystem
 {
   position 207 16 136 45;
   position.association Album__HomeAudioSystem 85,45 0,10;
-  position.association HomeAudioSystem__Playlist 55,45 16,0;
-  position.association HomeAudioSystem__Location 0,38 30,0;
-  position.association Artist__HomeAudioSystem 129,38 56,0;
+  position.association HomeAudioSystem__Playlist 113,45 77,0;
+  position.association HomeAudioSystem__Location 15,45 30,0;
+  position.association Artist__HomeAudioSystem 136,43 56,0;
   position.association AlbumTracklist__HomeAudioSystem 58,45 30,0;
 }
 
 
 class LocationMusicItem
 {
-  position 74 280 133 45;
+  position 225 217 133 45;
   position.association LocationMusicItem__Song 76,45 0,30;
   position.association LocationMusicItem__Playlist 98,0 0,33;
 }

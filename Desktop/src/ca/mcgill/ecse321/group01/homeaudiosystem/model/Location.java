@@ -5,7 +5,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 14 "../../../../../../HomeAudioSystem.ump"
-// line 84 "../../../../../../HomeAudioSystem.ump"
+// line 85 "../../../../../../HomeAudioSystem.ump"
 public class Location
 {
 
@@ -122,25 +122,11 @@ public class Location
     return 0;
   }
 
-  public LocationMusicItem addLocationMusicItem()
-  {
-    return new LocationMusicItem(this);
-  }
-
   public boolean addLocationMusicItem(LocationMusicItem aLocationMusicItem)
   {
     boolean wasAdded = false;
     if (locationMusicItems.contains(aLocationMusicItem)) { return false; }
-    Location existingLocation = aLocationMusicItem.getLocation();
-    boolean isNewLocation = existingLocation != null && !this.equals(existingLocation);
-    if (isNewLocation)
-    {
-      aLocationMusicItem.setLocation(this);
-    }
-    else
-    {
-      locationMusicItems.add(aLocationMusicItem);
-    }
+    locationMusicItems.add(aLocationMusicItem);
     wasAdded = true;
     return wasAdded;
   }
@@ -148,8 +134,7 @@ public class Location
   public boolean removeLocationMusicItem(LocationMusicItem aLocationMusicItem)
   {
     boolean wasRemoved = false;
-    //Unable to remove aLocationMusicItem, as it must always have a location
-    if (!this.equals(aLocationMusicItem.getLocation()))
+    if (locationMusicItems.contains(aLocationMusicItem))
     {
       locationMusicItems.remove(aLocationMusicItem);
       wasRemoved = true;
@@ -210,14 +195,7 @@ public class Location
 
   public void delete()
   {
-    while (locationMusicItems.size() > 0)
-    {
-      LocationMusicItem aLocationMusicItem = locationMusicItems.get(locationMusicItems.size() - 1);
-      aLocationMusicItem.delete();
-      locationMusicItems.remove(aLocationMusicItem);
-    }
-    
-      
+    locationMusicItems.clear();
     HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
     this.homeAudioSystem = null;
     placeholderHomeAudioSystem.removeLocation(this);

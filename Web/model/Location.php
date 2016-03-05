@@ -129,25 +129,11 @@ class Location
     return 0;
   }
 
-  public function addLocationMusicItemVia()
-  {
-    return new LocationMusicItem($this);
-  }
-
   public function addLocationMusicItem($aLocationMusicItem)
   {
     $wasAdded = false;
     if ($this->indexOfLocationMusicItem($aLocationMusicItem) !== -1) { return false; }
-    $existingLocation = $aLocationMusicItem->getLocation();
-    $isNewLocation = $existingLocation != null && $this !== $existingLocation;
-    if ($isNewLocation)
-    {
-      $aLocationMusicItem->setLocation($this);
-    }
-    else
-    {
-      $this->locationMusicItems[] = $aLocationMusicItem;
-    }
+    $this->locationMusicItems[] = $aLocationMusicItem;
     $wasAdded = true;
     return $wasAdded;
   }
@@ -155,8 +141,7 @@ class Location
   public function removeLocationMusicItem($aLocationMusicItem)
   {
     $wasRemoved = false;
-    //Unable to remove aLocationMusicItem, as it must always have a location
-    if ($this !== $aLocationMusicItem->getLocation())
+    if ($this->indexOfLocationMusicItem($aLocationMusicItem) != -1)
     {
       unset($this->locationMusicItems[$this->indexOfLocationMusicItem($aLocationMusicItem)]);
       $this->locationMusicItems = array_values($this->locationMusicItems);
@@ -223,15 +208,7 @@ class Location
 
   public function delete()
   {
-    while (count($this->locationMusicItems) > 0)
-    {
-      $aLocationMusicItem = $this->locationMusicItems[count($this->locationMusicItems) - 1];
-      $aLocationMusicItem->delete();
-      unset($this->locationMusicItems[$this->indexOfLocationMusicItem($aLocationMusicItem)]);
-      $this->locationMusicItems = array_values($this->locationMusicItems);
-    }
-    
-      
+    $this->locationMusicItems = array();
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;
     $placeholderHomeAudioSystem->removeLocation($this);
