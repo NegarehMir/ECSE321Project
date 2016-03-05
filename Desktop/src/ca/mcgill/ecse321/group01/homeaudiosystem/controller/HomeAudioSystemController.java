@@ -37,7 +37,7 @@ public class HomeAudioSystemController {
 			throw new InvalidInputException(error);
 
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		Artist artist = new Artist(artistName, has);
+		Artist artist = createArtist(artistName);
 		Album album = new Album(title, has, releaseDate, artist);
 		
 		Genres genre = Genres.valueOf(genreName);
@@ -53,6 +53,24 @@ public class HomeAudioSystemController {
 		
 		has.addPlaylist(album);
 		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	private Artist createArtist(String artistName) {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		LinkedList<Artist> hasArtists = (LinkedList<Artist>) has.getArtists();
+		
+		for (Artist hasArtist : hasArtists) {
+			String hasArtistName = hasArtist.getName();
+			if (hasArtistName.equals(artistName)) {
+				return hasArtist;
+			}
+		}
+		
+		Artist artist = new Artist(artistName, has);
+		has.addArtist(artist);
+		PersistenceXStream.saveToXMLwithXStream(has);
+		
+		return artist;
 	}
 	
 	public void createPlaylist(Playlist playlist) throws InvalidInputException {
