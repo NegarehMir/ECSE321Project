@@ -43,17 +43,17 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
-| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
+| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , |3, , |
+| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , |3, , |
 | View All Locations (currently playing song, volume level) | PB.U.01, HL.U.01, HL.U.04 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist, Album, Song to Location Unit Tests | | Evan | 4 | | |
+| Assign Playlist, Album, Song to Location Unit Tests | | Eva | 4 | | |
 | Turn Volume Up or Down Unit Tests | | Pierre | 2 | | |
 | Temporarily Mute Volume Unit Tests | |  Pierre | 2 | | |
 
@@ -68,15 +68,15 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Next Song Plays When Current Song Finishes | PB.J.01 | Pierre Desktop, Nicky Web, Thomas Mobile | 5, 5, 1 | | |
-| Delete Playlist from Library | ML.P.03 | Pierre Desktop, Nicky Web, Thomas Mobile | 3, 3, 2 | | |
-| Delete Album from Library | ML.A.03 | Pierre Desktop, Nicky Web, Thomas Mobile | 3, 3, 2 | | |
-| Delete Songs from Library | ML.A.04 |  Pierre Desktop, Nicky Web, Thomas Mobile | 3, 3, 2 | | |
+| Next Song Plays When Current Song Finishes | PB.J.01 | Thomas Web, Eva & Pierre Mobile | 5, 1 | | |
+| Delete Playlist from Library | ML.P.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
+| Delete Album from Library | ML.A.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
+| Delete Songs from Library | ML.A.04 |  Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Next Song Plays When Current Song Finishes Unit Tests | | Evan | 4 | | |
+| Next Song Plays When Current Song Finishes Unit Tests | | Pierre | 4 | | |
 | Delete Playlist, Album, Songs from Library Unit Tests | | Eva | 4 | | |
 | Write first component tests | | Eva | 5 | | |
 
@@ -86,6 +86,7 @@ Team members should work on items highest up in that week's due date section fir
 #### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
+| Next Song Plays When Current Song Finishes | PB.J.01 | Nicky Desktop | 5 | | |
 | System testing | Deliverable 3 | Evan | 4 | | |
 | Performance/stress testing | Deliverable 3 | Evan | 4 | | |
 | Work plan update | Deliverable 3 | Thomas | 1 | | |
@@ -93,9 +94,9 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Play/Pause | PB.02 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
-| ~~Skip Songs~~ | ~~PB.03~~ | ~~Eva Desktop, Thomas Web, Pierre Mobile~~ | ~~5, 5, 3~~ | | |
-| ~~Jump to Start/End of Song~~ | ~~PB.J.02, PB.J.03~~ | ~~Eva Desktop, Thomas Web, Pierre Mobile~~ | ~~5, 5, 3~~ | | |
+| Play/Pause | PB.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 3 | | |
+| ~~Skip Songs~~ | ~~PB.03~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~5, 5, 3~~ | | |
+| ~~Jump to Start/End of Song~~ | ~~PB.J.02, PB.J.03~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~5, 5, 3~~ | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -117,9 +118,9 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
-| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
-| ~~Add Songs after Album Created~~ | ~~ML.A.02~~ | ~~Nicky Desktop, Thomas Web, Eva Mobile~~ | ~~3, 3, 3~~ | | |
+| Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 | | |
+| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 4 | | |
+| ~~Add Songs after Album Created~~ | ~~ML.A.02~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~3, 3, 3~~ | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -135,6 +136,7 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
+| View the position of the song currently playing in each location | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
