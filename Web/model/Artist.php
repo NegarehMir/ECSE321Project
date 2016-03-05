@@ -142,9 +142,9 @@ class Artist
     return 0;
   }
 
-  public function addAlbumVia($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate)
+  public function addAlbumVia($aTitle, $allSongs, $aHomeAudioSystem, $aGenre, $aReleaseDate)
   {
-    return new Album($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate, $this);
+    return new Album($aTitle, $allSongs, $aHomeAudioSystem, $aGenre, $aReleaseDate, $this);
   }
 
   public function addAlbum($aAlbum)
@@ -210,9 +210,15 @@ class Artist
     return $wasAdded;
   }
 
+  public function isNumberOfSongsValid()
+  {
+    $isValid = $this->numberOfSongs() >= self::minimumNumberOfSongs();
+    return $isValid;
+  }
+
   public static function minimumNumberOfSongs()
   {
-    return 0;
+    return 1;
   }
 
   public function addSong($aSong)
@@ -243,6 +249,11 @@ class Artist
       return $wasRemoved;
     }
 
+    if ($this->numberOfSongs() <= self::minimumNumberOfSongs())
+    {
+      return $wasRemoved;
+    }
+
     $oldIndex = $this->indexOfSong($aSong);
     unset($this->songs[$oldIndex]);
     if ($aSong->indexOfArtist($this) == -1)
@@ -260,6 +271,49 @@ class Artist
     }
     $this->songs = array_values($this->songs);
     return $wasRemoved;
+  }
+
+  public function setSongs($newSongs)
+  {
+    $wasSet = false;
+    $verifiedSongs = array();
+    foreach ($newSongs as $aSong)
+    {
+      if (array_search($aSong,$verifiedSongs) !== false)
+      {
+        continue;
+      }
+      $verifiedSongs[] = $aSong;
+    }
+
+    if (count($verifiedSongs) != count($newSongs) || count($verifiedSongs) < self::minimumNumberOfSongs())
+    {
+      return $wasSet;
+    }
+
+    $oldSongs = $this->songs;
+    $this->songs = array();
+    foreach ($verifiedSongs as $aNewSong)
+    {
+      $this->songs[] = $aNewSong;
+      $removeIndex = array_search($aNewSong,$oldSongs);
+      if ($removeIndex !== false)
+      {
+        unset($oldSongs[$removeIndex]);
+        $oldSongs = array_values($oldSongs);
+      }
+      else
+      {
+        $aNewSong->addArtist($this);
+      }
+    }
+
+    foreach ($oldSongs as $anOldSong)
+    {
+      $anOldSong->removeArtist($this);
+    }
+    $wasSet = true;
+    return $wasSet;
   }
 
   public function addSongAt($aSong, $index)

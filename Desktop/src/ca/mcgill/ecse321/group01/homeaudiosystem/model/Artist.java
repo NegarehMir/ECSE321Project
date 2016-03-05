@@ -125,9 +125,9 @@ public class Artist
     return 0;
   }
 
-  public Album addAlbum(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate)
+  public Album addAlbum(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Song... allSongs)
   {
-    return new Album(aTitle, aHomeAudioSystem, aReleaseDate, this);
+    return new Album(aTitle, aHomeAudioSystem, aReleaseDate, this, allSongs);
   }
 
   public boolean addAlbum(Album aAlbum)
@@ -192,9 +192,15 @@ public class Artist
     return wasAdded;
   }
 
+  public boolean isNumberOfSongsValid()
+  {
+    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
+    return isValid;
+  }
+
   public static int minimumNumberOfSongs()
   {
-    return 0;
+    return 1;
   }
 
   public boolean addSong(Song aSong)
@@ -225,6 +231,11 @@ public class Artist
       return wasRemoved;
     }
 
+    if (numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasRemoved;
+    }
+
     int oldIndex = songs.indexOf(aSong);
     songs.remove(oldIndex);
     if (aSong.indexOfArtist(this) == -1)
@@ -240,6 +251,47 @@ public class Artist
       }
     }
     return wasRemoved;
+  }
+
+  public boolean setSongs(Song... newSongs)
+  {
+    boolean wasSet = false;
+    ArrayList<Song> verifiedSongs = new ArrayList<Song>();
+    for (Song aSong : newSongs)
+    {
+      if (verifiedSongs.contains(aSong))
+      {
+        continue;
+      }
+      verifiedSongs.add(aSong);
+    }
+
+    if (verifiedSongs.size() != newSongs.length || verifiedSongs.size() < minimumNumberOfSongs())
+    {
+      return wasSet;
+    }
+
+    ArrayList<Song> oldSongs = new ArrayList<Song>(songs);
+    songs.clear();
+    for (Song aNewSong : verifiedSongs)
+    {
+      songs.add(aNewSong);
+      if (oldSongs.contains(aNewSong))
+      {
+        oldSongs.remove(aNewSong);
+      }
+      else
+      {
+        aNewSong.addArtist(this);
+      }
+    }
+
+    for (Song anOldSong : oldSongs)
+    {
+      anOldSong.removeArtist(this);
+    }
+    wasSet = true;
+    return wasSet;
   }
 
   public boolean addSongAt(Song aSong, int index)

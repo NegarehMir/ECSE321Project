@@ -25,16 +25,11 @@ public class Song implements LocationMusicItem
   // CONSTRUCTOR
   //------------------------
 
-  public Song(String aTitle, int aDuration, Album aAlbum, Artist... allArtists)
+  public Song(String aTitle, int aDuration, Album aAlbum)
   {
     title = aTitle;
     duration = aDuration;
     artists = new ArrayList<Artist>();
-    boolean didAddArtists = setArtists(allArtists);
-    if (!didAddArtists)
-    {
-      throw new RuntimeException("Unable to create Song, must have at least 1 artists");
-    }
     boolean didAddAlbum = setAlbum(aAlbum);
     if (!didAddAlbum)
     {
@@ -244,7 +239,13 @@ public class Song implements LocationMusicItem
   public boolean setAlbum(Album aAlbum)
   {
     boolean wasSet = false;
+    //Must provide album to song
     if (aAlbum == null)
+    {
+      return wasSet;
+    }
+
+    if (album != null && album.numberOfSongs() <= Album.minimumNumberOfSongs())
     {
       return wasSet;
     }
@@ -253,7 +254,12 @@ public class Song implements LocationMusicItem
     album = aAlbum;
     if (existingAlbum != null && !existingAlbum.equals(aAlbum))
     {
-      existingAlbum.removeSong(this);
+      boolean didRemove = existingAlbum.removeSong(this);
+      if (!didRemove)
+      {
+        album = existingAlbum;
+        return wasSet;
+      }
     }
     album.addSong(this);
     wasSet = true;
@@ -266,7 +272,14 @@ public class Song implements LocationMusicItem
     artists.clear();
     for(Artist aArtist : copyOfArtists)
     {
-      aArtist.removeSong(this);
+      if (aArtist.numberOfSongs() <= Artist.minimumNumberOfSongs())
+      {
+        aArtist.delete();
+      }
+      else
+      {
+        aArtist.removeSong(this);
+      }
     }
     Album placeholderAlbum = album;
     this.album = null;

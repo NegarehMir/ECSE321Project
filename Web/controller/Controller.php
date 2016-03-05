@@ -68,12 +68,9 @@ class Controller
         
         foreach($songs as $song)
         {
-          $newSong = new Song($song[0], $song[1], $artist, $albumSongs);
-          $artist->addSong($newSong);
-          $album->addSong($newSong);
+          $newSong = new Song($song[0], $song[1], $album);
+          $newSong.addArtist($artist);
         }
-
-        
 
         $has->addAlbum($album);
 

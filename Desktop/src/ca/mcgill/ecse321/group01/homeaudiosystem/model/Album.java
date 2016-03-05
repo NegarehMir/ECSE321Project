@@ -26,9 +26,9 @@ public class Album extends Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public Album(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Artist aArtist)
+  public Album(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Artist aArtist, Song... allSongs)
   {
-    super(aTitle, aHomeAudioSystem);
+    super(aTitle, aHomeAudioSystem, allSongs);
     releaseDate = aReleaseDate;
     songs = new ArrayList<Song>();
     boolean didAddArtist = setArtist(aArtist);
@@ -90,14 +90,21 @@ public class Album extends Playlist
     return artist;
   }
 
-  public static int minimumNumberOfSongs()
+  public boolean isNumberOfSongsValid()
   {
-    return 0;
+    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
+    return isValid;
   }
 
-  public Song addSong(String aTitle, int aDuration, Artist... allArtists)
+  public static int minimumNumberOfSongs()
   {
-    return new Song(aTitle, aDuration, this, allArtists);
+    return 1;
+  }
+
+  public Song addSong(String aTitle, int aDuration)
+  {
+    Song aNewSong = new Song(aTitle, aDuration, this);
+    return aNewSong;
   }
 
   public boolean addSong(Song aSong)
@@ -106,6 +113,11 @@ public class Album extends Playlist
     if (songs.contains(aSong)) { return false; }
     Album existingAlbum = aSong.getAlbum();
     boolean isNewAlbum = existingAlbum != null && !this.equals(existingAlbum);
+
+    if (isNewAlbum && existingAlbum.numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasAdded;
+    }
     if (isNewAlbum)
     {
       aSong.setAlbum(this);
@@ -122,11 +134,19 @@ public class Album extends Playlist
   {
     boolean wasRemoved = false;
     //Unable to remove aSong, as it must always have a album
-    if (!this.equals(aSong.getAlbum()))
+    if (this.equals(aSong.getAlbum()))
     {
-      songs.remove(aSong);
-      wasRemoved = true;
+      return wasRemoved;
     }
+
+    //album already at minimum (1)
+    if (numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasRemoved;
+    }
+
+    songs.remove(aSong);
+    wasRemoved = true;
     return wasRemoved;
   }
 

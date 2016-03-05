@@ -21,16 +21,11 @@ class Song implements LocationMusicItem
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle, $aDuration, $allArtists, $aAlbum)
+  public function __construct($aTitle, $aDuration, $aAlbum)
   {
     $this->title = $aTitle;
     $this->duration = $aDuration;
     $this->artists = array();
-    $didAddArtists = $this->setArtists($allArtists);
-    if (!$didAddArtists)
-    {
-      throw new Exception("Unable to create Song, must have at least 1 artists");
-    }
     $didAddAlbum = $this->setAlbum($aAlbum);
     if (!$didAddAlbum)
     {
@@ -255,16 +250,27 @@ class Song implements LocationMusicItem
   public function setAlbum($aAlbum)
   {
     $wasSet = false;
+    //Must provide album to song
     if ($aAlbum == null)
     {
       return $wasSet;
     }
-    
+
+    if ($this->album != null && $this->album->numberOfSongs() <= Album::minimumNumberOfSongs())
+    {
+      return $wasSet;
+    }
+
     $existingAlbum = $this->album;
     $this->album = $aAlbum;
     if ($existingAlbum != null && $existingAlbum != $aAlbum)
     {
-      $existingAlbum->removeSong($this);
+      $didRemove = $existingAlbum->removeSong($this);
+      if (!$didRemove)
+      {
+        $this->album = $existingAlbum;
+        return $wasSet;
+      }
     }
     $this->album->addSong($this);
     $wasSet = true;
@@ -282,7 +288,14 @@ class Song implements LocationMusicItem
     $this->artists = array();
     foreach ($copyOfArtists as $aArtist)
     {
-      $aArtist->removeSong($this);
+      if ($aArtist->numberOfSongs() <= Artist::minimumNumberOfSongs())
+      {
+        $aArtist->delete();
+      }
+      else
+      {
+        $aArtist->removeSong($this);
+      }
     }
     $placeholderAlbum = $this->album;
     $this->album = null;

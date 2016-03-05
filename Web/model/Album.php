@@ -21,9 +21,9 @@ class Album extends Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate, $aArtist)
+  public function __construct($aTitle, $allSongs, $aHomeAudioSystem, $aGenre, $aReleaseDate, $aArtist)
   {
-    parent::__construct($aTitle, $aHomeAudioSystem);
+    parent::__construct($aTitle, $allSongs, $aHomeAudioSystem);
     $this->genre = $aGenre;
     $this->releaseDate = $aReleaseDate;
     $this->songs = array();
@@ -110,14 +110,20 @@ class Album extends Playlist
     return $this->artist;
   }
 
-  public static function minimumNumberOfSongs()
+  public function isNumberOfSongsValid()
   {
-    return 0;
+    $isValid = $this->numberOfSongs() >= self::minimumNumberOfSongs();
+    return $isValid;
   }
 
-  public function addSongVia($aTitle, $aDuration, $allArtists)
+  public static function minimumNumberOfSongs()
   {
-    return new Song($aTitle, $aDuration, $allArtists, $this);
+    return 1;
+  }
+
+  public function addSongVia($aTitle, $aDuration)
+  {
+    return new Song($aTitle, $aDuration, $this);
   }
 
   public function addSong($aSong)
@@ -126,6 +132,12 @@ class Album extends Playlist
     if ($this->indexOfSong($aSong) !== -1) { return false; }
     $existingAlbum = $aSong->getAlbum();
     $isNewAlbum = $existingAlbum != null && $this !== $existingAlbum;
+
+    if ($isNewAlbum && $existingAlbum->numberOfSongs() <= self::minimumNumberOfSongs())
+    {
+      return $wasAdded;
+    }
+
     if ($isNewAlbum)
     {
       $aSong->setAlbum($this);
@@ -142,12 +154,20 @@ class Album extends Playlist
   {
     $wasRemoved = false;
     //Unable to remove aSong, as it must always have a album
-    if ($this !== $aSong->getAlbum())
+    if ($this === $aSong->getAlbum())
     {
-      unset($this->songs[$this->indexOfSong($aSong)]);
-      $this->songs = array_values($this->songs);
-      $wasRemoved = true;
+      return $wasRemoved;
     }
+
+    //album already at minimum (1)
+    if ($this->numberOfSongs() <= self::minimumNumberOfSongs())
+    {
+      return $wasRemoved;
+    }
+
+    unset($this->songs[$this->indexOfSong($aSong)]);
+    $this->songs = array_values($this->songs);
+    $wasRemoved = true;
     return $wasRemoved;
   }
 
