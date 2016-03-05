@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 28 "../../../../../../HomeAudioSystem.ump"
-// line 70 "../../../../../../HomeAudioSystem.ump"
+// line 29 "../../../../../../HomeAudioSystem.ump"
+// line 71 "../../../../../../HomeAudioSystem.ump"
 public class Artist
 {
 

@@ -2,7 +2,7 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
-class Playlist
+class Playlist implements LocationMusicItem
 {
 
   //------------------------
@@ -183,6 +183,11 @@ class Playlist
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;
     $placeholderHomeAudioSystem->removePlaylist($this);
+  }
+
+  public function play()
+  {
+          return "";
   }
 
 }

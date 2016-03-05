@@ -1,11 +1,12 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 require_once __DIR__.'/controller/Controller.php';
 session_start();
 
 $_SESSION["errorAddAlbumName"] = "";
 $_SESSION["errorAddAlbumArtist"] = "";
 $_SESSION["errorAddAlbumDate"] = "";
+$_SESSION["errorAddAlbumGenre"] = "";
 $_SESSION["errorAddAlbumSongs"] = "";
 $_SESSION["errorAddAlbumPhoto"] = "";
 
@@ -50,7 +51,7 @@ try{
 
 }catch(Exception $e){
 
-  //echo $e;
+  echo $e;
 
   if(strpos($e, "{{albumName}}"))
   {
@@ -72,8 +73,12 @@ try{
     $_SESSION["errorAddAlbumSongs"]  = "Must Have at Least One Song!";
   }
 
+  if(strpos($e, "{{genre}}"))
+  {
+    $_SESSION["errorAddAlbumGenre"]  = "Album Genre cannot be empty!";
+  }
+
 }
-//var_dump($_SERVER["DOCUMENT_ROOT"]);
 
 ?>
 
@@ -81,6 +86,6 @@ try{
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="refresh" content="0; url=index.php" />
+<meta http-equiv="refresh" content="0; url=index.php?page=album" />
 </head>
 </html>

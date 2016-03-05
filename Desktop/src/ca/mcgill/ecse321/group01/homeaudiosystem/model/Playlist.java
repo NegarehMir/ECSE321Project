@@ -4,9 +4,9 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 35 "../../../../../../HomeAudioSystem.ump"
-// line 77 "../../../../../../HomeAudioSystem.ump"
-public class Playlist
+// line 36 "../../../../../../HomeAudioSystem.ump"
+// line 78 "../../../../../../HomeAudioSystem.ump"
+public class Playlist implements LocationMusicItem
 {
 
   //------------------------
@@ -170,6 +170,11 @@ public class Playlist
     HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
     this.homeAudioSystem = null;
     placeholderHomeAudioSystem.removePlaylist(this);
+  }
+
+  @Override
+  public void play(){
+          return ;
   }
 
 

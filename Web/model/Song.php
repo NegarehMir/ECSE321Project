@@ -2,7 +2,7 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
-class Song
+class Song implements LocationMusicItem
 {
 
   //------------------------
@@ -287,6 +287,11 @@ class Song
     $placeholderAlbum = $this->album;
     $this->album = null;
     $placeholderAlbum->removeSong($this);
+  }
+
+  public function play()
+  {
+          return "";
   }
 
 }
