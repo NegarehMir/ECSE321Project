@@ -135,8 +135,7 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| View Volume Level of Location | HL.U.01 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 2, 2, 2 | | |
-| View Music Assigned to each Location | HL.U.04 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 2, 2, 2 | | |
+| View the position of the song currently playing in each location | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
