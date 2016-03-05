@@ -18,20 +18,42 @@
 
     $has = $pm->loadDataFromStore();
 
+    /** ROUTING **/
 
+    if(isset($_GET['page']) && ($_GET['page'] == 'addAlbum' || $_GET['page'] == 'album'))
+    {
+      $tab = "albums";
+    }
+
+    else if(isset($_GET['page']) && ($_GET['page'] == 'addPlaylist' || $_GET['page'] == 'playlist'))
+    {
+      $tab = "playlists";
+    }
+
+    else
+    {
+      $tab = "songs";
+    }
 
     ?>
     <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Super Cool Home Audio System</title>
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue-orange.min.css" />
+    <!-- <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue-orange.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script> -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="resources/js/global.js"></script>
+    <script src="resources/js/foundation.min.js"></script>
+    <script src="resources/js/what-input.js"></script>
     <link rel="stylesheet" type="text/css" href="resources/css/global.css" />
     <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/foundation-flex.min.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/foundation-rtl.min.css" />
     <script>
       $(function() {
         $( "#datepicker" ).datepicker();
@@ -44,87 +66,63 @@
   <body>
 
 
-    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-      <header class="mdl-layout__header mdl-layout__header--transparent">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Home Audio System</span>
-          <div class="mdl-layout-spacer"></div>
-        </div>
-      </header>
-      <main class="mdl-layout__content">
 
-        <div class="mdl-grid">
-          <div class="mdl-cell mdl-cell--2-col"></div>
+    <div class="row" style="margin-top:100px;">
+      <div class="small-4 columns"></div>
 
-          <div class="mdl-cell mdl-cell--8-col">
-            <div class="content-card mdl-card mdl-shadow--2dp">
-              <div class="mdl-card__actions mdl-card--border">
+      <div class="small-12 columns">
 
-                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                  <div class="mdl-tabs__tab-bar">
-                      <a href="#addAlbum" class="mdl-tabs__tab is-active">Add Album</a>
-                      <a href="#songs" class="mdl-tabs__tab">Songs</a>
-                      <a href="#playlists" class="mdl-tabs__tab">Playlists</a>
-                  </div>
+        <div class="container">
 
-                  <div class="mdl-tabs__panel is-active" id="addAlbum">
-                    <?php
-                      require "view/addAlbumPage.php";
-                    ?>
-                  </div>
+          <ul class="tabs" data-tabs id="navigation-tabs">
+            <li class="tabs-title <?php if($tab == "songs") {echo "is-active";}?>"><a href="#songs" <?php if($tab == "songs") {echo 'aria-selected="true"';}?>>Songs</a></li>
+            <li class="tabs-title <?php if($tab == "albums") {echo "is-active";}?>"><a href="#albums" <?php if($tab == "albums") {echo 'aria-selected="true"';}?>>Albums</a></li>
+            <li class="tabs-title <?php if($tab == "playlists") {echo "is-active";}?>"><a href="#playlists" <?php if($tab == "playlists") {echo 'aria-selected="true"';}?>>Playlists</a></li>
+          </ul>
 
-                  <div class="mdl-tabs__panel" id="songs">
-                    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 50%; margin:0 auto">
-                      <thead>
-                        <tr>
-                          <th class="mdl-data-table__cell--non-numeric">Song</th>
-                          <th>Artist</th>
-                          <th>Duration</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                    <?php
+          <div class="tabs-content" data-tabs-content="navigation-tabs">
+            <div class="tabs-panel <?php if($tab == "songs") {echo "is-active";}?>" id="songs">
+              <?php require "view/songs.php" ?>
+            </div>
 
-                    $artists = $has->getArtists();
+            <div class="tabs-panel <?php if($tab == "albums") {echo "is-active";}?>" id="albums">
+              <?php
+                if(isset($_GET['page']) && $_GET['page'] == 'addAlbum')
+                {
+                  require "view/addAlbumPage.php";
+                }
+                else
+                {
+                  require "view/albums.php";
+                }
 
-                    foreach($artists as $artist){
-                      $songs = $artist->getSongs();
-                      foreach($songs as $song)
-                      {
-                        ?>
-                        <tr>
-                          <td class="mdl-data-table__cell--non-numeric"><?=$song->getTitle()?></td>
-                          <td><?=$artist->getName()?></td>
-                          <td class="mdl-data-table__cell--non-numeric"><?=$song->getDuration()?></td>
-                          <td></td>
-                        </tr>
-                        <?php
-                      }
-                    }
-                    ?>
-                  </tbody>
-                  </div>
-                  <div class="mdl-tabs__panel" id="playlists">
-                    <?php
-                    ?>
-                  </div>
-                </div>
+              ?>
+            </div>
+            <div class="tabs-panel <?php if($tab == "playlists") {echo "is-active";}?>" id="playlists">
+              <?php
+              if(isset($_GET['page']) && $_GET['page'] == 'addPlaylist')
+              {
+                require "view/addPlaylistPage.php";
+              }
 
-              </div>
-              <div class="mdl-card__menu">
-                <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                  <i class="material-icons">share</i>
-                </button>
-              </div>
+              else
+              {
+                require "view/playlists.php";
+              }
+              ?>
             </div>
           </div>
-
-          <div class="mdl-cell mdl-cell--2-col"></div>
         </div>
-
-      </main>
+        </div>
+      <div class="small-2 columns"></div>
     </div>
 
 
+
   </body>
+  <script src="resources/js/fastclick.js"></script>
+  <script src="resources/js/modernizr.js"></script>
+  <script>
+   $(document).foundation();
+ </script>
 </html>
