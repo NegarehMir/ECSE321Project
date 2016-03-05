@@ -84,4 +84,22 @@ class ControllerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(0, count($this->has->getArtists()));
 		$this->assertEquals(0, count($this->has->getLocations()));
 	}
+	
+	
+	public function testAddSongToPlaylist() {
+		$this->assertEquals(0, count($this->has->getPlaylists()));
+		
+		$this->hasController->createAlbum($albumName, $albumArtist, $releaseDate, $genre, $songs);
+		
+		$playlistTitle = "Work";
+		try {
+			$this->hasController->createPlaylist($playlistTitle);
+		} catch (Exception $e) {
+			$this->fail();
+		}
+		
+		
+		$this->has = $this->persistence->loadDataFromStore();
+		$this->assertEquals(1, count($this->has->getPlaylists()));
+	}
 }
