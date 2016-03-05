@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.persistence;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.sql.Date;
 
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -15,6 +16,8 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album.Genres;
 import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.PersistenceXStream;
 
 public class TestHomeAudioSystemController {
@@ -111,6 +114,27 @@ public class TestHomeAudioSystemController {
 	@Test
 	public void testAddSongToPlaylist() {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
+
+		String playlistTitle = "Workout";
+		Playlist playlist = new Playlist(playlistTitle, has);
+		has.addPlaylist(playlist);
+		assertEquals(1, has.getPlaylists().size());
+		
+		Artist artist = new Artist("Beyonce", has);
+		has.addArtist(artist);
+		assertEquals(1, has.getArtists().size());
+		
+		Date releaseDate = Date.valueOf("2011-06-24");
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		Album album = new Album("4", has, releaseDate, artist);
+		
+		Song song = new Song("Countdown", 213, album, artist);
+		album.addSong(song);
+		assertEquals(1, album.getSongs().size());
+		
+		playlist.addSong(song);
+		assertEquals(1, playlist.getSongs().size());
 	}
 	
 	
