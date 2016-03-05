@@ -43,11 +43,11 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
-| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
+| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , |3, , |
+| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , |3, , |
 | View All Locations (currently playing song, volume level) | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
 
 #### Test Writing
@@ -68,10 +68,10 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Next Song Plays When Current Song Finishes | PB.J.01 | Pierre Desktop, Nicky Web, Thomas Mobile | 5, 5, 1 | | |
-| Delete Playlist from Library | ML.P.03 | Pierre Desktop, Nicky Web, Thomas Mobile | 3, 3, 2 | | |
-| Delete Album from Library | ML.A.03 | Pierre Desktop, Nicky Web, Thomas Mobile | 3, 3, 2 | | |
-| Delete Songs from Library | ML.A.04 |  Pierre Desktop, Nicky Web, Thomas Mobile | 3, 3, 2 | | |
+| Next Song Plays When Current Song Finishes | PB.J.01 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 1 | | |
+| Delete Playlist from Library | ML.P.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
+| Delete Album from Library | ML.A.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
+| Delete Songs from Library | ML.A.04 |  Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -93,9 +93,9 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Play/Pause | PB.02 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
-| Skip Songs | PB.03 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
-| Jump to Start/End of Song | PB.J.02, PB.J.03 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
+| Play/Pause | PB.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 3 | | |
+| Skip Songs | PB.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 3 | | |
+| Jump to Start/End of Song | PB.J.02, PB.J.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 3 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -117,9 +117,9 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
-| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
-| Add Songs after Album Created | ML.A.02 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
+| Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 | | |
+| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 4 | | |
+| Add Songs after Album Created | ML.A.02 |Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -135,8 +135,8 @@ Team members should work on items highest up in that week's due date section fir
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| View Volume Level of Location | HL.U.01 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
-| View Music Assigned to each Location | HL.U.04 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
+| View Volume Level of Location | HL.U.01 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 2, 2, 2 | | |
+| View Music Assigned to each Location | HL.U.04 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 2, 2, 2 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
