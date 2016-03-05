@@ -29,7 +29,7 @@ Team members should work on items highest up in that week's due date section fir
 | Add Album Unit Test | -- | Eva | 2 | | |
 | Create Playlist Unit Test | -- | Evan | 2 | Mar. 5 | 2 |
 | Add Location Unit Test | -- | Eva | 2 | | |
-| Add Song to Playlist Unit Test | -- | Evan  | 2 | | |
+| Add Song to Playlist Unit Test | -- | Evan | 2 | | |
 
 ## Due Mar. 4
 
@@ -48,7 +48,7 @@ Team members should work on items highest up in that week's due date section fir
 | Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
 | Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
 | Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
-| View All Locations (currently playing song, volume level) | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
+| View All Locations (currently playing song, volume level) | PB.U.01, HL.U.01, HL.U.04 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -94,8 +94,8 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Play/Pause | PB.02 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
-| Skip Songs | PB.03 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
-| Jump to Start/End of Song | PB.J.02, PB.J.03 | Eva Desktop, Thomas Web, Pierre Mobile | 5, 5, 3 | | |
+| ~~Skip Songs~~ | ~~PB.03~~ | ~~Eva Desktop, Thomas Web, Pierre Mobile~~ | ~~5, 5, 3~~ | | |
+| ~~Jump to Start/End of Song~~ | ~~PB.J.02, PB.J.03~~ | ~~Eva Desktop, Thomas Web, Pierre Mobile~~ | ~~5, 5, 3~~ | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -103,8 +103,8 @@ Team members should work on items highest up in that week's due date section fir
 | Continue writing component tests
 | Write first system tests |  | Eva | 5 | | |
 | Write Play/Pause unit tests | | Thomas | 4 | | |
-| Write Skip Songs unit tests | | Thomas | 4 | | |
-| Write Jump to Start/End of Song unit tests | | Eva | 4 | | |
+| ~~Write Skip Songs unit tests~~ | | ~~Thomas~~ | ~~4~~ | | |
+| ~~Write Jump to Start/End of Song unit tests~~ | | ~~Eva~~ | ~~4~~ | | |
 
 ## Due Mar. 25
 
@@ -119,7 +119,7 @@ Team members should work on items highest up in that week's due date section fir
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
 | Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
-| Add Songs after Album Created | ML.A.02 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | | |
+| ~~Add Songs after Album Created~~ | ~~ML.A.02~~ | ~~Nicky Desktop, Thomas Web, Eva Mobile~~ | ~~3, 3, 3~~ | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
@@ -128,15 +128,13 @@ Team members should work on items highest up in that week's due date section fir
 | Begin writing performance/stress tests | | Eva | 5 | | |
 | Write Remove Song from Playlist unit tests | | Nicky | 2 | | |
 | Write Change Order of Songs in Playlist unit tests | |  Nicky | 2 | | |
-| Write Add Songs after Album Created unit tests | | Pierre | 2 | | |
+| ~~Write Add Songs after Album Created unit tests~~ | | ~~Pierre~~ | ~~2~~ | | |
 
 ## Due Apr. 1
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| View Volume Level of Location | HL.U.01 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
-| View Music Assigned to each Location | HL.U.04 | Pierre Desktop, Nicky Web, Thomas Mobile | 2, 2, 2 | | |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
