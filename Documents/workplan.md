@@ -27,7 +27,7 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Add Album Unit Test | -- | Eva | 2 | | |
-| Create Playlist Unit Test | -- | Evan | 2 | | |
+| Create Playlist Unit Test | -- | Evan | 2 | Mar. 5 | 2 |
 | Add Location Unit Test | -- | Eva | 2 | | |
 | Add Song to Playlist Unit Test | -- | Evan  | 2 | | |
 
@@ -48,7 +48,7 @@ Team members should work on items highest up in that week's due date section fir
 | Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 |Mar. 2, , |3, , |
 | Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
 | Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , |3, , |
-| View All Locations (currently playing song, volume level) | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 |Mar. 4, , |3, , |
+| View All Locations (currently playing song, volume level) | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
 
 #### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
