@@ -6,6 +6,13 @@ class Location
 {
 
   //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  public static $MaxVolume = 10;
+  public static $MinVolume = 0;
+
+  //------------------------
   // MEMBER VARIABLES
   //------------------------
 
@@ -22,11 +29,11 @@ class Location
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aName, $aVolume, $aMute, $aHomeAudioSystem)
+  public function __construct($aName, $aHomeAudioSystem)
   {
     $this->name = $aName;
-    $this->volume = $aVolume;
-    $this->mute = $aMute;
+    $this->volume = 5;
+    $this->mute = false;
     $this->locationMusicItems = array();
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
     if (!$didAddHomeAudioSystem)

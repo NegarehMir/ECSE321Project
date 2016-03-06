@@ -172,9 +172,9 @@ class HomeAudioSystem
     return 0;
   }
 
-  public function addLocationVia($aName, $aVolume, $aMute)
+  public function addLocationVia($aName)
   {
-    return new Location($aName, $aVolume, $aMute, $this);
+    return new Location($aName, $this);
   }
 
   public function addLocation($aLocation)

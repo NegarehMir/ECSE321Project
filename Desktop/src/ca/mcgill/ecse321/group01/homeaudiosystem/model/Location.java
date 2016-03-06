@@ -5,9 +5,16 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
 // line 14 "../../../../../../HomeAudioSystem.ump"
-// line 85 "../../../../../../HomeAudioSystem.ump"
+// line 89 "../../../../../../HomeAudioSystem.ump"
 public class Location
 {
+
+  //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  public static final int MaxVolume = 10;
+  public static final int MinVolume = 0;
 
   //------------------------
   // MEMBER VARIABLES
@@ -26,11 +33,11 @@ public class Location
   // CONSTRUCTOR
   //------------------------
 
-  public Location(String aName, int aVolume, boolean aMute, HomeAudioSystem aHomeAudioSystem)
+  public Location(String aName, HomeAudioSystem aHomeAudioSystem)
   {
     name = aName;
-    volume = aVolume;
-    mute = aMute;
+    volume = 5;
+    mute = false;
     locationMusicItems = new ArrayList<LocationMusicItem>();
     boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
     if (!didAddHomeAudioSystem)

@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 22 "../../../../../../HomeAudioSystem.ump"
-// line 58 "../../../../../../HomeAudioSystem.ump"
+// line 26 "../../../../../../HomeAudioSystem.ump"
+// line 62 "../../../../../../HomeAudioSystem.ump"
 public class Song implements LocationMusicItem
 {
 

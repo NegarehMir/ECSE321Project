@@ -6,8 +6,8 @@ import java.sql.Date;
 import java.util.*;
 
 // line 3 "../../../../../../JavaHomeAudioSystem.ump"
-// line 44 "../../../../../../HomeAudioSystem.ump"
-// line 65 "../../../../../../HomeAudioSystem.ump"
+// line 48 "../../../../../../HomeAudioSystem.ump"
+// line 69 "../../../../../../HomeAudioSystem.ump"
 public class Album extends Playlist
 {
 
