@@ -14,8 +14,12 @@ class HomeAudioSystem
 class Location
 {
   String name;
-  int volume;
-  boolean mute;
+
+  const int MaxVolume = 10;
+  const int MinVolume = 0;
+  int volume = 5;
+  
+  boolean mute = false;
   1 -> * LocationMusicItem;
 }
 

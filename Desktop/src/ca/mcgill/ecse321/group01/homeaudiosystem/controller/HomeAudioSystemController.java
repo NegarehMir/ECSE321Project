@@ -9,20 +9,6 @@ import java.util.LinkedList;
 
 public class HomeAudioSystemController {
 	
-	public LinkedList<Song> getAllSongsFromLibrary(HomeAudioSystem has) {
-		LinkedList<Song> allSongsInLibrary = new LinkedList<>();
-		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
-		
-		for (Playlist playlist : allPlaylistsInLibrary) {
-			if (playlist instanceof Album) {
-				for (Song song : playlist.getSongs()) {
-					allSongsInLibrary.add(song);
-				}
-			}
-		}
-		return allSongsInLibrary;
-	}
-
 	public void createAlbum(String title, String artistName, Date releaseDate, String genreName, LinkedList<SongMetadata> songMetadata) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)
@@ -74,20 +60,25 @@ public class HomeAudioSystemController {
 		return artist;
 	}
 	
-	public void createPlaylist(Playlist playlist) throws InvalidInputException {
-		if(playlist.getTitle() == null || playlist.getTitle().trim().length() == 0)
+	public void createPlaylist(String playlistTitle, Song... songsToAdd) throws InvalidInputException {
+		if(playlistTitle == null || playlistTitle.trim().length() == 0)
 			throw new InvalidInputException("Playlist name cannot be empty!");
 		
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		Playlist playlist = new Playlist(playlistTitle, has, songsToAdd);
+		
 		has.addPlaylist(playlist);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 	
-	public void createLocation(Location location) throws InvalidInputException {
-		if(location.getName() == null || location.getName().trim().length() == 0)
+	public void createLocation(String locationName) throws InvalidInputException {
+		if(locationName == null || locationName.trim().length() == 0)
 			throw new InvalidInputException("Location name cannot be empty!");
 		
+		
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		Location location = new Location(locationName, has);
+		
 		has.addLocation(location);
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}

@@ -160,7 +160,7 @@ public class LocationPage extends JFrame {
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		try {
-			hasc.createLocation(location);
+			hasc.createLocation(locationName);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}

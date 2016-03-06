@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.SongController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
@@ -121,9 +122,9 @@ public class AddSongToPlaylistPage extends JFrame{
 			songs =  new HashMap<Integer, Song>();
 			songList.removeAllItems();
 			
-			HomeAudioSystemController hasController = new HomeAudioSystemController();
+			SongController songController = new SongController();
 			
-			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary(has);
+			LinkedList<Song> allSongsInLibrary = songController.getAllSongsFromLibrary();
 			
 			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);

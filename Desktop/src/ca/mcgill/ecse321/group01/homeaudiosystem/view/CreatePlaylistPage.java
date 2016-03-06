@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -16,6 +17,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.SongController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
@@ -143,8 +145,8 @@ public class CreatePlaylistPage extends JFrame {
 			songs = new HashMap<Integer, Song>();
 			songList.removeAllItems();
 			
-			HomeAudioSystemController hasController = new HomeAudioSystemController();
-			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary(has);
+			SongController songController = new SongController();
+			LinkedList<Song> allSongsInLibrary = songController.getAllSongsFromLibrary();
 			
 			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);
@@ -178,22 +180,26 @@ public class CreatePlaylistPage extends JFrame {
 		// create the playlist
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		
-		Playlist playlist = new Playlist(playlistNameTextField.getText(), has);
-		
+		ArrayList<Song> songsToAddToPlaylist = new ArrayList<>();
 		// get the songs
 		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
 		for (int i = 0; i < model.getRowCount(); ++i) {
 			Song s = songs.get(model.getValueAt(i, 0));
-			playlist.addSong(s);
-		}		
+			songsToAddToPlaylist.add(s);
+		}	
+		
+		Song[] songsToAddArray = (Song[]) songsToAddToPlaylist.toArray();
+		String playlistTitle = playlistNameTextField.getText();
 		
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		try {
-			hasc.createPlaylist(playlist);
+			hasc.createPlaylist(playlistTitle, songsToAddArray);
 		} catch (InvalidInputException e) {
+			// TODO if error, display to user
 			error = e.getMessage();
 		}
+	
 		
 		// update visuals
 		refreshData();
