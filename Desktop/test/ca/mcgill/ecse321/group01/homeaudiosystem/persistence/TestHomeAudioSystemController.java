@@ -47,8 +47,7 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		
 		try {
-			Playlist playlist = new Playlist(title, has);
-			hasController.createPlaylist(playlist);
+			hasController.createPlaylist(title);
 		} catch (InvalidInputException e) {
 			fail();
 		}
@@ -71,8 +70,7 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		
 		try {
-			Playlist playlist = new Playlist(title, has);
-			hasController.createPlaylist(playlist);
+			hasController.createPlaylist(title);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
@@ -95,8 +93,7 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		
 		try {
-			Playlist playlist = new Playlist(title, has);
-			hasController.createPlaylist(playlist);
+			hasController.createPlaylist(title);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
