@@ -36,9 +36,9 @@ Team members should work on items highest up in that week's due date section fir
 #### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Detailed design description | Deliverable 2 | Evan | 4 | | |
+| Detailed design description | Deliverable 2 | Evan | 4 | Mar. 7 | 2 |
 | Detailed design class diagram | Deliverable 2 | Evan | 3 | Mar. 7 | 4 |
-| Workplan update | Deliverable 2 | Thomas | 1 | | |
+| Workplan update | Deliverable 2 | Thomas | 1 | Mar. 7 | 1 |
 
 #### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
