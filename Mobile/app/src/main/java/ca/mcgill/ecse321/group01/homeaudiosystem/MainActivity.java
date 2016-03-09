@@ -15,7 +15,9 @@ import android.widget.TextView;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.HashMap;
+
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.*;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.*;
@@ -24,7 +26,7 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.*;
 public class MainActivity extends AppCompatActivity {
 
     private String error = null;
-    private HashMap<Integer, Genre> genres;
+    private HashMap<Integer, Album.Genres> genres;
 
     private ArrayList<String[]> songs = new ArrayList<String[]>();
 
@@ -48,21 +50,21 @@ public class MainActivity extends AppCompatActivity {
         HomeAudioSystem has = HomeAudioSystem.getInstance();
 
         // prepopulate generes if there aren't any at all
-        if (has.getGenres().size() <= 0) {
-            String[] genreNames = {
-                    "Alternative",
-                    "Classical",
-                    "Country",
-                    "Electronic",
-                    "Hip-Hop/Rap",
-                    "Pop",
-                    "Rock",
-                    "Jazz",
-            };
-            for(String name: genreNames) {
-                has.addGenre(new Genre(name));
-            }
-        }
+//        if (has.getGenres().size() <= 0) {
+//            String[] genreNames = {
+//                    "Alternative",
+//                    "Classical",
+//                    "Country",
+//                    "Electronic",
+//                    "Hip-Hop/Rap",
+//                    "Pop",
+//                    "Rock",
+//                    "Jazz",
+//            };
+//            for(String name: genreNames) {
+//                has.addGenre(new Genre(name));
+//            }
+//        }
 
         refreshData();
     }
@@ -83,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> genresAdapter = new
                 ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item);
         genresAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        genres = new HashMap<Integer, Genre>();
-        for (Genre genre: has.getGenres()) {
-            genresAdapter.add(genre.getName());
+        genres = new HashMap<Integer, Album.Genres>();
+        for (Album.Genres genre: Album.Genres.values()) {
+            genresAdapter.add(genre.name());
             genres.put(genres.size(), genre);
         }
         spinner.setAdapter(genresAdapter);
@@ -119,21 +121,20 @@ public class MainActivity extends AppCompatActivity {
     public void addAlbum(View v) {
         String title = ((TextView) findViewById(R.id.newalbum_title)).getText().toString();
         String artistName = ((TextView)findViewById(R.id.newalbum_artistname)).getText().toString();
-        Genre genre = genres.get(((Spinner) findViewById(R.id.newalbum_genrespinner)).getSelectedItemPosition());
+        String genre = (((Spinner) findViewById(R.id.newalbum_genrespinner)).getSelectedItem().toString());
         CharSequence date = ((TextView)findViewById(R.id.newalbum_date)).getText();
 
-        Artist artist = new Artist(artistName);
 
         Bundle dateBundle = getDateFromLabel(date);
         Date releaseDate = dateBundle(dateBundle);
 
         // Create the track list
-        AlbumTracklist trackList = new AlbumTracklist("");
+        LinkedList<SongMetadata> songInfo = new LinkedList<>();
         for (int i = 0; i < songs.size(); i++) {
             String songTitle = songs.get(i)[0];
             Bundle timeBundle = getTimeFromLabel(songs.get(i)[1]);
             int duration = 60 * timeBundle.getInt("hour") + timeBundle.getInt("minute");
-            trackList.addSong(new Song(songTitle, duration, artist));
+            songInfo.add(new SongMetadata(songTitle, duration));
         }
 
         // call the controller
@@ -141,10 +142,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             hasc.createAlbum(
                     title,
-                    artist,
-                    genre,
+                    artistName,
                     releaseDate,
-                    trackList);
+                    genre,
+                    songInfo);
         } catch (InvalidInputException e) {
             error = e.getMessage();
         }
