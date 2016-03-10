@@ -25,6 +25,19 @@ public class HomeAudioSystemController {
 		return allSongsInLibrary;
 	}
 	
+	public LinkedList<Album> getAllAlbumsFromLibrary() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		LinkedList<Album> allAlbumsInLibrary = new LinkedList<>();
+		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		
+		for (Playlist playlist : allPlaylistsInLibrary) {
+			if (playlist instanceof Album) {
+				allAlbumsInLibrary.add((Album) playlist);
+			}
+		}
+		
+		return allAlbumsInLibrary;
+	}
 	public void createAlbum(String title, String artistName, Date releaseDate, String genreName, LinkedList<SongMetadata> songMetadata) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)
