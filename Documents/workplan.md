@@ -86,7 +86,6 @@ Team members should work on items highest up in that week's due date section fir
 ### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Next Song Plays When Current Song Finishes | PB.J.01 | Nicky Desktop | 5 | | |
 | System testing | Deliverable 3 | Evan | 4 | | |
 | Performance/stress testing | Deliverable 3 | Evan | 4 | | |
 | Work plan update | Deliverable 3 | Thomas | 1 | | |
@@ -94,6 +93,7 @@ Team members should work on items highest up in that week's due date section fir
 ### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
+| Next Song Plays When Current Song Finishes | PB.J.01 | Nicky Desktop | 5 | | |
 | Play/Pause | PB.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 3 | | |
 | ~~Skip Songs~~ | ~~PB.03~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~5, 5, 3~~ | | |
 | ~~Jump to Start/End of Song~~ | ~~PB.J.02, PB.J.03~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~5, 5, 3~~ | | |
