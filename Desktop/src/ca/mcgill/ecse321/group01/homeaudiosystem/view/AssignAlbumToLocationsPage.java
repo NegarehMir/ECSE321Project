@@ -145,7 +145,7 @@ public class AssignAlbumToLocationsPage extends JFrame{
 			for(int i: locationsTable.getSelectedRows())
 			{
 				Location location = locations.get(i);
-				hasc.assignAlbumToLocation(albums.get(selectedAlbum), location);
+				hasc.assignPlaylistToLocation(albums.get(selectedAlbum), location);
 			}
 		}
 		else

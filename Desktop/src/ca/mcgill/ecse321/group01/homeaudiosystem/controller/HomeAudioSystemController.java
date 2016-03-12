@@ -220,26 +220,6 @@ public class HomeAudioSystemController {
 		  wasAdded = true;
 		  return wasAdded;  
 	  }
-	  
-	  public boolean assignAlbumToLocation(Album aAlbum, Location aLocation)
-	  {
-		//TODO: assign change currently playing song index depending on where album added
-		  //LocationSongPlaying.setPlayingSongIndex(aLocation, 0);
-		  boolean wasAdded = false;
-		  
-		  List<LocationMusicItem> locationMusicItems = aLocation.getLocationMusicItems();
-		  
-		  if (locationMusicItems.equals(aAlbum.getSongs())) { return false; }
-		  
-		  for(int i = locationMusicItems.size(); i>0; i--)
-			  aLocation.removeLocationMusicItem(locationMusicItems.get(i-1));
-		  
-		  for(Song song: aAlbum.getSongs())
-			  aLocation.addLocationMusicItem(song);
-		  
-		  wasAdded = true;
-		  return wasAdded;
-	  }
 	
 	public String getCurrentSongName(Location location) {
 		Song songPlaying = LocationSongPlaying.getCurrentlyPlayingSong(location);
