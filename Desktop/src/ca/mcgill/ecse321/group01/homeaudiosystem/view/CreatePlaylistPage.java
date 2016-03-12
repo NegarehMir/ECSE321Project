@@ -17,9 +17,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
-import ca.mcgill.ecse321.group01.homeaudiosystem.controller.SongController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 
@@ -145,8 +143,8 @@ public class CreatePlaylistPage extends JFrame {
 			songs = new HashMap<Integer, Song>();
 			songList.removeAllItems();
 			
-			SongController songController = new SongController();
-			LinkedList<Song> allSongsInLibrary = songController.getAllSongsFromLibrary();
+			HomeAudioSystemController hasController = new HomeAudioSystemController();
+			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary();
 			
 			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);

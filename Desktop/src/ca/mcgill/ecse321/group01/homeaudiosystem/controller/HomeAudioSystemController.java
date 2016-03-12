@@ -9,6 +9,35 @@ import java.util.LinkedList;
 
 public class HomeAudioSystemController {
 	
+	
+	public LinkedList<Song> getAllSongsFromLibrary() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		LinkedList<Song> allSongsInLibrary = new LinkedList<>();
+		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		
+		for (Playlist playlist : allPlaylistsInLibrary) {
+			if (playlist instanceof Album) {
+				for (Song song : playlist.getSongs()) {
+					allSongsInLibrary.add(song);
+				}
+			}
+		}
+		return allSongsInLibrary;
+	}
+	
+	public LinkedList<Album> getAllAlbumsFromLibrary() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		LinkedList<Album> allAlbumsInLibrary = new LinkedList<>();
+		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		
+		for (Playlist playlist : allPlaylistsInLibrary) {
+			if (playlist instanceof Album) {
+				allAlbumsInLibrary.add((Album) playlist);
+			}
+		}
+		
+		return allAlbumsInLibrary;
+	}
 	public void createAlbum(String title, String artistName, Date releaseDate, String genreName, LinkedList<SongMetadata> songMetadata) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)

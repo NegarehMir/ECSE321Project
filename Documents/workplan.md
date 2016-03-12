@@ -8,14 +8,14 @@ Team members should work on items highest up in that week's due date section fir
 
 ## Due Feb. 28
 
-#### Descriptions
+### Descriptions
 
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Architecture description | Deliverable 2 | Evan | 3 | Feb. 28 | 3 |
 | Architecture block diagram | Deliverable 2 | Evan | 3 | Feb. 28 | 1 |
 
-#### Functionality and UI
+### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Create Playlist | ML.P.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
@@ -23,7 +23,7 @@ Team members should work on items highest up in that week's due date section fir
 | View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 | Feb. 28, ,  | 3, , |
 | Add Song to Playlist | ML.P.04 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
 
-#### Test Writing
+### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Add Album Unit Test | -- | Eva | 2 | | |
@@ -33,14 +33,14 @@ Team members should work on items highest up in that week's due date section fir
 
 ## Due Mar. 4
 
-#### Descriptions
+### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Detailed design description | Deliverable 2 | Evan | 4 | Mar. 7 | 2 |
 | Detailed design class diagram | Deliverable 2 | Evan | 3 | Mar. 7 | 4 |
 | Workplan update | Deliverable 2 | Thomas | 1 | Mar. 7 | 1 |
 
-#### Functionality and UI
+### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
@@ -50,7 +50,7 @@ Team members should work on items highest up in that week's due date section fir
 | Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , |3, , |
 | View All Locations (currently playing song, volume level) | PB.U.01, HL.U.01, HL.U.04 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
 
-#### Test Writing
+### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Assign Playlist, Album, Song to Location Unit Tests | | Evan | 4 | | |
@@ -59,13 +59,13 @@ Team members should work on items highest up in that week's due date section fir
 
 ## Due Mar. 11
 
-#### Descriptions
+### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Unit testing | Deliverable 3 | Thomas | 4 | | |
 | Component testing | Deliverable 3 | Evan | 4 | | |
 
-#### Functionality
+### Functionality
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Next Song Plays When Current Song Finishes | PB.J.01 | Thomas Web, Eva & Pierre Mobile | 5, 1 | | |
@@ -73,7 +73,7 @@ Team members should work on items highest up in that week's due date section fir
 | Delete Album from Library | ML.A.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
 | Delete Songs from Library | ML.A.04 |  Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
 
-#### Test Writing
+### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Next Song Plays When Current Song Finishes Unit Tests | | Evan | 4 | | |
@@ -83,22 +83,22 @@ Team members should work on items highest up in that week's due date section fir
 
 ## Due Mar. 18
 
-#### Descriptions
+### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Next Song Plays When Current Song Finishes | PB.J.01 | Nicky Desktop | 5 | | |
 | System testing | Deliverable 3 | Evan | 4 | | |
 | Performance/stress testing | Deliverable 3 | Evan | 4 | | |
 | Work plan update | Deliverable 3 | Thomas | 1 | | |
 
-#### Functionality and UI
+### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
+| Next Song Plays When Current Song Finishes | PB.J.01 | Nicky Desktop | 5 | | |
 | Play/Pause | PB.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 5, 5, 3 | | |
 | ~~Skip Songs~~ | ~~PB.03~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~5, 5, 3~~ | | |
 | ~~Jump to Start/End of Song~~ | ~~PB.J.02, PB.J.03~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~5, 5, 3~~ | | |
 
-#### Test Writing
+### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Continue writing component tests
@@ -109,20 +109,20 @@ Team members should work on items highest up in that week's due date section fir
 
 ## Due Mar. 25
 
-#### Descriptions
+### Descriptions
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Release pipeline | Deliverable 4 | Evan | 2 | | |
 | Work plan update | Deliverable 4 | Thomas | 1 | | |
 
-#### Functionality and UI
+### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 | | |
 | Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 4 | | |
 | ~~Add Songs after Album Created~~ | ~~ML.A.02~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~3, 3, 3~~ | | |
 
-#### Test Writing
+### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Continue writing system tests | | Evan | 5 | | |
@@ -133,12 +133,12 @@ Team members should work on items highest up in that week's due date section fir
 
 ## Due Apr. 1
 
-#### Functionality and UI
+### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | View the position of the song currently playing in each location | PB.U.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 4 | | |
 
-#### Test Writing
+### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Continue writing performance/stress tests | | Evan | 4 | | |
