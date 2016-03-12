@@ -2,7 +2,7 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
-class Playlist
+class Playlist implements LocationMusicItem
 {
 
   //------------------------
@@ -10,7 +10,7 @@ class Playlist
   //------------------------
 
   //Playlist Attributes
-  private $name;
+  private $title;
 
   //Playlist Associations
   private $songs;
@@ -20,9 +20,9 @@ class Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aName, $allSongs, $aHomeAudioSystem)
+  public function __construct($aTitle, $allSongs, $aHomeAudioSystem)
   {
-    $this->name = $aName;
+    $this->title = $aTitle;
     $this->songs = array();
     $didAddSongs = $this->setSongs($allSongs);
     if (!$didAddSongs)
@@ -40,17 +40,17 @@ class Playlist
   // INTERFACE
   //------------------------
 
-  public function setName($aName)
+  public function setTitle($aTitle)
   {
     $wasSet = false;
-    $this->name = $aName;
+    $this->title = $aTitle;
     $wasSet = true;
     return $wasSet;
   }
 
-  public function getName()
+  public function getTitle()
   {
-    return $this->name;
+    return $this->title;
   }
 
   public function getSong_index($index)
@@ -99,12 +99,6 @@ class Playlist
     return $this->homeAudioSystem;
   }
 
-  public function isNumberOfSongsValid()
-  {
-    $isValid = $this->numberOfSongs() >= self::minimumNumberOfSongs();
-    return $isValid;
-  }
-
   public static function minimumNumberOfSongs()
   {
     return 1;
@@ -116,18 +110,7 @@ class Playlist
     if ($this->indexOfSong($aSong) !== -1) { return false; }
     if ($this->indexOfSong($aSong) !== -1) { return false; }
     $this->songs[] = $aSong;
-    if ($aSong->indexOfPlaylist($this) != -1)
-    {
-      $wasAdded = true;
-    }
-    else
-    {
-      $wasAdded = $aSong->addPlaylist($this);
-      if (!$wasAdded)
-      {
-        array_pop($this->songs);
-      }
-    }
+    $wasAdded = true;
     return $wasAdded;
   }
 
@@ -144,22 +127,9 @@ class Playlist
       return $wasRemoved;
     }
 
-    $oldIndex = $this->indexOfSong($aSong);
-    unset($this->songs[$oldIndex]);
-    if ($aSong->indexOfPlaylist($this) == -1)
-    {
-      $wasRemoved = true;
-    }
-    else
-    {
-      $wasRemoved = $aSong->removePlaylist($this);
-      if (!$wasRemoved)
-      {
-        $this->songs[$oldIndex] = $aSong;
-        ksort($this->songs);
-      }
-    }
+    unset($this->songs[$this->indexOfSong($aSong)]);
     $this->songs = array_values($this->songs);
+    $wasRemoved = true;
     return $wasRemoved;
   }
 
@@ -181,27 +151,7 @@ class Playlist
       return $wasSet;
     }
 
-    $oldSongs = $this->songs;
-    $this->songs = array();
-    foreach ($verifiedSongs as $aNewSong)
-    {
-      $this->songs[] = $aNewSong;
-      $removeIndex = array_search($aNewSong,$oldSongs);
-      if ($removeIndex !== false)
-      {
-        unset($oldSongs[$removeIndex]);
-        $oldSongs = array_values($oldSongs);
-      }
-      else
-      {
-        $aNewSong->addPlaylist($this);
-      }
-    }
-
-    foreach ($oldSongs as $anOldSong)
-    {
-      $anOldSong->removePlaylist($this);
-    }
+    $this->songs = $verifiedSongs;
     $wasSet = true;
     return $wasSet;
   }
@@ -264,15 +214,15 @@ class Playlist
 
   public function delete()
   {
-    $copyOfSongs = $this->songs;
     $this->songs = array();
-    foreach ($copyOfSongs as $aSong)
-    {
-      $aSong->removePlaylist($this);
-    }
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;
     $placeholderHomeAudioSystem->removePlaylist($this);
+  }
+
+  public function play()
+  {
+          return "";
   }
 
 }

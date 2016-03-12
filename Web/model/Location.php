@@ -6,6 +6,13 @@ class Location
 {
 
   //------------------------
+  // STATIC VARIABLES
+  //------------------------
+
+  public static $MaxVolume = 10;
+  public static $MinVolume = 0;
+
+  //------------------------
   // MEMBER VARIABLES
   //------------------------
 
@@ -15,19 +22,19 @@ class Location
   private $mute;
 
   //Location Associations
-  private $songs;
+  private $locationMusicItems;
   private $homeAudioSystem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aName, $aVolume, $aMute, $aHomeAudioSystem)
+  public function __construct($aName, $aHomeAudioSystem)
   {
     $this->name = $aName;
-    $this->volume = $aVolume;
-    $this->mute = $aMute;
-    $this->songs = array();
+    $this->volume = 5;
+    $this->mute = false;
+    $this->locationMusicItems = array();
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
     if (!$didAddHomeAudioSystem)
     {
@@ -78,37 +85,37 @@ class Location
     return $this->mute;
   }
 
-  public function getSong_index($index)
+  public function getLocationMusicItem_index($index)
   {
-    $aSong = $this->songs[$index];
-    return $aSong;
+    $aLocationMusicItem = $this->locationMusicItems[$index];
+    return $aLocationMusicItem;
   }
 
-  public function getSongs()
+  public function getLocationMusicItems()
   {
-    $newSongs = $this->songs;
-    return $newSongs;
+    $newLocationMusicItems = $this->locationMusicItems;
+    return $newLocationMusicItems;
   }
 
-  public function numberOfSongs()
+  public function numberOfLocationMusicItems()
   {
-    $number = count($this->songs);
+    $number = count($this->locationMusicItems);
     return $number;
   }
 
-  public function hasSongs()
+  public function hasLocationMusicItems()
   {
-    $has = $this->numberOfSongs() > 0;
+    $has = $this->numberOfLocationMusicItems() > 0;
     return $has;
   }
 
-  public function indexOfSong($aSong)
+  public function indexOfLocationMusicItem($aLocationMusicItem)
   {
     $wasFound = false;
     $index = 0;
-    foreach($this->songs as $song)
+    foreach($this->locationMusicItems as $locationMusicItem)
     {
-      if ($song->equals($aSong))
+      if ($locationMusicItem->equals($aLocationMusicItem))
       {
         $wasFound = true;
         break;
@@ -124,86 +131,60 @@ class Location
     return $this->homeAudioSystem;
   }
 
-  public static function minimumNumberOfSongs()
+  public static function minimumNumberOfLocationMusicItems()
   {
     return 0;
   }
 
-  public function addSong($aSong)
+  public function addLocationMusicItem($aLocationMusicItem)
   {
     $wasAdded = false;
-    if ($this->indexOfSong($aSong) !== -1) { return false; }
-    $this->songs[] = $aSong;
-    if ($aSong->indexOfLocation($this) != -1)
-    {
-      $wasAdded = true;
-    }
-    else
-    {
-      $wasAdded = $aSong->addLocation($this);
-      if (!$wasAdded)
-      {
-        array_pop($this->songs);
-      }
-    }
+    if ($this->indexOfLocationMusicItem($aLocationMusicItem) !== -1) { return false; }
+    $this->locationMusicItems[] = $aLocationMusicItem;
+    $wasAdded = true;
     return $wasAdded;
   }
 
-  public function removeSong($aSong)
+  public function removeLocationMusicItem($aLocationMusicItem)
   {
     $wasRemoved = false;
-    if ($this->indexOfSong($aSong) == -1)
+    if ($this->indexOfLocationMusicItem($aLocationMusicItem) != -1)
     {
-      return $wasRemoved;
-    }
-
-    $oldIndex = $this->indexOfSong($aSong);
-    unset($this->songs[$oldIndex]);
-    if ($aSong->indexOfLocation($this) == -1)
-    {
+      unset($this->locationMusicItems[$this->indexOfLocationMusicItem($aLocationMusicItem)]);
+      $this->locationMusicItems = array_values($this->locationMusicItems);
       $wasRemoved = true;
     }
-    else
-    {
-      $wasRemoved = $aSong->removeLocation($this);
-      if (!$wasRemoved)
-      {
-        $this->songs[$oldIndex] = $aSong;
-        ksort($this->songs);
-      }
-    }
-    $this->songs = array_values($this->songs);
     return $wasRemoved;
   }
 
-  public function addSongAt($aSong, $index)
+  public function addLocationMusicItemAt($aLocationMusicItem, $index)
   {  
     $wasAdded = false;
-    if($this->addSong($aSong))
+    if($this->addLocationMusicItem($aLocationMusicItem))
     {
       if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfSongs()) { $index = $this->numberOfSongs() - 1; }
-      array_splice($this->songs, $this->indexOfSong($aSong), 1);
-      array_splice($this->songs, $index, 0, array($aSong));
+      if($index > $this->numberOfLocationMusicItems()) { $index = $this->numberOfLocationMusicItems() - 1; }
+      array_splice($this->locationMusicItems, $this->indexOfLocationMusicItem($aLocationMusicItem), 1);
+      array_splice($this->locationMusicItems, $index, 0, array($aLocationMusicItem));
       $wasAdded = true;
     }
     return $wasAdded;
   }
 
-  public function addOrMoveSongAt($aSong, $index)
+  public function addOrMoveLocationMusicItemAt($aLocationMusicItem, $index)
   {
     $wasAdded = false;
-    if($this->indexOfSong($aSong) !== -1)
+    if($this->indexOfLocationMusicItem($aLocationMusicItem) !== -1)
     {
       if($index < 0 ) { $index = 0; }
-      if($index > $this->numberOfSongs()) { $index = $this->numberOfSongs() - 1; }
-      array_splice($this->songs, $this->indexOfSong($aSong), 1);
-      array_splice($this->songs, $index, 0, array($aSong));
+      if($index > $this->numberOfLocationMusicItems()) { $index = $this->numberOfLocationMusicItems() - 1; }
+      array_splice($this->locationMusicItems, $this->indexOfLocationMusicItem($aLocationMusicItem), 1);
+      array_splice($this->locationMusicItems, $index, 0, array($aLocationMusicItem));
       $wasAdded = true;
     } 
     else 
     {
-      $wasAdded = $this->addSongAt($aSong, $index);
+      $wasAdded = $this->addLocationMusicItemAt($aLocationMusicItem, $index);
     }
     return $wasAdded;
   }
@@ -234,12 +215,7 @@ class Location
 
   public function delete()
   {
-    $copyOfSongs = $this->songs;
-    $this->songs = array();
-    foreach ($copyOfSongs as $aSong)
-    {
-      $aSong->removeLocation($this);
-    }
+    $this->locationMusicItems = array();
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;
     $placeholderHomeAudioSystem->removeLocation($this);

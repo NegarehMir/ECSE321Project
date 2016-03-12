@@ -1,12 +1,12 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 35 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 76 "../../../../../../../../../ump/tmp960453/model.ump"
+// line 33 "../../../../../../HomeAudioSystem.ump"
+// line 75 "../../../../../../HomeAudioSystem.ump"
 public class Artist
 {
 
@@ -20,16 +20,22 @@ public class Artist
   //Artist Associations
   private List<Album> albums;
   private List<Song> songs;
+  private HomeAudioSystem homeAudioSystem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Artist(String aName)
+  public Artist(String aName, HomeAudioSystem aHomeAudioSystem)
   {
     name = aName;
     albums = new ArrayList<Album>();
     songs = new ArrayList<Song>();
+    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
+    if (!didAddHomeAudioSystem)
+    {
+      throw new RuntimeException("Unable to create artist due to homeAudioSystem");
+    }
   }
 
   //------------------------
@@ -109,14 +115,19 @@ public class Artist
     return index;
   }
 
+  public HomeAudioSystem getHomeAudioSystem()
+  {
+    return homeAudioSystem;
+  }
+
   public static int minimumNumberOfAlbums()
   {
     return 0;
   }
 
-  public Album addAlbum(String aTitle, Date aReleaseDate, Genre aGenre, AlbumTracklist aAlbumTracklist)
+  public Album addAlbum(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Song... allSongs)
   {
-    return new Album(aTitle, aReleaseDate, aGenre, this, aAlbumTracklist);
+    return new Album(aTitle, aHomeAudioSystem, aReleaseDate, this, allSongs);
   }
 
   public boolean addAlbum(Album aAlbum)
@@ -181,44 +192,106 @@ public class Artist
     return wasAdded;
   }
 
-  public static int minimumNumberOfSongs()
+  public boolean isNumberOfSongsValid()
   {
-    return 0;
+    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
+    return isValid;
   }
 
-  public Song addSong(String aTitle, int aDuration)
+  public static int minimumNumberOfSongs()
   {
-    return new Song(aTitle, aDuration, this);
+    return 1;
   }
 
   public boolean addSong(Song aSong)
   {
     boolean wasAdded = false;
     if (songs.contains(aSong)) { return false; }
-    Artist existingArtist = aSong.getArtist();
-    boolean isNewArtist = existingArtist != null && !this.equals(existingArtist);
-    if (isNewArtist)
+    songs.add(aSong);
+    if (aSong.indexOfArtist(this) != -1)
     {
-      aSong.setArtist(this);
+      wasAdded = true;
     }
     else
     {
-      songs.add(aSong);
+      wasAdded = aSong.addArtist(this);
+      if (!wasAdded)
+      {
+        songs.remove(aSong);
+      }
     }
-    wasAdded = true;
     return wasAdded;
   }
 
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    //Unable to remove aSong, as it must always have a artist
-    if (!this.equals(aSong.getArtist()))
+    if (!songs.contains(aSong))
     {
-      songs.remove(aSong);
+      return wasRemoved;
+    }
+
+    if (numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasRemoved;
+    }
+
+    int oldIndex = songs.indexOf(aSong);
+    songs.remove(oldIndex);
+    if (aSong.indexOfArtist(this) == -1)
+    {
       wasRemoved = true;
     }
+    else
+    {
+      wasRemoved = aSong.removeArtist(this);
+      if (!wasRemoved)
+      {
+        songs.add(oldIndex,aSong);
+      }
+    }
     return wasRemoved;
+  }
+
+  public boolean setSongs(Song... newSongs)
+  {
+    boolean wasSet = false;
+    ArrayList<Song> verifiedSongs = new ArrayList<Song>();
+    for (Song aSong : newSongs)
+    {
+      if (verifiedSongs.contains(aSong))
+      {
+        continue;
+      }
+      verifiedSongs.add(aSong);
+    }
+
+    if (verifiedSongs.size() != newSongs.length || verifiedSongs.size() < minimumNumberOfSongs())
+    {
+      return wasSet;
+    }
+
+    ArrayList<Song> oldSongs = new ArrayList<Song>(songs);
+    songs.clear();
+    for (Song aNewSong : verifiedSongs)
+    {
+      songs.add(aNewSong);
+      if (oldSongs.contains(aNewSong))
+      {
+        oldSongs.remove(aNewSong);
+      }
+      else
+      {
+        aNewSong.addArtist(this);
+      }
+    }
+
+    for (Song anOldSong : oldSongs)
+    {
+      anOldSong.removeArtist(this);
+    }
+    wasSet = true;
+    return wasSet;
   }
 
   public boolean addSongAt(Song aSong, int index)
@@ -253,6 +326,25 @@ public class Artist
     return wasAdded;
   }
 
+  public boolean setHomeAudioSystem(HomeAudioSystem aHomeAudioSystem)
+  {
+    boolean wasSet = false;
+    if (aHomeAudioSystem == null)
+    {
+      return wasSet;
+    }
+
+    HomeAudioSystem existingHomeAudioSystem = homeAudioSystem;
+    homeAudioSystem = aHomeAudioSystem;
+    if (existingHomeAudioSystem != null && !existingHomeAudioSystem.equals(aHomeAudioSystem))
+    {
+      existingHomeAudioSystem.removeArtist(this);
+    }
+    homeAudioSystem.addArtist(this);
+    wasSet = true;
+    return wasSet;
+  }
+
   public void delete()
   {
     for(int i=albums.size(); i > 0; i--)
@@ -260,11 +352,22 @@ public class Artist
       Album aAlbum = albums.get(i - 1);
       aAlbum.delete();
     }
-    for(int i=songs.size(); i > 0; i--)
+    ArrayList<Song> copyOfSongs = new ArrayList<Song>(songs);
+    songs.clear();
+    for(Song aSong : copyOfSongs)
     {
-      Song aSong = songs.get(i - 1);
-      aSong.delete();
+      if (aSong.numberOfArtists() <= Song.minimumNumberOfArtists())
+      {
+        aSong.delete();
+      }
+      else
+      {
+        aSong.removeArtist(this);
+      }
     }
+    HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
+    this.homeAudioSystem = null;
+    placeholderHomeAudioSystem.removeArtist(this);
   }
 
 
@@ -272,7 +375,8 @@ public class Artist
   {
 	  String outputString = "";
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]"
+            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
      + outputString;
   }
 }

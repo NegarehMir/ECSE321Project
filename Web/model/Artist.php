@@ -142,9 +142,9 @@ class Artist
     return 0;
   }
 
-  public function addAlbumVia($aTitle, $aReleaseDate, $aGenre, $aHomeAudioSystem, $aAlbumTracklist)
+  public function addAlbumVia($aTitle, $allSongs, $aHomeAudioSystem, $aGenre, $aReleaseDate)
   {
-    return new Album($aTitle, $aReleaseDate, $aGenre, $aHomeAudioSystem, $this, $aAlbumTracklist);
+    return new Album($aTitle, $allSongs, $aHomeAudioSystem, $aGenre, $aReleaseDate, $this);
   }
 
   public function addAlbum($aAlbum)
@@ -210,45 +210,110 @@ class Artist
     return $wasAdded;
   }
 
-  public static function minimumNumberOfSongs()
+  public function isNumberOfSongsValid()
   {
-    return 0;
+    $isValid = $this->numberOfSongs() >= self::minimumNumberOfSongs();
+    return $isValid;
   }
 
-  public function addSongVia($aTitle, $aDuration, $aAlbumTracklist)
+  public static function minimumNumberOfSongs()
   {
-    return new Song($aTitle, $aDuration, $this, $aAlbumTracklist);
+    return 1;
   }
 
   public function addSong($aSong)
   {
     $wasAdded = false;
     if ($this->indexOfSong($aSong) !== -1) { return false; }
-    $existingArtist = $aSong->getArtist();
-    $isNewArtist = $existingArtist != null && $this !== $existingArtist;
-    if ($isNewArtist)
+    $this->songs[] = $aSong;
+    if ($aSong->indexOfArtist($this) != -1)
     {
-      $aSong->setArtist($this);
+      $wasAdded = true;
     }
     else
     {
-      $this->songs[] = $aSong;
+      $wasAdded = $aSong->addArtist($this);
+      if (!$wasAdded)
+      {
+        array_pop($this->songs);
+      }
     }
-    $wasAdded = true;
     return $wasAdded;
   }
 
   public function removeSong($aSong)
   {
     $wasRemoved = false;
-    //Unable to remove aSong, as it must always have a artist
-    if ($this !== $aSong->getArtist())
+    if ($this->indexOfSong($aSong) == -1)
     {
-      unset($this->songs[$this->indexOfSong($aSong)]);
-      $this->songs = array_values($this->songs);
+      return $wasRemoved;
+    }
+
+    if ($this->numberOfSongs() <= self::minimumNumberOfSongs())
+    {
+      return $wasRemoved;
+    }
+
+    $oldIndex = $this->indexOfSong($aSong);
+    unset($this->songs[$oldIndex]);
+    if ($aSong->indexOfArtist($this) == -1)
+    {
       $wasRemoved = true;
     }
+    else
+    {
+      $wasRemoved = $aSong->removeArtist($this);
+      if (!$wasRemoved)
+      {
+        $this->songs[$oldIndex] = $aSong;
+        ksort($this->songs);
+      }
+    }
+    $this->songs = array_values($this->songs);
     return $wasRemoved;
+  }
+
+  public function setSongs($newSongs)
+  {
+    $wasSet = false;
+    $verifiedSongs = array();
+    foreach ($newSongs as $aSong)
+    {
+      if (array_search($aSong,$verifiedSongs) !== false)
+      {
+        continue;
+      }
+      $verifiedSongs[] = $aSong;
+    }
+
+    if (count($verifiedSongs) != count($newSongs) || count($verifiedSongs) < self::minimumNumberOfSongs())
+    {
+      return $wasSet;
+    }
+
+    $oldSongs = $this->songs;
+    $this->songs = array();
+    foreach ($verifiedSongs as $aNewSong)
+    {
+      $this->songs[] = $aNewSong;
+      $removeIndex = array_search($aNewSong,$oldSongs);
+      if ($removeIndex !== false)
+      {
+        unset($oldSongs[$removeIndex]);
+        $oldSongs = array_values($oldSongs);
+      }
+      else
+      {
+        $aNewSong->addArtist($this);
+      }
+    }
+
+    foreach ($oldSongs as $anOldSong)
+    {
+      $anOldSong->removeArtist($this);
+    }
+    $wasSet = true;
+    return $wasSet;
   }
 
   public function addSongAt($aSong, $index)
@@ -313,9 +378,18 @@ class Artist
     {
       $aAlbum->delete();
     }
-    foreach ($this->songs as $aSong)
+    $copyOfSongs = $this->songs;
+    $this->songs = array();
+    foreach ($copyOfSongs as $aSong)
     {
-      $aSong->delete();
+      if ($aSong->numberOfArtists() <= Song::minimumNumberOfArtists())
+      {
+        $aSong->delete();
+      }
+      else
+      {
+        $aSong->removeArtist($this);
+      }
     }
     $placeholderHomeAudioSystem = $this->homeAudioSystem;
     $this->homeAudioSystem = null;

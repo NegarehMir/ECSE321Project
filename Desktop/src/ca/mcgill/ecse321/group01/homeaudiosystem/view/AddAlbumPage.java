@@ -3,8 +3,9 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Properties;
 
 import javax.swing.GroupLayout;
@@ -25,9 +26,10 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.SqlDateModel;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.AlbumTracklist;
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.SongMetadata;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album.Genres;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 import ca.mcgill.ecse321.group01.homeaudiosystem.view.DateLabelFormatter;
@@ -58,7 +60,7 @@ private static final long serialVersionUID = -8062635784771606869L;
 	// data elements
 	private String error = null;
 	private Integer selectedGenre = -1;
-	private HashMap<Integer, Genre> genres;
+	private HashMap<Integer, Genres> genres;
 	
 	// Creates new form AddAlbumPage
 	public AddAlbumPage() {
@@ -212,11 +214,11 @@ private static final long serialVersionUID = -8062635784771606869L;
 		if (error == null || error.length() == 0) {
 			HomeAudioSystem has = HomeAudioSystem.getInstance();
 			// genre list
-			genres =  new HashMap<Integer, Genre>();
+			genres =  new HashMap<Integer, Genres>();
 			genreList.removeAllItems();
-			for (Genre genre: has.getGenres()) {
+			for (Genres genre: Genres.values()) {
 				genres.put(genres.size(), genre);
-				genreList.addItem(genre.getName());
+				genreList.addItem(genre.name());
 			}
 			selectedGenre = -1;
 			genreList.setSelectedIndex(selectedGenre);
@@ -241,33 +243,31 @@ private static final long serialVersionUID = -8062635784771606869L;
 		pack();
 	}
 	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		String artistName = artistNameTextField.getText();
-		Artist artist = new Artist(artistName);
-
+		
+		LinkedList<SongMetadata> songInfo = new LinkedList<>();
 		// create the track list
-		AlbumTracklist trackList = new AlbumTracklist("");
 		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
 		for (int i = 0; i < model.getRowCount(); ++i) {
 			long duration = 0;
 			try {
-				Date date = (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
+				Date date = (Date) (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
 				duration = date.getMinutes() * 60 + date.getSeconds();
 			} catch (ParseException e) {
 			}
-			trackList.addSong(new Song((String)model.getValueAt(i, 0), (int)duration, artist));
+			songInfo.add(new SongMetadata((String)model.getValueAt(i, 0), (int)duration));
 		}
 		
-		// call the controller
-		HomeAudioSystemController hasc = new HomeAudioSystemController();
+		String albumTitle = albumNameTextField.getText();
+		String artistName = artistNameTextField.getText();
+		String genreName = (String) genreList.getSelectedItem();
+		Date releaseDate = (java.sql.Date) releaseDatePicker.getModel().getValue();
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		try {
-			hasc.createAlbum(
-					albumNameTextField.getText(), 
-					artist,
-					genres.get(selectedGenre),
-					(java.sql.Date) releaseDatePicker.getModel().getValue(),
-					trackList);
-		} catch (InvalidInputException e) {
-			error = e.getMessage();
+			hasController.createAlbum(albumTitle, artistName, releaseDate, genreName, songInfo);
+		} catch (InvalidInputException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		// update visuals

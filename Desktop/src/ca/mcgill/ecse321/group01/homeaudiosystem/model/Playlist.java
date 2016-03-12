@@ -1,12 +1,12 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 42 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 83 "../../../../../../../../../ump/tmp960453/model.ump"
-public class Playlist
+// line 40 "../../../../../../HomeAudioSystem.ump"
+// line 82 "../../../../../../HomeAudioSystem.ump"
+public class Playlist implements LocationMusicItem
 {
 
   //------------------------
@@ -14,36 +14,47 @@ public class Playlist
   //------------------------
 
   //Playlist Attributes
-  private String name;
+  private String title;
 
   //Playlist Associations
   private List<Song> songs;
+  private HomeAudioSystem homeAudioSystem;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Playlist(String aName)
+  public Playlist(String aTitle, HomeAudioSystem aHomeAudioSystem, Song... allSongs)
   {
-    name = aName;
+    title = aTitle;
     songs = new ArrayList<Song>();
+    boolean didAddSongs = setSongs(allSongs);
+    if (!didAddSongs)
+    {
+      throw new RuntimeException("Unable to create Playlist, must have at least 1 songs");
+    }
+    boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
+    if (!didAddHomeAudioSystem)
+    {
+      throw new RuntimeException("Unable to create playlist due to homeAudioSystem");
+    }
   }
 
   //------------------------
   // INTERFACE
   //------------------------
 
-  public boolean setName(String aName)
+  public boolean setTitle(String aTitle)
   {
     boolean wasSet = false;
-    name = aName;
+    title = aTitle;
     wasSet = true;
     return wasSet;
   }
 
-  public String getName()
+  public String getTitle()
   {
-    return name;
+    return title;
   }
 
   public Song getSong(int index)
@@ -76,9 +87,14 @@ public class Playlist
     return index;
   }
 
+  public HomeAudioSystem getHomeAudioSystem()
+  {
+    return homeAudioSystem;
+  }
+
   public static int minimumNumberOfSongs()
   {
-    return 0;
+    return 1;
   }
 
   public boolean addSong(Song aSong)
@@ -94,12 +110,43 @@ public class Playlist
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    if (songs.contains(aSong))
+    if (!songs.contains(aSong))
     {
-      songs.remove(aSong);
-      wasRemoved = true;
+      return wasRemoved;
     }
+
+    if (numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasRemoved;
+    }
+
+    songs.remove(aSong);
+    wasRemoved = true;
     return wasRemoved;
+  }
+
+  public boolean setSongs(Song... newSongs)
+  {
+    boolean wasSet = false;
+    ArrayList<Song> verifiedSongs = new ArrayList<Song>();
+    for (Song aSong : newSongs)
+    {
+      if (verifiedSongs.contains(aSong))
+      {
+        continue;
+      }
+      verifiedSongs.add(aSong);
+    }
+
+    if (verifiedSongs.size() != newSongs.length || verifiedSongs.size() < minimumNumberOfSongs())
+    {
+      return wasSet;
+    }
+
+    songs.clear();
+    songs.addAll(verifiedSongs);
+    wasSet = true;
+    return wasSet;
   }
 
   public boolean addSongAt(Song aSong, int index)
@@ -134,9 +181,36 @@ public class Playlist
     return wasAdded;
   }
 
+  public boolean setHomeAudioSystem(HomeAudioSystem aHomeAudioSystem)
+  {
+    boolean wasSet = false;
+    if (aHomeAudioSystem == null)
+    {
+      return wasSet;
+    }
+
+    HomeAudioSystem existingHomeAudioSystem = homeAudioSystem;
+    homeAudioSystem = aHomeAudioSystem;
+    if (existingHomeAudioSystem != null && !existingHomeAudioSystem.equals(aHomeAudioSystem))
+    {
+      existingHomeAudioSystem.removePlaylist(this);
+    }
+    homeAudioSystem.addPlaylist(this);
+    wasSet = true;
+    return wasSet;
+  }
+
   public void delete()
   {
     songs.clear();
+    HomeAudioSystem placeholderHomeAudioSystem = homeAudioSystem;
+    this.homeAudioSystem = null;
+    placeholderHomeAudioSystem.removePlaylist(this);
+  }
+
+  @Override
+  public void play(){
+          return ;
   }
 
 
@@ -144,7 +218,8 @@ public class Playlist
   {
 	  String outputString = "";
     return super.toString() + "["+
-            "name" + ":" + getName()+ "]"
+            "title" + ":" + getTitle()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "homeAudioSystem = "+(getHomeAudioSystem()!=null?Integer.toHexString(System.identityHashCode(getHomeAudioSystem())):"null")
      + outputString;
   }
 }

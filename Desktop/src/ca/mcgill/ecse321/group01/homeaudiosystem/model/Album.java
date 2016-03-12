@@ -1,12 +1,14 @@
 /*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.23.0-f5592a4 modeling language!*/
+/*This code was generated using the UMPLE 1.22.0.5146 modeling language!*/
 
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.sql.Date;
+import java.util.*;
 
-// line 28 "../../../../../../../../../ump/tmp960453/model.ump"
-// line 69 "../../../../../../../../../ump/tmp960453/model.ump"
-public class Album
+// line 3 "../../../../../../JavaHomeAudioSystem.ump"
+// line 48 "../../../../../../HomeAudioSystem.ump"
+// line 69 "../../../../../../HomeAudioSystem.ump"
+public class Album extends Playlist
 {
 
   //------------------------
@@ -14,45 +16,31 @@ public class Album
   //------------------------
 
   //Album Attributes
-  private String title;
   private Date releaseDate;
-  private Genre genre;
 
   //Album Associations
+  private List<Song> songs;
   private Artist artist;
-  private AlbumTracklist albumTracklist;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Album(String aTitle, Date aReleaseDate, Genre aGenre, Artist aArtist, AlbumTracklist aAlbumTracklist)
+  public Album(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Artist aArtist, Song... allSongs)
   {
-    title = aTitle;
+    super(aTitle, aHomeAudioSystem, allSongs);
     releaseDate = aReleaseDate;
-    genre = aGenre;
+    songs = new ArrayList<Song>();
     boolean didAddArtist = setArtist(aArtist);
     if (!didAddArtist)
     {
       throw new RuntimeException("Unable to create album due to artist");
-    }
-    if (!setAlbumTracklist(aAlbumTracklist))
-    {
-      throw new RuntimeException("Unable to create Album due to aAlbumTracklist");
     }
   }
 
   //------------------------
   // INTERFACE
   //------------------------
-
-  public boolean setTitle(String aTitle)
-  {
-    boolean wasSet = false;
-    title = aTitle;
-    wasSet = true;
-    return wasSet;
-  }
 
   public boolean setReleaseDate(Date aReleaseDate)
   {
@@ -62,27 +50,39 @@ public class Album
     return wasSet;
   }
 
-  public boolean setGenre(Genre aGenre)
-  {
-    boolean wasSet = false;
-    genre = aGenre;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public String getTitle()
-  {
-    return title;
-  }
-
   public Date getReleaseDate()
   {
     return releaseDate;
   }
 
-  public Genre getGenre()
+  public Song getSong(int index)
   {
-    return genre;
+    Song aSong = songs.get(index);
+    return aSong;
+  }
+
+  public List<Song> getSongs()
+  {
+    List<Song> newSongs = Collections.unmodifiableList(songs);
+    return newSongs;
+  }
+
+  public int numberOfSongs()
+  {
+    int number = songs.size();
+    return number;
+  }
+
+  public boolean hasSongs()
+  {
+    boolean has = songs.size() > 0;
+    return has;
+  }
+
+  public int indexOfSong(Song aSong)
+  {
+    int index = songs.indexOf(aSong);
+    return index;
   }
 
   public Artist getArtist()
@@ -90,9 +90,96 @@ public class Album
     return artist;
   }
 
-  public AlbumTracklist getAlbumTracklist()
+  public boolean isNumberOfSongsValid()
   {
-    return albumTracklist;
+    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
+    return isValid;
+  }
+
+  public static int minimumNumberOfSongs()
+  {
+    return 1;
+  }
+
+  public Song addSong(String aTitle, int aDuration)
+  {
+    Song aNewSong = new Song(aTitle, aDuration, this);
+    return aNewSong;
+  }
+
+  public boolean addSong(Song aSong)
+  {
+    boolean wasAdded = false;
+    if (songs.contains(aSong)) { return false; }
+    Album existingAlbum = aSong.getAlbum();
+    boolean isNewAlbum = existingAlbum != null && !this.equals(existingAlbum);
+
+    if (isNewAlbum && existingAlbum.numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasAdded;
+    }
+    if (isNewAlbum)
+    {
+      aSong.setAlbum(this);
+    }
+    else
+    {
+      songs.add(aSong);
+    }
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeSong(Song aSong)
+  {
+    boolean wasRemoved = false;
+    //Unable to remove aSong, as it must always have a album
+    if (this.equals(aSong.getAlbum()))
+    {
+      return wasRemoved;
+    }
+
+    //album already at minimum (1)
+    if (numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasRemoved;
+    }
+
+    songs.remove(aSong);
+    wasRemoved = true;
+    return wasRemoved;
+  }
+
+  public boolean addSongAt(Song aSong, int index)
+  {  
+    boolean wasAdded = false;
+    if(addSong(aSong))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfSongs()) { index = numberOfSongs() - 1; }
+      songs.remove(aSong);
+      songs.add(index, aSong);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveSongAt(Song aSong, int index)
+  {
+    boolean wasAdded = false;
+    if(songs.contains(aSong))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfSongs()) { index = numberOfSongs() - 1; }
+      songs.remove(aSong);
+      songs.add(index, aSong);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addSongAt(aSong, index);
+    }
+    return wasAdded;
   }
 
   public boolean setArtist(Artist aArtist)
@@ -114,35 +201,49 @@ public class Album
     return wasSet;
   }
 
-  public boolean setAlbumTracklist(AlbumTracklist aNewAlbumTracklist)
-  {
-    boolean wasSet = false;
-    if (aNewAlbumTracklist != null)
-    {
-      albumTracklist = aNewAlbumTracklist;
-      wasSet = true;
-    }
-    return wasSet;
-  }
-
   public void delete()
   {
+    while (songs.size() > 0)
+    {
+      Song aSong = songs.get(songs.size() - 1);
+      aSong.delete();
+      songs.remove(aSong);
+    }
+    
+      
     Artist placeholderArtist = artist;
     this.artist = null;
     placeholderArtist.removeAlbum(this);
-    albumTracklist = null;
+    super.delete();
+  }
+
+  // line 9 "../../../../../../JavaHomeAudioSystem.ump"
+   public void setGenre(Genres aGenre){
+    genre = aGenre;
+  }
+
+  // line 13 "../../../../../../JavaHomeAudioSystem.ump"
+   public Genres getGenre(){
+    return genre;
   }
 
 
   public String toString()
   {
 	  String outputString = "";
-    return super.toString() + "["+
-            "title" + ":" + getTitle()+ "]" + System.getProperties().getProperty("line.separator") +
+    return super.toString() + "["+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "releaseDate" + "=" + (getReleaseDate() != null ? !getReleaseDate().equals(this)  ? getReleaseDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "genre" + "=" + (getGenre() != null ? !getGenre().equals(this)  ? getGenre().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "artist = "+(getArtist()!=null?Integer.toHexString(System.identityHashCode(getArtist())):"null") + System.getProperties().getProperty("line.separator") +
-            "  " + "albumTracklist = "+(getAlbumTracklist()!=null?Integer.toHexString(System.identityHashCode(getAlbumTracklist())):"null")
+            "  " + "artist = "+(getArtist()!=null?Integer.toHexString(System.identityHashCode(getArtist())):"null")
      + outputString;
-  }
+  }  
+  //------------------------
+  // DEVELOPER CODE - PROVIDED AS-IS
+  //------------------------
+  
+  // line 4 ../../../../../../JavaHomeAudioSystem.ump
+  public enum Genres {Alternative, Classical, Country, Electronic, Rap, Pop, Rock, Jazz};
+// line 6 ../../../../../../JavaHomeAudioSystem.ump
+  private Genres genre ;
+
+  
 }

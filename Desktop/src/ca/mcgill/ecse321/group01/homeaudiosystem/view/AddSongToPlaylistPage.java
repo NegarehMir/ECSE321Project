@@ -3,6 +3,7 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.view;
 import javax.swing.JFrame;
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -123,9 +124,13 @@ public class AddSongToPlaylistPage extends JFrame{
 			// song list
 			songs =  new HashMap<Integer, Song>();
 			songList.removeAllItems();
-			for (Song song: has.getSongs()) {
+			
+			HomeAudioSystemController hasController = new HomeAudioSystemController();
+			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary();
+			
+			for (Song song: allSongsInLibrary) {
 				songs.put(songs.size(), song);
-				songList.addItem(song.getTitle()+" - "+song.getArtist().getName());
+				songList.addItem(song.getTitle()+" - "+song.getArtist(0).getName());
 			}
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
@@ -135,7 +140,7 @@ public class AddSongToPlaylistPage extends JFrame{
 			playlistList.removeAllItems();
 			for (Playlist playlist: has.getPlaylists()) {
 				playlists.put(playlists.size(), playlist);
-				playlistList.addItem(playlist.getName());
+				playlistList.addItem(playlist.getTitle());
 			}
 			selectedPlaylist = -1;
 			playlistList.setSelectedIndex(selectedPlaylist);
