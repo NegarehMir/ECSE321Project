@@ -59,15 +59,8 @@ public class TestHomeAudioSystemController {
 		int songDuration = 242;
 		LinkedList<SongMetadata> songInfo = new LinkedList<>();
 		songInfo.add(new SongMetadata(songTitle, songDuration));
-				
-//		Album album = new Album(title, has, releaseDate, artist);
-//		Song song = new Song(songTitle, songDuration, album);
-//		song.addArtist(artist);
-//		album.addSong(song);
 		
 		String genreName = "Alternative";
-//		Genres genre = Genres.valueOf(genreName);
-//		album.setGenre(genre);
 
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		
@@ -421,6 +414,53 @@ public class TestHomeAudioSystemController {
 		
 		// check no change in memory
 		assertEquals(0, has.getLocations().size());
+	}
+	
+	
+	
+	
+	@Test
+	public void testAssignSongToLocation() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		assertEquals(0, has.getLocations().size());
+		
+		Location location = new Location("Dining Room", has);
+		Artist artist = new Artist("Arcade Fire", has);
+		Album album = new Album("Reflektor", has, Date.valueOf("2013-10-28"), artist);
+		Song song = new Song("Afterlife", 353, album);
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		
+		try {
+			hasController.assignSongToLocation(song, location);
+		} catch (Exception e) {
+			fail();
+		}
+		
+		assertEquals(1, location.getLocationMusicItems().size());
+	}
+	
+	@Test
+	public void testAssignPlaylistToLocation() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		assertEquals(0, has.getLocations().size());
+		
+		Location location = new Location("Dining Room", has);
+		Artist artist = new Artist("Arcade Fire", has);
+		Album album = new Album("Reflektor", has, Date.valueOf("2013-10-28"), artist);
+		Song song = new Song("Afterlife", 353, album);
+		
+		Playlist playlist = new Playlist("Birthday", has, song);
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		
+		try {
+			hasController.assignPlaylistToLocation(playlist, location);
+		} catch (Exception e) {
+			fail();
+		}
+		
+		assertEquals(1, location.getLocationMusicItems().size());
 	}
 
 	
