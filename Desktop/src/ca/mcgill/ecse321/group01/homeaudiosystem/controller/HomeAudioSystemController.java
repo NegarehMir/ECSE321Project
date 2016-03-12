@@ -15,7 +15,7 @@ public class HomeAudioSystemController {
 			error += "Album title cannot be empty! ";
 		if (artistName == null || artistName.trim().length() == 0)
 			error = error +"Album artist name cannot be empty ";
-		if (Genres.valueOf(genreName) == null || artistName.trim().length() == 0)
+		if (Genres.valueOf(genreName) == null || genreName.trim().length() == 0)
 			error += "Invalid or empty album genre!";
 		
 		error = error.trim();
