@@ -127,7 +127,8 @@ public class AssignAlbumToLocationsPage extends JFrame{
 			// album list
 			albums =  new HashMap<Integer, Album>();
 			albumList.removeAllItems();
-			for (Album album: has.getAlbums()) {
+			HomeAudioSystemController hasc = new HomeAudioSystemController();
+			for (Album album: hasc.getAllAlbumsFromLibrary()) {
 				albums.put(albums.size(), album);
 				albumList.addItem(album.getTitle());
 			}

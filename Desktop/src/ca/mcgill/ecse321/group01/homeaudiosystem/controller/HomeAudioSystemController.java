@@ -39,6 +39,13 @@ public class HomeAudioSystemController {
 		
 		return allAlbumsInLibrary;
 	}
+	
+	public List<Playlist> getAllPlaylistsFromLibrary() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		return has.getPlaylists();
+	}
+	
+	
 	public void createAlbum(String title, String artistName, Date releaseDate, String genreName, LinkedList<SongMetadata> songMetadata) throws InvalidInputException {
 		String error = "";
 		if (title == null || title.trim().length() == 0)
@@ -113,16 +120,47 @@ public class HomeAudioSystemController {
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
 	
-	public void modifyLocation(Location oldLocation, Location newLocation) throws InvalidInputException {
-		if(newLocation == null)
+	public void createLocation(String locationName, int volume, boolean isMute) throws InvalidInputException {
+		if(locationName == null || locationName.trim().length() == 0)
+			throw new InvalidInputException("Location name cannot be empty!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		Location location = new Location(locationName, has);
+		
+		setLocationVolume(location, volume);
+		location.setMute(isMute);
+		
+		has.addLocation(location);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void modifyLocation(Location oldLocation, String newLocationName, int newLocationVolume, boolean newLocationMute) throws InvalidInputException {
+		if(oldLocation == null)
 			throw new InvalidInputException("Please select a location!");
-		if(newLocation.getName() == null || newLocation.getName().trim().length() == 0)
+		if(newLocationName == null || newLocationName.trim().length() == 0)
 			throw new InvalidInputException("Location name cannot be empty!");
 		
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		has.removeLocation(oldLocation);
+		
+		Location newLocation = new Location(newLocationName, has);
+		setLocationVolume(newLocation, newLocationVolume);
+		newLocation.setMute(newLocationMute);
+		
 		has.addLocation(newLocation);
 		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void setLocationVolume(Location location, int volume) throws InvalidInputException {
+		if (volume > location.MaxVolume) {
+			throw new InvalidInputException("New volume exceeds maximum value!");
+		} else if (volume < location.MinVolume) {
+			throw new InvalidInputException("New volume smaller than minimum value!");
+		} else {
+			location.setVolume(volume);
+		}
+		
+		//TODO: save to XML here?
 	}
 	
 	public void addSongToPlaylist(Song song, Playlist playlist) throws InvalidInputException {

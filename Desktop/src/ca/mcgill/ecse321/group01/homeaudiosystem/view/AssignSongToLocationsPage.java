@@ -15,7 +15,6 @@ import javax.swing.JTable;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Genre;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;;
@@ -139,7 +138,8 @@ public class AssignSongToLocationsPage extends JFrame {
 			// song list
 			songs =  new HashMap<Integer, Song>();
 			songList.removeAllItems();
-			for (Song song: has.getSongs()) {
+			HomeAudioSystemController hasc = new HomeAudioSystemController();
+			for (Song song: hasc.getAllSongsFromLibrary()) {
 				songs.put(songs.size(), song);
 				songList.addItem(song.getTitle());
 			}

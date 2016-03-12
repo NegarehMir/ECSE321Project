@@ -127,9 +127,11 @@ public class AssignPlaylistToLocationsPage extends JFrame{
 			// playlist list
 			playlists =  new HashMap<Integer, Playlist>();
 			albumList.removeAllItems();
-			for (Playlist playlist: has.getPlaylists()) {
+			HomeAudioSystemController hasc = new HomeAudioSystemController();
+
+			for (Playlist playlist: hasc.getAllPlaylistsFromLibrary()) {
 				playlists.put(playlists.size(), playlist);
-				albumList.addItem(playlist.getName());
+				albumList.addItem(playlist.getTitle());
 			}
 			selectedPlaylist = -1;
 			albumList.setSelectedIndex(selectedPlaylist);

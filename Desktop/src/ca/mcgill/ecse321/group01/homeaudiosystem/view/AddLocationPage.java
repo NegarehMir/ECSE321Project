@@ -133,12 +133,11 @@ public class AddLocationPage extends JFrame {
 			isMute = true;
 		else
 			isMute = isMuteCheckbox.getState();
-		Location location = new Location(locationName, volume, isMute);
 		
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		try {
-			hasc.createLocation(location);
+			hasc.createLocation(locationName, volume, isMute);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}

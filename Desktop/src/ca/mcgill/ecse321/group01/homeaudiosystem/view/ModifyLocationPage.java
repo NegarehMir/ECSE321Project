@@ -157,14 +157,15 @@ public class ModifyLocationPage extends JFrame {
 
 	private void modifyLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Location oldLocation = locations.get(selectedLocation);
-		Location newLocation = new Location(oldLocation.getName(),
-											selectedVolumeSlider.getValue(),
-											selectedIsMuteCheckbox.getState());
+		
+		String locationName = oldLocation.getName();
+		int newVolume = selectedVolumeSlider.getValue();
+		boolean newMute = selectedIsMuteCheckbox.getState();
 		
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		try {
-			hasc.modifyLocation(oldLocation, newLocation);
+			hasc.modifyLocation(oldLocation, locationName, newVolume, newMute);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}

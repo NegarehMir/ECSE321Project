@@ -11,6 +11,7 @@ import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.LocationSongPlaying;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 
@@ -66,6 +67,6 @@ public class ViewLocationsPage extends JFrame{
 			model.removeRow(i);
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		for (Location location: has.getLocations())
-			model.addRow(new Object[]{location.getName(), location.getVolume(), location.getMute(),location.getCurrentSongName()});
+			model.addRow(new Object[]{location.getName(), location.getVolume(), location.getMute(), LocationSongPlaying.getCurrentlyPlayingSong(location)});
 	}
 }
