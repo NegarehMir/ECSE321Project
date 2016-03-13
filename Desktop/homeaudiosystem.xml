@@ -1,6 +1,13 @@
 <ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem id="1">
-  <locations>
+  <locations id="2">
+    <location id="3">
+      <name>Kitchen</name>
+      <volume>70</volume>
+      <mute>true</mute>
+      <locationMusicItems id="4"/>
+      <homeAudioSystem reference="1"/>
+    </location>
   </locations>
-  <artists id="48"/>
-  <playlists id="49"/>
+  <artists id="5"/>
+  <playlists id="6"/>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>
