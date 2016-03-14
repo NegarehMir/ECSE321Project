@@ -49,7 +49,7 @@ class Album
 {
   isA Playlist;
   Date releaseDate;
-  1 <@>- 1..* Song;
+  1 <@>- * Song;
 }
 
 
