@@ -19,6 +19,8 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemContr
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;;
 
 public class AssignAlbumToLocationsPage extends JFrame{
+	private static final long serialVersionUID = 5438483024193141422L;
+	
 	// UI elements
 	private JLabel errorMessage;
 	private JLabel locationLabel;
