@@ -29,10 +29,6 @@ public class Playlist implements LocationMusicItem
     title = aTitle;
     songs = new ArrayList<Song>();
     boolean didAddSongs = setSongs(allSongs);
-    if (!didAddSongs)
-    {
-      throw new RuntimeException("Unable to create Playlist, must have at least 1 songs");
-    }
     boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
     if (!didAddHomeAudioSystem)
     {

@@ -97,17 +97,44 @@
       </songs>
       <homeAudioSystem reference="1"/>
     </artist>
+    <artist id="32">
+      <name>Whocares</name>
+      <albums id="33">
+        <album id="34">
+          <title>Gone</title>
+          <songs defined-in="playlist" id="35"/>
+          <homeAudioSystem reference="1"/>
+          <songs id="36">
+            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="37">
+              <title>GonnaBeGone</title>
+              <duration>60</duration>
+              <artists id="38">
+                <artist reference="32"/>
+              </artists>
+              <album reference="34"/>
+            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
+          </songs>
+          <artist reference="32"/>
+          <genre>Rap</genre>
+        </album>
+      </albums>
+      <songs id="39">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="37"/>
+      </songs>
+      <homeAudioSystem reference="1"/>
+    </artist>
   </artists>
-  <playlists id="32">
+  <playlists id="40">
     <album reference="10"/>
     <album reference="21"/>
-    <playlist id="33">
+    <playlist id="41">
       <title>Temporary</title>
-      <songs id="34">
+      <songs id="42">
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="16"/>
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="29"/>
       </songs>
       <homeAudioSystem reference="1"/>
     </playlist>
+    <album reference="34"/>
   </playlists>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>

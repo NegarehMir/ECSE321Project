@@ -10,6 +10,7 @@ public class AlbumPage extends JFrame {
 	
 	// UI elements
 	private JButton createAlbumButton;
+	private JButton removeSongButton;
 	private JButton viewAlbumButton;
 	// Creates new form HomeAudioSystemPage
 		public AlbumPage() {
@@ -19,6 +20,7 @@ public class AlbumPage extends JFrame {
 		
 		private void initComponents() {
 			createAlbumButton = new JButton();
+			removeSongButton = new JButton();
 			viewAlbumButton = new JButton();
 
 			// global settings and listeners
@@ -29,6 +31,13 @@ public class AlbumPage extends JFrame {
 			createAlbumButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
 					createAlbumButtonActionPerformed(evt);
+				}
+			});
+			
+			removeSongButton.setText("Remove Song");
+			removeSongButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					removeSongButtonActionPerformed(evt);
 				}
 			});
 			
@@ -48,12 +57,14 @@ public class AlbumPage extends JFrame {
 			layout.setHorizontalGroup(
 					layout.createParallelGroup()
 						.addComponent(createAlbumButton)
+						.addComponent(removeSongButton)
 						.addComponent(viewAlbumButton)
 					);
 			//rows
 			layout.setVerticalGroup(
 					layout.createSequentialGroup()
 						.addComponent(createAlbumButton)
+						.addComponent(removeSongButton)
 						.addComponent(viewAlbumButton)
 					);
 			pack();
@@ -62,6 +73,10 @@ public class AlbumPage extends JFrame {
 			
 		private void createAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
 			new AddAlbumPage().setVisible(true); 
+		}
+		
+		private void removeSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
+			new RemoveSongPage().setVisible(true);
 		}
 		
 		private void viewAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {

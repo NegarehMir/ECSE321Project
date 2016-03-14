@@ -177,5 +177,4 @@ public class ModifyLocationPage extends JFrame {
 		}
 		refreshData();
 	}
-
 }

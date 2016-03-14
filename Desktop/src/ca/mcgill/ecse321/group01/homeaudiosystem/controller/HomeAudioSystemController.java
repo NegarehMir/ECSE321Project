@@ -224,4 +224,24 @@ public class HomeAudioSystemController {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
+	
+	public void removeSong(Song song) throws InvalidInputException {
+		if(song == null)
+			throw new InvalidInputException("Please select a song!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		List<Playlist> playlists = has.getPlaylists();
+		for(Playlist playlist : playlists)
+		{
+			if(playlist.getSongs().contains(song))
+			{
+				playlist.removeSong(song);
+				if(playlist.getSongs().size() == 0)
+					playlist.delete();
+			}
+		}
+		
+		song.delete();
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
 }
