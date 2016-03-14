@@ -15,7 +15,5 @@ public class HomeAudioSystemApp {
 				new HomeAudioSystemPage().setVisible(true);
 			}
 		});
-
 	}
-
 }

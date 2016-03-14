@@ -14,7 +14,7 @@ public class HomeAudioSystemController {
 	public LinkedList<Song> getAllSongsFromLibrary() {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		LinkedList<Song> allSongsInLibrary = new LinkedList<>();
-		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		List<Playlist> allPlaylistsInLibrary = has.getPlaylists();
 		
 		for (Playlist playlist : allPlaylistsInLibrary) {
 			if (playlist instanceof Album) {
@@ -29,7 +29,7 @@ public class HomeAudioSystemController {
 	public LinkedList<Album> getAllAlbumsFromLibrary() {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		LinkedList<Album> allAlbumsInLibrary = new LinkedList<>();
-		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		List<Playlist> allPlaylistsInLibrary = has.getPlaylists();
 		
 		for (Playlist playlist : allPlaylistsInLibrary) {
 			if (playlist instanceof Album) {
