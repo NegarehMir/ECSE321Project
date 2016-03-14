@@ -15,7 +15,7 @@ class Location
 {
   String name;
 
-  const int MaxVolume = 10;
+  const int MaxVolume = 100;
   const int MinVolume = 0;
   int volume = 5;
   
