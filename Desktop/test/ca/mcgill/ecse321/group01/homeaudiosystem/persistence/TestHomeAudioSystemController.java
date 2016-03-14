@@ -99,7 +99,7 @@ public class TestHomeAudioSystemController {
 		}
 		
 		//check error
-		assertEquals("Album title cannot be empty! ", error);
+		assertEquals("Album title cannot be empty! Album artist name cannot be empty! Empty album genre!", error);
 		
 		// check no change in memory
 		assertEquals(0, has.getPlaylists().size());
@@ -180,7 +180,7 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		assertEquals(0, has.getPlaylists().size());
 		
-		String title = "Time";
+		String title = "The Dark Side of the Moon";
 		String error = null;
 		String artistName = "";
 		
@@ -204,7 +204,7 @@ public class TestHomeAudioSystemController {
 		}
 		
 		//check error
-		assertEquals("Album artist name cannot be empty", error);
+		assertEquals("Album artist name cannot be empty!", error);
 		
 		// check no change in memory
 		assertEquals(0, has.getPlaylists().size());
@@ -215,7 +215,7 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		assertEquals(0, has.getPlaylists().size());
 		
-		String title = "Time";
+		String title = "The Dark Side of the Moon";
 		String error = null;
 		String artistName = " ";
 		
@@ -239,7 +239,7 @@ public class TestHomeAudioSystemController {
 		}
 		
 		//check error
-		assertEquals("Album artist name cannot be empty", error);
+		assertEquals("Album artist name cannot be empty!", error);
 		
 		// check no change in memory
 		assertEquals(0, has.getPlaylists().size());
@@ -250,9 +250,9 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		assertEquals(0, has.getPlaylists().size());
 		
-		String title = "Time";
+		String title = "The Dark Side of the Moon";
 		String error = null;
-		String artistName = "";
+		String artistName = "Pink FLoyd";
 		
 		Calendar c = Calendar.getInstance();
 		c.set (2016,Calendar.OCTOBER, 16, 9, 00, 0) ;
@@ -274,12 +274,47 @@ public class TestHomeAudioSystemController {
 		}
 		
 		//check error
-		assertEquals("Invalid or empty album genre!", error);
+		assertEquals("Empty album genre!", error);
 		
 		// check no change in memory
 		assertEquals(0, has.getPlaylists().size());
 	}
 	
+	@Test
+	public void testCreatedAlbumInvalidGenre() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		assertEquals(0, has.getPlaylists().size());
+		
+		String title = "The Dark Side of the Moon";
+		String error = null;
+		String artistName = "Pink FLoyd";
+		
+		Calendar c = Calendar.getInstance();
+		c.set (2016,Calendar.OCTOBER, 16, 9, 00, 0) ;
+		Date releaseDate = new Date(c.getTimeInMillis());
+
+		String songTitle = "Time";
+		int songDuration = 242;
+		LinkedList<SongMetadata> songInfo = new LinkedList<>();
+		songInfo.add(new SongMetadata(songTitle, songDuration));
+
+		String genreName = "hjkhl";
+
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		
+		try {
+			hasController.createAlbum(title, artistName, releaseDate, genreName, songInfo);
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
+		}
+			
+		//check error
+		assertEquals("Invalid album genre!", error);
+		
+		// check no change in memory
+		assertEquals(0, has.getPlaylists().size());
+	}
+		
 	@Test
 	public void testCreatedPlaylist(){
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
