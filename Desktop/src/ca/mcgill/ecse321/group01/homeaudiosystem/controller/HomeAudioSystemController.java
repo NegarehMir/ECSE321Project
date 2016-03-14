@@ -218,4 +218,10 @@ public class HomeAudioSystemController {
 		  else
 			  return songPlaying.getTitle()+" - " + songPlaying.getArtist(0).getName();
 	 }
+	
+	public void removePlaylist(Playlist playlist){		
+		playlist.delete();
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
 }

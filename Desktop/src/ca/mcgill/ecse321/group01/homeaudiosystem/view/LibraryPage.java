@@ -10,8 +10,7 @@ public class LibraryPage extends JFrame {
 	
 	// UI elements
 	private JButton addAlbumButton;
-	private JButton createPlaylistButton;
-	private JButton addSongToPlaylistButton;
+	private JButton playlistButton;
 	// Creates new form HomeAudioSystemPage
 		public LibraryPage() {
 			initComponents();
@@ -20,8 +19,7 @@ public class LibraryPage extends JFrame {
 		
 		private void initComponents() {
 			addAlbumButton = new JButton();
-			createPlaylistButton = new JButton();
-			addSongToPlaylistButton = new JButton();
+			playlistButton = new JButton();
 
 			// global settings and listeners
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -34,19 +32,13 @@ public class LibraryPage extends JFrame {
 				}
 			});
 			
-			createPlaylistButton.setText("Create Playlist");
-			createPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+			playlistButton.setText("Playlist");
+			playlistButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
-					createPlaylistButtonActionPerformed(evt);
+					playlistButtonActionPerformed(evt);
 				}
 			});
 			
-			addSongToPlaylistButton.setText("Add Song to Playlist");
-			addSongToPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent evt) {
-					addSongToPlaylistButtonActionPerformed(evt);
-				}
-			});
 			
 			// layout
 			//columns
@@ -57,16 +49,14 @@ public class LibraryPage extends JFrame {
 			layout.setHorizontalGroup(
 					layout.createParallelGroup()
 						.addComponent(addAlbumButton)
-						.addComponent(createPlaylistButton)
-						.addComponent(addSongToPlaylistButton)
+						.addComponent(playlistButton)
 					);
 			//rows
 			layout.setVerticalGroup(
 					layout.createParallelGroup()
 					.addGroup(layout.createSequentialGroup()
 							.addComponent(addAlbumButton)
-							.addComponent(createPlaylistButton)
-							.addComponent(addSongToPlaylistButton))
+							.addComponent(playlistButton))
 					);
 			pack();
 			
@@ -76,11 +66,7 @@ public class LibraryPage extends JFrame {
 			new AddAlbumPage().setVisible(true); 
 		}
 		
-		private void createPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
-			new CreatePlaylistPage().setVisible(true);
-		}
-		
-		private void addSongToPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
-			new AddSongToPlaylistPage().setVisible(true);
+		private void playlistButtonActionPerformed(java.awt.event.ActionEvent evt) {
+			new PlaylistPage().setVisible(true);
 		}
 }
