@@ -51,9 +51,15 @@ public class HomeAudioSystemController {
 		if (title == null || title.trim().length() == 0)
 			error += "Album title cannot be empty! ";
 		if (artistName == null || artistName.trim().length() == 0)
-			error = error +"Album artist name cannot be empty ";
-		if (Genres.valueOf(genreName) == null || genreName.trim().length() == 0)
-			error += "Invalid or empty album genre!";
+			error += "Album artist name cannot be empty! ";
+		Genres genre = null;
+		try {
+			genre = Genres.valueOf(genreName.trim());
+		} catch (IllegalArgumentException e) {
+			error += "Invalid album genre! ";
+		} catch (NullPointerException e) {
+			error += "Empty album genre! ";
+		}
 		
 		error = error.trim();
 		if (error.length() > 0) 
@@ -63,7 +69,6 @@ public class HomeAudioSystemController {
 		Artist artist = createArtist(artistName);
 		Album album = new Album(title, has, releaseDate, artist);
 		
-		Genres genre = Genres.valueOf(genreName);
 		album.setGenre(genre);
 		
 		for (SongMetadata metadata : songMetadata) {
@@ -81,7 +86,7 @@ public class HomeAudioSystemController {
 	
 	private Artist createArtist(String artistName) {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		LinkedList<Artist> hasArtists = (LinkedList<Artist>) has.getArtists();
+		List<Artist> hasArtists = has.getArtists();
 		
 		for (Artist hasArtist : hasArtists) {
 			String hasArtistName = hasArtist.getName();
