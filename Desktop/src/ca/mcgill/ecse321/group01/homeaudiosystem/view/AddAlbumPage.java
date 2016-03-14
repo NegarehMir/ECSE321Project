@@ -157,10 +157,11 @@ private static final long serialVersionUID = -8062635784771606869L;
 								.addComponent(albumNameLabel)
 								.addComponent(artistNameLabel)
 								.addComponent(genreLabel)
-								.addComponent(releaseDateLabel))
+								.addComponent(releaseDateLabel)
+								.addComponent(addAlbumButton))
 						.addGroup(layout.createParallelGroup()
-								.addComponent(albumNameTextField, 100, 100, 200)
-								.addComponent(artistNameTextField, 100, 100, 200)
+								.addComponent(albumNameTextField)
+								.addComponent(artistNameTextField)
 								.addComponent(genreList)
 								.addComponent(releaseDatePicker))
 						.addGroup(layout.createParallelGroup()
@@ -173,8 +174,7 @@ private static final long serialVersionUID = -8062635784771606869L;
 										.addComponent(songNameTextField)
 										.addComponent(songDurationSpinner))
 									)
-							.addComponent(addSongButton)
-								.addComponent(addAlbumButton)))
+							.addComponent(addSongButton)))
 				);
 
 		//rows
@@ -184,10 +184,10 @@ private static final long serialVersionUID = -8062635784771606869L;
 				.addGroup(layout.createSequentialGroup()
 						.addGroup(layout.createParallelGroup()
 								.addComponent(albumNameLabel)
-								.addComponent(albumNameTextField, 100, 100, 200))
+								.addComponent(albumNameTextField))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(artistNameLabel)
-								.addComponent(artistNameTextField, 100, 100, 200))
+								.addComponent(artistNameTextField))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(genreLabel)
 								.addComponent(genreList))
@@ -202,8 +202,9 @@ private static final long serialVersionUID = -8062635784771606869L;
 						.addGroup(layout.createParallelGroup()
 								.addComponent(songDurationLabel)
 								.addComponent(songDurationSpinner))
-						.addComponent(addSongButton)
-							.addComponent(addAlbumButton))
+						.addGroup(layout.createParallelGroup()
+								.addComponent(addSongButton)
+								.addComponent(addAlbumButton)))
 				);
 		pack();
 	}
