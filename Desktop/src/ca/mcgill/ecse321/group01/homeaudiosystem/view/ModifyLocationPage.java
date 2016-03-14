@@ -115,7 +115,7 @@ public class ModifyLocationPage extends JFrame {
 
 		// rows
 		layout.setVerticalGroup(
-				layout.createParallelGroup().addComponent(errorMessage)
+				layout.createSequentialGroup().addComponent(errorMessage)
 						.addGroup(layout.createSequentialGroup()
 								.addGroup(layout.createParallelGroup()
 										.addComponent(locationsLabel)
@@ -156,12 +156,18 @@ public class ModifyLocationPage extends JFrame {
 	}
 
 	private void modifyLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
 		Location oldLocation = locations.get(selectedLocation);
 		
-		String locationName = oldLocation.getName();
-		int newVolume = selectedVolumeSlider.getValue();
-		boolean newMute = selectedIsMuteCheckbox.getState();
-		
+		String locationName ="";
+		int newVolume = 0;
+		boolean newMute = false;
+		if(oldLocation != null)
+		{
+			locationName = oldLocation.getName();
+			newVolume = selectedVolumeSlider.getValue();
+			newMute = selectedIsMuteCheckbox.getState();
+		}
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		try {
