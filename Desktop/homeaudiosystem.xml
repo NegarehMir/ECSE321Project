@@ -7,6 +7,13 @@
       <locationMusicItems id="4"/>
       <homeAudioSystem reference="1"/>
     </location>
+    <location id="4">
+      <name>Bedroom</name>
+      <volume>60</volume>
+      <mute>false</mute>
+      <locationMusicItems id="5"/>
+      <homeAudioSystem reference="1"/>
+    </location>
   </locations>
   <artists id="5"/>
   <playlists id="6"/>
