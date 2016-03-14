@@ -25,19 +25,23 @@ public class PersistenceHomeAudioSystem {
 		PersistenceHomeAudioSystem.initializeXStream();
 		HomeAudioSystem has2 = (HomeAudioSystem) PersistenceXStream.loadFromXMLwithXStream();
 		
-		if (has2 != null) {			
+		if (has2 != null) {
+			int numArtist = has2.getArtists().size();
 			Iterator<Artist> artistIt = has2.getArtists().iterator();
-			while (artistIt.hasNext()) {
+			for(int i =0; i<numArtist; i++) {
 				has.addArtist(artistIt.next());
 			}
 			
+			int numLocation = has2.getLocations().size();
 			Iterator<Location> locationIt = has2.getLocations().iterator();
-			while (locationIt.hasNext()) {
-				has.addLocation(locationIt.next());
+			for(int i =0; i<numLocation; i++) {
+				Location nextLocation = locationIt.next();
+				has.addLocation(nextLocation);
 			}
 			
+			int numPlaylist = has2.getPlaylists().size();
 			Iterator<Playlist> playlistIt = has2.getPlaylists().iterator();
-			while (playlistIt.hasNext()) {
+			for(int i =0; i<numPlaylist; i++) {
 				has.addPlaylist(playlistIt.next());
 			}			
 		}

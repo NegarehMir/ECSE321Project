@@ -145,8 +145,8 @@ public class HomeAudioSystemController {
 		if(newLocationName == null || newLocationName.trim().length() == 0)
 			throw new InvalidInputException("Location name cannot be empty!");
 		
+		oldLocation.delete();
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		has.removeLocation(oldLocation);
 		
 		Location newLocation = new Location(newLocationName, has);
 		setLocationVolume(newLocation, newLocationVolume);
