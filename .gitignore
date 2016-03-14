@@ -1,1 +1,5 @@
 /bin/
+*.class
+workspace.xml
+tasks.xm
+*.iml

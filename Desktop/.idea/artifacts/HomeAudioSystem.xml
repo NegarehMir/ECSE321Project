@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="HomeAudioSystem">
+    <output-path>$PROJECT_DIR$/../Mobile/app/libs</output-path>
+    <root id="archive" name="HomeAudioSystem.jar">
+      <element id="module-output" name="Desktop" />
+    </root>
+  </artifact>
+</component>
