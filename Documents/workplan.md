@@ -69,7 +69,7 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Next Song Plays When Current Song Finishes | PB.J.01 | Thomas Web, Eva & Pierre Mobile | 5, 1 | | |
-| Delete Playlist from Library | ML.P.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
+| Delete Playlist from Library | ML.P.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 |Mar. 14, , |3, , |
 | Delete Album from Library | ML.A.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
 | Delete Songs from Library | ML.A.04 |  Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 2 | | |
 
