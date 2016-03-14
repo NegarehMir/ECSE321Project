@@ -9,8 +9,10 @@ public class LibraryPage extends JFrame {
 	private static final long serialVersionUID = 3129526340945243081L;
 	
 	// UI elements
-	private JButton addAlbumButton;
+	private JButton songButton;
+	private JButton albumButton;
 	private JButton playlistButton;
+	
 	// Creates new form HomeAudioSystemPage
 		public LibraryPage() {
 			initComponents();
@@ -18,17 +20,25 @@ public class LibraryPage extends JFrame {
 		}
 		
 		private void initComponents() {
-			addAlbumButton = new JButton();
+			songButton = new JButton();
+			albumButton = new JButton();
 			playlistButton = new JButton();
 
 			// global settings and listeners
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			setTitle("Library");
-
-			addAlbumButton.setText("Add Album");
-			addAlbumButton.addActionListener(new java.awt.event.ActionListener() {
+			
+			songButton.setText("Song");
+			songButton.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent evt) {
-					addAlbumButtonActionPerformed(evt);
+					songButtonActionPerformed(evt);
+				}
+			});
+			
+			albumButton.setText("Album");
+			albumButton.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent evt) {
+					albumButtonActionPerformed(evt);
 				}
 			});
 			
@@ -48,22 +58,27 @@ public class LibraryPage extends JFrame {
 			layout.setAutoCreateContainerGaps(true);
 			layout.setHorizontalGroup(
 					layout.createParallelGroup()
-						.addComponent(addAlbumButton)
+						.addComponent(songButton)
+						.addComponent(albumButton)
 						.addComponent(playlistButton)
 					);
 			//rows
 			layout.setVerticalGroup(
-					layout.createParallelGroup()
-					.addGroup(layout.createSequentialGroup()
-							.addComponent(addAlbumButton)
-							.addComponent(playlistButton))
+					layout.createSequentialGroup()
+							.addComponent(songButton)
+							.addComponent(albumButton)
+							.addComponent(playlistButton)
 					);
 			pack();
 			
 		}
-			
-		private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		
+		private void songButtonActionPerformed(java.awt.event.ActionEvent evt) {
 			new AddAlbumPage().setVisible(true); 
+		}
+		
+		private void albumButtonActionPerformed(java.awt.event.ActionEvent evt) {
+			new AlbumPage().setVisible(true); 
 		}
 		
 		private void playlistButtonActionPerformed(java.awt.event.ActionEvent evt) {
