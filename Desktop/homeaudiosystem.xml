@@ -101,5 +101,13 @@
   <playlists id="32">
     <album reference="10"/>
     <album reference="21"/>
+    <playlist id="33">
+      <title>Temporary</title>
+      <songs id="34">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="16"/>
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="29"/>
+      </songs>
+      <homeAudioSystem reference="1"/>
+    </playlist>
   </playlists>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>
