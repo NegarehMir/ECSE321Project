@@ -13,7 +13,7 @@ public class Location
   // STATIC VARIABLES
   //------------------------
 
-  public static final int MaxVolume = 10;
+  public static final int MaxVolume = 100;
   public static final int MinVolume = 0;
 
   //------------------------

@@ -95,7 +95,7 @@ public class AddLocationPage extends JFrame {
 		
 		//rows
 		layout.setVerticalGroup(
-				layout.createParallelGroup()
+				layout.createSequentialGroup()
 						.addComponent(errorMessage)
 						.addGroup(layout.createSequentialGroup()
 								.addGroup(layout.createParallelGroup()
