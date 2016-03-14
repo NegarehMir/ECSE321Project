@@ -7,7 +7,6 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
-import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 
 public class PersistenceHomeAudioSystem {
 	
