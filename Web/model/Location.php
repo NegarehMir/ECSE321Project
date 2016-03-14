@@ -9,7 +9,7 @@ class Location
   // STATIC VARIABLES
   //------------------------
 
-  public static $MaxVolume = 10;
+  public static $MaxVolume = 100;
   public static $MinVolume = 0;
 
   //------------------------

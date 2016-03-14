@@ -5,9 +5,9 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.sql.Date;
 import java.util.*;
 
-// line 3 "../../../../../../JavaHomeAudioSystem.ump"
-// line 48 "../../../../../../HomeAudioSystem.ump"
-// line 69 "../../../../../../HomeAudioSystem.ump"
+// line 3 "../../../../../../../Umple/JavaHomeAudioSystem.ump"
+// line 48 "../../../../../../../Umple/HomeAudioSystem.ump"
+// line 69 "../../../../../../../Umple/HomeAudioSystem.ump"
 public class Album extends Playlist
 {
 
@@ -217,12 +217,12 @@ public class Album extends Playlist
     super.delete();
   }
 
-  // line 9 "../../../../../../JavaHomeAudioSystem.ump"
+  // line 9 "../../../../../../../Umple/JavaHomeAudioSystem.ump"
    public void setGenre(Genres aGenre){
     genre = aGenre;
   }
 
-  // line 13 "../../../../../../JavaHomeAudioSystem.ump"
+  // line 13 "../../../../../../../Umple/JavaHomeAudioSystem.ump"
    public Genres getGenre(){
     return genre;
   }

@@ -7,8 +7,8 @@ import java.util.*;
 /**
  * use PhpHomeAudioSystem.ump;
  */
-// line 6 "../../../../../../HomeAudioSystem.ump"
-// line 96 "../../../../../../HomeAudioSystem.ump"
+// line 6 "../../../../../../../Umple/HomeAudioSystem.ump"
+// line 96 "../../../../../../../Umple/HomeAudioSystem.ump"
 public class HomeAudioSystem
 {
 
