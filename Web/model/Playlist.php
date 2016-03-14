@@ -20,15 +20,10 @@ class Playlist implements LocationMusicItem
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle, $allSongs, $aHomeAudioSystem)
+  public function __construct($aTitle, $aHomeAudioSystem)
   {
     $this->title = $aTitle;
     $this->songs = array();
-    $didAddSongs = $this->setSongs($allSongs);
-    if (!$didAddSongs)
-    {
-      throw new Exception("Unable to create Playlist, must have at least 1 songs");
-    }
     $didAddHomeAudioSystem = $this->setHomeAudioSystem($aHomeAudioSystem);
     if (!$didAddHomeAudioSystem)
     {
@@ -101,7 +96,7 @@ class Playlist implements LocationMusicItem
 
   public static function minimumNumberOfSongs()
   {
-    return 1;
+    return 0;
   }
 
   public function addSong($aSong)
@@ -117,43 +112,13 @@ class Playlist implements LocationMusicItem
   public function removeSong($aSong)
   {
     $wasRemoved = false;
-    if ($this->indexOfSong($aSong) == -1)
+    if ($this->indexOfSong($aSong) != -1)
     {
-      return $wasRemoved;
+      unset($this->songs[$this->indexOfSong($aSong)]);
+      $this->songs = array_values($this->songs);
+      $wasRemoved = true;
     }
-
-    if ($this->numberOfSongs() <= self::minimumNumberOfSongs())
-    {
-      return $wasRemoved;
-    }
-
-    unset($this->songs[$this->indexOfSong($aSong)]);
-    $this->songs = array_values($this->songs);
-    $wasRemoved = true;
     return $wasRemoved;
-  }
-
-  public function setSongs($newSongs)
-  {
-    $wasSet = false;
-    $verifiedSongs = array();
-    foreach ($newSongs as $aSong)
-    {
-      if (array_search($aSong,$verifiedSongs) !== false)
-      {
-        continue;
-      }
-      $verifiedSongs[] = $aSong;
-    }
-
-    if (count($verifiedSongs) != count($newSongs) || count($verifiedSongs) < self::minimumNumberOfSongs())
-    {
-      return $wasSet;
-    }
-
-    $this->songs = $verifiedSongs;
-    $wasSet = true;
-    return $wasSet;
   }
 
   public function addSongAt($aSong, $index)
