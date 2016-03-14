@@ -159,8 +159,8 @@ private static final long serialVersionUID = -8062635784771606869L;
 								.addComponent(genreLabel)
 								.addComponent(releaseDateLabel))
 						.addGroup(layout.createParallelGroup()
-								.addComponent(albumNameTextField, 200, 200, 400)
-								.addComponent(artistNameTextField, 200, 200, 400)
+								.addComponent(albumNameTextField, 100, 100, 200)
+								.addComponent(artistNameTextField, 100, 100, 200)
 								.addComponent(genreList)
 								.addComponent(releaseDatePicker))
 						.addGroup(layout.createParallelGroup()
@@ -179,15 +179,15 @@ private static final long serialVersionUID = -8062635784771606869L;
 
 		//rows
 		layout.setVerticalGroup(
-				layout.createParallelGroup()
+				layout.createSequentialGroup()
 				.addComponent(errorMessage)
 				.addGroup(layout.createSequentialGroup()
 						.addGroup(layout.createParallelGroup()
 								.addComponent(albumNameLabel)
-								.addComponent(albumNameTextField, 200, 200, 400))
+								.addComponent(albumNameTextField, 100, 100, 200))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(artistNameLabel)
-								.addComponent(artistNameTextField, 200, 200, 400))
+								.addComponent(artistNameTextField, 100, 100, 200))
 						.addGroup(layout.createParallelGroup()
 								.addComponent(genreLabel)
 								.addComponent(genreList))
@@ -250,7 +250,7 @@ private static final long serialVersionUID = -8062635784771606869L;
 		for (int i = 0; i < model.getRowCount(); ++i) {
 			long duration = 0;
 			try {
-				Date date = (Date) (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
+				java.util.Date date = (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
 				duration = date.getMinutes() * 60 + date.getSeconds();
 			} catch (ParseException e) {
 			}
@@ -265,9 +265,8 @@ private static final long serialVersionUID = -8062635784771606869L;
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		try {
 			hasController.createAlbum(albumTitle, artistName, releaseDate, genreName, songInfo);
-		} catch (InvalidInputException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
 		}
 
 		// update visuals

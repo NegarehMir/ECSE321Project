@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.persistence;
 
 import java.util.Iterator;
+import java.util.List;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Artist;
@@ -27,22 +28,24 @@ public class PersistenceHomeAudioSystem {
 		
 		if (has2 != null) {
 			int numArtist = has2.getArtists().size();
-			Iterator<Artist> artistIt = has2.getArtists().iterator();
+			List<Artist> artists = has2.getArtists();
 			for(int i =0; i<numArtist; i++) {
-				has.addArtist(artistIt.next());
+				Artist artist = artists.get(0);
+				has.addArtist(artist);
 			}
 			
 			int numLocation = has2.getLocations().size();
-			Iterator<Location> locationIt = has2.getLocations().iterator();
+			List<Location> locations = has2.getLocations();
 			for(int i =0; i<numLocation; i++) {
-				Location nextLocation = locationIt.next();
-				has.addLocation(nextLocation);
+				Location location = locations.get(0);
+				has.addLocation(location);
 			}
 			
 			int numPlaylist = has2.getPlaylists().size();
-			Iterator<Playlist> playlistIt = has2.getPlaylists().iterator();
+			List<Playlist> playlists = has2.getPlaylists();
 			for(int i =0; i<numPlaylist; i++) {
-				has.addPlaylist(playlistIt.next());
+				Playlist playlist = playlists.get(0);
+				has.addPlaylist(playlist);
 			}			
 		}
 	}

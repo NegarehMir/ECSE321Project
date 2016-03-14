@@ -183,30 +183,8 @@ public class HomeAudioSystemController {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
-	
-	  public boolean assignPlaylistToLocation(Playlist aPlaylist, Location aLocation)
-	  {
-		  //TODO: assign change currently playing song index depending on where playlist added
-		  //LocationSongPlaying.setPlayingSongIndex(aLocation, 0);
-		  boolean wasAdded = false;
-		  
-		  List<LocationMusicItem> locationMusicItems = aLocation.getLocationMusicItems();
-		  List<Song> playlistSongs = aPlaylist.getSongs();
-		  
-		  if (locationMusicItems.equals(aPlaylist.getSongs())) 
-			  return false;
-		  
-		  for(int i = locationMusicItems.size(); i>0; i--)
-			  aLocation.removeLocationMusicItem(locationMusicItems.get(i-1));
-		  
-		  for(Song song: aPlaylist.getSongs())
-			  aLocation.addLocationMusicItem(song);
-		  
-		  wasAdded = true;
-		  return wasAdded;
-	  }
 	  
-	  public boolean assignSongToLocation(Song aSong, Location aLocation)
+	  public boolean assignLocationMusicItemToLocation(LocationMusicItem aLocationMusicItem, Location aLocation)
 	  {
 		  //TODO: assign change currently playing song index depending on where song added
 		  //LocationSongPlaying.setPlayingSongIndex(aLocation, 0);
@@ -214,15 +192,21 @@ public class HomeAudioSystemController {
 		  
 		  List<LocationMusicItem> locationMusicItems = aLocation.getLocationMusicItems();
 		  
-		  if (locationMusicItems.equals(aSong))
+		  if (locationMusicItems.equals(aLocationMusicItem))
 			  return false;
 		  
 		  for(int i = locationMusicItems.size(); i>0; i--)
 			  aLocation.removeLocationMusicItem(locationMusicItems.get(i-1));
 		  
-		  aLocation.addLocationMusicItem(aSong);
+		  LocationSongPlaying locationSongPlaying = new LocationSongPlaying();
+		  locationSongPlaying.addLocationSongPlaying(aLocation, aLocationMusicItem);
+		  
+		  aLocation.addLocationMusicItem(aLocationMusicItem);
 		  
 		  wasAdded = true;
+		  HomeAudioSystem has = HomeAudioSystem.getInstance();
+		  PersistenceXStream.saveToXMLwithXStream(has);
+		  
 		  return wasAdded;  
 	  }
 	
