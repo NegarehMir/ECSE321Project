@@ -27,5 +27,4 @@ public class LocationSongPlaying {
 		
 		return null;
 	}
-
 }
