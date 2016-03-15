@@ -19,16 +19,16 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Create Playlist | ML.P.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
-| Add Location | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
+| Add Location | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, Mar. 14 , | 4, 4  , |
 | View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 | Feb. 28, ,  | 3, , |
 | Add Song to Playlist | ML.P.04 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
 
 ### Test Writing
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Add Album Unit Test | -- | Eva | 2 | | |
+| Add Album Unit Test | -- | Eva | 2 | Mar. 11 | 2 |
 | Create Playlist Unit Test | -- | Evan | 2 | Mar. 5 | 2 |
-| Add Location Unit Test | -- | Eva | 2 | | |
+| Add Location Unit Test | -- | Eva | 2 | Mar. 11 | 2 |
 | Add Song to Playlist Unit Test | -- | Evan | 2 | | |
 
 ## Due Mar. 4
