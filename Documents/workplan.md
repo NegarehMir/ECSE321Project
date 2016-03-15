@@ -19,8 +19,8 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Create Playlist | ML.P.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
-| Add Location | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , Mar. 14 | 4,  , 4 |
-| View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 | Feb. 28, ,  | 3, , |
+| Add Location | HL.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 | Feb. 28, , Mar. 14 | 4,  , 4 |
+| View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | Feb. 28, ,  | 3, , |
 | Add Song to Playlist | ML.P.04 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, , | 4, , |
 
 ### Test Writing
@@ -43,11 +43,11 @@ Team members should work on items highest up in that week's due date section fir
 ### Functionality and UI
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
-| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
-| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , Mar. 14 |3, , 3 |
-| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 3 |Mar. 2, , Mar. 14 |3, , 3 |
+| Assign Playlist to Location | HL.03 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Album to Location | HL.03 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Assign Song to Location | HL.03 | Nicky Desktop, Thomas Web, Pierre Mobile | 3, 3, 3 |Mar. 2, , |3, , |
+| Turn Volume Up or Down | HL.V.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , Mar. 14 |3, , 3 |
+| Temporarily Mute Volume | HL.V.02 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 |Mar. 2, , Mar. 14 |3, , 3 |
 | View All Locations (currently playing song, volume level) | PB.U.01, HL.U.01, HL.U.04 | Nicky Desktop, Thomas Web, Eva Mobile | 2, 2, 2 | Mar. 4, , |3, , |
 
 ### Test Writing
