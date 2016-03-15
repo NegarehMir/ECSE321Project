@@ -41,7 +41,7 @@ class Playlist
 {
   isA LocationMusicItem;
   String title;
-  * -> * Song;
+  * -> 1..* Song;
 }
 
 

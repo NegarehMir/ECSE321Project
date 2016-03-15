@@ -14,7 +14,7 @@ public class HomeAudioSystemController {
 	public LinkedList<Song> getAllSongsFromLibrary() {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		LinkedList<Song> allSongsInLibrary = new LinkedList<>();
-		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		List<Playlist> allPlaylistsInLibrary = has.getPlaylists();
 		
 		for (Playlist playlist : allPlaylistsInLibrary) {
 			if (playlist instanceof Album) {
@@ -29,7 +29,7 @@ public class HomeAudioSystemController {
 	public LinkedList<Album> getAllAlbumsFromLibrary() {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		LinkedList<Album> allAlbumsInLibrary = new LinkedList<>();
-		LinkedList<Playlist> allPlaylistsInLibrary = (LinkedList<Playlist>) has.getPlaylists();
+		List<Playlist> allPlaylistsInLibrary = has.getPlaylists();
 		
 		for (Playlist playlist : allPlaylistsInLibrary) {
 			if (playlist instanceof Album) {
@@ -145,8 +145,8 @@ public class HomeAudioSystemController {
 		if(newLocationName == null || newLocationName.trim().length() == 0)
 			throw new InvalidInputException("Location name cannot be empty!");
 		
+		oldLocation.delete();
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		has.removeLocation(oldLocation);
 		
 		Location newLocation = new Location(newLocationName, has);
 		setLocationVolume(newLocation, newLocationVolume);
@@ -183,30 +183,8 @@ public class HomeAudioSystemController {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
-	
-	  public boolean assignPlaylistToLocation(Playlist aPlaylist, Location aLocation)
-	  {
-		  //TODO: assign change currently playing song index depending on where playlist added
-		  //LocationSongPlaying.setPlayingSongIndex(aLocation, 0);
-		  boolean wasAdded = false;
-		  
-		  List<LocationMusicItem> locationMusicItems = aLocation.getLocationMusicItems();
-		  List<Song> playlistSongs = aPlaylist.getSongs();
-		  
-		  if (locationMusicItems.equals(aPlaylist.getSongs())) 
-			  return false;
-		  
-		  for(int i = locationMusicItems.size(); i>0; i--)
-			  aLocation.removeLocationMusicItem(locationMusicItems.get(i-1));
-		  
-		  for(Song song: aPlaylist.getSongs())
-			  aLocation.addLocationMusicItem(song);
-		  
-		  wasAdded = true;
-		  return wasAdded;
-	  }
 	  
-	  public boolean assignSongToLocation(Song aSong, Location aLocation)
+	  public boolean assignLocationMusicItemToLocation(LocationMusicItem aLocationMusicItem, Location aLocation)
 	  {
 		  //TODO: assign change currently playing song index depending on where song added
 		  //LocationSongPlaying.setPlayingSongIndex(aLocation, 0);
@@ -214,15 +192,21 @@ public class HomeAudioSystemController {
 		  
 		  List<LocationMusicItem> locationMusicItems = aLocation.getLocationMusicItems();
 		  
-		  if (locationMusicItems.equals(aSong))
+		  if (locationMusicItems.equals(aLocationMusicItem))
 			  return false;
 		  
 		  for(int i = locationMusicItems.size(); i>0; i--)
 			  aLocation.removeLocationMusicItem(locationMusicItems.get(i-1));
 		  
-		  aLocation.addLocationMusicItem(aSong);
+		  LocationSongPlaying locationSongPlaying = new LocationSongPlaying();
+		  locationSongPlaying.addLocationSongPlaying(aLocation, aLocationMusicItem);
+		  
+		  aLocation.addLocationMusicItem(aLocationMusicItem);
 		  
 		  wasAdded = true;
+		  HomeAudioSystem has = HomeAudioSystem.getInstance();
+		  PersistenceXStream.saveToXMLwithXStream(has);
+		  
 		  return wasAdded;  
 	  }
 	
@@ -234,4 +218,30 @@ public class HomeAudioSystemController {
 		  else
 			  return songPlaying.getTitle()+" - " + songPlaying.getArtist(0).getName();
 	 }
+	
+	public void removePlaylist(Playlist playlist){		
+		playlist.delete();
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
+	
+	public void removeSong(Song song) throws InvalidInputException {
+		if(song == null)
+			throw new InvalidInputException("Please select a song!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		List<Playlist> playlists = has.getPlaylists();
+		for(Playlist playlist : playlists)
+		{
+			if(playlist.getSongs().contains(song))
+			{
+				playlist.removeSong(song);
+				if(playlist.getSongs().size() == 0)
+					playlist.delete();
+			}
+		}
+		
+		song.delete();
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
 }

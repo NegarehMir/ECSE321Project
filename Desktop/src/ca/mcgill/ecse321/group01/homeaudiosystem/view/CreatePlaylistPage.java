@@ -185,8 +185,9 @@ public class CreatePlaylistPage extends JFrame {
 			Song s = songs.get(model.getValueAt(i, 0));
 			songsToAddToPlaylist.add(s);
 		}	
+		Song[] songsToAddArray = new Song[songsToAddToPlaylist.size()]; 
+		songsToAddArray = songsToAddToPlaylist.toArray(songsToAddArray);
 		
-		Song[] songsToAddArray = (Song[]) songsToAddToPlaylist.toArray();
 		String playlistTitle = playlistNameTextField.getText();
 		
 		// call the controller

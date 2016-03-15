@@ -452,31 +452,8 @@ public class TestHomeAudioSystemController {
 	}
 	
 	
-	
-	
 	@Test
-	public void testAssignSongToLocation() {
-		HomeAudioSystem has = HomeAudioSystem.getInstance();
-		assertEquals(0, has.getLocations().size());
-		
-		Location location = new Location("Dining Room", has);
-		Artist artist = new Artist("Arcade Fire", has);
-		Album album = new Album("Reflektor", has, Date.valueOf("2013-10-28"), artist);
-		Song song = new Song("Afterlife", 353, album);
-		
-		HomeAudioSystemController hasController = new HomeAudioSystemController();
-		
-		try {
-			hasController.assignSongToLocation(song, location);
-		} catch (Exception e) {
-			fail();
-		}
-		
-		assertEquals(1, location.getLocationMusicItems().size());
-	}
-	
-	@Test
-	public void testAssignPlaylistToLocation() {
+	public void testAssignLocationMusicItemToLocation() {
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		assertEquals(0, has.getLocations().size());
 		
@@ -490,7 +467,7 @@ public class TestHomeAudioSystemController {
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		
 		try {
-			hasController.assignPlaylistToLocation(playlist, location);
+			hasController.assignLocationMusicItemToLocation(playlist, location);
 		} catch (Exception e) {
 			fail();
 		}

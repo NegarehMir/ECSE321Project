@@ -149,6 +149,7 @@ public class AssignSongToLocationsPage extends JFrame {
 	}
 	
 	private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		if(locationsTable.getSelectedRows().length>0 && selectedSong>-1)
@@ -156,7 +157,7 @@ public class AssignSongToLocationsPage extends JFrame {
 			for(int i: locationsTable.getSelectedRows())
 			{
 				Location location = locations.get(i);
-				hasc.assignSongToLocation(songs.get(selectedSong), location);
+				hasc.assignLocationMusicItemToLocation(songs.get(selectedSong), location);
 			}
 		}
 		else

@@ -5,8 +5,8 @@ package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 import java.sql.Date;
 
-// line 33 "../../../../../../HomeAudioSystem.ump"
-// line 75 "../../../../../../HomeAudioSystem.ump"
+// line 33 "../../../../../../../Umple/HomeAudioSystem.ump"
+// line 75 "../../../../../../../Umple/HomeAudioSystem.ump"
 public class Artist
 {
 
@@ -125,9 +125,9 @@ public class Artist
     return 0;
   }
 
-  public Album addAlbum(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate)
+  public Album addAlbum(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Song... allSongs)
   {
-    return new Album(aTitle, aHomeAudioSystem, aReleaseDate, this);
+    return new Album(aTitle, aHomeAudioSystem, aReleaseDate, this, allSongs);
   }
 
   public boolean addAlbum(Album aAlbum)

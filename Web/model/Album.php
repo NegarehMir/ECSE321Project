@@ -21,9 +21,9 @@ class Album extends Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public function __construct($aTitle, $aHomeAudioSystem, $aGenre, $aReleaseDate, $aArtist)
+  public function __construct($aTitle, $allSongs, $aHomeAudioSystem, $aGenre, $aReleaseDate, $aArtist)
   {
-    parent::__construct($aTitle, $aHomeAudioSystem);
+    parent::__construct($aTitle, $allSongs, $aHomeAudioSystem);
     $this->genre = $aGenre;
     $this->releaseDate = $aReleaseDate;
     $this->songs = array();
