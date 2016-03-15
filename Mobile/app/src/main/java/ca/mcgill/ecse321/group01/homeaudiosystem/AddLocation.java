@@ -63,12 +63,14 @@ public class AddLocation extends AppCompatActivity {
         Switch muteSwitch = (Switch) findViewById(R.id.mute_switch);
         int volume = volumeSeekbar.getProgress();
         boolean isMute = muteSwitch.isChecked();
+        TextView errorMessage = (TextView) findViewById(R.id.error);
 
         HomeAudioSystemController hasc = new HomeAudioSystemController();
         try {
             hasc.createLocation(locationName, volume, isMute);
+            errorMessage.setText(null);
         } catch (InvalidInputException e) {
-            error = e.getMessage();
+            errorMessage.setText(e.getMessage());
         }
         refreshData();
     }

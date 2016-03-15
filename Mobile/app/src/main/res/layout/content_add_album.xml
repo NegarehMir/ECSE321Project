@@ -19,9 +19,12 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/error_message"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:text=" "
+            android:textColor="#FF69b4"
+            android:id="@+id/error"
+            />
 
         <!-- Add album Section -->
         <EditText
@@ -36,19 +39,39 @@
             android:id="@+id/newalbum_artistname"
             android:hint="@string/newalbum_name_label" />
 
-        <Spinner
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="end"
-            android:id="@+id/newalbum_genrespinner"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Genre:" />
 
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="@string/newalbum_date_label"
-            android:layout_gravity="end"
-            android:id="@+id/newalbum_date"
-            android:onClick="showDatePickerDialog" />
+                <Spinner
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_gravity="end"
+                    android:id="@+id/newalbum_genrespinner"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent">
+                <TextView
+                    android:layout_height="26dp"
+                    android:layout_width="wrap_content"
+                    android:text="Release Date: " />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:text="@string/newalbum_date_label"
+                    android:layout_gravity="end"
+                    android:id="@+id/newalbum_date"
+                    android:onClick="showDatePickerDialog" />
+            </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
@@ -65,17 +88,23 @@
             android:id="@+id/newsong_title"
             android:hint="Song Name?" />
 
-        <TextView
-            android:layout_height="26dp"
-            android:layout_width="match_parent"
-            android:text="Duration:" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
-        <TextView
-            android:layout_height="36dp"
-            android:layout_width="match_parent"
-            android:text="01:00"
-            android:id="@+id/newsong_duration"
-            android:onClick="showTimePickerDialog" />
+            <TextView
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:text="Duration: " />
+
+                <TextView
+                    android:layout_height="fill_parent"
+                    android:layout_width="wrap_content"
+                    android:text="01:00"
+                    android:id="@+id/newsong_duration"
+                    android:onClick="showTimePickerDialog" />
+            </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"

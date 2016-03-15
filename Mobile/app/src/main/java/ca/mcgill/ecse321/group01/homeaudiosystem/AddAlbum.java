@@ -27,7 +27,6 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.PersistenceHomeAudi
 
 public class AddAlbum extends AppCompatActivity {
 
-    private String error = null;
     private HashMap<Integer, Album.Genres> genres;
 
     private ArrayList<String[]> songs = new ArrayList<String[]>();
@@ -108,7 +107,7 @@ public class AddAlbum extends AppCompatActivity {
         String artistName = ((TextView)findViewById(R.id.newalbum_artistname)).getText().toString();
         String genre = (((Spinner) findViewById(R.id.newalbum_genrespinner)).getSelectedItem().toString());
         CharSequence date = ((TextView)findViewById(R.id.newalbum_date)).getText();
-
+        TextView errorMessage = (TextView) findViewById(R.id.error);
 
         Bundle dateBundle = getDateFromLabel(date);
         Date releaseDate = dateBundle(dateBundle);
@@ -131,8 +130,9 @@ public class AddAlbum extends AppCompatActivity {
                     releaseDate,
                     genre,
                     songInfo);
+            errorMessage.setText(null);
         } catch (InvalidInputException e) {
-            error = e.getMessage();
+            errorMessage.setText(e.getMessage());
         }
 
         refreshData();

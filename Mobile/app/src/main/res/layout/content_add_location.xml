@@ -19,9 +19,12 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/error_message"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:text=" "
+            android:textColor="#FF69b4"
+            android:id="@+id/error"
+            />
 
         <!-- Add Location Section -->
         <EditText
@@ -30,36 +33,43 @@
             android:id="@+id/newlocation_title"
             android:hint="Location Name?" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Volume:" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <SeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:max="100"
-            android:progress="0"
-            android:id="@+id/volume_bar"></SeekBar>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Volume:" />
+
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:max="100"
+                    android:progress="0"
+                    android:id="@+id/volume_bar"></SeekBar>
+            </LinearLayout>
 
         <Switch
-            android:layout_width="wrap_content"
+            android:layout_width="103dp"
             android:layout_height="wrap_content"
-            android:text="Mute:"
+            android:text="Mute: "
             android:id="@+id/mute_switch"
             android:checked="false"
             android:textOff="OFF"
             android:textOn="ON"
-            android:showText="true"/>
+            android:showText="true"
+            android:layout_marginLeft="10dp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/library_button"
             android:text="Add Location"
-            android:layout_gravity="left"
+            android:layout_gravity="right"
             android:onClick="addLocation"/>
 
     </LinearLayout>
