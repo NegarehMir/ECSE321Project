@@ -26,9 +26,9 @@ public class Album extends Playlist
   // CONSTRUCTOR
   //------------------------
 
-  public Album(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Artist aArtist, Song... allSongs)
+  public Album(String aTitle, HomeAudioSystem aHomeAudioSystem, Date aReleaseDate, Artist aArtist)
   {
-    super(aTitle, aHomeAudioSystem, allSongs);
+    super(aTitle, aHomeAudioSystem);
     releaseDate = aReleaseDate;
     songs = new ArrayList<Song>();
     boolean didAddArtist = setArtist(aArtist);
@@ -90,21 +90,14 @@ public class Album extends Playlist
     return artist;
   }
 
-  public boolean isNumberOfSongsValid()
-  {
-    boolean isValid = numberOfSongs() >= minimumNumberOfSongs();
-    return isValid;
-  }
-
   public static int minimumNumberOfSongs()
   {
-    return 1;
+    return 0;
   }
 
-  public Song addSong(String aTitle, int aDuration)
+  public Song addSong(String aTitle, int aDuration, Artist... allArtists)
   {
-    Song aNewSong = new Song(aTitle, aDuration, this);
-    return aNewSong;
+    return new Song(aTitle, aDuration, this, allArtists);
   }
 
   public boolean addSong(Song aSong)
@@ -113,11 +106,6 @@ public class Album extends Playlist
     if (songs.contains(aSong)) { return false; }
     Album existingAlbum = aSong.getAlbum();
     boolean isNewAlbum = existingAlbum != null && !this.equals(existingAlbum);
-
-    if (isNewAlbum && existingAlbum.numberOfSongs() <= minimumNumberOfSongs())
-    {
-      return wasAdded;
-    }
     if (isNewAlbum)
     {
       aSong.setAlbum(this);
@@ -134,19 +122,11 @@ public class Album extends Playlist
   {
     boolean wasRemoved = false;
     //Unable to remove aSong, as it must always have a album
-    if (this.equals(aSong.getAlbum()))
+    if (!this.equals(aSong.getAlbum()))
     {
-      return wasRemoved;
+      songs.remove(aSong);
+      wasRemoved = true;
     }
-
-    //album already at minimum (1)
-    if (numberOfSongs() <= minimumNumberOfSongs())
-    {
-      return wasRemoved;
-    }
-
-    songs.remove(aSong);
-    wasRemoved = true;
     return wasRemoved;
   }
 

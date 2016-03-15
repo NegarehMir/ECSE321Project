@@ -290,9 +290,9 @@ public class HomeAudioSystem
     return 0;
   }
 
-  public Playlist addPlaylist(String aTitle, Song... allSongs)
+  public Playlist addPlaylist(String aTitle)
   {
-    return new Playlist(aTitle, this, allSongs);
+    return new Playlist(aTitle, this);
   }
 
   public boolean addPlaylist(Playlist aPlaylist)
