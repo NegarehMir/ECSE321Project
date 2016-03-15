@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ public class TimePickerFragment extends DialogFragment
                 DateFormat.is24HourFormat(getActivity()));
     }
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        MainActivity myActivity = (MainActivity)getActivity();
+        AddAlbum myActivity = (AddAlbum) getActivity();
         myActivity.setTime(getArguments().getInt("id"), hourOfDay, minute);
     }
 }

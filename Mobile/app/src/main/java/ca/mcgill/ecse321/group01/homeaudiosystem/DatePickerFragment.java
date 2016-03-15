@@ -1,8 +1,5 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem;
 
-/**
- * Created by Isaac on 2016-01-25.
- */
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -29,7 +26,7 @@ public class DatePickerFragment extends DialogFragment
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        MainActivity myActivity = (MainActivity)getActivity();
+        AddAlbum myActivity = (AddAlbum)getActivity();
         myActivity.setDate(getArguments().getInt("id"), day, month, year);
     }
 }

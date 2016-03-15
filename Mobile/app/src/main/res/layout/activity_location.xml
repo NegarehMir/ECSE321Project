@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,10 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ca.mcgill.ecse321.group01.homeaudiosystem.MainActivity"
-    tools:showIn="@layout/activity_main">
-
+    tools:context="ca.mcgill.ecse321.group01.homeaudiosystem.Location">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -21,18 +17,18 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/location_button"
-            android:text="Location"
+            android:id="@+id/addlocation_button"
+            android:text="Add Location"
             android:layout_gravity="left"
-            android:onClick="locationPage"/>
+            android:onClick="addLocationPage"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/library_button"
-            android:text="Library"
+            android:id="@+id/viewLocations_button"
+            android:text="View Locations"
             android:layout_gravity="left"
-            android:onClick="libraryPage"/>
+            android:onClick="viewLocationsPage"/>
 
     </LinearLayout>
 </RelativeLayout>

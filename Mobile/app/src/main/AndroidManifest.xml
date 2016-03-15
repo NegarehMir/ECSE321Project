@@ -18,6 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddLocation"
+            android:label="@string/title_activity_create_location"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AddAlbum"
+            android:label="@string/title_activity_add_album"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Location" />
+        <activity android:name=".Library" />
+        <activity android:name=".ViewLocations"></activity>
     </application>
 
 </manifest>
