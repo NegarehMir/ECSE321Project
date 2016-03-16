@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +31,9 @@ public class AddAlbum extends AppCompatActivity {
     private HashMap<Integer, Album.Genres> genres;
 
     private ArrayList<String[]> songs = new ArrayList<String[]>();
+
+    private ListView songListView;
+    private ArrayList<String> songsToList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,8 @@ public class AddAlbum extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.newalbum_artistname);
         tv.setText("");
 
+        songListView = (ListView) findViewById(R.id.song_list);
+        songListView.setAdapter(null);
 
         Spinner spinner = (Spinner) findViewById(R.id.newalbum_genrespinner);
         ArrayAdapter<CharSequence> genresAdapter = new
@@ -142,6 +148,16 @@ public class AddAlbum extends AppCompatActivity {
         String duration = ((TextView) findViewById(R.id.newsong_duration)).getText().toString();
         String title = ((TextView) findViewById(R.id.newsong_title)).getText().toString();
         songs.add(new String[]{title, duration});
+
+
+        songsToList.add(new String(duration+"   "+title));
+        songListView = (ListView) findViewById(R.id.song_list);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                songsToList);
+
+        songListView.setAdapter(arrayAdapter);
     }
 
     public void showDatePickerDialog(View v) {
