@@ -19,8 +19,8 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Create Playlist | ML.P.01 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, Feb 27, | 4, , |
-| Add Location | HL.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 | Feb. 28, , Mar. 14 | 4,  , 4 |
-| View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | Feb. 28, ,  | 3, , |
+| Add Location | HL.01 | Nicky Desktop, Thomas Web, Eva Mobile | 4, 4, 3 | Feb. 28, , Mar. 14 | 4,  March 16, 4 |
+| View Names of Locations | HL.01 | Nicky Desktop, Thomas Web, Eva Mobile | 3, 3, 3 | Feb. 28, March 16,  | 3, , |
 | Add Song to Playlist | ML.P.04 | Nicky Desktop, Thomas Web, Pierre Mobile | 4, 4, 3 | Feb. 28, Feb 27, | 4, , |
 
 ### Test Writing
