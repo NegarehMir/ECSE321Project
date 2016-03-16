@@ -4,137 +4,163 @@
       <name>Kitchen</name>
       <volume>84</volume>
       <mute>true</mute>
-      <locationMusicItems id="4"/>
+      <locationMusicItems id="4">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="5">
+          <title>Flying</title>
+          <duration>60</duration>
+          <artists id="6">
+            <artist id="7">
+              <name>Anathema</name>
+              <albums id="8">
+                <album id="9">
+                  <title>A Natural Disaster</title>
+                  <songs defined-in="playlist" id="10"/>
+                  <homeAudioSystem reference="1"/>
+                  <releaseDate id="11">2003-11-03</releaseDate>
+                  <songs id="12">
+                    <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="5"/>
+                    <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="13">
+                      <title>Are You There</title>
+                      <duration>180</duration>
+                      <artists id="14">
+                        <artist reference="7"/>
+                      </artists>
+                      <album reference="9"/>
+                    </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
+                  </songs>
+                  <artist reference="7"/>
+                  <genre>Rock</genre>
+                </album>
+              </albums>
+              <songs id="15">
+                <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="5"/>
+                <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="13"/>
+              </songs>
+              <homeAudioSystem reference="1"/>
+            </artist>
+          </artists>
+          <album reference="9"/>
+        </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
+      </locationMusicItems>
       <homeAudioSystem reference="1"/>
     </location>
-    <location id="5">
-      <name>Bedroom</name>
-      <volume>30</volume>
+    <location id="16">
+      <name>Bathroom</name>
+      <volume>0</volume>
       <mute>true</mute>
-      <locationMusicItems id="6"/>
+      <locationMusicItems id="17">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="13"/>
+      </locationMusicItems>
+      <homeAudioSystem reference="1"/>
+    </location>
+    <location id="18">
+      <name>Bedroom</name>
+      <volume>100</volume>
+      <mute>false</mute>
+      <locationMusicItems id="19"/>
       <homeAudioSystem reference="1"/>
     </location>
   </locations>
-  <artists id="7">
-    <artist id="8">
-      <name>Anathema</name>
-      <albums id="9">
-        <album id="10">
-          <title>A Natural Disaster</title>
-          <songs defined-in="playlist" id="11"/>
-          <homeAudioSystem reference="1"/>
-          <releaseDate id="12">2003-11-03</releaseDate>
-          <songs id="13">
-            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="14">
-              <title>Flying</title>
-              <duration>60</duration>
-              <artists id="15">
-                <artist reference="8"/>
-              </artists>
-              <album reference="10"/>
-            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
-            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="16">
-              <title>Are You There</title>
-              <duration>180</duration>
-              <artists id="17">
-                <artist reference="8"/>
-              </artists>
-              <album reference="10"/>
-            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
-          </songs>
-          <artist reference="8"/>
-          <genre>Rock</genre>
-        </album>
-      </albums>
-      <songs id="18">
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="14"/>
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="16"/>
-      </songs>
-      <homeAudioSystem reference="1"/>
-    </artist>
-    <artist id="19">
+  <artists id="20">
+    <artist reference="7"/>
+    <artist id="21">
       <name>Radiohead</name>
-      <albums id="20">
-        <album id="21">
+      <albums id="22">
+        <album id="23">
           <title>OK Computer</title>
-          <songs defined-in="playlist" id="22"/>
+          <songs defined-in="playlist" id="24"/>
           <homeAudioSystem reference="1"/>
-          <releaseDate id="23">1997-05-21</releaseDate>
-          <songs id="24">
-            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="25">
+          <releaseDate id="25">1997-05-21</releaseDate>
+          <songs id="26">
+            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="27">
               <title>Paranoid Android</title>
               <duration>180</duration>
-              <artists id="26">
-                <artist reference="19"/>
-              </artists>
-              <album reference="21"/>
-            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
-            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="27">
-              <title>Surprises</title>
-              <duration>240</duration>
               <artists id="28">
-                <artist reference="19"/>
+                <artist reference="21"/>
               </artists>
-              <album reference="21"/>
+              <album reference="23"/>
             </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
             <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="29">
+              <title>Surprises</title>
+              <duration>240</duration>
+              <artists id="30">
+                <artist reference="21"/>
+              </artists>
+              <album reference="23"/>
+            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
+            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="31">
               <title>Karma Police</title>
               <duration>262</duration>
-              <artists id="30">
-                <artist reference="19"/>
+              <artists id="32">
+                <artist reference="21"/>
               </artists>
-              <album reference="21"/>
+              <album reference="23"/>
             </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
           </songs>
-          <artist reference="19"/>
+          <artist reference="21"/>
           <genre>Rock</genre>
         </album>
       </albums>
-      <songs id="31">
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="25"/>
+      <songs id="33">
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="27"/>
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="29"/>
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="31"/>
       </songs>
       <homeAudioSystem reference="1"/>
     </artist>
-    <artist id="32">
+    <artist id="34">
       <name>Whocares</name>
-      <albums id="33">
-        <album id="34">
-          <title>Gone</title>
-          <songs defined-in="playlist" id="35"/>
+      <albums id="35"/>
+      <songs id="36"/>
+      <homeAudioSystem reference="1"/>
+    </artist>
+    <artist id="37">
+      <name>Elliott Smith</name>
+      <albums id="38">
+        <album id="39">
+          <title>Either/Or</title>
+          <songs defined-in="playlist" id="40"/>
           <homeAudioSystem reference="1"/>
-          <songs id="36">
-            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="37">
-              <title>GonnaBeGone</title>
-              <duration>60</duration>
-              <artists id="38">
-                <artist reference="32"/>
+          <songs id="41">
+            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="42">
+              <title>Speed Trials</title>
+              <duration>180</duration>
+              <artists id="43">
+                <artist reference="37"/>
               </artists>
-              <album reference="34"/>
+              <album reference="39"/>
+            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
+            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="44">
+              <title>Between the Bars</title>
+              <duration>240</duration>
+              <artists id="45">
+                <artist reference="37"/>
+              </artists>
+              <album reference="39"/>
             </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
           </songs>
-          <artist reference="32"/>
-          <genre>Rap</genre>
+          <artist reference="37"/>
+          <genre>Alternative</genre>
         </album>
       </albums>
-      <songs id="39">
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="37"/>
+      <songs id="46">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="42"/>
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="44"/>
       </songs>
       <homeAudioSystem reference="1"/>
     </artist>
   </artists>
-  <playlists id="40">
-    <album reference="10"/>
-    <album reference="21"/>
-    <playlist id="41">
+  <playlists id="47">
+    <album reference="9"/>
+    <album reference="23"/>
+    <playlist id="48">
       <title>Temporary</title>
-      <songs id="42">
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="16"/>
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="29"/>
+      <songs id="49">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="13"/>
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="31"/>
       </songs>
       <homeAudioSystem reference="1"/>
     </playlist>
-    <album reference="34"/>
+    <album reference="39"/>
   </playlists>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>
