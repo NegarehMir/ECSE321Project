@@ -75,7 +75,7 @@ public class HomeAudioSystemController {
 			String songTitle = metadata.getTitle();
 			int songDuration = metadata.getDuration();
 			
-			Song song = new Song(songTitle, songDuration, album);
+			Song song = new Song(songTitle, songDuration, album, artist);
 			song.addArtist(artist);
 			album.addSong(song);
 		}
