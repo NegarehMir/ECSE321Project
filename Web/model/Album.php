@@ -110,20 +110,14 @@ class Album extends Playlist
     return $this->artist;
   }
 
-  public function isNumberOfSongsValid()
-  {
-    $isValid = $this->numberOfSongs() >= self::minimumNumberOfSongs();
-    return $isValid;
-  }
-
   public static function minimumNumberOfSongs()
   {
-    return 1;
+    return 0;
   }
 
-  public function addSongVia($aTitle, $aDuration)
+  public function addSongVia($aTitle, $aDuration, $allArtists)
   {
-    return new Song($aTitle, $aDuration, $this);
+    return new Song($aTitle, $aDuration, $allArtists, $this);
   }
 
   public function addSong($aSong)
@@ -132,12 +126,6 @@ class Album extends Playlist
     if ($this->indexOfSong($aSong) !== -1) { return false; }
     $existingAlbum = $aSong->getAlbum();
     $isNewAlbum = $existingAlbum != null && $this !== $existingAlbum;
-
-    if ($isNewAlbum && $existingAlbum->numberOfSongs() <= self::minimumNumberOfSongs())
-    {
-      return $wasAdded;
-    }
-
     if ($isNewAlbum)
     {
       $aSong->setAlbum($this);
@@ -154,20 +142,12 @@ class Album extends Playlist
   {
     $wasRemoved = false;
     //Unable to remove aSong, as it must always have a album
-    if ($this === $aSong->getAlbum())
+    if ($this !== $aSong->getAlbum())
     {
-      return $wasRemoved;
+      unset($this->songs[$this->indexOfSong($aSong)]);
+      $this->songs = array_values($this->songs);
+      $wasRemoved = true;
     }
-
-    //album already at minimum (1)
-    if ($this->numberOfSongs() <= self::minimumNumberOfSongs())
-    {
-      return $wasRemoved;
-    }
-
-    unset($this->songs[$this->indexOfSong($aSong)]);
-    $this->songs = array_values($this->songs);
-    $wasRemoved = true;
     return $wasRemoved;
   }
 

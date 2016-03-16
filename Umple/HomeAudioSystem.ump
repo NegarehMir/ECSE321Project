@@ -1,7 +1,7 @@
 namespace ca.mcgill.ecse321.group01.homeaudiosystem.model;
 
 // use JavaHomeAudioSystem.ump;
-use PhpHomeAudioSystem.ump;
+// use PhpHomeAudioSystem.ump;
 
 class HomeAudioSystem
 {
@@ -34,7 +34,7 @@ class Artist
 {
   String name;
   1 -- * Album;
-  1..* -- 1..* Song;
+  1..* -- * Song;
 }
 
 class Playlist
@@ -49,7 +49,7 @@ class Album
 {
   isA Playlist;
   Date releaseDate;
-  1 <@>- 1..* Song;
+  1 <@>- * Song;
 }
 
 
