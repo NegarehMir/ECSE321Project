@@ -51,7 +51,7 @@ try{
 
 }catch(Exception $e){
 
-  echo $e;
+  //echo $e;
 
   if(strpos($e, "{{albumName}}"))
   {

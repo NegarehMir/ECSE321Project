@@ -5,6 +5,7 @@ require_once(__DIR__.'/../model/Album.php');
 require_once(__DIR__.'/../model/Playlist.php');
 require_once(__DIR__.'/../model/AlbumTracklist.php');
 require_once(__DIR__.'/../model/Artist.php');
+require_once(__DIR__.'/../model/Location.php');
 require_once(__DIR__.'/../model/Song.php');
 require_once(__DIR__.'/../model/Genre.php');
 require_once(__DIR__.'/../model/HomeAudioSystem.php');
@@ -137,6 +138,37 @@ class Controller
 
     }
 
+    public function createLocation($locationName)
+    {
+      $errors = "";
+
+      $pm = new PersistenceHomeAudioSystem();
+
+      $has = $pm->loadDataFromStore();
+
+      if($locationName == null || trim($locationName) == "")
+      {
+        $errors .= "{{locationName}}";
+      }
+
+      else if($this->searchLocation($locationName, $has) != false)
+      {
+        $errors .= "{{locationNameAlreadyExists}}";
+      }
+
+      if(strlen($errors) > 0) throw new Exception($errors);
+
+      else
+      {
+        $newLocation = new Location($locationName, 100, true, $has);
+
+        $has->addLocation($newLocation);
+
+        $pm->writeDataToStore($has);
+      }
+    }
+
+    /*************HELPER FUNCTIONS************************/
     public function searchArtists($key, $has)
     {
       $artists = $has->getArtists();
@@ -182,6 +214,21 @@ class Controller
           }
         }
       }
+      return false;
+    }
+
+    public function searchLocation($key, $has)
+    {
+      $locations = $has->getLocations();
+
+      foreach($locations as $location)
+      {
+        if($location->getName() == $key)
+        {
+          return $location;
+        }
+      }
+
       return false;
     }
 }
