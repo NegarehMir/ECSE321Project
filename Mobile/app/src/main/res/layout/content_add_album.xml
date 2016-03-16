@@ -113,9 +113,15 @@
             android:layout_gravity="right"
             android:onClick="addSong"/>
 
-        <TwoLineListItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TwoLineListItem>
+        <TextView
+            android:layout_height="26dp"
+            android:layout_width="56dp"
+            android:text="Songs:" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:id="@+id/song_list"
+            android:layout_weight="0.36" />
 
     </LinearLayout>
 </RelativeLayout>
