@@ -244,7 +244,7 @@ private static final long serialVersionUID = -8062635784771606869L;
 		pack();
 	}
 	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		error = "";
 		LinkedList<SongMetadata> songInfo = new LinkedList<>();
 		// create the track list
 		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
@@ -283,6 +283,4 @@ private static final long serialVersionUID = -8062635784771606869L;
 				new SimpleDateFormat("mm:ss").format(songDurationSpinner.getValue())
 		});
 	}
-	
-
 }
