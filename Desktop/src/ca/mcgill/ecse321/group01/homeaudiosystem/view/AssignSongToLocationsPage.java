@@ -25,7 +25,6 @@ public class AssignSongToLocationsPage extends JFrame {
 	// UI elements
 	private JLabel errorMessage;
 	private JLabel locationLabel;
-	//private JComboBox<String> locationList;
 	private JTable locationsTable;
 	private JScrollPane locationsScrollPane;
 	private JLabel songLabel;
@@ -54,13 +53,6 @@ public class AssignSongToLocationsPage extends JFrame {
 		locationLabel.setText("Select Location:");
 		locationsTable = new JTable(new DefaultTableModel(new Object[] { "Location", "Volume", "Is Mute" }, 0));
 		locationsScrollPane = new JScrollPane(locationsTable);
-		/*locationList = new JComboBox<String>(new String[0]);
-		locationList.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				JComboBox<String> cb = (JComboBox<String>) evt.getSource();
-				selectedLocation = cb.getSelectedIndex();
-			}
-		});*/
 		
 		//elements for songs
 		songLabel = new JLabel();
@@ -150,10 +142,11 @@ public class AssignSongToLocationsPage extends JFrame {
 	
 	private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		error = "";
-		// call the controller
-		HomeAudioSystemController hasc = new HomeAudioSystemController();
+		
 		if(locationsTable.getSelectedRows().length>0 && selectedSong>-1)
 		{
+			// call the controller
+			HomeAudioSystemController hasc = new HomeAudioSystemController();
 			for(int i: locationsTable.getSelectedRows())
 			{
 				Location location = locations.get(i);

@@ -14,6 +14,7 @@ import javax.swing.JTable;
 
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
@@ -98,6 +99,7 @@ public class ViewPlaylistsPage extends JFrame{
 			playlists =  new HashMap<Integer, Playlist>();
 			for (Playlist playlist: has.getPlaylists())
 			{
+				if(!(playlist instanceof Album ))
 				model.addRow(new Object[]{playlist.getTitle(), playlist.getSongs().size()});
 				playlists.put(playlists.size(), playlist);
 			}

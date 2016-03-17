@@ -163,43 +163,29 @@
     </artist>
     <artist id="53">
       <name>Yoav</name>
-      <albums id="54">
-        <album id="55">
-          <title>Charmed And Strange</title>
-          <songs defined-in="playlist" id="56"/>
-          <homeAudioSystem reference="1"/>
-          <songs id="57">
-            <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song id="58">
-              <title>Adore Adore</title>
-              <duration>335</duration>
-              <artists id="59">
-                <artist reference="53"/>
-              </artists>
-              <album reference="55"/>
-            </ca.mcgill.ecse321.group01.homeaudiosystem.model.Song>
-          </songs>
-          <artist reference="53"/>
-          <genre>Rock</genre>
-        </album>
-      </albums>
-      <songs id="60">
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="58"/>
-      </songs>
+      <albums id="54"/>
+      <songs id="55"/>
+      <homeAudioSystem reference="1"/>
+    </artist>
+    <artist id="56">
+      <name>kosshertar</name>
+      <albums id="57"/>
+      <songs id="58"/>
       <homeAudioSystem reference="1"/>
     </artist>
   </artists>
-  <playlists id="61">
+  <playlists id="59">
     <album reference="9"/>
     <album reference="23"/>
-    <playlist id="62">
+    <playlist id="60">
       <title>Temporary</title>
-      <songs id="63">
+      <songs id="61">
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="13"/>
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="31"/>
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="27"/>
       </songs>
       <homeAudioSystem reference="1"/>
     </playlist>
     <album reference="39"/>
-    <album reference="55"/>
   </playlists>
 </ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem>
