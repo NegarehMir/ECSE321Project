@@ -1,0 +1,241 @@
+package ca.mcgill.ecse321.group01.homeaudiosystem.view;
+
+import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.WindowConstants;
+import javax.swing.table.DefaultTableModel;
+
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemController;
+import ca.mcgill.ecse321.group01.homeaudiosystem.controller.InvalidInputException;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
+
+public class PlaylistPage extends JFrame {
+	private static final long serialVersionUID = 7140747775189637376L;
+
+	// UI elements
+	private JLabel errorMessage;
+	private JLabel playlistLabel;
+	private JComboBox<String> playlistsList;
+	private JLabel songsLabel;
+	private JTable songsTable;
+	private JScrollPane songsScrollPane;
+	private JButton addSongButton;
+	private JButton addPlaylistButton;
+	private JButton removeSongButton;
+	private JButton removePlaylistButton;
+
+	// data elements
+	private String error = "";
+	private HashMap<Integer, Song> songs;
+	private Integer selectedPlaylist = -1;
+	private HashMap<Integer, Playlist> playlists;
+
+	// Creates new form PlaylistPage
+	public PlaylistPage() {
+		initComponents();
+		refreshData();
+	}
+
+	private void initComponents() {
+		// elements for error message
+		errorMessage = new JLabel();
+		errorMessage.setForeground(Color.RED);
+
+		// elements for songs
+		songsLabel = new JLabel();
+		songsLabel.setText("Select Song:");
+		songsTable = new JTable(new DefaultTableModel(new Object[] { "Song Title", "Artist", "Duration" }, 0));
+		songsScrollPane = new JScrollPane(songsTable);
+
+		// elements for playlists
+		playlistLabel = new JLabel();
+		playlistLabel.setText("Select Playlist:");
+		playlistsList = new JComboBox<String>(new String[0]);
+		playlistsList.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				JComboBox<String> cb = (JComboBox<String>) evt.getSource();
+				selectedPlaylist = cb.getSelectedIndex();
+				refreshSongs();
+			}
+		});
+
+		addPlaylistButton = new JButton();
+		addSongButton = new JButton();
+		removePlaylistButton = new JButton();
+		removeSongButton = new JButton();
+
+		// global settings and listeners
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setTitle("Playlist");
+
+		addPlaylistButton.setText("Add Playlist");
+		addPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addPlaylistButtonActionPerformed(evt);
+			}
+		});
+
+		addSongButton.setText("Add Song");
+		addSongButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				addSongButtonActionPerformed(evt);
+			}
+		});
+
+		removeSongButton.setText("Remove Song");
+		removeSongButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				removeSongButtonActionPerformed(evt);
+			}
+		});
+
+		removePlaylistButton.setText("Remove  Playlist");
+		removePlaylistButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				removePlaylistButtonActionPerformed(evt);
+			}
+		});
+
+		// layout
+		// columns
+		GroupLayout layout = new GroupLayout(getContentPane());
+		getContentPane().setLayout(layout);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
+		layout.setHorizontalGroup(layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup().addComponent(errorMessage).addComponent(playlistLabel)
+						.addComponent(songsLabel).addComponent(addPlaylistButton).addComponent(removePlaylistButton))
+				.addGroup(layout.createParallelGroup().addComponent(playlistsList).addComponent(songsScrollPane)
+						.addComponent(addSongButton).addComponent(removeSongButton)));
+		// rows
+		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(errorMessage)
+				.addGroup(layout.createParallelGroup().addComponent(playlistLabel).addComponent(playlistsList))
+				.addGroup(layout.createParallelGroup().addComponent(songsLabel).addComponent(songsScrollPane))
+				.addGroup(layout.createParallelGroup().addComponent(addPlaylistButton).addComponent(addSongButton))
+				.addGroup(layout.createParallelGroup().addComponent(removePlaylistButton).addComponent(removeSongButton)));
+		pack();
+	}
+
+	private void refreshData() {
+		// error
+		errorMessage.setText(error);
+		if (error == null || error.length() == 0) {
+			// playlist list
+			playlists = new HashMap<Integer, Playlist>();
+			playlistsList.removeAllItems();
+			HomeAudioSystemController hasc = new HomeAudioSystemController();
+			for (Playlist playlist : hasc.getAllPlaylistsFromLibrary()) {
+				if(!(playlist instanceof Album ))
+				{
+					playlists.put(playlists.size(), playlist);
+					playlistsList.addItem(playlist.getTitle());
+				}
+			}
+			selectedPlaylist = -1;
+			playlistsList.setSelectedIndex(selectedPlaylist);
+		}
+	}
+
+	private void refreshSongs() {
+		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
+		for (int i = model.getRowCount() - 1; i >= 0; i--)
+			model.removeRow(i);
+		if (selectedPlaylist >= 0) {
+			songs = new HashMap<Integer, Song>();
+			Playlist playlist = playlists.get(selectedPlaylist);
+			for (Song song : playlist.getSongs()) {
+				Object[] newRow = new Object[3];
+				newRow[0] = song.getTitle();
+
+				newRow[1] = song.getArtist(0).getName();
+				if (song.getArtists().size() == 2)
+					newRow[1] += ", " + song.getArtist(1).getName();
+				else if (song.getArtists().size() > 2)
+					newRow[1] += ", " + song.getArtist(1).getName() + " ...";
+
+				int duration = song.getDuration();
+				Date date = new Date();
+				SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+				date.setSeconds(duration % 60);
+				date.setMinutes(duration / 60);
+				newRow[2] = formatter.format(date);
+
+				model.addRow(newRow);
+				songs.put(songs.size(), song);
+			}
+		}
+	}
+
+	private void addSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		Playlist playlist = playlists.get(selectedPlaylist);
+		new AddSongToPlaylistPage(playlist).setVisible(true);
+	}
+
+	private void addPlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		new AddPlaylistPage().setVisible(true);
+	}
+
+	private void removeSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
+		if (songsTable.getSelectedRows().length > 0) {
+			JFrame frame = new JFrame("Warning");
+			int warning = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete the selected song(s)?",
+					"Warning", JOptionPane.YES_NO_OPTION);
+
+			if (warning == JOptionPane.YES_OPTION) {
+				// call the controller
+				HomeAudioSystemController hasc = new HomeAudioSystemController();
+				for (int i : songsTable.getSelectedRows()) {
+					Song song = songs.get(i);
+					try {
+						hasc.removeSong(song);
+						songs.remove(song);
+					} catch (InvalidInputException e) {
+						error = e.getMessage();
+					}
+				}
+			}
+		} else {
+			Song song = null;
+			try {
+				HomeAudioSystemController hasc = new HomeAudioSystemController();
+				hasc.removeSong(song);
+			} catch (InvalidInputException e) {
+				error = e.getMessage();
+			}
+		}
+
+		refreshData();
+	}
+
+	private void removePlaylistButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
+		JFrame frame = new JFrame("Warning");
+		int warning = JOptionPane.showConfirmDialog(frame, "Are you sure you want to delete this playlist?", "Warning",
+				JOptionPane.YES_NO_OPTION);
+
+		if (warning == JOptionPane.YES_OPTION) {
+			Playlist playlist = playlists.get(selectedPlaylist);
+
+			// call the controller
+			HomeAudioSystemController hasc = new HomeAudioSystemController();
+			hasc.removePlaylist(playlist);
+			playlists.remove(playlist);
+
+			refreshData();
+		}
+	}
+}

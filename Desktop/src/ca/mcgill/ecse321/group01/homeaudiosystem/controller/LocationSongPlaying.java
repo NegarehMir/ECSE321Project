@@ -9,11 +9,19 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 
 public class LocationSongPlaying {
 
-	private static HashMap<Location, Integer> locationMusicItemCurrentlyPlayingIndexMap;
-	private static HashMap<Location, Integer> withinLocationMusicItemCurrentlyPlayingIndexMap;
-
+	private static HashMap<Location, Integer> locationMusicItemCurrentlyPlayingIndexMap = new HashMap<Location, Integer>();
+	private static HashMap<Location, Integer> withinLocationMusicItemCurrentlyPlayingIndexMap = new HashMap<Location, Integer>();
+	
+	public void addLocationSongPlaying(Location location, LocationMusicItem locationMusicItem)
+	{
+		if(locationMusicItem instanceof Song)
+			locationMusicItemCurrentlyPlayingIndexMap.put(location, 0);
+		else
+			withinLocationMusicItemCurrentlyPlayingIndexMap.put(location, 0);
+	}
+	
 	public static Song getCurrentlyPlayingSong(Location location) {
-		if (locationMusicItemCurrentlyPlayingIndexMap != null) {
+		if (locationMusicItemCurrentlyPlayingIndexMap != null && locationMusicItemCurrentlyPlayingIndexMap.size()>0) {
 			int currentlyPlayingLocationMusicItemIndex = locationMusicItemCurrentlyPlayingIndexMap.get(location);
 			LocationMusicItem locationMusicItemCurrentlyPlaying = location
 					.getLocationMusicItem(currentlyPlayingLocationMusicItemIndex);

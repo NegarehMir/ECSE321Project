@@ -19,6 +19,8 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.controller.HomeAudioSystemContr
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Album;;
 
 public class AssignAlbumToLocationsPage extends JFrame{
+	private static final long serialVersionUID = 5438483024193141422L;
+	
 	// UI elements
 	private JLabel errorMessage;
 	private JLabel locationLabel;
@@ -81,7 +83,7 @@ public class AssignAlbumToLocationsPage extends JFrame{
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(
-				layout.createParallelGroup()
+				layout.createSequentialGroup()
 					.addComponent(errorMessage)
 					.addGroup(layout.createSequentialGroup()
 							.addGroup(layout.createParallelGroup()
@@ -138,6 +140,7 @@ public class AssignAlbumToLocationsPage extends JFrame{
 	}
 	
 	private void assignButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
 		// call the controller
 		HomeAudioSystemController hasc = new HomeAudioSystemController();
 		if(locationsTable.getSelectedRows().length>0 && selectedAlbum>-1)
@@ -145,7 +148,7 @@ public class AssignAlbumToLocationsPage extends JFrame{
 			for(int i: locationsTable.getSelectedRows())
 			{
 				Location location = locations.get(i);
-				hasc.assignPlaylistToLocation(albums.get(selectedAlbum), location);
+				hasc.assignLocationMusicItemToLocation(albums.get(selectedAlbum), location);
 			}
 		}
 		else

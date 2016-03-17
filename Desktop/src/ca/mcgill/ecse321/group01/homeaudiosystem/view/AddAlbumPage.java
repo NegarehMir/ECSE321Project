@@ -150,60 +150,56 @@ private static final long serialVersionUID = -8062635784771606869L;
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(
-				layout.createParallelGroup()
-				.addComponent(errorMessage)
-				.addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup()
-								.addComponent(albumNameLabel)
-								.addComponent(artistNameLabel)
-								.addComponent(genreLabel)
-								.addComponent(releaseDateLabel))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(albumNameTextField, 200, 200, 400)
-								.addComponent(artistNameTextField, 200, 200, 400)
-								.addComponent(genreList)
-								.addComponent(releaseDatePicker))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(songScrollPane)
-							.addGroup(layout.createSequentialGroup()
-									.addGroup(layout.createParallelGroup()
-											.addComponent(songDurationLabel)
-											.addComponent(songNameLabel))
-									.addGroup(layout.createParallelGroup()
-										.addComponent(songNameTextField)
-										.addComponent(songDurationSpinner))
-									)
-							.addComponent(addSongButton)
-								.addComponent(addAlbumButton)))
+				layout.createSequentialGroup()
+				.addGroup(layout.createParallelGroup()
+						.addComponent(errorMessage)
+						.addComponent(albumNameLabel)
+						.addComponent(artistNameLabel)
+						.addComponent(genreLabel)
+						.addComponent(releaseDateLabel)
+						.addComponent(addAlbumButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(albumNameTextField)
+						.addComponent(artistNameTextField)
+						.addComponent(genreList)
+						.addComponent(releaseDatePicker))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(songScrollPane)
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(songNameLabel)
+								.addComponent(songNameTextField, 100 ,100, 200))
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(songDurationLabel)
+								.addComponent(songDurationSpinner, 50, 50, 50))
+						.addComponent(addSongButton))
 				);
 
 		//rows
 		layout.setVerticalGroup(
-				layout.createParallelGroup()
+				layout.createSequentialGroup()
 				.addComponent(errorMessage)
-				.addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup()
-								.addComponent(albumNameLabel)
-								.addComponent(albumNameTextField, 200, 200, 400))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(artistNameLabel)
-								.addComponent(artistNameTextField, 200, 200, 400))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(genreLabel)
-								.addComponent(genreList))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(releaseDateLabel)
-								.addComponent(releaseDatePicker)))
-				.addGroup(layout.createSequentialGroup()
-						.addComponent(songScrollPane)
-						.addGroup(layout.createParallelGroup()
-								.addComponent(songNameLabel)
-								.addComponent(songNameTextField))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(songDurationLabel)
-								.addComponent(songDurationSpinner))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(albumNameLabel)
+						.addComponent(albumNameTextField))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(artistNameLabel)
+						.addComponent(artistNameTextField))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(genreLabel)
+						.addComponent(genreList))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(releaseDateLabel)
+						.addComponent(releaseDatePicker))
+				.addComponent(songScrollPane)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(songNameLabel)
+						.addComponent(songNameTextField))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(songDurationLabel)
+						.addComponent(songDurationSpinner))
+				.addGroup(layout.createParallelGroup()
 						.addComponent(addSongButton)
-							.addComponent(addAlbumButton))
+						.addComponent(addAlbumButton))
 				);
 		pack();
 	}
@@ -236,21 +232,20 @@ private static final long serialVersionUID = -8062635784771606869L;
 			
 			// release date
 			releaseDatePicker.getModel().setValue(null);
-
 		}
 		
 		// this is needed because the size of the window changes depending on whether an error message is shown or not
 		pack();
 	}
 	private void addAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		
+		error = "";
 		LinkedList<SongMetadata> songInfo = new LinkedList<>();
 		// create the track list
 		DefaultTableModel model = (DefaultTableModel) songsTable.getModel();
 		for (int i = 0; i < model.getRowCount(); ++i) {
 			long duration = 0;
 			try {
-				Date date = (Date) (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
+				java.util.Date date = (new SimpleDateFormat ("mm:ss")).parse((String)model.getValueAt(i, 1));
 				duration = date.getMinutes() * 60 + date.getSeconds();
 			} catch (ParseException e) {
 			}
@@ -265,9 +260,8 @@ private static final long serialVersionUID = -8062635784771606869L;
 		HomeAudioSystemController hasController = new HomeAudioSystemController();
 		try {
 			hasController.createAlbum(albumTitle, artistName, releaseDate, genreName, songInfo);
-		} catch (InvalidInputException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (InvalidInputException e) {
+			error = e.getMessage();
 		}
 
 		// update visuals
@@ -283,6 +277,4 @@ private static final long serialVersionUID = -8062635784771606869L;
 				new SimpleDateFormat("mm:ss").format(songDurationSpinner.getValue())
 		});
 	}
-	
-
 }

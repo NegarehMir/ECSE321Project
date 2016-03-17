@@ -4,8 +4,8 @@
 package ca.mcgill.ecse321.group01.homeaudiosystem.model;
 import java.util.*;
 
-// line 40 "../../../../../../HomeAudioSystem.ump"
-// line 82 "../../../../../../HomeAudioSystem.ump"
+// line 40 "../../../../../../../Umple/HomeAudioSystem.ump"
+// line 82 "../../../../../../../Umple/HomeAudioSystem.ump"
 public class Playlist implements LocationMusicItem
 {
 
@@ -24,10 +24,11 @@ public class Playlist implements LocationMusicItem
   // CONSTRUCTOR
   //------------------------
 
-  public Playlist(String aTitle, HomeAudioSystem aHomeAudioSystem)
+  public Playlist(String aTitle, HomeAudioSystem aHomeAudioSystem, Song... allSongs)
   {
     title = aTitle;
     songs = new ArrayList<Song>();
+    boolean didAddSongs = setSongs(allSongs);
     boolean didAddHomeAudioSystem = setHomeAudioSystem(aHomeAudioSystem);
     if (!didAddHomeAudioSystem)
     {
@@ -89,7 +90,7 @@ public class Playlist implements LocationMusicItem
 
   public static int minimumNumberOfSongs()
   {
-    return 0;
+    return 1;
   }
 
   public boolean addSong(Song aSong)
@@ -105,12 +106,43 @@ public class Playlist implements LocationMusicItem
   public boolean removeSong(Song aSong)
   {
     boolean wasRemoved = false;
-    if (songs.contains(aSong))
+    if (!songs.contains(aSong))
     {
-      songs.remove(aSong);
-      wasRemoved = true;
+      return wasRemoved;
     }
+
+    if (numberOfSongs() <= minimumNumberOfSongs())
+    {
+      return wasRemoved;
+    }
+
+    songs.remove(aSong);
+    wasRemoved = true;
     return wasRemoved;
+  }
+
+  public boolean setSongs(Song... newSongs)
+  {
+    boolean wasSet = false;
+    ArrayList<Song> verifiedSongs = new ArrayList<Song>();
+    for (Song aSong : newSongs)
+    {
+      if (verifiedSongs.contains(aSong))
+      {
+        continue;
+      }
+      verifiedSongs.add(aSong);
+    }
+
+    if (verifiedSongs.size() != newSongs.length || verifiedSongs.size() < minimumNumberOfSongs())
+    {
+      return wasSet;
+    }
+
+    songs.clear();
+    songs.addAll(verifiedSongs);
+    wasSet = true;
+    return wasSet;
   }
 
   public boolean addSongAt(Song aSong, int index)

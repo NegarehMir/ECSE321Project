@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import ca.mcgill.ecse321.group01.homeaudiosystem.controller.LocationSongPlaying;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.HomeAudioSystem;
 import ca.mcgill.ecse321.group01.homeaudiosystem.model.Location;
+import ca.mcgill.ecse321.group01.homeaudiosystem.model.Song;
 
 public class ViewLocationsPage extends JFrame{
 	private static final long serialVersionUID = 1527180893661940285L;
@@ -67,6 +68,12 @@ public class ViewLocationsPage extends JFrame{
 			model.removeRow(i);
 		HomeAudioSystem has = HomeAudioSystem.getInstance();
 		for (Location location: has.getLocations())
-			model.addRow(new Object[]{location.getName(), location.getVolume(), location.getMute(), LocationSongPlaying.getCurrentlyPlayingSong(location)});
+		{
+			String currentSongName = "";
+			Song currentSong = LocationSongPlaying.getCurrentlyPlayingSong(location);
+			if(currentSong != null)
+				currentSongName = currentSong.getTitle();
+			model.addRow(new Object[]{location.getName(), location.getVolume(), location.getMute(), currentSongName});
+		}
 	}
 }

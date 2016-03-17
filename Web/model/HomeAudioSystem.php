@@ -318,9 +318,9 @@ class HomeAudioSystem
     return 0;
   }
 
-  public function addPlaylistVia($aTitle)
+  public function addPlaylistVia($aTitle, $allSongs)
   {
-    return new Playlist($aTitle, $this);
+    return new Playlist($aTitle, $allSongs, $this);
   }
 
   public function addPlaylist($aPlaylist)
