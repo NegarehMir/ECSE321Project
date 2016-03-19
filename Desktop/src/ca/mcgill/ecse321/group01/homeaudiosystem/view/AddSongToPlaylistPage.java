@@ -19,24 +19,22 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.model.Playlist;
 
 public class AddSongToPlaylistPage extends JFrame{
 	private static final long serialVersionUID = -4246871321337326949L;
-	
+	Playlist playlist;
 	// UI elements
 	private JLabel errorMessage;
+	private JLabel playlistInfoLabel;
 	private JLabel songLabel;
 	private JComboBox<String> songList;
-	private JLabel playlistLabel;
-	private JComboBox<String> playlistList;
 	private JButton addSongToPlaylistButton;
-	//title artist duration
+
 	// data elements
 	private String error = null;
 	private Integer selectedSong = -1;
 	private HashMap<Integer, Song> songs;
-	private Integer selectedPlaylist = -1;
-	private HashMap<Integer, Playlist> playlists;
 	
 	// Creates new form AddAlbumPage
-	public AddSongToPlaylistPage() {
+	public AddSongToPlaylistPage(Playlist playlist) {
+		this.playlist = playlist;
 		initComponents();
 		refreshData();
 	}
@@ -45,6 +43,9 @@ public class AddSongToPlaylistPage extends JFrame{
 		//elements for error message
 		errorMessage = new JLabel();
 		errorMessage.setForeground(Color.RED);
+		
+		playlistInfoLabel = new JLabel();
+		playlistInfoLabel.setText("Adding a song to album \""+playlist.getTitle()+"\"");
 		
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -58,17 +59,6 @@ public class AddSongToPlaylistPage extends JFrame{
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				JComboBox<String> cb = (JComboBox<String>) evt.getSource();
 				selectedSong = cb.getSelectedIndex();
-			}
-		});
-		
-		//elements for songs
-		playlistLabel = new JLabel();
-		playlistLabel.setText("Select Playlist:");
-		playlistList = new JComboBox<String>(new String[0]);
-		playlistList.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				JComboBox<String> cb = (JComboBox<String>) evt.getSource();
-				selectedPlaylist = cb.getSelectedIndex();
 			}
 		});
 		
@@ -92,12 +82,11 @@ public class AddSongToPlaylistPage extends JFrame{
 				.addComponent(errorMessage)
 				.addGroup(layout.createSequentialGroup()
 						.addGroup(layout.createParallelGroup()
+								.addComponent(playlistInfoLabel)
 								.addComponent(songLabel)
-								.addComponent(playlistLabel)
 								.addComponent(addSongToPlaylistButton))
 						.addGroup(layout.createParallelGroup()
-								.addComponent(songList)
-								.addComponent(playlistList)))
+								.addComponent(songList)))
 				);
 						
 		//rows
@@ -105,12 +94,10 @@ public class AddSongToPlaylistPage extends JFrame{
 				layout.createParallelGroup()
 				.addComponent(errorMessage)
 				.addGroup(layout.createSequentialGroup()
+						.addComponent(playlistInfoLabel)
 						.addGroup(layout.createParallelGroup()
 								.addComponent(songLabel)
 								.addComponent(songList))
-						.addGroup(layout.createParallelGroup()
-								.addComponent(playlistLabel)
-								.addComponent(playlistList))
 						.addComponent(addSongToPlaylistButton))
 				);
 		pack();
@@ -129,21 +116,14 @@ public class AddSongToPlaylistPage extends JFrame{
 			LinkedList<Song> allSongsInLibrary = hasController.getAllSongsFromLibrary();
 			
 			for (Song song: allSongsInLibrary) {
-				songs.put(songs.size(), song);
-				songList.addItem(song.getTitle()+" - "+song.getArtist(0).getName());
+				if(!playlist.getSongs().contains(song))
+				{	
+					songs.put(songs.size(), song);
+					songList.addItem(song.getTitle()+" - "+song.getArtist(0).getName());
+				}
 			}
 			selectedSong = -1;
 			songList.setSelectedIndex(selectedSong);
-		
-			// playlist list
-			playlists =  new HashMap<Integer, Playlist>();
-			playlistList.removeAllItems();
-			for (Playlist playlist: has.getPlaylists()) {
-				playlists.put(playlists.size(), playlist);
-				playlistList.addItem(playlist.getTitle());
-			}
-			selectedPlaylist = -1;
-			playlistList.setSelectedIndex(selectedPlaylist);
 		}
 		
 		// this is needed because the size of the window changes depending on whether an error message is shown or not
@@ -156,7 +136,7 @@ public class AddSongToPlaylistPage extends JFrame{
 		try {
 			hasc.addSongToPlaylist(
 					songs.get(selectedSong),
-					playlists.get(selectedPlaylist));
+					playlist);
 		} catch (InvalidInputException e) {
 			error = e.getMessage();
 		}
