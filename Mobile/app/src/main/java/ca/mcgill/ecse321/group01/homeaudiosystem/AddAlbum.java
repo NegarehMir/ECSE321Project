@@ -74,6 +74,17 @@ public class AddAlbum extends AppCompatActivity {
 
         tv = (TextView) findViewById(R.id.newalbum_date);
         tv.setText("01-01-2016");
+
+        refreshSongs();
+
+    }
+
+    private void refreshSongs(){
+        TextView songTitle = (TextView) findViewById(R.id.newsong_title);
+        songTitle.setText("");
+
+        TextView songDuration = (TextView) findViewById(R.id.newsong_duration);
+        songDuration.setText("01:00");
     }
 
     @Override
@@ -131,6 +142,17 @@ public class AddAlbum extends AppCompatActivity {
             errorMessage.setText(e.getMessage());
         }
 
+
+        // refresh songs list
+        songsToList = new ArrayList<String>();
+        songListView = (ListView) findViewById(R.id.song_list);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                songsToList);
+
+        songListView.setAdapter(arrayAdapter);
+
         refreshData();
     }
 
@@ -147,6 +169,8 @@ public class AddAlbum extends AppCompatActivity {
                 songsToList);
 
         songListView.setAdapter(arrayAdapter);
+
+        refreshSongs();
 
     }
 

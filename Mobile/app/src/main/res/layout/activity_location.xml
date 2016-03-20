@@ -25,10 +25,44 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/modifyLocation_button"
+            android:text="Modify Location"
+            android:layout_gravity="left"
+            android:onClick="modifyLocationPage"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/viewLocations_button"
             android:text="View Locations"
             android:layout_gravity="left"
             android:onClick="viewLocationsPage"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Assign to Location:" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assignSong_button"
+            android:text="Assign A Song"
+            android:layout_gravity="left"
+            android:onClick="assignSongPage"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assignAlbum_button"
+            android:text="Assign A Album"
+            android:layout_gravity="left"
+            android:onClick="assignAlbumPage"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/assignPlaylist_button"
+            android:text="Assign A Playlist"
+            android:layout_gravity="left"
+            android:onClick="assignPlaylistPage"/>
 
     </LinearLayout>
 </RelativeLayout>
