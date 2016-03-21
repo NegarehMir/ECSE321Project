@@ -13,8 +13,13 @@ public class Library extends AppCompatActivity {
         setContentView(R.layout.activity_library);
     }
 
-    public void addAlbumPage (View view) {
-        Intent intent = new Intent(this, AddAlbum.class);
+    public void albumPage (View view) {
+        Intent intent = new Intent(this, AlbumPage.class);
+        startActivity(intent);
+    }
+
+    public void playlistPage (View view) {
+        Intent intent = new Intent(this, Playlist.class);
         startActivity(intent);
     }
 

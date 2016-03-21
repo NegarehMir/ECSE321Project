@@ -28,7 +28,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Location" />
         <activity android:name=".Library" />
-        <activity android:name=".ViewLocations"></activity>
+        <activity android:name=".ViewLocations" />
+        <activity android:name=".AlbumPage" />
+        <activity android:name=".Playlist"></activity>
     </application>
 
 </manifest>
