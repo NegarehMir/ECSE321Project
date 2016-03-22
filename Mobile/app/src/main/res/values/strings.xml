@@ -8,4 +8,7 @@
     <string name="newalbum_date_label">Release date of album?</string>
     <string name="title_activity_create_location">CreateLocation</string>
     <string name="title_activity_add_album">AddAlbum</string>
+    <string name="title_activity_manage_playlists">ManagePlaylists</string>
+    <string name="title_activity_create_playlist">CreatePlaylist</string>
+    <string name="title_activity_add_song_playlist">AddSongPlaylist</string>
 </resources>

@@ -23,4 +23,8 @@ public class Library extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void managePlaylistsPage(View view) {
+        Intent intent = new Intent(this, ManagePlaylists.class);
+        startActivity(intent);
+    }
 }

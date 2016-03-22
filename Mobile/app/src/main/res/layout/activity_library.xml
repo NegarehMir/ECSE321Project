@@ -29,5 +29,13 @@
             android:layout_gravity="left"
             android:onClick="playlistPage"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/managePlaylists_button"
+            android:text="Manage Playlists"
+            android:layout_gravity="left"
+            android:onClick="managePlaylistsPage"/>
+
     </LinearLayout>
 </RelativeLayout>
