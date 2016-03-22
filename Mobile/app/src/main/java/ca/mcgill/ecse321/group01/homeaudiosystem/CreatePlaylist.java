@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -22,8 +24,10 @@ import ca.mcgill.ecse321.group01.homeaudiosystem.persistence.PersistenceHomeAudi
 
 public class CreatePlaylist extends AppCompatActivity {
 
-    private Integer selectedSong = -1;
+    Integer selectedSong = -1;
     private HashMap<Integer, Song> songs;
+    ArrayList<Song> songsToAddToPlaylist = new ArrayList<>();
+    ArrayList<String> songsToList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,42 @@ public class CreatePlaylist extends AppCompatActivity {
 
         spinner.setAdapter(songsAdapter);
 
+    }
+
+    public void addSongPlaylist(View v){
+
+        Spinner spinner = (Spinner) findViewById(R.id.newplaylist_songspinner);
+        int songIndex = spinner.getSelectedItemPosition();
+        Song toAdd = songs.get(songIndex);
+        songsToAddToPlaylist.add(toAdd);
+
+        songsToList.add(toAdd.getTitle());
+
+        ListView songListView;
+
+        songListView = (ListView) findViewById(R.id.allSongsListView);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_list_item_1,
+                songsToList);
+
+        songListView.setAdapter(arrayAdapter);
+
+    }
+
+    public void createPlaylist(View v){
+
+        String playlistName = ((TextView) findViewById(R.id.newplaylist_name)).getText().toString();
+        HomeAudioSystemController hasc = new HomeAudioSystemController();
+
+        Song[] songsToAddArray = new Song[songsToAddToPlaylist.size()];
+        songsToAddArray = songsToAddToPlaylist.toArray(songsToAddArray);
+        try {
+            hasc.createPlaylist(playlistName, songsToAddArray);
+        } catch (InvalidInputException e) {
+            // TODO if error, display to user
+            //error = e.getMessage();
+        }
     }
 
 }
