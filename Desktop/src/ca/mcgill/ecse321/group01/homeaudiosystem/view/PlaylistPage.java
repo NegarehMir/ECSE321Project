@@ -138,7 +138,7 @@ public class PlaylistPage extends JFrame {
 								.addGroup(layout.createParallelGroup()
 										.addComponent(addSongButton)
 										.addComponent(removeSongButton))
-								.addGap(250)
+								.addGap(260)
 								.addComponent(refreshButton)))
 				);
 		// rows
