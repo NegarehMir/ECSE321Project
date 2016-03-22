@@ -71,6 +71,10 @@ public class CreatePlaylist extends AppCompatActivity {
 
         spinner.setAdapter(songsAdapter);
 
+        ListView songListView;
+        songListView = (ListView) findViewById(R.id.allSongsListView);
+        songListView.setAdapter(null);
+
     }
 
     public void addSongPlaylist(View v){
@@ -107,6 +111,7 @@ public class CreatePlaylist extends AppCompatActivity {
             // TODO if error, display to user
             //error = e.getMessage();
         }
+        refreshData();
     }
 
 }
