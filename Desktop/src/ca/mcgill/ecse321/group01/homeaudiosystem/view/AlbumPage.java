@@ -35,6 +35,7 @@ public class AlbumPage extends JFrame {
 	private JButton addAlbumButton;
 	private JButton removeSongButton;
 	private JButton removeAlbumButton;
+	private JButton refreshButton;
 
 	// data elements
 	private String error = "";
@@ -75,6 +76,7 @@ public class AlbumPage extends JFrame {
 		addSongButton = new JButton();
 		removeAlbumButton = new JButton();
 		removeSongButton = new JButton();
+		refreshButton = new JButton();
 
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -108,6 +110,13 @@ public class AlbumPage extends JFrame {
 			}
 		});
 
+		refreshButton.setText("Refresh");
+		refreshButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				refreshData();
+			}
+		});
+		
 		// layout
 		// columns
 		GroupLayout layout = new GroupLayout(getContentPane());
@@ -125,8 +134,13 @@ public class AlbumPage extends JFrame {
 				.addGroup(layout.createParallelGroup()
 						.addComponent(albumsList)
 						.addComponent(songsScrollPane)
-						.addComponent(addSongButton)
-						.addComponent(removeSongButton)));
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup()
+										.addComponent(addSongButton)
+										.addComponent(removeSongButton))
+								.addGap(250)
+								.addComponent(refreshButton)))
+				);
 		// rows
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
@@ -142,7 +156,9 @@ public class AlbumPage extends JFrame {
 						.addComponent(addSongButton))
 				.addGroup(layout.createParallelGroup()
 						.addComponent(removeAlbumButton)
-						.addComponent(removeSongButton)));
+						.addComponent(removeSongButton)
+						.addComponent(refreshButton))
+						);
 		pack();
 	}
 	

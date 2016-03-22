@@ -36,6 +36,7 @@ public class PlaylistPage extends JFrame {
 	private JButton addPlaylistButton;
 	private JButton removeSongButton;
 	private JButton removePlaylistButton;
+	private JButton refreshButton;
 
 	// data elements
 	private String error = "";
@@ -76,6 +77,7 @@ public class PlaylistPage extends JFrame {
 		addSongButton = new JButton();
 		removePlaylistButton = new JButton();
 		removeSongButton = new JButton();
+		refreshButton = new JButton();
 
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -108,6 +110,13 @@ public class PlaylistPage extends JFrame {
 				removePlaylistButtonActionPerformed(evt);
 			}
 		});
+		
+		refreshButton.setText("Refresh");
+		refreshButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				refreshData();
+			}
+		});
 
 		// layout
 		// columns
@@ -116,16 +125,39 @@ public class PlaylistPage extends JFrame {
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(layout.createSequentialGroup()
-				.addGroup(layout.createParallelGroup().addComponent(errorMessage).addComponent(playlistLabel)
-						.addComponent(songsLabel).addComponent(addPlaylistButton).addComponent(removePlaylistButton))
-				.addGroup(layout.createParallelGroup().addComponent(playlistsList).addComponent(songsScrollPane)
-						.addComponent(addSongButton).addComponent(removeSongButton)));
+				.addGroup(layout.createParallelGroup()
+						.addComponent(errorMessage)
+						.addComponent(playlistLabel)
+						.addComponent(songsLabel)
+						.addComponent(addPlaylistButton)
+						.addComponent(removePlaylistButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(playlistsList)
+						.addComponent(songsScrollPane)
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup()
+										.addComponent(addSongButton)
+										.addComponent(removeSongButton))
+								.addGap(250)
+								.addComponent(refreshButton)))
+				);
 		// rows
-		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(errorMessage)
-				.addGroup(layout.createParallelGroup().addComponent(playlistLabel).addComponent(playlistsList))
-				.addGroup(layout.createParallelGroup().addComponent(songsLabel).addComponent(songsScrollPane))
-				.addGroup(layout.createParallelGroup().addComponent(addPlaylistButton).addComponent(addSongButton))
-				.addGroup(layout.createParallelGroup().addComponent(removePlaylistButton).addComponent(removeSongButton)));
+		layout.setVerticalGroup(layout.createSequentialGroup()
+				.addComponent(errorMessage)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(playlistLabel)
+						.addComponent(playlistsList))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(songsLabel)
+						.addComponent(songsScrollPane))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(addPlaylistButton)
+						.addComponent(addSongButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(removePlaylistButton)
+						.addComponent(removeSongButton)
+						.addComponent(refreshButton))
+				);
 		pack();
 	}
 
