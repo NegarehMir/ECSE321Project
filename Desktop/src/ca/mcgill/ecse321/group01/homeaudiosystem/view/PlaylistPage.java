@@ -201,9 +201,9 @@ public class PlaylistPage extends JFrame {
 					playlistsList.addItem(playlist.getTitle());
 				}
 			}
-			selectedPlaylist = -1;
 			playlistsList.setSelectedIndex(selectedPlaylist);
 		}
+		pack();
 	}
 
 	private void refreshSongs() {
@@ -312,9 +312,10 @@ public class PlaylistPage extends JFrame {
 				// call the controller
 				HomeAudioSystemController hasc = new HomeAudioSystemController();
 				for (int i : songsTable.getSelectedRows()) {
+					Playlist playlist = playlists.get(selectedPlaylist);
 					Song song = songs.get(i);
 					try {
-						hasc.removeSong(song);
+						hasc.removeSongFromPlaylist(playlist, i);
 						songs.remove(song);
 					} catch (InvalidInputException e) {
 						error = e.getMessage();
@@ -322,10 +323,10 @@ public class PlaylistPage extends JFrame {
 				}
 			}
 		} else {
-			Song song = null;
+			Playlist playlist = null;
 			try {
 				HomeAudioSystemController hasc = new HomeAudioSystemController();
-				hasc.removeSong(song);
+				hasc.removeSongFromPlaylist(playlist, -1);
 			} catch (InvalidInputException e) {
 				error = e.getMessage();
 			}

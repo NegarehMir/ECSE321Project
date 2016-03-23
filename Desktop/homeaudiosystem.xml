@@ -175,10 +175,11 @@
     <playlist id="60">
       <title>Temporary</title>
       <songs id="61">
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="9"/>
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="29"/>
+        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="27"/>
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="31"/>
         <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="42"/>
-        <ca.mcgill.ecse321.group01.homeaudiosystem.model.Song reference="9"/>
       </songs>
       <homeAudioSystem reference="1"/>
     </playlist>
