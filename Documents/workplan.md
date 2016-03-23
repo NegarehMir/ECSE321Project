@@ -119,7 +119,7 @@ Team members should work on items highest up in that week's due date section fir
 | Item | Requirement | Assigned | Expected Effort | Completed Date | Actual Effort |
 | ----- | ----- | ----- | ----- | ----- | ----- |
 | Remove Song from Playlist | ML.P.05 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 3, 3, 3 |Mar. 22 | 3, , |
-| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 4 | | |
+| Change Order of Songs in Playlist | ML.P.02 | Nicky Desktop, Thomas Web, Eva & Pierre Mobile | 4, 4, 4 |Mar. 22, |4, |
 | ~~Add Songs after Album Created~~ | ~~ML.A.02~~ | ~~Nicky Desktop, Thomas Web, Eva & Pierre Mobile~~ | ~~3, 3, 3~~ | | |
 
 ### Test Writing
