@@ -474,7 +474,37 @@ public class TestHomeAudioSystemController {
 		
 		assertEquals(1, location.getLocationMusicItems().size());
 	}
+	
+	
+	@Test
+	public void testRemoveSongFromPlaylist() {
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		
+		Artist artist = new Artist("Arcade Fire", has);
+		Album album = new Album("Reflektor", has, Date.valueOf("2013-10-28"), artist);
+		Song song = new Song("Afterlife", 353, album);
+		Playlist playlist = new Playlist("Birthday", has, song);
+		
+		HomeAudioSystemController hasController = new HomeAudioSystemController();
+		try {
+			hasController.removeSongFromPlaylist(playlist, 0);
+		} catch (Exception e) {
+			fail();
+		}
+		
+		assertEquals(0, playlist.getSongs().size());
+	}
 
+	
+	@Test
+	public void testMoveSongUpInPlaylist() {
+		
+	}
+	
+	@Test
+	public void testMoveSonDownInPlaylist() {
+
+	}
 	
 	private void checkResultPlaylist(String title, HomeAudioSystem has2) {
 		assertEquals(1, has2.getPlaylists().size());
@@ -500,6 +530,4 @@ public class TestHomeAudioSystemController {
 		assertEquals(0, has2.getArtists().size());
 		assertEquals(0, has2.getPlaylists().size());
 	}
-
-	
 }
