@@ -244,4 +244,27 @@ public class HomeAudioSystemController {
 		song.delete();
 		PersistenceXStream.saveToXMLwithXStream(has);
 	}
+	
+	public void moveSongUpInPlaylist(Playlist playlist, int position) throws InvalidInputException {
+		if(position < 0 || position > playlist.getSongs().size())
+			throw new InvalidInputException("Please select a song!");
+		if(position == 0)
+			throw new InvalidInputException("Song already at the top!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.moveSongUpInPlaylist(playlist, position);
+		PersistenceXStream.saveToXMLwithXStream(has);
+		
+	}
+	
+	public void moveSongDownInPlaylist(Playlist playlist, int position) throws InvalidInputException {
+		if(position < 0 || position > playlist.getSongs().size())
+			throw new InvalidInputException("Please select a song!");
+		if(position == playlist.getSongs().size())
+			throw new InvalidInputException("Song already at the bottom!");
+		
+		HomeAudioSystem has = HomeAudioSystem.getInstance();
+		has.moveSongDownInPlaylist(playlist, position);
+		PersistenceXStream.saveToXMLwithXStream(has);
+	}
 }

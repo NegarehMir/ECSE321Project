@@ -32,10 +32,13 @@ public class PlaylistPage extends JFrame {
 	private JLabel songsLabel;
 	private JTable songsTable;
 	private JScrollPane songsScrollPane;
+	private JButton moveUpButton;
+	private JButton moveDownButton;
 	private JButton addSongButton;
 	private JButton addPlaylistButton;
 	private JButton removeSongButton;
 	private JButton removePlaylistButton;
+	private JButton refreshButton;
 
 	// data elements
 	private String error = "";
@@ -71,16 +74,35 @@ public class PlaylistPage extends JFrame {
 				refreshSongs();
 			}
 		});
-
+		
+		moveUpButton = new JButton();
+		moveDownButton = new JButton();
 		addPlaylistButton = new JButton();
 		addSongButton = new JButton();
 		removePlaylistButton = new JButton();
 		removeSongButton = new JButton();
+		refreshButton = new JButton();
 
 		// global settings and listeners
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Playlist");
-
+		
+		moveUpButton.setVisible(false);
+		moveUpButton.setText("Move Song Up");
+		moveUpButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				moveUpButtonActionPerformed(evt);
+			}
+		});
+		
+		moveDownButton.setVisible(false);
+		moveDownButton.setText("Move Song Down");
+		moveDownButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				moveDownButtonActionPerformed(evt);
+			}
+		});
+		
 		addPlaylistButton.setText("Add Playlist");
 		addPlaylistButton.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,6 +130,13 @@ public class PlaylistPage extends JFrame {
 				removePlaylistButtonActionPerformed(evt);
 			}
 		});
+		
+		refreshButton.setText("Refresh");
+		refreshButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				refreshData();
+			}
+		});
 
 		// layout
 		// columns
@@ -116,16 +145,44 @@ public class PlaylistPage extends JFrame {
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(layout.createSequentialGroup()
-				.addGroup(layout.createParallelGroup().addComponent(errorMessage).addComponent(playlistLabel)
-						.addComponent(songsLabel).addComponent(addPlaylistButton).addComponent(removePlaylistButton))
-				.addGroup(layout.createParallelGroup().addComponent(playlistsList).addComponent(songsScrollPane)
-						.addComponent(addSongButton).addComponent(removeSongButton)));
+				.addGroup(layout.createParallelGroup()
+						.addComponent(errorMessage)
+						.addComponent(playlistLabel)
+						.addComponent(songsLabel)
+						.addComponent(moveUpButton)
+						.addComponent(addPlaylistButton)
+						.addComponent(removePlaylistButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(playlistsList)
+						.addComponent(songsScrollPane)
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup()
+										.addComponent(moveDownButton)
+										.addComponent(addSongButton)
+										.addComponent(removeSongButton))
+								.addGap(260)
+								.addComponent(refreshButton)))
+				);
 		// rows
-		layout.setVerticalGroup(layout.createSequentialGroup().addComponent(errorMessage)
-				.addGroup(layout.createParallelGroup().addComponent(playlistLabel).addComponent(playlistsList))
-				.addGroup(layout.createParallelGroup().addComponent(songsLabel).addComponent(songsScrollPane))
-				.addGroup(layout.createParallelGroup().addComponent(addPlaylistButton).addComponent(addSongButton))
-				.addGroup(layout.createParallelGroup().addComponent(removePlaylistButton).addComponent(removeSongButton)));
+		layout.setVerticalGroup(layout.createSequentialGroup()
+				.addComponent(errorMessage)
+				.addGroup(layout.createParallelGroup()
+						.addComponent(playlistLabel)
+						.addComponent(playlistsList))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(songsLabel)
+						.addComponent(songsScrollPane))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(moveUpButton)
+						.addComponent(moveDownButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(addPlaylistButton)
+						.addComponent(addSongButton))
+				.addGroup(layout.createParallelGroup()
+						.addComponent(removePlaylistButton)
+						.addComponent(removeSongButton)
+						.addComponent(refreshButton))
+				);
 		pack();
 	}
 
@@ -176,9 +233,65 @@ public class PlaylistPage extends JFrame {
 				model.addRow(newRow);
 				songs.put(songs.size(), song);
 			}
+			moveUpButton.setVisible(true);
+			moveDownButton.setVisible(true);
 		}
+		else
+		{
+			moveUpButton.setVisible(false);
+			moveDownButton.setVisible(false);
+		}
+			
 	}
-
+	
+	private void moveUpButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
+		if (songsTable.getSelectedRows().length > 0) {
+			for(int position : songsTable.getSelectedRows())
+			{
+				Playlist playlist = playlists.get(selectedPlaylist);
+				// call the controller
+				HomeAudioSystemController hasc = new HomeAudioSystemController();
+				try {
+					hasc.moveSongUpInPlaylist(playlist, position);
+				} catch (InvalidInputException e) {
+					error = e.getMessage();
+				}
+			}
+		}
+		refreshData();
+	}
+	
+	private void moveDownButtonActionPerformed(java.awt.event.ActionEvent evt) {
+		error = "";
+		if (songsTable.getSelectedRows().length > 0) {
+			// making sure no selected song is the last song since it cannot be moved down
+			for(int position : songsTable.getSelectedRows())
+			{
+				if (position == songs.size()-1)
+				{
+					error = "Song already at the bottom!";
+					break;
+				}
+			}
+			if(error.length()==0)
+			{
+				for(int position : songsTable.getSelectedRows())
+				{
+					Playlist playlist = playlists.get(selectedPlaylist);
+					// call the controller
+					HomeAudioSystemController hasc = new HomeAudioSystemController();
+					try {
+						hasc.moveSongDownInPlaylist(playlist, position);
+					} catch (InvalidInputException e) {
+						error = e.getMessage();
+					}
+				}
+			}
+		}
+		refreshData();
+	}
+	
 	private void addSongButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		Playlist playlist = playlists.get(selectedPlaylist);
 		new AddSongToPlaylistPage(playlist).setVisible(true);
